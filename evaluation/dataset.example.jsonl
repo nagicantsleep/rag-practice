@@ -1,0 +1,2 @@
+{"id":"rag-definition","question":"What is retrieval-augmented generation?","relevant_passages":[{"source":"data/raw/rag-notes.md","contains":"retrieval-augmented generation combines retrieval"}]}
+{"id":"chunking-purpose","question":"Why do we split documents into chunks?","relevant_passages":[{"source":"data/raw/rag-notes.md","contains":"chunking splits a document into smaller passages"}]}

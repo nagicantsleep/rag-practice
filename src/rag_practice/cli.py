@@ -4,6 +4,7 @@ from pathlib import Path
 from .chunking import chunk_documents
 from .documents import load_directory
 from .embeddings import Embedder
+from .evaluation import evaluate_retrieval, format_report, load_eval_dataset
 from .generation import generate_answer
 from .store import VectorStore
 
@@ -22,6 +23,18 @@ def build_parser() -> argparse.ArgumentParser:
     ask_parser.add_argument("--top-k", type=int, default=5)
     ask_parser.add_argument("--model", default="llama3.2")
 
+    eval_parser = subparsers.add_parser(
+        "eval-retrieval",
+        help="Measure retrieval quality against a JSONL evaluation dataset",
+    )
+    eval_parser.add_argument("dataset", type=Path)
+    eval_parser.add_argument("--top-k", type=int, default=5)
+    eval_parser.add_argument(
+        "--show-misses",
+        action="store_true",
+        help="Print questions with no relevant passage in the top-k results",
+    )
+
     return parser
 
 
@@ -39,6 +52,12 @@ def main() -> None:
         )
         store.index(chunks)
         print(f"Indexed {len(chunks)} chunks from {len(documents)} documents.")
+        return
+
+    if args.command == "eval-retrieval":
+        examples = load_eval_dataset(args.dataset)
+        report = evaluate_retrieval(store, examples, top_k=args.top_k)
+        print(format_report(report, show_misses=args.show_misses))
         return
 
     results = store.search(args.question, top_k=args.top_k)

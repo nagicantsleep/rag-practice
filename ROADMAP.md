@@ -6,8 +6,6 @@ This file is the source of truth for the learning sequence and completion status
 
 Learn Retrieval-Augmented Generation by implementing mechanisms directly, evaluating them on shared benchmarks, comparing them with explicit baselines, and only then introducing higher-level frameworks or production abstractions.
 
-The repository should answer more than “does it run?”: why a method works or fails, which component changed quality, what the latency/token/index trade-offs are, and whether conclusions are reproducible.
-
 ## Non-negotiable learning contract
 
 1. **Evaluation is mandatory.** A demo or working pipeline without a baseline, benchmark, metrics, saved results, and error analysis is incomplete.
@@ -19,16 +17,7 @@ The repository should answer more than “does it run?”: why a method works or
 
 ## Evaluation contract for every lab
 
-Before a lab can be `DONE`, it must define and save:
-
-- **Hypothesis** — what should improve and why.
-- **Baseline** — at least one comparable prior implementation.
-- **Dataset/benchmark** — corpus, queries/questions, relevance labels or reference answers, splits/provenance where applicable.
-- **Retrieval metrics** — e.g. Hit Rate@K, Precision@K, Recall@K, MRR, MAP, nDCG@K.
-- **Generation/RAG metrics** — e.g. correctness, groundedness, context relevance, citation precision/recall, refusal/unsupported-answer behavior.
-- **System metrics** — relevant latency, tokens, API cost, index build time/size, memory footprint.
-- **Error analysis** — representative failures classified as query, retrieval, ranking, context, evidence, generation, citation, or control-flow failures.
-- **Saved artifacts** — machine-readable results plus a human-readable findings report.
+Before a lab can be `DONE`, it must define and save hypothesis, baseline, benchmark, relevant retrieval/generation/system metrics, error analysis, and machine-readable plus human-readable result artifacts.
 
 A key rule: **retrieval quality must be evaluated independently from final generation whenever retrieval is involved.** A language model must not be allowed to hide retrieval failures.
 
@@ -53,124 +42,94 @@ Statuses: `TODO`, `IN PROGRESS`, `DONE`.
 
 ### M00 — Information Retrieval Fundamentals — `DONE`
 
-Implemented:
-
-- minimal tokenization and inverted index
-- TF / IDF / TF-IDF
-- dense and sparse cosine similarity
-- BM25 from the scoring formula
-- top-k retrieval
-- relevance judgments
-- Hit Rate@K / Precision@K / Recall@K / MRR / MAP / nDCG@K
-- deterministic benchmark and hand-checkable metric tests
-- TF-IDF vs BM25 comparison
-- query-level error analysis
-
-Artifacts: `src/rag_practice/ir/`, `src/rag_practice/evaluation/`, `benchmarks/m00_ir/`, `labs/00_ir_fundamentals/`.
+Implemented minimal tokenization/inverted index, TF-IDF, dense/sparse cosine, BM25, top-k retrieval, relevance judgments, Hit Rate/Precision/Recall/MRR/MAP/nDCG, deterministic benchmark, hand-checkable metric tests, baseline comparison, and failure analysis.
 
 Key finding: lexical retrieval fails a vocabulary-mismatch paraphrase. That failure is retained as a regression target.
 
 ### M01 — Naive RAG From Scratch — `DONE`
 
-Pipeline:
+Implemented the inspectable pipeline:
 
 ```text
 documents → fixed chunks → embeddings → in-memory vector index
           → top-k retrieval → context/prompt → generator → answer + citations
 ```
 
-Implemented:
+Includes data models, fixed-size chunking, hashing embeddings, vector index, generator abstraction, extractive generator, context/prompt construction, citations, tracing, retrieval evaluation, answer/grounding/citation evaluation, latency/token measurements, BM25 baseline, and no-retrieval baseline.
 
-- `Document`, `Chunk`, retrieval result, generated answer, and trace models
-- fixed-size chunking with overlap
-- swappable embedding interface
-- deterministic hashing-based dense vector representation
-- minimal in-memory cosine vector index reusing the M00 cosine primitive
-- generator interface plus deterministic extractive generator
-- context/prompt construction
-- chunk citations
-- embedding/retrieval/generation/end-to-end trace timing
-- approximate prompt/output token counts
-- deterministic answer correctness, groundedness, and citation metrics
-- M01 QA benchmark reusing the M00 corpus
-- BM25 retrieval baseline and no-retrieval generation baseline
+Key finding: a RAG answer can be **fully grounded but wrong** when retrieval selects the wrong evidence.
 
-Evaluation summary:
+### M02 — Retrieval Families — `IN PROGRESS`
 
-- hashing-vector Hit Rate@1: **0.833**
-- BM25 Hit Rate@1: **0.833**
-- hashing-vector Recall@3: **0.833**
-- BM25 Recall@3: **1.000**
-- answer contains reference: **0.833** vs no-retrieval **0.000**
-- grounded token recall: **1.000**
-- citation precision/recall: **0.833 / 0.833**
+#### Core sub-lab — `DONE`
 
-Key finding: M01 exposes a clean **grounded-but-wrong** case. The extractive answer is fully supported by the retrieved chunk, but retrieval selected the wrong evidence for the hard paraphrase query. Dense vector storage alone does not create semantic understanding; the embedding representation determines semantic capability.
+Implemented and evaluated:
 
-Artifacts: `src/rag_practice/core/`, `src/rag_practice/embeddings/`, `src/rag_practice/retrieval/`, `src/rag_practice/generation/`, `src/rag_practice/rag/`, `benchmarks/m01_rag/`, `labs/01_naive_rag/`.
-
-### M02 — Retrieval Families — `TODO`
-
-Implement and compare on shared query classes:
-
-- BM25 / sparse lexical retrieval
-- real neural semantic dense retrieval
-- current hashing-vector mechanics baseline
-- hybrid sparse + dense
+- BM25 lexical baseline
+- hashing-vector dense-storage baseline
+- supervised neural dual encoder trained from scratch
 - Reciprocal Rank Fusion (RRF)
-- learned sparse retrieval such as SPLADE as an advanced sub-lab
-- late-interaction retrieval such as ColBERT/ColBERTv2 as an advanced sub-lab
+- min-max normalized weighted sparse+dense fusion
+- train/dev/test separation for hybrid tuning
+- exact-vs-semantic query-class evaluation
 
-Evaluation focus: Recall@K, MRR, nDCG@K, exact/entity vs semantic/paraphrase query classes, latency, index size. First acceptance target: test whether a neural dense embedder fixes the preserved paraphrase failure without regressing exact-term queries.
+Held-out summary:
+
+| Method | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 |
+| --- | ---: | ---: | ---: | ---: |
+| BM25 | 0.800 | 1.000 | 0.600 | 0.900 |
+| Hashing | 0.800 | 1.000 | 0.600 | 0.800 |
+| Neural dual encoder | 0.800 | 0.800 | 0.800 | 1.000 |
+| Hybrid RRF | 0.800 | 0.800 | 0.800 | 1.000 |
+| Hybrid weighted | **0.900** | **1.000** | **0.800** | **1.000** |
+
+The preserved paraphrase `conceptual likeness between paraphrases` is retrieved correctly by the learned neural encoder and weighted hybrid, while BM25 and hashing miss it.
+
+Core finding: **learned representation** creates semantic matching; vector storage by itself does not. Dense retrieval also regresses some exact queries, making sparse+dense complementarity measurable rather than assumed.
+
+Artifacts: `src/rag_practice/retrieval/neural_dual_encoder.py`, `src/rag_practice/retrieval/fusion.py`, `benchmarks/m02_retrieval/`, `labs/02_retrieval_families/`.
+
+#### Remaining M02 sub-labs
+
+- [ ] pretrained general-purpose semantic embedding baseline
+- [ ] learned sparse retrieval (SPLADE family)
+- [ ] late interaction (ColBERT/ColBERTv2)
+- [ ] larger benchmark / index-size and latency comparison
+
+M02 remains `IN PROGRESS` until the remaining families are implemented or explicitly scoped with evidence.
 
 ### M03 — Indexing and Chunking — `TODO`
 
-Compare fixed chunks, overlap, sentence/paragraph-aware chunks, semantic chunking, metadata enrichment, parent-child retrieval, and hierarchical indexes.
-
-Evaluation: retrieval vs granularity, evidence completeness, redundancy, context-token utilization.
+Compare fixed chunks, overlap, sentence/paragraph-aware chunks, semantic chunking, metadata enrichment, parent-child retrieval, and hierarchical indexes. Evaluate retrieval vs granularity, evidence completeness, redundancy, and token-budget utilization.
 
 ### M04 — Reranking and Context Construction — `TODO`
 
-Implement retrieve-many/rerank-few, cross-encoder reranking, LLM reranking, MMR, redundancy control, and context ordering/packing.
-
-Evaluation: ranking metrics before/after, answer quality at fixed context budgets, latency-quality trade-off.
+Implement retrieve-many/rerank-few, cross-encoder reranking, LLM reranking, MMR, redundancy control, and context ordering/packing. Evaluate ranking changes, answer quality at fixed context budgets, and latency-quality trade-offs.
 
 ### M05 — Query Transformation — `TODO`
 
-Implement query rewriting, multi-query retrieval, RAG-Fusion, Query2Doc-style expansion, HyDE, and query decomposition.
-
-Evaluation: original vs transformed-query retrieval, per-query-class wins/losses, transformation cost.
+Implement query rewriting, multi-query retrieval, RAG-Fusion, Query2Doc-style expansion, HyDE, and query decomposition. Evaluate original vs transformed retrieval, query-class wins/losses, and transformation cost.
 
 ### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `TODO`
 
-Implement progressively: multi-hop/iterative retrieval, FLARE-style active retrieval, no-RAG/single/iterative routing, Adaptive-RAG concepts, Corrective RAG, and Self-RAG-style retrieve/critique/reflection control.
-
-Evaluation: simple vs multi-hop subsets, unnecessary-retrieval rate, correction success, unsupported-answer rate, loop cost/latency.
+Implement multi-hop/iterative retrieval, FLARE-style active retrieval, no-RAG/single/iterative routing, Adaptive-RAG concepts, Corrective RAG, and Self-RAG-style retrieve/critique/reflection control. Evaluate complexity routing, correction, unsupported-answer rate, and loop cost.
 
 ### M07 — Hierarchical, Graph, and Memory-oriented RAG — `TODO`
 
-Implement progressively: RAPTOR-style trees, knowledge-graph retrieval fundamentals, GraphRAG local/global patterns, LightRAG ideas, KAG-style structured reasoning, HippoRAG-style associative retrieval, and memory-oriented patterns.
-
-Evaluation: local vs global questions, relation/multi-hop questions, flat-vector baselines, construction/update cost.
+Implement RAPTOR-style trees, knowledge-graph retrieval, GraphRAG local/global patterns, LightRAG ideas, KAG-style structured reasoning, HippoRAG-style associative retrieval, and memory-oriented retrieval. Evaluate local/global and multi-hop relation questions plus construction/update cost.
 
 ### M08 — Specialized Sources and Modalities — `TODO`
 
-Sub-labs: Web RAG, SQL/structured RAG, metadata/filter-aware RAG, Code RAG, multimodal RAG, visual-document/page-image RAG, and long-context vs retrieval routing.
-
-Evaluation remains source/modality appropriate while retaining grounding, latency, and cost measurements where applicable.
+Sub-labs: Web RAG, SQL/structured RAG, metadata/filter-aware RAG, Code RAG, multimodal RAG, visual-document/page-image RAG, and long-context vs retrieval routing, each with source-appropriate evaluation.
 
 ### M09 — Agentic RAG — `TODO`
 
-Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants.
-
-Evaluation: task success, tool/retrieval precision, steps/tool calls, unnecessary actions, recovery, grounding, latency, cost.
+Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
 
 ### M10 — Training and Production RAG — `TODO`
 
-Study/implement selectively: retriever fine-tuning, hard-negative mining, learned rerankers, end-to-end RAG concepts, caching, incremental indexing, observability, permissions, prompt-injection/adversarial-retrieval defenses, freshness policies, scaling/serving.
-
-Evaluation: offline quality, online/system performance, robustness/security, freshness, regression testing.
+Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, end-to-end RAG concepts, caching, incremental indexing, observability, permissions, adversarial retrieval defenses, freshness policies, scaling, and serving. Evaluate offline quality, system performance, robustness/security, freshness, and regressions.
 
 ## Immediate next step
 
-Start **M02 — Retrieval Families** with a real neural semantic dense retriever, keep BM25 and hashing-vector baselines, and use the preserved paraphrase failure as the first explicit acceptance test.
+Continue M02 with a **pretrained general-purpose semantic embedding baseline** so the tiny supervised dual encoder can be compared against a model with broad language pretraining before moving to SPLADE and ColBERT.

@@ -1,0 +1,71 @@
+{
+  "experiment_id": "m02_retrieval_core_v1",
+  "benchmark": "benchmarks/m02_retrieval@v1",
+  "corpus": "benchmarks/m00_ir@v1",
+  "training": {
+    "examples": 21,
+    "epochs": 400,
+    "dimensions": 32,
+    "seed": 7,
+    "loss_first": 3.6829874515533447,
+    "loss_last": 0.0006864872993901372,
+    "training_ms_observed": 919.3
+  },
+  "hybrid_tuning": {
+    "dev_queries": 6,
+    "selected_bm25_weight": 0.1,
+    "selected_neural_weight": 0.9,
+    "selection_metric_order": ["recall@1", "mrr", "ndcg@3"]
+  },
+  "metrics": {
+    "bm25": {
+      "all": {"recall@1":0.8,"recall@3":0.9,"mrr":0.85},
+      "exact": {"recall@1":1.0,"recall@3":1.0,"mrr":1.0},
+      "semantic": {"recall@1":0.6,"recall@3":0.8,"mrr":0.7}
+    },
+    "hashing": {
+      "all": {"recall@1":0.8,"recall@3":0.8,"mrr":0.835},
+      "exact": {"recall@1":1.0,"recall@3":1.0,"mrr":1.0},
+      "semantic": {"recall@1":0.6,"recall@3":0.6,"mrr":0.67}
+    },
+    "neural": {
+      "all": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9},
+      "exact": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9},
+      "semantic": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9}
+    },
+    "hybrid_rrf": {
+      "all": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9},
+      "exact": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9},
+      "semantic": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9}
+    },
+    "hybrid_weighted": {
+      "all": {"recall@1":0.9,"recall@3":1.0,"mrr":0.95},
+      "exact": {"recall@1":1.0,"recall@3":1.0,"mrr":1.0},
+      "semantic": {"recall@1":0.8,"recall@3":1.0,"mrr":0.9}
+    }
+  },
+  "acceptance_query": {
+    "id": "s1",
+    "query": "conceptual likeness between paraphrases",
+    "relevant": "d5",
+    "top1": {
+      "bm25": "d8",
+      "hashing": "d2",
+      "neural": "d5",
+      "hybrid_rrf": "d8",
+      "hybrid_weighted": "d5"
+    }
+  },
+  "known_regressions": {
+    "e3": "neural and plain RRF rank d10 above relevant d6; weighted hybrid restores d6",
+    "s5": "tiny neural and weighted hybrid rank d9 above relevant d10; lexical BM25 remains correct"
+  },
+  "latency_ms_mean_observed": {
+    "bm25": 0.017,
+    "hashing": 0.282,
+    "neural": 0.132,
+    "hybrid_rrf_fusion_only": 0.009,
+    "hybrid_weighted_fusion_only": 0.017
+  },
+  "note": "run.py writes the full metrics, tuning trials, per-query outputs, and current-machine timings when rerun."
+}

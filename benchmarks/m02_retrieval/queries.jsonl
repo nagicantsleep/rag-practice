@@ -1,0 +1,10 @@
+{"id":"e1","class":"exact","query":"python programming language created by","relevant_document_ids":["d1"]}
+{"id":"e2","class":"exact","query":"probabilistic ranking function search engines","relevant_document_ids":["d3"]}
+{"id":"e3","class":"exact","query":"retrieval augmented generation external document retrieval language model","relevant_document_ids":["d6"]}
+{"id":"e4","class":"exact","query":"reciprocal rank fusion ranked result lists","relevant_document_ids":["d7"]}
+{"id":"e5","class":"exact","query":"cosine similarity angle between vectors","relevant_document_ids":["d8"]}
+{"id":"s1","class":"semantic","query":"conceptual likeness between paraphrases","relevant_document_ids":["d5"]}
+{"id":"s2","class":"semantic","query":"evidence lookup combined with a text generator","relevant_document_ids":["d6"]}
+{"id":"s3","class":"semantic","query":"combine rankings even when their scores are incomparable","relevant_document_ids":["d7"]}
+{"id":"s4","class":"semantic","query":"orientation of numerical representations","relevant_document_ids":["d8"]}
+{"id":"s5","class":"semantic","query":"unsupported claims from a predictive text system","relevant_document_ids":["d10"]}

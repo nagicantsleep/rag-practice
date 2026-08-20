@@ -1,0 +1,6 @@
+{"id":"dve1","class":"exact","query":"Guido van Rossum Python","relevant_document_ids":["d1"]}
+{"id":"dve2","class":"exact","query":"BM25 probabilistic retrieval","relevant_document_ids":["d3"]}
+{"id":"dve3","class":"exact","query":"reciprocal rank fusion","relevant_document_ids":["d7"]}
+{"id":"dvs1","class":"semantic","query":"same meaning under rewritten wording","relevant_document_ids":["d5"]}
+{"id":"dvs2","class":"semantic","query":"retrieve sources then generate grounded text","relevant_document_ids":["d6"]}
+{"id":"dvs3","class":"semantic","query":"language predictor without source evidence","relevant_document_ids":["d10"]}

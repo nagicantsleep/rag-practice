@@ -1,0 +1,21 @@
+{"query":"programming language authored by guido","document_id":"d1"}
+{"query":"software language invented by van rossum","document_id":"d1"}
+{"query":"british surreal comedy troupe","document_id":"d2"}
+{"query":"uk sketch humor group monty python","document_id":"d2"}
+{"query":"probabilistic search ranking method","document_id":"d3"}
+{"query":"ranking documents with probabilistic relevance","document_id":"d3"}
+{"query":"term weighting by rarity across corpus","document_id":"d4"}
+{"query":"frequency and inverse collection frequency weighting","document_id":"d4"}
+{"query":"conceptual similarity across different wording","document_id":"d5"}
+{"query":"semantic likeness despite rewritten phrasing","document_id":"d5"}
+{"query":"paraphrased text expressing the same meaning","document_id":"d5"}
+{"query":"combine evidence lookup with text generation","document_id":"d6"}
+{"query":"ground answers by retrieving sources before generating","document_id":"d6"}
+{"query":"merge ranked lists without score calibration","document_id":"d7"}
+{"query":"fuse rankings using reciprocal positions","document_id":"d7"}
+{"query":"measure orientation similarity of vector representations","document_id":"d8"}
+{"query":"angular comparison between numeric vectors","document_id":"d8"}
+{"query":"find and order relevant documents from a collection","document_id":"d9"}
+{"query":"search a corpus and rank matching documents","document_id":"d9"}
+{"query":"text prediction model may lack factual evidence","document_id":"d10"}
+{"query":"generator can state unsupported facts without sources","document_id":"d10"}

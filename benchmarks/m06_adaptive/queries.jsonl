@@ -1,0 +1,10 @@
+{"id":"n1","route":"no_retrieval","query":"Return the word READY exactly.","reference":"READY","relevant_document_ids":[],"needs_correction":false}
+{"id":"n2","route":"no_retrieval","query":"What is two plus two? Answer only the number.","reference":"4","relevant_document_ids":[],"needs_correction":false}
+{"id":"s1","route":"single","query":"Which city hosts Project Ember?","reference":"Oslo","relevant_document_ids":["d1"],"needs_correction":false}
+{"id":"s2","route":"single","query":"Which database does the Atlas service use?","reference":"Vega","relevant_document_ids":["d2"],"needs_correction":false}
+{"id":"s3","route":"single","query":"What replication method does the Vega database use?","reference":"Raft","relevant_document_ids":["d3"],"needs_correction":false}
+{"id":"m1","route":"iterative","query":"Which consensus method protects the data store used by Atlas?","reference":"Raft","relevant_document_ids":["d2","d3"],"needs_correction":false}
+{"id":"m2","route":"iterative","query":"Which country contains the city where Project Ember is hosted?","reference":"Norway","relevant_document_ids":["d1","d4"],"needs_correction":false}
+{"id":"m3","route":"iterative","query":"Who created the language used by Quartz automation scripts?","reference":"Guido van Rossum","relevant_document_ids":["d5","d6"],"needs_correction":false}
+{"id":"c1","route":"single","query":"What color is the current Aurora release badge?","reference":"green","relevant_document_ids":["f1"],"needs_correction":true}
+{"id":"c2","route":"single","query":"Which port does the Nova API currently expose?","reference":"7443","relevant_document_ids":["f2"],"needs_correction":true}

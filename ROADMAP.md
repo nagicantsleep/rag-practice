@@ -108,9 +108,61 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m02_retrieval/`, `src/rag_practice/retrieval/`, `labs/02_retrieval_families/`, and `.github/workflows/m02-pretrained-eval.yml`.
 
-### M03 — Indexing and Chunking — `TODO`
+### M03 — Indexing and Chunking — `DONE`
 
-Compare fixed chunks, overlap, sentence/paragraph-aware chunks, semantic chunking, metadata enrichment, parent-child retrieval, and hierarchical indexes. Evaluate retrieval vs granularity, evidence completeness, redundancy, and context-token utilization.
+M03 holds BM25 scoring fixed and changes only chunk/index representation so boundary, metadata, parent expansion, and hierarchy effects remain attributable.
+
+Implemented and evaluated:
+
+- fixed 24-word chunks without overlap
+- fixed 24-word chunks with 8-word overlap
+- sentence-aware packing
+- paragraph-aware packing
+- deterministic sentence-boundary similarity chunking
+- metadata-enriched sentence chunks
+- sentence-child retrieval with paragraph-parent expansion
+- document-level metadata+body routing followed by plain sentence-leaf retrieval
+- evidence completeness, context redundancy/utilization, relevant-context fraction, route accuracy, searchable-index footprint, build latency, and query-latency sanity measurements
+
+Phase-1 held-out summary:
+
+| Strategy | Doc Hit@1 | Evidence@1 | Evidence@3 | Source-token utilization@3 |
+| --- | ---: | ---: | ---: | ---: |
+| Fixed 24 | **1.000** | 0.200 | 0.800 | **1.000** |
+| Fixed 24 + overlap 8 | **1.000** | 0.400 | **1.000** | 0.886 |
+| Sentence 35 | 0.800 | **0.800** | **1.000** | **1.000** |
+| Paragraph 80 | 0.800 | **0.800** | **1.000** | **1.000** |
+| Hashing-similarity semantic boundaries | 0.800 | 0.200 | 0.800 | **1.000** |
+| Sentence 35 + metadata | **1.000** | **0.800** | **1.000** | 0.635 |
+
+Phase-2 held-out summary:
+
+| Strategy | Doc Hit@1 | Evidence@1 | Evidence@3 | Utilization@3 | Searchable words | Route Hit@1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Fixed 24 + overlap 8 | **1.000** | 0.400 | **1.000** | 0.886 | 367 | — |
+| Sentence 35 + metadata | **1.000** | 0.800 | **1.000** | 0.635 | 434 | — |
+| Parent-child | 0.800 | 0.600 | **1.000** | **1.000** | **271** | — |
+| Hierarchical metadata root → plain sentence leaf | **1.000** | **1.000** | **1.000** | **1.000** | 601 | **1.000** |
+
+Important findings:
+
+- **Document hit is not evidence completeness.** Fixed 24-word chunks retrieve the right document for every query at rank 1 but contain all required evidence at rank 1 only 20% of the time.
+- **Overlap buys coverage with context duplication.** Eight-word overlap lifts Evidence@3 from `0.8` to `1.0`, while source-token utilization falls from `1.0` to `0.886`.
+- **Natural boundaries help evidence packaging on this corpus.** Sentence and paragraph packing reach Evidence@1 `0.8`, but both rank the Tropical deployment above the Arctic deployment for the metadata-dependent query because the distinguishing region is absent from body text.
+- **Repeating metadata in every leaf works but spends context budget.** Metadata-enriched sentence chunks restore Doc Hit@1 `1.0` while utilization drops to `0.635`.
+- **A simplistic “semantic” boundary heuristic is not automatically better.** The deterministic hashing-similarity strategy over-splits to 19 chunks and falls back to Evidence@1 `0.2`; it is retained as a negative result rather than tuned away.
+- **Parent-child expansion is useful but not sufficient for routing.** It reaches Evidence@1 `0.6` with perfect utilization and the smallest searchable representation in phase 2, but still selects the Tropical parent first for the Arctic query because metadata is absent from the child search layer.
+- **Metadata belongs naturally in a routing layer when answer context should stay clean.** Hierarchical metadata+body roots route every held-out query correctly, then return plain sentence leaves with Doc Hit@1/Evidence@1/utilization all `1.0`. The trade-off is a larger searchable representation: 601 words versus 367 for the overlap baseline and 434 for metadata-enriched flat chunks.
+- **These results are controlled-mechanism evidence, not a universal chunking leaderboard.** The benchmark is intentionally tiny and timings are GitHub Actions CPU sanity measurements.
+
+Evaluation evidence:
+
+- Final phase-2 GitHub Actions PR run `32407289218` completed successfully.
+- Final CI run: **39 tests passed**; phase-1 and phase-2 evaluation steps both succeeded.
+- Results are persisted as JSON and Markdown; representative Arctic/Tropical ambiguity and semantic over-splitting failures are retained in the reports.
+- Generation evaluation is **not applicable** to M03 because this milestone isolates retrieval/index representation and context-selection quality.
+
+Artifacts: `benchmarks/m03_chunking/`, `src/rag_practice/indexing/`, `src/rag_practice/evaluation/chunking.py`, `labs/03_indexing_chunking/`, and `.github/workflows/m03-indexing-chunking.yml`.
 
 ### M04 — Reranking and Context Construction — `TODO`
 
@@ -142,4 +194,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Start **M03 — Indexing and Chunking**. Hold the retriever/model constant where possible and vary chunk construction so indexing effects are measurable independently from retriever changes.
+Start **M04 — Reranking and Context Construction**. Freeze the first-stage retrieval candidate set where possible, then vary reranking and context-selection/packing policies so ranking gains, redundancy reduction, answer quality, latency, and context-budget effects can be attributed independently.

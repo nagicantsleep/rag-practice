@@ -1,0 +1,28 @@
+{
+  "milestone": "M03",
+  "status": "DONE",
+  "benchmark": "benchmarks/m03_chunking@v1",
+  "retriever_control": "BM25 at every searchable layer",
+  "final_ci_run": 32407289218,
+  "tests_passed": 39,
+  "phase1": {
+    "fixed_24": {"document_hit@1": 1.0, "evidence_complete@1": 0.2, "evidence_complete@3": 0.8, "source_token_utilization@3": 1.0},
+    "fixed_24_overlap_8": {"document_hit@1": 1.0, "evidence_complete@1": 0.4, "evidence_complete@3": 1.0, "source_token_utilization@3": 0.8857142857142858},
+    "sentence_35": {"document_hit@1": 0.8, "evidence_complete@1": 0.8, "evidence_complete@3": 1.0, "source_token_utilization@3": 1.0},
+    "paragraph_80": {"document_hit@1": 0.8, "evidence_complete@1": 0.8, "evidence_complete@3": 1.0, "source_token_utilization@3": 1.0},
+    "semantic_50": {"document_hit@1": 0.8, "evidence_complete@1": 0.2, "evidence_complete@3": 0.8, "source_token_utilization@3": 1.0, "chunks": 19},
+    "sentence_35_metadata": {"document_hit@1": 1.0, "evidence_complete@1": 0.8, "evidence_complete@3": 1.0, "source_token_utilization@3": 0.6349965981121676}
+  },
+  "phase2": {
+    "fixed_24_overlap_8": {"document_hit@1": 1.0, "evidence_complete@1": 0.4, "evidence_complete@3": 1.0, "source_token_utilization@3": 0.8857142857142858, "searchable_index_words": 367},
+    "sentence_35_metadata": {"document_hit@1": 1.0, "evidence_complete@1": 0.8, "evidence_complete@3": 1.0, "source_token_utilization@3": 0.6349965981121676, "searchable_index_words": 434},
+    "parent_child": {"document_hit@1": 0.8, "evidence_complete@1": 0.6, "evidence_complete@3": 1.0, "source_token_utilization@3": 1.0, "searchable_index_words": 271},
+    "hierarchical_metadata_root": {"route_hit@1": 1.0, "document_hit@1": 1.0, "evidence_complete@1": 1.0, "evidence_complete@3": 1.0, "source_token_utilization@3": 1.0, "relevant_context_fraction@3": 0.7629569981344605, "searchable_index_words": 601}
+  },
+  "representative_failures": [
+    "Body-only sentence/paragraph/semantic/parent-child retrieval confuses Arctic and Tropical deployments because region metadata is not searchable.",
+    "The deterministic hashing-similarity semantic boundary heuristic over-splits and falls to Evidence@1=0.2.",
+    "Fixed 24-word chunks retrieve the correct document at rank 1 for every query but provide complete rank-1 evidence only 20% of the time."
+  ],
+  "conclusion": "On this controlled benchmark, metadata-at-root hierarchical routing gives the best evidence/context outcome without copying metadata into returned leaves, at the cost of the largest searchable representation."
+}

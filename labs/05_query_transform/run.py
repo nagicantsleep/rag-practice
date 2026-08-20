@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from collections import defaultdict
 from pathlib import Path
 from statistics import fmean
@@ -14,8 +15,9 @@ from rag_practice.retrieval.fusion import reciprocal_rank_fusion, weighted_score
 from rag_practice.retrieval.pretrained import SentenceTransformerRetriever
 
 ROOT = Path(__file__).resolve().parents[2]
-FLAN_MODEL = "google/flan-t5-small"
-FLAN_REVISION = "0fc9ddf"
+FLAN_MODEL = os.environ.get("M05_FLAN_MODEL", "google/flan-t5-small")
+FLAN_REVISION = os.environ.get("M05_FLAN_REVISION", "0fc9ddf")
+OUTPUT_STEM = os.environ.get("M05_OUTPUT_STEM", "baseline")
 DENSE_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 DENSE_REVISION = "1c82ace116a2629de82404c4be48c0e5d4cf08be"
 K = 5
@@ -218,7 +220,7 @@ def main() -> None:
         resolved_dense = DENSE_REVISION
 
     payload = {
-        "experiment_id": "m05_query_transformation_v1",
+        "experiment_id": f"m05_query_transformation_{OUTPUT_STEM}_v1",
         "benchmark": {
             "corpus": "benchmarks/m00_ir/corpus.jsonl",
             "queries": "benchmarks/m05_query_transform/queries.jsonl",
@@ -231,6 +233,7 @@ def main() -> None:
             "multi_query_variants_include_original": True,
             "retrieval_k": K,
             "references_not_exposed_to_transformer": True,
+            "output_stem": OUTPUT_STEM,
         },
         "models": {
             "generator": {"name": FLAN_MODEL, "revision": resolved_flan},
@@ -239,15 +242,17 @@ def main() -> None:
         "metrics": metrics,
         "system": system,
         "per_query": traces,
-        "warning": "Tiny controlled benchmark. Transformation outputs from FLAN-T5-small are retained even when poor; no test-query prompt tuning is used. CPU timings and generated-word counts are mechanism/cost sanity measurements, not production cost estimates.",
+        "warning": "Tiny controlled benchmark. Transformation outputs are retained even when poor; no test-query prompt tuning is used. CPU timings and generated-word counts are mechanism/cost sanity measurements, not production cost estimates.",
     }
 
     out = ROOT / "labs/05_query_transform/results"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "baseline.json").write_text(json.dumps(payload, indent=2) + "\n")
+    (out / f"{OUTPUT_STEM}.json").write_text(json.dumps(payload, indent=2) + "\n")
 
     lines = [
-        "# M05 Query Transformation Baseline",
+        f"# M05 Query Transformation — {OUTPUT_STEM}",
+        "",
+        f"Transformer: `{FLAN_MODEL}` @ `{resolved_flan}`.",
         "",
         "BM25-family methods are compared with `bm25_original`; HyDE is compared with `dense_original` because HyDE changes the query representation but keeps the dense retriever/index fixed.",
         "",
@@ -266,7 +271,7 @@ def main() -> None:
             "",
         ]
     )
-    (out / "baseline.md").write_text("\n".join(lines))
+    (out / f"{OUTPUT_STEM}.md").write_text("\n".join(lines))
     print(json.dumps(payload, indent=2))
 
 

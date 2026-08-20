@@ -22,7 +22,7 @@
         "iterative_under_route_rate": 1.0,
         "correction_precision": 0.5,
         "correction_recall": 1.0,
-        "mean_control_ms": 0.04779141665759804
+        "mean_control_ms": 0.032296333339824436
       },
       "traces": {
         "n1": {
@@ -270,7 +270,7 @@
         "iterative_under_route_rate": 0.0,
         "correction_precision": 1.0,
         "correction_recall": 1.0,
-        "mean_control_ms": 0.04649974999419252
+        "mean_control_ms": 0.03122466666620009
       },
       "traces": {
         "n1": {
@@ -508,7 +508,7 @@
         "iterative_under_route_rate": 0.0,
         "correction_precision": 1.0,
         "correction_recall": 1.0,
-        "mean_control_ms": 0.08001525001096373
+        "mean_control_ms": 0.05231383332215955
       },
       "traces": {
         "n1": {
@@ -746,7 +746,7 @@
         "iterative_under_route_rate": 0.0,
         "correction_precision": 1.0,
         "correction_recall": 1.0,
-        "mean_control_ms": 0.040475666665429344
+        "mean_control_ms": 0.026047833330267167
       },
       "traces": {
         "n1": {

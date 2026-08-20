@@ -164,9 +164,61 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m03_chunking/`, `src/rag_practice/indexing/`, `src/rag_practice/evaluation/chunking.py`, `labs/03_indexing_chunking/`, and `.github/workflows/m03-indexing-chunking.yml`.
 
-### M04 — Reranking and Context Construction — `TODO`
+### M04 — Reranking and Context Construction — `DONE`
 
-Implement retrieve-many/rerank-few, cross-encoder reranking, LLM reranking, MMR, redundancy control, and context ordering/packing. Evaluate ranking changes, answer quality at fixed context budgets, and latency-quality trade-offs.
+M04 freezes the first-stage candidate set before reranking, then separates ranking, diversity, packing, ordering, and generation so improvements are attributable to the correct stage.
+
+Implemented and evaluated:
+
+- retrieve-many/rerank-few with candidate recall measured before reranking
+- pretrained cross-encoder `cross-encoder/ms-marco-MiniLM-L6-v2`
+- pointwise instruction reranking with pinned `google/flan-t5-small`
+- MMR diversity selection with explicit relevance/diversity trade-off
+- source-span overlap rejection and fixed-word-budget context packing
+- relevance order, source order, and edge-biased context ordering
+- qrel-blind deterministic extractive answer generation with citations
+- pinned FLAN answer generation using only question + ordered context
+- answer correctness, grounded-token recall, citation precision/recall, context density/utilization, and CPU latency
+- candidate-depth `k=2,4,6` latency-quality sweep
+
+Phase-1 summary with frozen BM25 top-6 candidate document/evidence recall both `1.0`:
+
+| Method | Evidence@1 | Evidence@3 | Source util@3 | Relevant context@3 |
+| --- | ---: | ---: | ---: | ---: |
+| BM25 first-stage | 0.800 | 1.000 | 0.635 | 0.742 |
+| Cross-encoder | 0.800 | 1.000 | 0.632 | 0.814 |
+| Cross-encoder + MMR | 0.800 | 1.000 | 0.639 | 0.799 |
+| Cross-encoder + 100-word packing | 0.800 | 1.000 | **0.654** | **0.904** |
+
+Generation/context summary:
+
+| Policy | Relevant context@3 | Mean context words | Extractive F1 | FLAN F1 | FLAN grounded-token recall |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| first-stage top-3 | 0.742 | 112.2 | 0.331 | 0.382 | 0.775 |
+| cross-encoder top-3 | 0.814 | 111.6 | **0.387** | **0.700** | 0.775 |
+| cross + pack 100 | **0.904** | 84.4 | **0.387** | 0.452 | 0.575 |
+| pointwise FLAN rerank + pack 100 | 0.819 | 83.2 | **0.387** | 0.452 | 0.575 |
+
+Important findings:
+
+- **Candidate recall is a reranking ceiling.** Candidate document/evidence recall is recorded before any reranker so a missing passage cannot be credited to reranking.
+- **Reranking can improve generation without changing Evidence@K.** Evidence@3 is already `1.0`, yet cross-encoder ordering raises relevant-context fraction from `0.742` to `0.814` and FLAN answer F1 from `0.382` to `0.700`.
+- **Denser context is not automatically better for the generator.** Packing lowers average context from `111.6` to `84.4` words and raises relevant-context fraction to `0.904`, but FLAN F1 falls to `0.452`. The fixed 100-word budget is retained rather than tuned on the test set.
+- **Generator robustness must be evaluated separately from context sufficiency.** For the overlapping-chunk and natural-boundaries questions, FLAN-T5-small sometimes emits bracket labels such as `[2]`/`[1]` even though relevant evidence is present. This is retained as a prompt/model failure.
+- **The simple pointwise instruction reranker is slower and not better here.** It costs roughly `323 ms/query` on CPU versus roughly `68 ms/query` for the cross-encoder and yields lower packed relevant-context fraction (`0.819` vs `0.904`).
+- **More candidates are not automatically better.** Candidate `k=2` already has document/evidence recall `1.0` and Evidence@3 `1.0`; increasing to `k=6` roughly doubles reranking latency without improving those metrics on this corpus.
+- **Ordering alone can change rank-sensitive behavior.** Source-order and edge-order reuse exactly the same packed candidate set. This tiny benchmark shows no universal FLAN ordering winner, while source order can reduce rank-1 evidence/extractive quality.
+- **Groundedness metrics have semantics.** Exact-token grounded recall is reproducible but can penalize semantically supported paraphrases; it is not treated as a semantic faithfulness oracle.
+
+Evaluation evidence:
+
+- GitHub Actions M04 run `32410053158` completed successfully on the completed mechanism/evaluation tree.
+- Final mechanism/evaluation run: **51 tests passed**; phase 1, phase 2, and candidate-depth sweep all succeeded.
+- Phase-1, phase-2, and depth-sweep results are persisted as JSON and Markdown on the feature branch.
+- Model revisions are pinned/resolved in artifacts.
+- Completion summary retains representative ranking wins, generator failures, negative results, metric limitations, and latency-quality trade-offs.
+
+Artifacts: `benchmarks/m04_context/`, `src/rag_practice/reranking/`, `src/rag_practice/models/flan_t5.py`, `src/rag_practice/generation/query_extract.py`, `labs/04_reranking_context/`, and `.github/workflows/m04-reranking-context.yml`.
 
 ### M05 — Query Transformation — `TODO`
 
@@ -194,4 +246,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Start **M04 — Reranking and Context Construction**. Freeze the first-stage retrieval candidate set where possible, then vary reranking and context-selection/packing policies so ranking gains, redundancy reduction, answer quality, latency, and context-budget effects can be attributed independently.
+Start **M05 — Query Transformation**. Freeze the retriever/index and compare original queries against rewriting, multi-query fusion, Query2Doc-style expansion, HyDE, and decomposition on shared query classes; report both wins and regressions plus transformation latency/cost before introducing more adaptive control flow.

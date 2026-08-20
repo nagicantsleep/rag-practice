@@ -1,0 +1,180 @@
+{
+  "experiment_id": "m04_cross_encoder_context_phase1_v1",
+  "benchmark": "benchmarks/m03_chunking@v1",
+  "hypothesis": "A pretrained cross-encoder should improve ordering inside a frozen high-recall BM25 candidate set; MMR and budget-aware packing should trade some raw ranking preference for less redundant, more efficient context.",
+  "experimental_control": {
+    "candidate_source": "BM25 over metadata-enriched sentence-35 chunks",
+    "candidate_k": 6,
+    "context_k": 3,
+    "context_budget_words": 100,
+    "candidate_set_frozen_before_reranking": true
+  },
+  "model": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "c5f2b386de279a97c53a702dd5189d1c407160dc",
+    "device": "cpu"
+  },
+  "candidate_recall": {
+    "candidate_document_recall@6": 1.0,
+    "candidate_evidence_recall@6": 1.0
+  },
+  "metrics": {
+    "first_stage": {
+      "document_hit@1": 1.0,
+      "document_hit@3": 1.0,
+      "evidence_complete@1": 0.8,
+      "evidence_complete@3": 1.0,
+      "source_token_utilization@3": 0.6349965981121676,
+      "relevant_context_fraction@3": 0.7415021703183133
+    },
+    "cross_encoder": {
+      "document_hit@1": 1.0,
+      "document_hit@3": 1.0,
+      "evidence_complete@1": 0.8,
+      "evidence_complete@3": 1.0,
+      "source_token_utilization@3": 0.6317788794354748,
+      "relevant_context_fraction@3": 0.8139161698041579
+    },
+    "cross_encoder_mmr": {
+      "document_hit@1": 1.0,
+      "document_hit@3": 1.0,
+      "evidence_complete@1": 0.8,
+      "evidence_complete@3": 1.0,
+      "source_token_utilization@3": 0.6394688943386045,
+      "relevant_context_fraction@3": 0.7988938151096721
+    },
+    "cross_encoder_budget_pack": {
+      "document_hit@1": 1.0,
+      "document_hit@3": 1.0,
+      "evidence_complete@1": 0.8,
+      "evidence_complete@3": 1.0,
+      "source_token_utilization@3": 0.6537910479957649,
+      "relevant_context_fraction@3": 0.9036144578313253
+    }
+  },
+  "system": {
+    "model_load_ms": 5180.246939,
+    "mean_rerank_ms": 79.37457339999696,
+    "mean_packed_source_utilization": 0.6537910479957649
+  },
+  "per_query": [
+    {
+      "id": "q1",
+      "query": "How should stale embedding evidence be removed after documents change?",
+      "relevant_document_id": "d1",
+      "first_stage_top3": [
+        "d1::sentence-0",
+        "d2::sentence-2",
+        "d5::sentence-0"
+      ],
+      "reranked_top3": [
+        "d1::sentence-0",
+        "d1::sentence-1",
+        "d5::sentence-0"
+      ],
+      "mmr_top3": [
+        "d1::sentence-0",
+        "d1::sentence-1",
+        "d5::sentence-0"
+      ],
+      "packed": [
+        "d1::sentence-0",
+        "d1::sentence-1"
+      ]
+    },
+    {
+      "id": "q2",
+      "query": "Why cap reranker candidates when serving under a latency budget?",
+      "relevant_document_id": "d2",
+      "first_stage_top3": [
+        "d2::sentence-0",
+        "d2::sentence-1",
+        "d2::sentence-2"
+      ],
+      "reranked_top3": [
+        "d2::sentence-1",
+        "d2::sentence-0",
+        "d2::sentence-2"
+      ],
+      "mmr_top3": [
+        "d2::sentence-1",
+        "d2::sentence-0",
+        "d2::sentence-2"
+      ],
+      "packed": [
+        "d2::sentence-1",
+        "d2::sentence-0"
+      ]
+    },
+    {
+      "id": "q3",
+      "query": "What should an arctic deployment do before accepting requests?",
+      "relevant_document_id": "d3",
+      "first_stage_top3": [
+        "d3::sentence-0",
+        "d4::sentence-0",
+        "d3::sentence-1"
+      ],
+      "reranked_top3": [
+        "d3::sentence-0",
+        "d4::sentence-0",
+        "d3::sentence-1"
+      ],
+      "mmr_top3": [
+        "d3::sentence-0",
+        "d3::sentence-1",
+        "d4::sentence-0"
+      ],
+      "packed": [
+        "d3::sentence-0",
+        "d4::sentence-0"
+      ]
+    },
+    {
+      "id": "q4",
+      "query": "What is the downside of overlapping chunks under a fixed context window?",
+      "relevant_document_id": "d5",
+      "first_stage_top3": [
+        "d5::sentence-0",
+        "d5::sentence-1",
+        "d2::sentence-1"
+      ],
+      "reranked_top3": [
+        "d5::sentence-0",
+        "d5::sentence-1",
+        "d2::sentence-2"
+      ],
+      "mmr_top3": [
+        "d5::sentence-0",
+        "d5::sentence-1",
+        "d2::sentence-0"
+      ],
+      "packed": [
+        "d5::sentence-0",
+        "d5::sentence-1"
+      ]
+    },
+    {
+      "id": "q5",
+      "query": "Which chunking approaches preserve natural boundaries?",
+      "relevant_document_id": "d5",
+      "first_stage_top3": [
+        "d5::sentence-1",
+        "d5::sentence-0"
+      ],
+      "reranked_top3": [
+        "d5::sentence-0",
+        "d5::sentence-1"
+      ],
+      "mmr_top3": [
+        "d5::sentence-0",
+        "d5::sentence-1"
+      ],
+      "packed": [
+        "d5::sentence-0",
+        "d5::sentence-1"
+      ]
+    }
+  ],
+  "warning": "Tiny controlled benchmark. Timings are CPU sanity measurements; MMR here uses lexical Jaccard redundancy and the packer uses source-span overlap."
+}

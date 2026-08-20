@@ -1,0 +1,58 @@
+{
+  "experiment_id": "m04_candidate_depth_sweep_v1",
+  "benchmark": "benchmarks/m03_chunking@v1",
+  "model": {
+    "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "c5f2b386de279a97c53a702dd5189d1c407160dc",
+    "device": "cpu"
+  },
+  "hypothesis": "Retrieving more candidates should reduce first-stage evidence misses but make cross-encoder reranking more expensive; the useful operating point should be judged by both candidate recall and final context quality.",
+  "results": [
+    {
+      "candidate_k": 2,
+      "mean_candidates_returned": 2.0,
+      "candidate_document_recall": 1.0,
+      "candidate_evidence_recall": 1.0,
+      "reranked_context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6401256972517625,
+        "relevant_context_fraction@3": 0.833344187561055
+      },
+      "mean_rerank_ms": 37.37609060001432
+    },
+    {
+      "candidate_k": 4,
+      "mean_candidates_returned": 3.6,
+      "candidate_document_recall": 1.0,
+      "candidate_evidence_recall": 1.0,
+      "reranked_context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6303954802259887,
+        "relevant_context_fraction@3": 0.757657935285054
+      },
+      "mean_rerank_ms": 56.74640619999991
+    },
+    {
+      "candidate_k": 6,
+      "mean_candidates_returned": 5.2,
+      "candidate_document_recall": 1.0,
+      "candidate_evidence_recall": 1.0,
+      "reranked_context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6317788794354748,
+        "relevant_context_fraction@3": 0.8139161698041579
+      },
+      "mean_rerank_ms": 79.05400699999063
+    }
+  ],
+  "warning": "Tiny controlled corpus and CPU timings. This measures the retrieve-many/rerank-few mechanism, not production throughput."
+}

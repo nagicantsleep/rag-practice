@@ -1,0 +1,835 @@
+{
+  "experiment_id": "m04_context_generation_phase2_v1",
+  "benchmark": {
+    "documents": "benchmarks/m03_chunking/documents.jsonl",
+    "retrieval_queries": "benchmarks/m03_chunking/queries.jsonl",
+    "answer_references": "benchmarks/m04_context/questions.jsonl"
+  },
+  "hypothesis": "At a fixed high-recall candidate set, reranking and packing should improve answer-relevant context density; changing only context order may affect a pretrained generator even when the selected evidence set is identical.",
+  "experimental_control": {
+    "candidate_source": "BM25 over metadata-enriched sentence-35 chunks",
+    "candidate_k": 6,
+    "context_k": 3,
+    "context_budget_words": 100,
+    "candidate_set_frozen_before_reranking": true,
+    "source_order_and_edge_order_reuse_exact_cross_pack_selected_set": true
+  },
+  "models": {
+    "cross_encoder": {
+      "name": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "revision": "c5f2b386de279a97c53a702dd5189d1c407160dc"
+    },
+    "instruction_model": {
+      "name": "google/flan-t5-small",
+      "requested_revision": "0fc9ddf",
+      "resolved_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+      "uses": [
+        "pointwise yes/no relevance scoring",
+        "answer generation"
+      ]
+    }
+  },
+  "metrics": {
+    "first_stage_top3": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6349965981121676,
+        "relevant_context_fraction@3": 0.7415021703183133
+      },
+      "mean_context_words": 112.2,
+      "extractive_generation": {
+        "token_f1": 0.33070460637222565,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 0.9,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.38235294117647056,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 0.775
+      },
+      "mean_flan_generation_ms": 300.4324009999891
+    },
+    "cross_encoder_top3": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6317788794354748,
+        "relevant_context_fraction@3": 0.8139161698041579
+      },
+      "mean_context_words": 111.6,
+      "extractive_generation": {
+        "token_f1": 0.38701833186242174,
+        "contains_reference": 0.4,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.7,
+        "contains_reference": 0.6,
+        "grounded_token_recall": 0.775
+      },
+      "mean_flan_generation_ms": 429.8758215999953
+    },
+    "cross_pack100_relevance": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6537910479957649,
+        "relevant_context_fraction@3": 0.9036144578313253
+      },
+      "mean_context_words": 84.4,
+      "extractive_generation": {
+        "token_f1": 0.38701833186242174,
+        "contains_reference": 0.4,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.4523809523809524,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 0.575
+      },
+      "mean_flan_generation_ms": 271.03018699999666
+    },
+    "cross_pack100_source_order": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.6,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6537910479957649,
+        "relevant_context_fraction@3": 0.9036144578313253
+      },
+      "mean_context_words": 84.4,
+      "extractive_generation": {
+        "token_f1": 0.3411052883841609,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.4523809523809524,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 0.575
+      },
+      "mean_flan_generation_ms": 265.77864000000204
+    },
+    "cross_pack100_edge_order": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6537910479957649,
+        "relevant_context_fraction@3": 0.9036144578313253
+      },
+      "mean_context_words": 84.4,
+      "extractive_generation": {
+        "token_f1": 0.38701833186242174,
+        "contains_reference": 0.4,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.4523809523809524,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 0.575
+      },
+      "mean_flan_generation_ms": 264.702602400007
+    },
+    "llm_pack100_relevance": {
+      "context": {
+        "document_hit@1": 1.0,
+        "document_hit@3": 1.0,
+        "evidence_complete@1": 0.8,
+        "evidence_complete@3": 1.0,
+        "source_token_utilization@3": 0.6513272602605544,
+        "relevant_context_fraction@3": 0.819277108433735
+      },
+      "mean_context_words": 83.2,
+      "extractive_generation": {
+        "token_f1": 0.38701833186242174,
+        "contains_reference": 0.4,
+        "grounded_token_recall": 1.0,
+        "citation_precision": 1.0,
+        "citation_recall": 1.0
+      },
+      "flan_generation": {
+        "token_f1": 0.4523809523809524,
+        "contains_reference": 0.2,
+        "grounded_token_recall": 0.575
+      },
+      "mean_flan_generation_ms": 264.99164920000453
+    }
+  },
+  "system": {
+    "cross_encoder_model_load_ms": 5153.208355999994,
+    "flan_model_load_ms": 621.550706999983,
+    "mean_cross_encoder_rerank_ms": 74.51552539999398,
+    "mean_pointwise_llm_rerank_ms": 359.5458398000005
+  },
+  "per_query": {
+    "q1": {
+      "first_stage_top3": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d2::sentence-2",
+          "d5::sentence-0"
+        ],
+        "context_words": 123,
+        "extractive": {
+          "answer": "After source documents change, stale vectors can continue to return obsolete evidence. title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global The quality trade-off should be measured at a fixed end-to-end budget.",
+          "token_f1": 0.0784313725490196,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 0.5,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "Re-encoding changed passages and atomically swapping the refreshed index prevents stale retrieval",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_encoder_top3": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d1::sentence-1",
+          "d5::sentence-0"
+        ],
+        "context_words": 138,
+        "extractive": {
+          "answer": "title: Dense Retrieval Operations | section: Index Refresh | tags: embeddings, freshness | region: global Embedding indexes map each passage into a vector representation. After source documents change, stale vectors can continue to return obsolete evidence.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "Re-encoding changed passages and atomically swapping the refreshed index prevents stale retrieval.",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_relevance": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d1::sentence-1"
+        ],
+        "context_words": 89,
+        "extractive": {
+          "answer": "title: Dense Retrieval Operations | section: Index Refresh | tags: embeddings, freshness | region: global Embedding indexes map each passage into a vector representation. After source documents change, stale vectors can continue to return obsolete evidence.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "atomically swapping the refreshed index prevents stale retrieval",
+          "token_f1": 0.761904761904762,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_source_order": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d1::sentence-1"
+        ],
+        "context_words": 89,
+        "extractive": {
+          "answer": "title: Dense Retrieval Operations | section: Index Refresh | tags: embeddings, freshness | region: global Embedding indexes map each passage into a vector representation. After source documents change, stale vectors can continue to return obsolete evidence.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "atomically swapping the refreshed index prevents stale retrieval",
+          "token_f1": 0.761904761904762,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_edge_order": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d1::sentence-1"
+        ],
+        "context_words": 89,
+        "extractive": {
+          "answer": "title: Dense Retrieval Operations | section: Index Refresh | tags: embeddings, freshness | region: global Embedding indexes map each passage into a vector representation. After source documents change, stale vectors can continue to return obsolete evidence.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "atomically swapping the refreshed index prevents stale retrieval",
+          "token_f1": 0.761904761904762,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "llm_pack100_relevance": {
+        "context_ids": [
+          "d1::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 83,
+        "extractive": {
+          "answer": "title: Dense Retrieval Operations | section: Index Refresh | tags: embeddings, freshness | region: global Embedding indexes map each passage into a vector representation. After source documents change, stale vectors can continue to return obsolete evidence.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "atomically swapping the refreshed index prevents stale retrieval",
+          "token_f1": 0.761904761904762,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      }
+    },
+    "q2": {
+      "first_stage_top3": {
+        "context_ids": [
+          "d2::sentence-0",
+          "d2::sentence-1",
+          "d2::sentence-2"
+        ],
+        "context_words": 108,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global First-stage retrieval should favor recall and can return dozens of candidates. A cross-encoder reranker spends more compute on those candidates to improve ordering.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "to improve ordering",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_encoder_top3": {
+        "context_ids": [
+          "d2::sentence-1",
+          "d2::sentence-0",
+          "d2::sentence-2"
+        ],
+        "context_words": 108,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global Teams often cap the candidate count because reranking latency grows with the number of passages scored. When the latency budget is tight, batching and smaller candidate sets reduce cost.",
+          "token_f1": 0.36,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "reranking latency grows with the number of passages scored",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_relevance": {
+        "context_ids": [
+          "d2::sentence-1",
+          "d2::sentence-0"
+        ],
+        "context_words": 82,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global Teams often cap the candidate count because reranking latency grows with the number of passages scored. When the latency budget is tight, batching and smaller candidate sets reduce cost.",
+          "token_f1": 0.36,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "reranking latency grows with the number of passages scored",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_source_order": {
+        "context_ids": [
+          "d2::sentence-0",
+          "d2::sentence-1"
+        ],
+        "context_words": 82,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global First-stage retrieval should favor recall and can return dozens of candidates. A cross-encoder reranker spends more compute on those candidates to improve ordering.",
+          "token_f1": 0.13043478260869568,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "reranking latency grows with the number of passages scored",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_edge_order": {
+        "context_ids": [
+          "d2::sentence-1",
+          "d2::sentence-0"
+        ],
+        "context_words": 82,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global Teams often cap the candidate count because reranking latency grows with the number of passages scored. When the latency budget is tight, batching and smaller candidate sets reduce cost.",
+          "token_f1": 0.36,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "reranking latency grows with the number of passages scored",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "llm_pack100_relevance": {
+        "context_ids": [
+          "d2::sentence-1",
+          "d2::sentence-0"
+        ],
+        "context_words": 82,
+        "extractive": {
+          "answer": "title: Reranking Service Guide | section: Latency Budget | tags: reranking, latency | region: global Teams often cap the candidate count because reranking latency grows with the number of passages scored. When the latency budget is tight, batching and smaller candidate sets reduce cost.",
+          "token_f1": 0.36,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "reranking latency grows with the number of passages scored",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      }
+    },
+    "q3": {
+      "first_stage_top3": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0",
+          "d3::sentence-1"
+        ],
+        "context_words": 118,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      },
+      "cross_encoder_top3": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0",
+          "d3::sentence-1"
+        ],
+        "context_words": 118,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      },
+      "cross_pack100_relevance": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0"
+        ],
+        "context_words": 83,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      },
+      "cross_pack100_source_order": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0"
+        ],
+        "context_words": 83,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      },
+      "cross_pack100_edge_order": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0"
+        ],
+        "context_words": 83,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      },
+      "llm_pack100_relevance": {
+        "context_ids": [
+          "d3::sentence-0",
+          "d4::sentence-0"
+        ],
+        "context_words": 83,
+        "extractive": {
+          "answer": "title: Arctic Deployment Handbook | section: Cold Start | tags: deployment, cold-start | region: arctic Remote deployments require warming model weights before serving traffic. The startup checklist verifies local artifacts, opens the read-only index, and runs one retrieval health probe before accepting requests.",
+          "token_f1": 0.6451612903225806,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "run one retrieval health probe before accepting requests",
+          "token_f1": 0.4999999999999999,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.875
+        }
+      }
+    },
+    "q4": {
+      "first_stage_top3": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1",
+          "d2::sentence-1"
+        ],
+        "context_words": 128,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "overlapping chunks reduce the budget available for distinct evidence",
+          "token_f1": 0.4117647058823529,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_encoder_top3": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1",
+          "d2::sentence-2"
+        ],
+        "context_words": 110,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "The same overlap also repeats source tokens in the retrieved context. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 1.0,
+          "contains_reference": 1.0,
+          "grounded_token_recall": 1.0
+        }
+      },
+      "cross_pack100_relevance": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[2]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_pack100_source_order": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[2]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_pack100_edge_order": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[2]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "llm_pack100_relevance": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. At a fixed context window, repeated tokens reduce the budget available for distinct evidence.",
+          "token_f1": 0.49180327868852464,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[2]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      }
+    },
+    "q5": {
+      "first_stage_top3": {
+        "context_ids": [
+          "d5::sentence-1",
+          "d5::sentence-0"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[2]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_encoder_top3": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[1]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_pack100_relevance": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[1]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_pack100_source_order": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[1]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "cross_pack100_edge_order": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[1]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      },
+      "llm_pack100_relevance": {
+        "context_ids": [
+          "d5::sentence-0",
+          "d5::sentence-1"
+        ],
+        "context_words": 84,
+        "extractive": {
+          "answer": "title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Overlapping chunks can preserve evidence that crosses a chunk boundary. title: Context Packing Notes | section: Redundancy | tags: chunking, context-window | region: global Sentence-aware chunks avoid cutting sentences in half.",
+          "token_f1": 0.30769230769230765,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 1.0,
+          "citation_precision": 1.0,
+          "citation_recall": 1.0
+        },
+        "flan": {
+          "answer": "[1]",
+          "token_f1": 0.0,
+          "contains_reference": 0.0,
+          "grounded_token_recall": 0.0
+        }
+      }
+    }
+  },
+  "warning": "Tiny controlled benchmark. FLAN-T5-small is an instruction-model sanity check, not a claim about frontier LLM reranking or generation. CPU timings are implementation sanity measurements."
+}

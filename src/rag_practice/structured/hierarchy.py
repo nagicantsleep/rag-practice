@@ -80,6 +80,8 @@ class RaptorStyleIndex:
                 for doc_id in node.document_ids:
                     candidate_ids.add(doc_id)
                     group_score_by_doc[doc_id] = max(group_score_by_doc.get(doc_id, 0.0), group_score)
+            if not candidate_ids:
+                continue
             leaf_index = BM25Index({doc_id: self.by_id[doc_id].text for doc_id in candidate_ids})
             leaf_scores = dict(leaf_index.search(content_query, k=len(candidate_ids)))
             for doc_id in candidate_ids:

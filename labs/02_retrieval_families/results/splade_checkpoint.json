@@ -46,9 +46,9 @@
     }
   },
   "system": {
-    "model_load_ms": 5556.350975999976,
-    "document_encoding_ms": 337.73016899999675,
-    "mean_query_ms": 52.876303999994434,
+    "model_load_ms": 565.2253499999915,
+    "document_encoding_ms": 328.4199189999981,
+    "mean_query_ms": 43.650034900002765,
     "document_nonzero_values": 1832,
     "mean_nonzero_values_per_document": 183.2
   },

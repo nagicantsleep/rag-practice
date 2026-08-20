@@ -17,8 +17,8 @@ This is a real pretrained SPLADE-family SparseEncoder checkpoint, unlike the ear
 
 - total non-zero document values: 1832
 - mean non-zero values/document: 183.2
-- document encoding: 337.7 ms
-- mean query scoring: 52.88 ms
+- document encoding: 328.4 ms
+- mean query scoring: 43.65 ms
 
 ## Top-1 failures
 

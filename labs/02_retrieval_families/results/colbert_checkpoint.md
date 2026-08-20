@@ -17,8 +17,8 @@ This evaluates the canonical pretrained ColBERTv2 checkpoint with token-level la
 
 - stored document token vectors: 211
 - logical embedding payload: 108032 bytes
-- document encoding: 283.0 ms
-- mean query encode + exhaustive MaxSim rerank: 59.54 ms
+- document encoding: 704.1 ms
+- mean query encode + exhaustive MaxSim rerank: 75.25 ms
 
 ## Top-1 failures
 

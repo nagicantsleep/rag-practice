@@ -1,0 +1,5 @@
+{"id":"q1","query":"How should stale embedding evidence be removed after documents change?","relevant_document_id":"d1","required_phrases":["re-encoding changed passages","atomically swapping the refreshed index"]}
+{"id":"q2","query":"Why cap reranker candidates when serving under a latency budget?","relevant_document_id":"d2","required_phrases":["reranking latency grows","number of passages scored"]}
+{"id":"q3","query":"What should an arctic deployment do before accepting requests?","relevant_document_id":"d3","required_phrases":["runs one retrieval health probe","before accepting requests"]}
+{"id":"q4","query":"What is the downside of overlapping chunks under a fixed context window?","relevant_document_id":"d5","required_phrases":["repeats source tokens","reduce the budget available for distinct evidence"]}
+{"id":"q5","query":"Which chunking approaches preserve natural boundaries?","relevant_document_id":"d5","required_phrases":["sentence-aware chunks","paragraph-aware chunks"]}

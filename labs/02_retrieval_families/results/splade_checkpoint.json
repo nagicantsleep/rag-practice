@@ -1,25 +1,24 @@
 {
-  "experiment_id": "m02_pretrained_minilm_v1",
+  "experiment_id": "m02_splade_checkpoint_v1",
   "benchmark": "benchmarks/m02_retrieval@v1",
   "model": {
-    "name": "sentence-transformers/all-MiniLM-L6-v2",
-    "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be",
+    "name": "naver/splade-v3-distilbert",
+    "resolved_revision": "2db06b86d65e316e2ca9907aa1aa8be6f8c4e739",
     "sentence_transformers_version": "5.6.1",
-    "dimensions": 384,
     "device": "cpu"
   },
   "metrics": {
     "all": {
-      "mrr": 0.925,
-      "map": 0.925,
+      "mrr": 0.95,
+      "map": 0.95,
       "hit_rate@1": 0.9,
       "precision@1": 0.9,
       "recall@1": 0.9,
       "ndcg@1": 0.9,
-      "hit_rate@3": 0.9,
-      "precision@3": 0.3,
-      "recall@3": 0.9,
-      "ndcg@3": 0.9
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 0.9630929753571458
     },
     "exact": {
       "mrr": 1.0,
@@ -34,42 +33,24 @@
       "ndcg@3": 1.0
     },
     "semantic": {
-      "mrr": 0.85,
-      "map": 0.85,
+      "mrr": 0.9,
+      "map": 0.9,
       "hit_rate@1": 0.8,
       "precision@1": 0.8,
       "recall@1": 0.8,
       "ndcg@1": 0.8,
-      "hit_rate@3": 0.8,
-      "precision@3": 0.26666666666666666,
-      "recall@3": 0.8,
-      "ndcg@3": 0.8
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 0.9261859507142916
     }
   },
-  "preserved_paraphrase": {
-    "id": "s1",
-    "class": "semantic",
-    "query": "conceptual likeness between paraphrases",
-    "relevant": [
-      "d5"
-    ],
-    "top1": "d5",
-    "top3": [
-      "d5",
-      "d10",
-      "d6"
-    ]
-  },
   "system": {
-    "model_load_ms": 3623.3621449999873,
-    "index_build_ms": 53.00851900000225,
-    "mean_query_ms": 9.96084930000336,
-    "logical_index_bytes_float32": 15360
-  },
-  "core_comparison": {
-    "bm25_recall_at_1": 0.8,
-    "neural_from_scratch_recall_at_1": 0.8,
-    "hybrid_weighted_recall_at_1": 0.9
+    "model_load_ms": 7864.1269029999985,
+    "document_encoding_ms": 505.76465599999665,
+    "mean_query_ms": 55.94976559999907,
+    "document_nonzero_values": 1832,
+    "mean_nonzero_values_per_document": 183.2
   },
   "per_query": [
     {
@@ -110,8 +91,8 @@
       "top1": "d6",
       "top3": [
         "d6",
-        "d9",
-        "d5"
+        "d5",
+        "d9"
       ]
     },
     {
@@ -124,8 +105,8 @@
       "top1": "d7",
       "top3": [
         "d7",
-        "d9",
-        "d3"
+        "d3",
+        "d9"
       ]
     },
     {
@@ -139,7 +120,7 @@
       "top3": [
         "d8",
         "d5",
-        "d7"
+        "d9"
       ]
     },
     {
@@ -149,11 +130,11 @@
       "relevant": [
         "d5"
       ],
-      "top1": "d5",
+      "top1": "d8",
       "top3": [
+        "d8",
         "d5",
-        "d10",
-        "d6"
+        "d9"
       ]
     },
     {
@@ -163,11 +144,11 @@
       "relevant": [
         "d6"
       ],
-      "top1": "d10",
+      "top1": "d6",
       "top3": [
-        "d10",
-        "d5",
-        "d4"
+        "d6",
+        "d7",
+        "d10"
       ]
     },
     {
@@ -180,8 +161,8 @@
       "top1": "d7",
       "top3": [
         "d7",
-        "d9",
-        "d3"
+        "d3",
+        "d6"
       ]
     },
     {
@@ -195,7 +176,7 @@
       "top3": [
         "d8",
         "d7",
-        "d1"
+        "d6"
       ]
     },
     {
@@ -208,8 +189,8 @@
       "top1": "d10",
       "top3": [
         "d10",
-        "d9",
-        "d4"
+        "d5",
+        "d9"
       ]
     }
   ]

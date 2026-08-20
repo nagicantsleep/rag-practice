@@ -97,8 +97,9 @@ Generation answer-quality evaluation is not applicable to M05: generation is bei
 
 ## Evaluation evidence
 
-- GitHub Actions capacity-control PR run `32413220357`: success.
-- **59 tests passed** on the mechanism tree.
+- GitHub Actions capacity-control mechanism run `32413220357`: success.
+- GitHub Actions completed documentation/ROADMAP run `32414001399`: success.
+- **59 tests passed** on the completed tree.
 - FLAN-T5-small baseline and FLAN-T5-base capacity-control evaluations both succeeded.
 - JSON + Markdown results persist model revisions, transformed queries, rankings, per-class metrics, latency, and generated-word counts.
 
@@ -112,6 +113,6 @@ Generation answer-quality evaluation is not applicable to M05: generation is bei
 - [x] transformer-capacity confound is tested without held-out prompt tuning
 - [x] representative failures are retained
 - [x] completion summary is written
-- [ ] final documentation/ROADMAP head passes CI
+- [x] completed documentation/ROADMAP head passes CI
 
-M05 can move to `DONE` once the final documentation/ROADMAP tree passes the same CI workflow.
+M05 is `DONE`. The remaining merge gate is a final CI pass on this checklist-closing head; no further mechanism or documentation changes are planned.

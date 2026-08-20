@@ -63,17 +63,7 @@ Key finding: a RAG answer can be **fully grounded but wrong** when retrieval sel
 
 #### Core sub-lab — `DONE`
 
-Implemented and evaluated:
-
-- BM25 lexical baseline
-- hashing-vector dense-storage baseline
-- supervised neural dual encoder trained from scratch
-- Reciprocal Rank Fusion (RRF)
-- min-max normalized weighted sparse+dense fusion
-- train/dev/test separation for hybrid tuning
-- exact-vs-semantic query-class evaluation
-
-Held-out summary:
+Implemented and evaluated BM25, hashing-vector retrieval, a supervised neural dual encoder, RRF, weighted sparse+dense fusion, train/dev/test separation, and exact-vs-semantic breakdown.
 
 | Method | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 |
 | --- | ---: | ---: | ---: | ---: |
@@ -83,20 +73,35 @@ Held-out summary:
 | Hybrid RRF | 0.800 | 0.800 | 0.800 | 1.000 |
 | Hybrid weighted | **0.900** | **1.000** | **0.800** | **1.000** |
 
-The preserved paraphrase `conceptual likeness between paraphrases` is retrieved correctly by the learned neural encoder and weighted hybrid, while BM25 and hashing miss it.
+The learned neural encoder and weighted hybrid fix the preserved paraphrase failure. Dense retrieval also regresses some exact queries, making sparse+dense complementarity measurable.
 
-Core finding: **learned representation** creates semantic matching; vector storage by itself does not. Dense retrieval also regresses some exact queries, making sparse+dense complementarity measurable rather than assumed.
+#### Advanced mechanism sub-lab — `DONE`
 
-Artifacts: `src/rag_practice/retrieval/neural_dual_encoder.py`, `src/rag_practice/retrieval/fusion.py`, `benchmarks/m02_retrieval/`, `labs/02_retrieval_families/`.
+Implemented transparent, non-checkpoint versions of:
+
+- SPLADE-style learned sparse lexical expansion with log-saturated non-negative weights and sparsity pressure
+- ColBERT-style token-level late interaction with MaxSim
+- explicit representation-footprint measurements
+
+Held-out summary:
+
+| Mechanism model | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 |
+| --- | ---: | ---: | ---: | ---: |
+| SPLADE-style mechanics | 0.600 | 0.800 | 0.400 | 0.800 |
+| ColBERT-style mechanics | 0.700 | 0.800 | 0.600 | 0.800 |
+
+The simplified models do not beat BM25/core neural baselines. This is recorded as evidence that the pretrained contextual backbone and training recipe are material parts of SPLADE/ColBERT, not incidental implementation details. The learned sparse model nevertheless demonstrates interpretable expansion (`orientation of numerical representations` learns `vector` and `similarity` dimensions), while late interaction makes its larger multi-vector index footprint explicit.
+
+Artifacts: `src/rag_practice/retrieval/learned_sparse.py`, `src/rag_practice/retrieval/late_interaction.py`, and `labs/02_retrieval_families/results/advanced_mechanics.*`.
 
 #### Remaining M02 sub-labs
 
 - [ ] pretrained general-purpose semantic embedding baseline
-- [ ] learned sparse retrieval (SPLADE family)
-- [ ] late interaction (ColBERT/ColBERTv2)
+- [ ] full pretrained SPLADE checkpoint evaluation
+- [ ] full pretrained ColBERT/ColBERTv2 checkpoint evaluation
 - [ ] larger benchmark / index-size and latency comparison
 
-M02 remains `IN PROGRESS` until the remaining families are implemented or explicitly scoped with evidence.
+Current environment evidence: PyTorch is available, but `transformers`, `sentence-transformers`, pretrained model cache, and embedding API credentials are unavailable. Checkpoint sub-labs remain open rather than being marked complete without evaluation.
 
 ### M03 — Indexing and Chunking — `TODO`
 
@@ -132,4 +137,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue M02 with a **pretrained general-purpose semantic embedding baseline** so the tiny supervised dual encoder can be compared against a model with broad language pretraining before moving to SPLADE and ColBERT.
+The pretrained-checkpoint part of M02 is blocked by unavailable model artifacts in the current execution environment. Keep that work explicitly open and continue with an evaluable M02 scaling/indexing benchmark rather than fabricating pretrained results.

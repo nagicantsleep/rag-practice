@@ -1,0 +1,36 @@
+{
+  "experiment_id": "m02_advanced_mechanics_v1",
+  "benchmark": "benchmarks/m02_retrieval@v1",
+  "note": "These are mechanism-focused SPLADE-style and ColBERT-style models, not pretrained checkpoint reproductions.",
+  "learned_sparse": {
+    "config": {"epochs": 300, "learning_rate": 0.05, "sparsity_lambda": 0.01},
+    "loss_first": 0.5950190424919128,
+    "loss_last": 0.2197698950767517,
+    "training_ms_observed": 1147.7,
+    "latency_ms_mean_observed": 0.118,
+    "all": {"mrr": 0.7342857142857142, "recall@1": 0.6, "recall@3": 0.8, "ndcg@3": 0.7261859507142916},
+    "exact": {"mrr": 0.9, "recall@1": 0.8, "recall@3": 1.0},
+    "semantic": {"mrr": 0.5685714285714286, "recall@1": 0.4, "recall@3": 0.6},
+    "top1": {"e1":"d1","e2":"d3","e3":"d1","e4":"d7","e5":"d8","s1":"d8","s2":"d9","s3":"d7","s4":"d8","s5":"d9"},
+    "vocab_size": 164,
+    "mean_nonzero_document_dimensions": 4.0,
+    "interpretable_expansion_example": {
+      "query": "orientation of numerical representations",
+      "top_dimensions": [["representations",1.0236150026321411],["<unk>",0.6931471824645996],["vector",0.5784306526184082],["similarity",0.49473506212234497]]
+    }
+  },
+  "late_interaction": {
+    "config": {"epochs": 100, "learning_rate": 0.05, "temperature": 0.15},
+    "loss_first": 3.0311343669891357,
+    "loss_last": 0.0002059963153442368,
+    "training_ms_observed": 196.7,
+    "latency_ms_mean_observed": 0.274,
+    "all": {"mrr": 0.775, "recall@1": 0.7, "recall@3": 0.8, "ndcg@3": 0.75},
+    "exact": {"mrr": 0.8333333333333334, "recall@1": 0.8, "recall@3": 0.8},
+    "semantic": {"mrr": 0.7166666666666667, "recall@1": 0.6, "recall@3": 0.8},
+    "top1": {"e1":"d1","e2":"d3","e3":"d4","e4":"d7","e5":"d8","s1":"d5","s2":"d6","s3":"d4","s4":"d8","s5":"d5"},
+    "dimensions_per_token": 16,
+    "document_token_vectors": 162
+  },
+  "note_on_timings": "Timings are local sanity measurements on a 10-document corpus; rerunning the script records current-machine values."
+}

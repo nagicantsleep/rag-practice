@@ -7,7 +7,7 @@ from statistics import fmean
 from rag_practice.evaluation.structured import evidence_complete_at_budget, recall_at_budget, reciprocal_rank, summarize_traces
 from rag_practice.ir.bm25 import BM25Index
 from rag_practice.structured import (
-    GlobalGraphRetriever, HippoRAGRetriever, KAGPathRetriever, KnowledgeGraph,
+    DualLevelGraphRetriever, GlobalGraphRetriever, HippoRAGRetriever, KAGPathRetriever, KnowledgeGraph,
     MemoryEvent, RaptorStyleIndex, StructuredDocument, TemporalMemoryIndex,
 )
 
@@ -37,6 +37,7 @@ def evaluate_retrieval():
     methods["raptor_style"], build_ms["raptor_style"] = timed_build(lambda: RaptorStyleIndex(docs))
     methods["kag_path"] = KAGPathRetriever(graph); build_ms["kag_path"] = graph_build_ms
     methods["graph_global"] = GlobalGraphRetriever(graph); build_ms["graph_global"] = graph_build_ms
+    methods["light_rag_dual"] = DualLevelGraphRetriever(graph); build_ms["light_rag_dual"] = graph_build_ms
     methods["hipporag_ppr"] = HippoRAGRetriever(graph); build_ms["hipporag_ppr"] = graph_build_ms
 
     systems = {}
@@ -47,7 +48,7 @@ def evaluate_retrieval():
             ranking = [doc_id for doc_id, _ in method.search(row["query"], k=10)]
             query_ms = (time.perf_counter() - start) * 1000.0
             budget = len(row["relevant"])
-            traces.append({
+            trace = {
                 "query_id": row["id"], "task": row["task"], "query": row["query"],
                 "relevant": row["relevant"], "ranking": ranking,
                 "recall@3": recall_at_budget(ranking, row["relevant"], 3),
@@ -57,13 +58,17 @@ def evaluate_retrieval():
                 "evidence_complete_at_budget": evidence_complete_at_budget(ranking, row["relevant"], budget),
                 "reciprocal_rank": reciprocal_rank(ranking, row["relevant"]),
                 "query_ms": query_ms,
-            })
+            }
+            if hasattr(method, "route_level"):
+                trace["route_level"] = method.route_level(row["query"])
+            traces.append(trace)
         systems[name] = {"build_ms": build_ms[name], "metrics": summarize_traces(traces), "traces": traces}
 
     systems["raptor_style"]["structure"] = methods["raptor_style"].stats()
     graph_stats = methods["hipporag_ppr"].stats()
-    for name in ("kag_path", "graph_global", "hipporag_ppr"):
+    for name in ("kag_path", "graph_global", "light_rag_dual", "hipporag_ppr"):
         systems[name]["structure"] = graph_stats
+    systems["light_rag_dual"]["evaluation_note"] = "post-hoc exploratory: dual-level controller added after first M07 benchmark inspection; do not treat its aggregate score as fresh held-out evidence"
     return {"benchmark_queries": len(queries), "documents": len(docs), "systems": systems}
 
 
@@ -120,6 +125,7 @@ def main():
             "gold_triples_isolate_graph_retrieval_from_information_extraction": True,
             "runtime_uses_no_qrels_or_reference_answers": True,
             "generation_not_involved": "M07 isolates structured retrieval/context evidence; answer generation is intentionally not evaluated",
+            "light_rag_dual_level_is_post_hoc_exploratory": True,
         },
         "retrieval": evaluate_retrieval(),
         "memory": evaluate_memory(),

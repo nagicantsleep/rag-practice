@@ -141,6 +141,34 @@ class GlobalGraphRetriever:
                 scores[edge.document_id]=max(scores.get(edge.document_id,0.0), rel_bonus+lexical)
         ranked=sorted(scores.items(),key=lambda x:(-x[1],x[0])); return ranked[:k]
 
+class DualLevelGraphRetriever:
+    """LightRAG-style transparent controller between low- and high-level graph retrieval.
+
+    The controller uses only visible query signals. It never receives task labels or qrels.
+    This mechanism was added after the first M07 benchmark inspection, so its benchmark score is
+    treated as exploratory rather than fresh held-out evidence.
+    """
+    _GLOBAL_CUES = {"all", "most", "across", "overall"}
+
+    def __init__(self, graph: KnowledgeGraph):
+        self.graph = graph
+        self.low = KAGPathRetriever(graph)
+        self.high = GlobalGraphRetriever(graph)
+
+    def route_level(self, query: str) -> str:
+        tokens = set(tokenize(query))
+        seeds = self.graph.match_entities(query)
+        target = self.graph.target_relation(query)
+        named_network = any(seed in self.graph.network_roots for seed in seeds)
+        if not seeds or tokens & self._GLOBAL_CUES or (named_network and target == "country"):
+            return "high"
+        return "low"
+
+    def search(self, query: str, *, k: int = 10) -> list[tuple[str, float]]:
+        if self.route_level(query) == "high":
+            return self.high.search(query, k=k)
+        return self.low.search(query, k=k)
+
 class HippoRAGRetriever:
     """Associative retrieval via query-seeded personalized PageRank over the KG."""
     def __init__(self, graph: KnowledgeGraph, *, damping: float=.85, iterations: int=24):

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from rag_practice.structured import (
-    GlobalGraphRetriever, HippoRAGRetriever, KAGPathRetriever, KnowledgeGraph,
+    DualLevelGraphRetriever, GlobalGraphRetriever, HippoRAGRetriever, KAGPathRetriever, KnowledgeGraph,
     MemoryEvent, RaptorStyleIndex, StructuredDocument, TemporalMemoryIndex,
 )
 
@@ -28,6 +28,15 @@ def test_graph_global_collects_all_atlas_country_evidence():
     retriever=GlobalGraphRetriever(KnowledgeGraph(docs()))
     ranking=[d for d,_ in retriever.search("Which countries host Atlas Network labs?",k=6)]
     assert set(ranking)=={"d1","d3","d5","d7","d9","d11"}
+
+def test_light_rag_dual_level_routes_local_and_global_without_task_labels():
+    retriever=DualLevelGraphRetriever(KnowledgeGraph(docs()))
+    assert retriever.route_level("Which currency is used in the country containing Vega Lab?")=="low"
+    assert retriever.route_level("Which countries host Atlas Network labs?")=="high"
+    low=[d for d,_ in retriever.search("Which currency is used in the country containing Vega Lab?",k=3)]
+    high=[d for d,_ in retriever.search("Which countries host Atlas Network labs?",k=6)]
+    assert low==["d5","d7","d8"]
+    assert set(high)=={"d1","d3","d5","d7","d9","d11"}
 
 def test_hipporag_multi_seed_bridge_prioritizes_association_path():
     retriever=HippoRAGRetriever(KnowledgeGraph(docs()))

@@ -1,5 +1,5 @@
 {
-  "experiment_id": "m05_query_transformation_baseline_v1",
+  "experiment_id": "m05_query_transformation_capacity_base_v1",
   "benchmark": {
     "corpus": "benchmarks/m00_ir/corpus.jsonl",
     "queries": "benchmarks/m05_query_transform/queries.jsonl",
@@ -17,12 +17,12 @@
     "multi_query_variants_include_original": true,
     "retrieval_k": 5,
     "references_not_exposed_to_transformer": true,
-    "output_stem": "baseline"
+    "output_stem": "capacity_base"
   },
   "models": {
     "generator": {
-      "name": "google/flan-t5-small",
-      "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab"
+      "name": "google/flan-t5-base",
+      "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2"
     },
     "dense_encoder": {
       "name": "sentence-transformers/all-MiniLM-L6-v2",
@@ -381,20 +381,20 @@
     "query2doc_bm25": {
       "all": {
         "mrr": 0.9166666666666666,
-        "map": 0.8611111111111112,
+        "map": 0.8333333333333334,
         "hit_rate@1": 0.9166666666666666,
         "precision@1": 0.9166666666666666,
         "recall@1": 0.7916666666666666,
         "ndcg@1": 0.9166666666666666,
         "hit_rate@3": 0.9166666666666666,
-        "precision@3": 0.3611111111111111,
-        "recall@3": 0.875,
-        "ndcg@3": 0.8777389984928039,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8521911987942431,
         "hit_rate@5": 0.9166666666666666,
-        "precision@5": 0.21666666666666667,
-        "recall@5": 0.875,
-        "ndcg@5": 0.8777389984928039,
-        "complete_recall@3": 0.8333333333333334
+        "precision@5": 0.20000000000000004,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8521911987942431,
+        "complete_recall@3": 0.75
       },
       "exact": {
         "mrr": 1.0,
@@ -415,20 +415,20 @@
       },
       "multi_aspect": {
         "mrr": 1.0,
-        "map": 0.7777777777777777,
+        "map": 0.6666666666666666,
         "hit_rate@1": 1.0,
         "precision@1": 1.0,
         "recall@1": 0.5,
         "ndcg@1": 1.0,
         "hit_rate@3": 1.0,
-        "precision@3": 0.5555555555555555,
-        "recall@3": 0.8333333333333334,
-        "ndcg@3": 0.8442893273045486,
+        "precision@3": 0.4444444444444444,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.7420981285103055,
         "hit_rate@5": 1.0,
-        "precision@5": 0.3333333333333333,
-        "recall@5": 0.8333333333333334,
-        "ndcg@5": 0.8442893273045486,
-        "complete_recall@3": 0.6666666666666666
+        "precision@5": 0.26666666666666666,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.7420981285103055,
+        "complete_recall@3": 0.3333333333333333
       },
       "semantic": {
         "mrr": 0.6666666666666666,
@@ -467,74 +467,57 @@
     },
     "decomposition_rrf": {
       "all": {
-        "mrr": 0.2736111111111111,
-        "map": 0.2388888888888889,
-        "hit_rate@1": 0.16666666666666666,
-        "precision@1": 0.16666666666666666,
-        "recall@1": 0.16666666666666666,
-        "ndcg@1": 0.16666666666666666,
-        "hit_rate@3": 0.3333333333333333,
-        "precision@3": 0.1111111111111111,
-        "recall@3": 0.25,
-        "ndcg@3": 0.22445220030143923,
-        "hit_rate@5": 0.5,
-        "precision@5": 0.10000000000000002,
-        "recall@5": 0.4166666666666667,
-        "ndcg@5": 0.2925796474104338,
-        "complete_recall@3": 0.16666666666666666
+        "mrr": 0.7083333333333334,
+        "map": 0.6840277777777778,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.625,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.25,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6599767324290157,
+        "hit_rate@5": 0.8333333333333334,
+        "precision@5": 0.18333333333333335,
+        "recall@5": 0.7916666666666666,
+        "ndcg@5": 0.7178721224828476,
+        "complete_recall@3": 0.6666666666666666
       },
       "exact": {
-        "mrr": 0.39999999999999997,
-        "map": 0.39999999999999997,
-        "hit_rate@1": 0.3333333333333333,
-        "precision@1": 0.3333333333333333,
-        "recall@1": 0.3333333333333333,
-        "ndcg@1": 0.3333333333333333,
-        "hit_rate@3": 0.3333333333333333,
-        "precision@3": 0.1111111111111111,
-        "recall@3": 0.3333333333333333,
-        "ndcg@3": 0.3333333333333333,
-        "hit_rate@5": 0.6666666666666666,
-        "precision@5": 0.13333333333333333,
-        "recall@5": 0.6666666666666666,
-        "ndcg@5": 0.46228426907818054,
-        "complete_recall@3": 0.3333333333333333
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
       },
       "multi_aspect": {
-        "mrr": 0.27777777777777773,
-        "map": 0.13888888888888887,
-        "hit_rate@1": 0.0,
-        "precision@1": 0.0,
-        "recall@1": 0.0,
-        "ndcg@1": 0.0,
-        "hit_rate@3": 0.6666666666666666,
+        "mrr": 0.4166666666666667,
+        "map": 0.3194444444444444,
+        "hit_rate@1": 0.3333333333333333,
+        "precision@1": 0.3333333333333333,
+        "recall@1": 0.16666666666666666,
+        "ndcg@1": 0.3333333333333333,
+        "hit_rate@3": 0.3333333333333333,
         "precision@3": 0.2222222222222222,
         "recall@3": 0.3333333333333333,
-        "ndcg@3": 0.23114213453909027,
+        "ndcg@3": 0.3065735963827292,
         "hit_rate@5": 0.6666666666666666,
-        "precision@5": 0.13333333333333333,
-        "recall@5": 0.3333333333333333,
-        "ndcg@5": 0.23114213453909027,
-        "complete_recall@3": 0.0
+        "precision@5": 0.20000000000000004,
+        "recall@5": 0.5,
+        "ndcg@5": 0.3945963039069262,
+        "complete_recall@3": 0.3333333333333333
       },
       "semantic": {
-        "mrr": 0.0,
-        "map": 0.0,
-        "hit_rate@1": 0.0,
-        "precision@1": 0.0,
-        "recall@1": 0.0,
-        "ndcg@1": 0.0,
-        "hit_rate@3": 0.0,
-        "precision@3": 0.0,
-        "recall@3": 0.0,
-        "ndcg@3": 0.0,
-        "hit_rate@5": 0.0,
-        "precision@5": 0.0,
-        "recall@5": 0.0,
-        "ndcg@5": 0.0,
-        "complete_recall@3": 0.0
-      },
-      "underspecified": {
         "mrr": 0.4166666666666667,
         "map": 0.4166666666666667,
         "hit_rate@1": 0.3333333333333333,
@@ -550,6 +533,23 @@
         "recall@5": 0.6666666666666666,
         "ndcg@5": 0.47689218602446437,
         "complete_recall@3": 0.3333333333333333
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
       }
     },
     "dense_original": {
@@ -641,21 +641,21 @@
     },
     "hyde_dense": {
       "all": {
-        "mrr": 0.8194444444444445,
-        "map": 0.7777777777777778,
-        "hit_rate@1": 0.75,
-        "precision@1": 0.75,
-        "recall@1": 0.625,
-        "ndcg@1": 0.75,
+        "mrr": 0.8611111111111112,
+        "map": 0.8472222222222222,
+        "hit_rate@1": 0.8333333333333334,
+        "precision@1": 0.8333333333333334,
+        "recall@1": 0.7083333333333334,
+        "ndcg@1": 0.8333333333333334,
         "hit_rate@3": 0.9166666666666666,
-        "precision@3": 0.3333333333333333,
-        "recall@3": 0.8333333333333334,
-        "ndcg@3": 0.7797686782585312,
+        "precision@3": 0.38888888888888884,
+        "recall@3": 0.9166666666666666,
+        "ndcg@3": 0.8683100657623489,
         "hit_rate@5": 0.9166666666666666,
         "precision@5": 0.23333333333333336,
         "recall@5": 0.9166666666666666,
-        "ndcg@5": 0.8237800320206298,
-        "complete_recall@3": 0.75
+        "ndcg@5": 0.8683100657623489,
+        "complete_recall@3": 0.9166666666666666
       },
       "exact": {
         "mrr": 1.0,
@@ -676,24 +676,24 @@
       },
       "multi_aspect": {
         "mrr": 1.0,
-        "map": 0.8333333333333334,
+        "map": 0.9444444444444443,
         "hit_rate@1": 1.0,
         "precision@1": 1.0,
         "recall@1": 0.5,
         "ndcg@1": 1.0,
         "hit_rate@3": 1.0,
-        "precision@3": 0.4444444444444444,
-        "recall@3": 0.6666666666666666,
-        "ndcg@3": 0.7420981285103055,
+        "precision@3": 0.6666666666666666,
+        "recall@3": 1.0,
+        "ndcg@3": 0.9732402630493958,
         "hit_rate@5": 1.0,
         "precision@5": 0.4000000000000001,
         "recall@5": 1.0,
-        "ndcg@5": 0.9181435435586995,
-        "complete_recall@3": 0.3333333333333333
+        "ndcg@5": 0.9732402630493958,
+        "complete_recall@3": 1.0
       },
       "semantic": {
-        "mrr": 0.5,
-        "map": 0.5,
+        "mrr": 0.4444444444444444,
+        "map": 0.4444444444444444,
         "hit_rate@1": 0.3333333333333333,
         "precision@1": 0.3333333333333333,
         "recall@1": 0.3333333333333333,
@@ -701,77 +701,77 @@
         "hit_rate@3": 0.6666666666666666,
         "precision@3": 0.2222222222222222,
         "recall@3": 0.6666666666666666,
-        "ndcg@3": 0.5436432511904858,
+        "ndcg@3": 0.5,
         "hit_rate@5": 0.6666666666666666,
         "precision@5": 0.13333333333333333,
         "recall@5": 0.6666666666666666,
-        "ndcg@5": 0.5436432511904858,
+        "ndcg@5": 0.5,
         "complete_recall@3": 0.6666666666666666
       },
       "underspecified": {
-        "mrr": 0.7777777777777778,
-        "map": 0.7777777777777778,
-        "hit_rate@1": 0.6666666666666666,
-        "precision@1": 0.6666666666666666,
-        "recall@1": 0.6666666666666666,
-        "ndcg@1": 0.6666666666666666,
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
         "hit_rate@3": 1.0,
         "precision@3": 0.3333333333333333,
         "recall@3": 1.0,
-        "ndcg@3": 0.8333333333333334,
+        "ndcg@3": 1.0,
         "hit_rate@5": 1.0,
         "precision@5": 0.20000000000000004,
         "recall@5": 1.0,
-        "ndcg@5": 0.8333333333333334,
+        "ndcg@5": 1.0,
         "complete_recall@3": 1.0
       }
     }
   },
   "system": {
     "bm25_original": {
-      "mean_total_ms": 0.05926300000188197,
+      "mean_total_ms": 0.059208666669974264,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "bm25_rewrite": {
-      "mean_total_ms": 271.92455566667206,
-      "mean_transform_ms": 271.85376349999757,
-      "mean_generated_words": 9.416666666666666
+      "mean_total_ms": 842.87325116667,
+      "mean_transform_ms": 842.8034154999959,
+      "mean_generated_words": 8.25
     },
     "multi_query_score_fusion": {
-      "mean_total_ms": 229.1571355000007,
-      "mean_transform_ms": 229.05403958332946,
-      "mean_generated_words": 4.166666666666667
+      "mean_total_ms": 761.1113875000015,
+      "mean_transform_ms": 760.9965071666617,
+      "mean_generated_words": 3.75
     },
     "rag_fusion_rrf": {
-      "mean_total_ms": 229.16952849999345,
-      "mean_transform_ms": 229.05403958332946,
-      "mean_generated_words": 4.166666666666667
+      "mean_total_ms": 761.1248153333369,
+      "mean_transform_ms": 760.9965071666617,
+      "mean_generated_words": 3.75
     },
     "query2doc_bm25": {
-      "mean_total_ms": 1020.7312575000009,
-      "mean_transform_ms": 1020.6526536666657,
-      "mean_generated_words": 13.166666666666666
+      "mean_total_ms": 705.9428720000014,
+      "mean_transform_ms": 705.8710931666686,
+      "mean_generated_words": 6.75
     },
     "decomposition_rrf": {
-      "mean_total_ms": 477.45029916666937,
-      "mean_transform_ms": 477.3738863333345,
-      "mean_generated_words": 15.416666666666666
+      "mean_total_ms": 1935.8713563333295,
+      "mean_transform_ms": 1935.7966091666656,
+      "mean_generated_words": 11.083333333333334
     },
     "dense_original": {
-      "mean_total_ms": 10.60470166666505,
+      "mean_total_ms": 10.560401416661591,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "hyde_dense": {
-      "mean_total_ms": 409.20323208333775,
-      "mean_transform_ms": 397.7395806666687,
-      "mean_generated_words": 13.666666666666666
+      "mean_total_ms": 1747.9425455833327,
+      "mean_transform_ms": 1735.2579709166682,
+      "mean_generated_words": 20.416666666666668
     },
     "models": {
-      "flan_model_load_ms": 3908.478833999993,
-      "dense_model_load_ms": 3427.9347049999983,
-      "dense_index_build_ms": 51.99704899999347
+      "flan_model_load_ms": 7380.333702000002,
+      "dense_model_load_ms": 541.2083629999813,
+      "dense_index_build_ms": 52.333703000016385
     }
   },
   "per_query": {
@@ -781,15 +781,16 @@
       "relevant_document_ids": [
         "d3"
       ],
-      "rewrite": "BM25 probabilistic ranking function",
+      "rewrite": "BM25 Probabilistic Ranking Function",
       "multi_queries": [
-        "BM25 probabilistic ranking function"
+        "BM25 probabilistic ranking function",
+        "BM25 Probabilistic Ranking Function"
       ],
-      "query2doc": "BM25 probabilistic ranking function BM25 is a systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic systolic",
+      "query2doc": "BM25 probabilistic ranking function BM25 Probabilistic Ranking Function",
       "decomposition": [
         "BM25 probabilistic ranking function"
       ],
-      "hyde_document": "The BM25 probabilistic ranking function is a reversal of the BM25.",
+      "hyde_document": "The BM25 is a probabilistic ranking function that is used to rank a given number of objects.",
       "top3": {
         "bm25_original": [
           "d3"
@@ -804,9 +805,7 @@
           "d3"
         ],
         "query2doc_bm25": [
-          "d3",
-          "d1",
-          "d8"
+          "d3"
         ],
         "decomposition_rrf": [
           "d3"
@@ -818,8 +817,8 @@
         ],
         "hyde_dense": [
           "d3",
-          "d7",
-          "d9"
+          "d9",
+          "d7"
         ]
       }
     },
@@ -829,24 +828,21 @@
       "relevant_document_ids": [
         "d8"
       ],
-      "rewrite": "The cosine similarity angle between vectors is .",
+      "rewrite": "Cosine similarity angle between vectors",
       "multi_queries": [
-        "cosine similarity angle between vectors",
-        "Cosine similarity angle between vectors"
+        "cosine similarity angle between vectors"
       ],
-      "query2doc": "cosine similarity angle between vectors a systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systy",
+      "query2doc": "cosine similarity angle between vectors Cosine similarity angle between vectors",
       "decomposition": [
-        "0"
+        "cosine similarity angle between vectors"
       ],
-      "hyde_document": "The inverse angle between vectors is a refraction angle between vectors.",
+      "hyde_document": "The cosine similarity angle between vectors is the cosine similarity angle between the vectors.",
       "top3": {
         "bm25_original": [
           "d8"
         ],
         "bm25_rewrite": [
-          "d8",
-          "d4",
-          "d3"
+          "d8"
         ],
         "multi_query_score_fusion": [
           "d8"
@@ -855,11 +851,11 @@
           "d8"
         ],
         "query2doc_bm25": [
-          "d8",
-          "d9",
-          "d4"
+          "d8"
         ],
-        "decomposition_rrf": [],
+        "decomposition_rrf": [
+          "d8"
+        ],
         "dense_original": [
           "d8",
           "d5",
@@ -868,7 +864,7 @@
         "hyde_dense": [
           "d8",
           "d5",
-          "d7"
+          "d4"
         ]
       }
     },
@@ -881,13 +877,13 @@
       "rewrite": "Guido van Rossum is a Python programming language.",
       "multi_queries": [
         "Python programming language Guido van Rossum",
-        "Guido van Rossum is a Python programming language."
+        "Guido van Rossum is a Python programming language"
       ],
-      "query2doc": "Python programming language Guido van Rossum",
+      "query2doc": "Python programming language Guido van Rossum Guido van Rossum",
       "decomposition": [
-        "decompose the information need into independent search subquestions. return at most 3 subquestions, one per line. If decompose is unnecessary, return the original query."
+        "python programming language Guido van Rossum"
       ],
-      "hyde_document": "Guido van Rossum is a Python programming language.",
+      "hyde_document": "Python is a programming language.",
       "top3": {
         "bm25_original": [
           "d1",
@@ -915,9 +911,9 @@
           "d6"
         ],
         "decomposition_rrf": [
-          "d9",
-          "d3",
-          "d8"
+          "d1",
+          "d2",
+          "d6"
         ],
         "dense_original": [
           "d1",
@@ -937,16 +933,16 @@
       "relevant_document_ids": [
         "d5"
       ],
-      "rewrite": "The conceptual likeness between paraphrases is conceptual.",
+      "rewrite": "The conceptual likeness between paraphrases is between two paraphrases.",
       "multi_queries": [
         "conceptual likeness between paraphrases",
-        "Paraphrases are conceptual."
+        "What is the conceptual likeness between paraphrases?"
       ],
-      "query2doc": "conceptual likeness between paraphrases a sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy , sexy",
+      "query2doc": "conceptual likeness between paraphrases Paraphrases",
       "decomposition": [
-        "decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrase"
       ],
-      "hyde_document": "The concept of a concept is a conceptual likeness between paraphrases.",
+      "hyde_document": "Paraphrases are a type of linguistics that is used to describe a language.",
       "top3": {
         "bm25_original": [
           "d8"
@@ -957,20 +953,22 @@
           "d3"
         ],
         "multi_query_score_fusion": [
-          "d8"
+          "d8",
+          "d4",
+          "d3"
         ],
         "rag_fusion_rrf": [
-          "d8"
+          "d8",
+          "d4",
+          "d3"
         ],
         "query2doc_bm25": [
-          "d8",
-          "d9",
-          "d4"
+          "d8"
         ],
         "decomposition_rrf": [
-          "d9",
-          "d3",
-          "d8"
+          "d2",
+          "d4",
+          "d1"
         ],
         "dense_original": [
           "d5",
@@ -979,8 +977,8 @@
         ],
         "hyde_dense": [
           "d10",
-          "d5",
-          "d4"
+          "d6",
+          "d5"
         ]
       }
     },
@@ -995,11 +993,11 @@
         "evidence lookup combined with a text generator",
         "Evidence lookup combined with a text generator"
       ],
-      "query2doc": "evidence lookup combined with a text generator a sys-document",
+      "query2doc": "evidence lookup combined with a text generator Evidence lookup combined with a text generator",
       "decomposition": [
-        "original query"
+        "search for evidence lookup combined with a text generator"
       ],
-      "hyde_document": "The evidence lookup was used to analyze the data of the data.",
+      "hyde_document": "Evidence lookup is a tool that can be used to find evidence in a database.",
       "top3": {
         "bm25_original": [
           "d6",
@@ -1023,11 +1021,13 @@
         ],
         "query2doc_bm25": [
           "d6",
-          "d4",
-          "d9"
+          "d10",
+          "d5"
         ],
         "decomposition_rrf": [
-          "d9"
+          "d2",
+          "d9",
+          "d3"
         ],
         "dense_original": [
           "d10",
@@ -1037,7 +1037,7 @@
         "hyde_dense": [
           "d9",
           "d5",
-          "d8"
+          "d3"
         ]
       }
     },
@@ -1047,16 +1047,16 @@
       "relevant_document_ids": [
         "d10"
       ],
-      "rewrite": "Unsupported claims from a predictive text system are listed in the search query.",
+      "rewrite": "Unsupported claims from a predictive text system",
       "multi_queries": [
         "unsupported claims from a predictive text system",
         "Unsupported claims from a predictive text system"
       ],
-      "query2doc": "unsupported claims from a predictive text system a sys-document",
+      "query2doc": "unsupported claims from a predictive text system Unsupported claims from a predictive text system",
       "decomposition": [
-        "decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "search for \"unsupported claims from a predictive text system"
       ],
-      "hyde_document": "The NSA has a policy that allows the use of predictive text to be a reliable tool.",
+      "hyde_document": "The United States has a system of predictive text systems that can predict the future of a country's population.",
       "top3": {
         "bm25_original": [
           "d10",
@@ -1065,8 +1065,8 @@
         ],
         "bm25_rewrite": [
           "d10",
-          "d9",
-          "d4"
+          "d5",
+          "d9"
         ],
         "multi_query_score_fusion": [
           "d10",
@@ -1080,13 +1080,13 @@
         ],
         "query2doc_bm25": [
           "d10",
-          "d4",
+          "d5",
           "d9"
         ],
         "decomposition_rrf": [
-          "d9",
-          "d3",
-          "d8"
+          "d10",
+          "d2",
+          "d9"
         ],
         "dense_original": [
           "d10",
@@ -1095,7 +1095,7 @@
         ],
         "hyde_dense": [
           "d10",
-          "d5",
+          "d9",
           "d6"
         ]
       }
@@ -1106,16 +1106,16 @@
       "relevant_document_ids": [
         "d7"
       ],
-      "rewrite": "The ranking lists without comparable scores are not available.",
+      "rewrite": "Lists without comparable scores are not ranked.",
       "multi_queries": [
         "ranking lists without comparable scores",
-        "List of ranking lists without comparable scores"
+        "Lists without comparable scores"
       ],
-      "query2doc": "ranking lists without comparable scores a list of the best ranking lists",
+      "query2doc": "ranking lists without comparable scores Lists without comparable scores",
       "decomposition": [
-        "decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "list_ranking_lists_without_comparable_scores"
       ],
-      "hyde_document": "The list of rankings without comparable scores is a list of the top ten most popular scores in the United States.",
+      "hyde_document": "Ranking lists are a list of people who have a high score in a given sport.",
       "top3": {
         "bm25_original": [
           "d7",
@@ -1123,7 +1123,6 @@
         ],
         "bm25_rewrite": [
           "d7",
-          "d3",
           "d10"
         ],
         "multi_query_score_fusion": [
@@ -1136,13 +1135,11 @@
         ],
         "query2doc_bm25": [
           "d7",
-          "d3",
-          "d4"
+          "d3"
         ],
         "decomposition_rrf": [
-          "d9",
-          "d3",
-          "d8"
+          "d7",
+          "d3"
         ],
         "dense_original": [
           "d7",
@@ -1162,16 +1159,16 @@
       "relevant_document_ids": [
         "d4"
       ],
-      "rewrite": "The term importance from local frequency and collection rarity is .",
+      "rewrite": "The term importance from local frequency and collection rarity is",
       "multi_queries": [
         "term importance from local frequency and collection rarity",
-        "Counting of the frequency and collection rarity"
+        "name importance from local frequency and collection rarity"
       ],
-      "query2doc": "term importance from local frequency and collection rarity a symphony of a symphony of a symphony of a symphony of a symphony of a symphony of a symphony of a symphony of a symphony of a symphony of a sym",
+      "query2doc": "term importance from local frequency and collection rarity Local frequency and collection rarity are factors that determine the importance of a term.",
       "decomposition": [
-        "decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "search for term importance from local frequency and collection rarity"
       ],
-      "hyde_document": "The earliest known occurrence of a symphony is the earliest known occurrence of a symphony.",
+      "hyde_document": "The term \"record\" refers to the number of records that are in a collection.",
       "top3": {
         "bm25_original": [
           "d4",
@@ -1185,13 +1182,13 @@
         ],
         "multi_query_score_fusion": [
           "d4",
-          "d9",
-          "d10"
+          "d10",
+          "d9"
         ],
         "rag_fusion_rrf": [
           "d4",
-          "d9",
-          "d3"
+          "d10",
+          "d9"
         ],
         "query2doc_bm25": [
           "d4",
@@ -1199,9 +1196,9 @@
           "d10"
         ],
         "decomposition_rrf": [
+          "d4",
           "d9",
-          "d3",
-          "d8"
+          "d2"
         ],
         "dense_original": [
           "d4",
@@ -1209,9 +1206,9 @@
           "d5"
         ],
         "hyde_dense": [
-          "d1",
+          "d4",
           "d9",
-          "d4"
+          "d5"
         ]
       }
     },
@@ -1221,16 +1218,15 @@
       "relevant_document_ids": [
         "d9"
       ],
-      "rewrite": "The collection of the collection is estimated to be worth $.",
+      "rewrite": "Query: search a collection by estimated relevance",
       "multi_queries": [
-        "search a collection by estimated relevance",
-        "Search a collection by estimated relevance"
+        "search a collection by estimated relevance"
       ],
-      "query2doc": "search a collection by estimated relevance a sys-document",
+      "query2doc": "search a collection by estimated relevance a collection of documents",
       "decomposition": [
-        "query: search a collection by estimated relevance"
+        "search for collection by estimated relevance"
       ],
-      "hyde_document": "The search for a collection by estimated relevance is called the search.",
+      "hyde_document": "The first computer was a computer that was designed to be used to search for information.",
       "top3": {
         "bm25_original": [
           "d9",
@@ -1239,8 +1235,8 @@
         ],
         "bm25_rewrite": [
           "d9",
-          "d4",
-          "d8"
+          "d3",
+          "d4"
         ],
         "multi_query_score_fusion": [
           "d9",
@@ -1254,13 +1250,13 @@
         ],
         "query2doc_bm25": [
           "d9",
-          "d4",
-          "d3"
+          "d3",
+          "d4"
         ],
         "decomposition_rrf": [
           "d9",
           "d3",
-          "d4"
+          "d2"
         ],
         "dense_original": [
           "d9",
@@ -1270,7 +1266,7 @@
         "hyde_dense": [
           "d9",
           "d5",
-          "d3"
+          "d1"
         ]
       }
     },
@@ -1285,11 +1281,11 @@
       "multi_queries": [
         "How do probabilistic ranking and reciprocal fusion approach ranking results?"
       ],
-      "query2doc": "How do probabilistic ranking and reciprocal fusion approach ranking results? Using a pseudo-document is a method of determining the probability of a fusion.",
+      "query2doc": "How do probabilistic ranking and reciprocal fusion approach ranking results? Probabilistic Ranking and Reciprocal Fusion Approach Ranking Results",
       "decomposition": [
-        "Decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "a, b, c, d, e, f, h, i, j, k, l, m, n, o, p, q, r, t, u, v, w, x, y, z"
       ],
-      "hyde_document": "The probability of a reciprocal fusion approach is a resemblance to the probability of a reciprocal fusion approach.",
+      "hyde_document": "The physicists at the University of California, Berkeley have developed a method for estimating the probability of a given event. The method is called reciprocal fusion. The probability of a given event is the probability of a given event being a result of a reciprocal fusion. The probability of a given event being a result of a reciprocal fusion is the probability of a given event being a result",
       "top3": {
         "bm25_original": [
           "d3",
@@ -1314,12 +1310,12 @@
         "query2doc_bm25": [
           "d3",
           "d7",
-          "d4"
+          "d1"
         ],
         "decomposition_rrf": [
           "d9",
-          "d3",
-          "d8"
+          "d4",
+          "d2"
         ],
         "dense_original": [
           "d7",
@@ -1328,8 +1324,8 @@
         ],
         "hyde_dense": [
           "d7",
-          "d8",
-          "d5"
+          "d9",
+          "d3"
         ]
       }
     },
@@ -1344,11 +1340,11 @@
       "multi_queries": [
         "How are vector representations used for semantic matching and compared by orientation?"
       ],
-      "query2doc": "How are vector representations used for semantic matching and compared by orientation? Using a vector representation for a document is a good way to compare the semantics of the document to the semantics of the document.",
+      "query2doc": "How are vector representations used for semantic matching and compared by orientation? Vector representations are used for semantic matching and compared by orientation.",
       "decomposition": [
-        "decompose the information need into independent search subquestions. Return at most 3 subquestions, one per line. If decomposition is unnecessary, return the original query."
+        "__author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samue"
       ],
-      "hyde_document": "The simplest way to identify a vector is to use a vector representation.",
+      "hyde_document": "Vector representations are used for semantic matching and compared by orientation.",
       "top3": {
         "bm25_original": [
           "d8",
@@ -1372,22 +1368,18 @@
         ],
         "query2doc_bm25": [
           "d8",
-          "d4",
-          "d9"
-        ],
-        "decomposition_rrf": [
-          "d9",
           "d3",
-          "d8"
+          "d2"
         ],
+        "decomposition_rrf": [],
         "dense_original": [
           "d8",
           "d5",
           "d9"
         ],
         "hyde_dense": [
+          "d5",
           "d8",
-          "d1",
           "d9"
         ]
       }
@@ -1403,11 +1395,11 @@
       "multi_queries": [
         "How does external evidence grounding address the factual limits of a text generator?"
       ],
-      "query2doc": "How does external evidence grounding address the factual limits of a text generator? a systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systyrical systy",
+      "query2doc": "How does external evidence grounding address the factual limits of a text generator? The text generator is a text generator that is used to generate text.",
       "decomposition": [
-        "decomposition is unnecessary"
+        "a text generator , external evidence grounding , factual limits , text generator"
       ],
-      "hyde_document": "The text generator is a tool that uses the word \"text\" to describe the text.",
+      "hyde_document": "The text generator is a device that generates text. The text generator is a device that generates text. The text generator is a device that generates text. The text generator is a device that generates text.",
       "top3": {
         "bm25_original": [
           "d10",
@@ -1431,13 +1423,13 @@
         ],
         "query2doc_bm25": [
           "d10",
-          "d4",
-          "d6"
+          "d8",
+          "d5"
         ],
         "decomposition_rrf": [
-          "d3",
-          "d1",
-          "d8"
+          "d10",
+          "d5",
+          "d6"
         ],
         "dense_original": [
           "d10",

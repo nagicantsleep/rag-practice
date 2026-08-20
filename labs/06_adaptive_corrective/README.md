@@ -1,6 +1,6 @@
 # Lab 06 — Multi-hop, Active, Adaptive, and Self-correcting RAG
 
-Status: `DONE` pending final branch CI/merge verification.
+Status: `DONE`.
 
 M06 introduces control flow only after M05 showed that unconditional query transformation can add large cost without retrieval gains. The milestone asks two separate questions: **when should the system retrieve?** and **what should it do when retrieved evidence is insufficient, stale, or the generated answer is unsupported?**
 
@@ -85,6 +85,6 @@ Full analysis is saved in `results/m06_summary.md`.
 - [x] representative failures inspected and retained
 - [x] findings/trade-offs written down
 - [x] full repository test suite and both M06 evaluation phases passed on the mechanism tree (`32416264406`, 70 tests)
-- [ ] final completion-documentation tree passes the same CI gate
+- [x] completion-documentation tree passed the same CI gate (`32417062165`)
 
-M06 is not merged until the final unchecked gate passes.
+The remaining merge check is operational only: the checklist-closing head must preserve these results and pass the same workflow before PR #8 is merged.

@@ -1,0 +1,1448 @@
+{
+  "experiment_id": "m05_query_transformation_capacity_base_v1",
+  "benchmark": {
+    "corpus": "benchmarks/m00_ir/corpus.jsonl",
+    "queries": "benchmarks/m05_query_transform/queries.jsonl",
+    "query_classes": [
+      "exact",
+      "multi_aspect",
+      "semantic",
+      "underspecified"
+    ]
+  },
+  "hypothesis": "Generative query transformations should help vocabulary-mismatch and multi-aspect queries more than exact queries, but can also drift from the original intent. Each transformation is therefore evaluated against an original-query baseline using the same retriever family.",
+  "controls": {
+    "bm25_family_baseline": "bm25_original",
+    "hyde_baseline": "dense_original",
+    "multi_query_variants_include_original": true,
+    "retrieval_k": 5,
+    "references_not_exposed_to_transformer": true,
+    "output_stem": "capacity_base"
+  },
+  "models": {
+    "generator": {
+      "name": "google/flan-t5-base",
+      "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2"
+    },
+    "dense_encoder": {
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be"
+    }
+  },
+  "metrics": {
+    "bm25_original": {
+      "all": {
+        "mrr": 0.9166666666666666,
+        "map": 0.8611111111111112,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.3611111111111111,
+        "recall@3": 0.875,
+        "ndcg@3": 0.8777389984928039,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.21666666666666667,
+        "recall@5": 0.875,
+        "ndcg@5": 0.8777389984928039,
+        "complete_recall@3": 0.8333333333333334
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.7777777777777777,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.5555555555555555,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8442893273045486,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8442893273045486,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "semantic": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.6666666666666666,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "bm25_rewrite": {
+      "all": {
+        "mrr": 0.9166666666666666,
+        "map": 0.8611111111111112,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.3611111111111111,
+        "recall@3": 0.875,
+        "ndcg@3": 0.8777389984928039,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.21666666666666667,
+        "recall@5": 0.875,
+        "ndcg@5": 0.8777389984928039,
+        "complete_recall@3": 0.8333333333333334
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.7777777777777777,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.5555555555555555,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8442893273045486,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8442893273045486,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "semantic": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.6666666666666666,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "multi_query_score_fusion": {
+      "all": {
+        "mrr": 0.9166666666666666,
+        "map": 0.8611111111111112,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.3611111111111111,
+        "recall@3": 0.875,
+        "ndcg@3": 0.8777389984928039,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.21666666666666667,
+        "recall@5": 0.875,
+        "ndcg@5": 0.8777389984928039,
+        "complete_recall@3": 0.8333333333333334
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.7777777777777777,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.5555555555555555,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8442893273045486,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8442893273045486,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "semantic": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.6666666666666666,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "rag_fusion_rrf": {
+      "all": {
+        "mrr": 0.9166666666666666,
+        "map": 0.8611111111111112,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.3611111111111111,
+        "recall@3": 0.875,
+        "ndcg@3": 0.8777389984928039,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.21666666666666667,
+        "recall@5": 0.875,
+        "ndcg@5": 0.8777389984928039,
+        "complete_recall@3": 0.8333333333333334
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.7777777777777777,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.5555555555555555,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8442893273045486,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.3333333333333333,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8442893273045486,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "semantic": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.6666666666666666,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "query2doc_bm25": {
+      "all": {
+        "mrr": 0.9166666666666666,
+        "map": 0.8333333333333334,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 0.8333333333333334,
+        "ndcg@3": 0.8521911987942431,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 0.8333333333333334,
+        "ndcg@5": 0.8521911987942431,
+        "complete_recall@3": 0.75
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.4444444444444444,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.7420981285103055,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.26666666666666666,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.7420981285103055,
+        "complete_recall@3": 0.3333333333333333
+      },
+      "semantic": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.6666666666666666,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "decomposition_rrf": {
+      "all": {
+        "mrr": 0.7083333333333334,
+        "map": 0.6840277777777778,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.625,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.25,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6599767324290157,
+        "hit_rate@5": 0.8333333333333334,
+        "precision@5": 0.18333333333333335,
+        "recall@5": 0.7916666666666666,
+        "ndcg@5": 0.7178721224828476,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 0.4166666666666667,
+        "map": 0.3194444444444444,
+        "hit_rate@1": 0.3333333333333333,
+        "precision@1": 0.3333333333333333,
+        "recall@1": 0.16666666666666666,
+        "ndcg@1": 0.3333333333333333,
+        "hit_rate@3": 0.3333333333333333,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.3333333333333333,
+        "ndcg@3": 0.3065735963827292,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 0.5,
+        "ndcg@5": 0.3945963039069262,
+        "complete_recall@3": 0.3333333333333333
+      },
+      "semantic": {
+        "mrr": 0.4166666666666667,
+        "map": 0.4166666666666667,
+        "hit_rate@1": 0.3333333333333333,
+        "precision@1": 0.3333333333333333,
+        "recall@1": 0.3333333333333333,
+        "ndcg@1": 0.3333333333333333,
+        "hit_rate@3": 0.3333333333333333,
+        "precision@3": 0.1111111111111111,
+        "recall@3": 0.3333333333333333,
+        "ndcg@3": 0.3333333333333333,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.47689218602446437,
+        "complete_recall@3": 0.3333333333333333
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "dense_original": {
+      "all": {
+        "mrr": 0.9375,
+        "map": 0.9236111111111112,
+        "hit_rate@1": 0.9166666666666666,
+        "precision@1": 0.9166666666666666,
+        "recall@1": 0.7916666666666666,
+        "ndcg@1": 0.9166666666666666,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.38888888888888884,
+        "recall@3": 0.9166666666666666,
+        "ndcg@3": 0.9099767324290156,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.25,
+        "recall@5": 1.0,
+        "ndcg@5": 0.9458664456017983,
+        "complete_recall@3": 0.9166666666666666
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.9444444444444443,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "recall@3": 1.0,
+        "ndcg@3": 0.9732402630493958,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.4000000000000001,
+        "recall@5": 1.0,
+        "ndcg@5": 0.9732402630493958,
+        "complete_recall@3": 1.0
+      },
+      "semantic": {
+        "mrr": 0.75,
+        "map": 0.75,
+        "hit_rate@1": 0.6666666666666666,
+        "precision@1": 0.6666666666666666,
+        "recall@1": 0.6666666666666666,
+        "ndcg@1": 0.6666666666666666,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.6666666666666666,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 0.8102255193577976,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    },
+    "hyde_dense": {
+      "all": {
+        "mrr": 0.8611111111111112,
+        "map": 0.8472222222222222,
+        "hit_rate@1": 0.8333333333333334,
+        "precision@1": 0.8333333333333334,
+        "recall@1": 0.7083333333333334,
+        "ndcg@1": 0.8333333333333334,
+        "hit_rate@3": 0.9166666666666666,
+        "precision@3": 0.38888888888888884,
+        "recall@3": 0.9166666666666666,
+        "ndcg@3": 0.8683100657623489,
+        "hit_rate@5": 0.9166666666666666,
+        "precision@5": 0.23333333333333336,
+        "recall@5": 0.9166666666666666,
+        "ndcg@5": 0.8683100657623489,
+        "complete_recall@3": 0.9166666666666666
+      },
+      "exact": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      },
+      "multi_aspect": {
+        "mrr": 1.0,
+        "map": 0.9444444444444443,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 0.5,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.6666666666666666,
+        "recall@3": 1.0,
+        "ndcg@3": 0.9732402630493958,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.4000000000000001,
+        "recall@5": 1.0,
+        "ndcg@5": 0.9732402630493958,
+        "complete_recall@3": 1.0
+      },
+      "semantic": {
+        "mrr": 0.4444444444444444,
+        "map": 0.4444444444444444,
+        "hit_rate@1": 0.3333333333333333,
+        "precision@1": 0.3333333333333333,
+        "recall@1": 0.3333333333333333,
+        "ndcg@1": 0.3333333333333333,
+        "hit_rate@3": 0.6666666666666666,
+        "precision@3": 0.2222222222222222,
+        "recall@3": 0.6666666666666666,
+        "ndcg@3": 0.5,
+        "hit_rate@5": 0.6666666666666666,
+        "precision@5": 0.13333333333333333,
+        "recall@5": 0.6666666666666666,
+        "ndcg@5": 0.5,
+        "complete_recall@3": 0.6666666666666666
+      },
+      "underspecified": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@5": 1.0,
+        "precision@5": 0.20000000000000004,
+        "recall@5": 1.0,
+        "ndcg@5": 1.0,
+        "complete_recall@3": 1.0
+      }
+    }
+  },
+  "system": {
+    "bm25_original": {
+      "mean_total_ms": 0.059388166675944376,
+      "mean_transform_ms": 0.0,
+      "mean_generated_words": 0.0
+    },
+    "bm25_rewrite": {
+      "mean_total_ms": 897.024274749981,
+      "mean_transform_ms": 896.9503280833161,
+      "mean_generated_words": 8.25
+    },
+    "multi_query_score_fusion": {
+      "mean_total_ms": 795.1094026666682,
+      "mean_transform_ms": 794.9971846666795,
+      "mean_generated_words": 3.75
+    },
+    "rag_fusion_rrf": {
+      "mean_total_ms": 795.1226531666767,
+      "mean_transform_ms": 794.9971846666795,
+      "mean_generated_words": 3.75
+    },
+    "query2doc_bm25": {
+      "mean_total_ms": 746.2196123333152,
+      "mean_transform_ms": 746.1451726666913,
+      "mean_generated_words": 6.75
+    },
+    "decomposition_rrf": {
+      "mean_total_ms": 2051.385884333333,
+      "mean_transform_ms": 2051.3066150000154,
+      "mean_generated_words": 11.083333333333334
+    },
+    "dense_original": {
+      "mean_total_ms": 10.862899166653506,
+      "mean_transform_ms": 0.0,
+      "mean_generated_words": 0.0
+    },
+    "hyde_dense": {
+      "mean_total_ms": 1843.8038995000077,
+      "mean_transform_ms": 1830.9234935000043,
+      "mean_generated_words": 20.416666666666668
+    },
+    "models": {
+      "flan_model_load_ms": 575.9116399999584,
+      "dense_model_load_ms": 558.4193610000057,
+      "dense_index_build_ms": 55.00232999997934
+    }
+  },
+  "per_query": {
+    "x1": {
+      "class": "exact",
+      "query": "BM25 probabilistic ranking function",
+      "relevant_document_ids": [
+        "d3"
+      ],
+      "rewrite": "BM25 Probabilistic Ranking Function",
+      "multi_queries": [
+        "BM25 probabilistic ranking function",
+        "BM25 Probabilistic Ranking Function"
+      ],
+      "query2doc": "BM25 probabilistic ranking function BM25 Probabilistic Ranking Function",
+      "decomposition": [
+        "BM25 probabilistic ranking function"
+      ],
+      "hyde_document": "The BM25 is a probabilistic ranking function that is used to rank a given number of objects.",
+      "top3": {
+        "bm25_original": [
+          "d3"
+        ],
+        "bm25_rewrite": [
+          "d3"
+        ],
+        "multi_query_score_fusion": [
+          "d3"
+        ],
+        "rag_fusion_rrf": [
+          "d3"
+        ],
+        "query2doc_bm25": [
+          "d3"
+        ],
+        "decomposition_rrf": [
+          "d3"
+        ],
+        "dense_original": [
+          "d3",
+          "d9",
+          "d7"
+        ],
+        "hyde_dense": [
+          "d3",
+          "d9",
+          "d7"
+        ]
+      }
+    },
+    "x2": {
+      "class": "exact",
+      "query": "cosine similarity angle between vectors",
+      "relevant_document_ids": [
+        "d8"
+      ],
+      "rewrite": "Cosine similarity angle between vectors",
+      "multi_queries": [
+        "cosine similarity angle between vectors"
+      ],
+      "query2doc": "cosine similarity angle between vectors Cosine similarity angle between vectors",
+      "decomposition": [
+        "cosine similarity angle between vectors"
+      ],
+      "hyde_document": "The cosine similarity angle between vectors is the cosine similarity angle between the vectors.",
+      "top3": {
+        "bm25_original": [
+          "d8"
+        ],
+        "bm25_rewrite": [
+          "d8"
+        ],
+        "multi_query_score_fusion": [
+          "d8"
+        ],
+        "rag_fusion_rrf": [
+          "d8"
+        ],
+        "query2doc_bm25": [
+          "d8"
+        ],
+        "decomposition_rrf": [
+          "d8"
+        ],
+        "dense_original": [
+          "d8",
+          "d5",
+          "d7"
+        ],
+        "hyde_dense": [
+          "d8",
+          "d5",
+          "d4"
+        ]
+      }
+    },
+    "x3": {
+      "class": "exact",
+      "query": "Python programming language Guido van Rossum",
+      "relevant_document_ids": [
+        "d1"
+      ],
+      "rewrite": "Guido van Rossum is a Python programming language.",
+      "multi_queries": [
+        "Python programming language Guido van Rossum",
+        "Guido van Rossum is a Python programming language"
+      ],
+      "query2doc": "Python programming language Guido van Rossum Guido van Rossum",
+      "decomposition": [
+        "python programming language Guido van Rossum"
+      ],
+      "hyde_document": "Python is a programming language.",
+      "top3": {
+        "bm25_original": [
+          "d1",
+          "d2",
+          "d6"
+        ],
+        "bm25_rewrite": [
+          "d1",
+          "d2",
+          "d3"
+        ],
+        "multi_query_score_fusion": [
+          "d1",
+          "d2",
+          "d3"
+        ],
+        "rag_fusion_rrf": [
+          "d1",
+          "d2",
+          "d6"
+        ],
+        "query2doc_bm25": [
+          "d1",
+          "d2",
+          "d6"
+        ],
+        "decomposition_rrf": [
+          "d1",
+          "d2",
+          "d6"
+        ],
+        "dense_original": [
+          "d1",
+          "d2",
+          "d10"
+        ],
+        "hyde_dense": [
+          "d1",
+          "d2",
+          "d10"
+        ]
+      }
+    },
+    "s1": {
+      "class": "semantic",
+      "query": "conceptual likeness between paraphrases",
+      "relevant_document_ids": [
+        "d5"
+      ],
+      "rewrite": "The conceptual likeness between paraphrases is between two paraphrases.",
+      "multi_queries": [
+        "conceptual likeness between paraphrases",
+        "What is the conceptual likeness between paraphrases?"
+      ],
+      "query2doc": "conceptual likeness between paraphrases Paraphrases",
+      "decomposition": [
+        "a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrases)): a=[] for i in range(len(paraphrase"
+      ],
+      "hyde_document": "Paraphrases are a type of linguistics that is used to describe a language.",
+      "top3": {
+        "bm25_original": [
+          "d8"
+        ],
+        "bm25_rewrite": [
+          "d8",
+          "d4",
+          "d3"
+        ],
+        "multi_query_score_fusion": [
+          "d8",
+          "d4",
+          "d3"
+        ],
+        "rag_fusion_rrf": [
+          "d8",
+          "d4",
+          "d3"
+        ],
+        "query2doc_bm25": [
+          "d8"
+        ],
+        "decomposition_rrf": [
+          "d2",
+          "d4",
+          "d1"
+        ],
+        "dense_original": [
+          "d5",
+          "d10",
+          "d6"
+        ],
+        "hyde_dense": [
+          "d10",
+          "d6",
+          "d5"
+        ]
+      }
+    },
+    "s2": {
+      "class": "semantic",
+      "query": "evidence lookup combined with a text generator",
+      "relevant_document_ids": [
+        "d6"
+      ],
+      "rewrite": "Evidence lookup combined with a text generator",
+      "multi_queries": [
+        "evidence lookup combined with a text generator",
+        "Evidence lookup combined with a text generator"
+      ],
+      "query2doc": "evidence lookup combined with a text generator Evidence lookup combined with a text generator",
+      "decomposition": [
+        "search for evidence lookup combined with a text generator"
+      ],
+      "hyde_document": "Evidence lookup is a tool that can be used to find evidence in a database.",
+      "top3": {
+        "bm25_original": [
+          "d6",
+          "d10",
+          "d5"
+        ],
+        "bm25_rewrite": [
+          "d6",
+          "d10",
+          "d5"
+        ],
+        "multi_query_score_fusion": [
+          "d6",
+          "d10",
+          "d5"
+        ],
+        "rag_fusion_rrf": [
+          "d6",
+          "d10",
+          "d5"
+        ],
+        "query2doc_bm25": [
+          "d6",
+          "d10",
+          "d5"
+        ],
+        "decomposition_rrf": [
+          "d2",
+          "d9",
+          "d3"
+        ],
+        "dense_original": [
+          "d10",
+          "d5",
+          "d4"
+        ],
+        "hyde_dense": [
+          "d9",
+          "d5",
+          "d3"
+        ]
+      }
+    },
+    "s3": {
+      "class": "semantic",
+      "query": "unsupported claims from a predictive text system",
+      "relevant_document_ids": [
+        "d10"
+      ],
+      "rewrite": "Unsupported claims from a predictive text system",
+      "multi_queries": [
+        "unsupported claims from a predictive text system",
+        "Unsupported claims from a predictive text system"
+      ],
+      "query2doc": "unsupported claims from a predictive text system Unsupported claims from a predictive text system",
+      "decomposition": [
+        "search for \"unsupported claims from a predictive text system"
+      ],
+      "hyde_document": "The United States has a system of predictive text systems that can predict the future of a country's population.",
+      "top3": {
+        "bm25_original": [
+          "d10",
+          "d5",
+          "d9"
+        ],
+        "bm25_rewrite": [
+          "d10",
+          "d5",
+          "d9"
+        ],
+        "multi_query_score_fusion": [
+          "d10",
+          "d5",
+          "d9"
+        ],
+        "rag_fusion_rrf": [
+          "d10",
+          "d5",
+          "d9"
+        ],
+        "query2doc_bm25": [
+          "d10",
+          "d5",
+          "d9"
+        ],
+        "decomposition_rrf": [
+          "d10",
+          "d2",
+          "d9"
+        ],
+        "dense_original": [
+          "d10",
+          "d9",
+          "d4"
+        ],
+        "hyde_dense": [
+          "d10",
+          "d9",
+          "d6"
+        ]
+      }
+    },
+    "u1": {
+      "class": "underspecified",
+      "query": "ranking lists without comparable scores",
+      "relevant_document_ids": [
+        "d7"
+      ],
+      "rewrite": "Lists without comparable scores are not ranked.",
+      "multi_queries": [
+        "ranking lists without comparable scores",
+        "Lists without comparable scores"
+      ],
+      "query2doc": "ranking lists without comparable scores Lists without comparable scores",
+      "decomposition": [
+        "list_ranking_lists_without_comparable_scores"
+      ],
+      "hyde_document": "Ranking lists are a list of people who have a high score in a given sport.",
+      "top3": {
+        "bm25_original": [
+          "d7",
+          "d3"
+        ],
+        "bm25_rewrite": [
+          "d7",
+          "d10"
+        ],
+        "multi_query_score_fusion": [
+          "d7",
+          "d3"
+        ],
+        "rag_fusion_rrf": [
+          "d7",
+          "d3"
+        ],
+        "query2doc_bm25": [
+          "d7",
+          "d3"
+        ],
+        "decomposition_rrf": [
+          "d7",
+          "d3"
+        ],
+        "dense_original": [
+          "d7",
+          "d9",
+          "d3"
+        ],
+        "hyde_dense": [
+          "d7",
+          "d9",
+          "d3"
+        ]
+      }
+    },
+    "u2": {
+      "class": "underspecified",
+      "query": "term importance from local frequency and collection rarity",
+      "relevant_document_ids": [
+        "d4"
+      ],
+      "rewrite": "The term importance from local frequency and collection rarity is",
+      "multi_queries": [
+        "term importance from local frequency and collection rarity",
+        "name importance from local frequency and collection rarity"
+      ],
+      "query2doc": "term importance from local frequency and collection rarity Local frequency and collection rarity are factors that determine the importance of a term.",
+      "decomposition": [
+        "search for term importance from local frequency and collection rarity"
+      ],
+      "hyde_document": "The term \"record\" refers to the number of records that are in a collection.",
+      "top3": {
+        "bm25_original": [
+          "d4",
+          "d10",
+          "d9"
+        ],
+        "bm25_rewrite": [
+          "d4",
+          "d8",
+          "d10"
+        ],
+        "multi_query_score_fusion": [
+          "d4",
+          "d10",
+          "d9"
+        ],
+        "rag_fusion_rrf": [
+          "d4",
+          "d10",
+          "d9"
+        ],
+        "query2doc_bm25": [
+          "d4",
+          "d9",
+          "d10"
+        ],
+        "decomposition_rrf": [
+          "d4",
+          "d9",
+          "d2"
+        ],
+        "dense_original": [
+          "d4",
+          "d9",
+          "d5"
+        ],
+        "hyde_dense": [
+          "d4",
+          "d9",
+          "d5"
+        ]
+      }
+    },
+    "u3": {
+      "class": "underspecified",
+      "query": "search a collection by estimated relevance",
+      "relevant_document_ids": [
+        "d9"
+      ],
+      "rewrite": "Query: search a collection by estimated relevance",
+      "multi_queries": [
+        "search a collection by estimated relevance"
+      ],
+      "query2doc": "search a collection by estimated relevance a collection of documents",
+      "decomposition": [
+        "search for collection by estimated relevance"
+      ],
+      "hyde_document": "The first computer was a computer that was designed to be used to search for information.",
+      "top3": {
+        "bm25_original": [
+          "d9",
+          "d3",
+          "d4"
+        ],
+        "bm25_rewrite": [
+          "d9",
+          "d3",
+          "d4"
+        ],
+        "multi_query_score_fusion": [
+          "d9",
+          "d3",
+          "d4"
+        ],
+        "rag_fusion_rrf": [
+          "d9",
+          "d3",
+          "d4"
+        ],
+        "query2doc_bm25": [
+          "d9",
+          "d3",
+          "d4"
+        ],
+        "decomposition_rrf": [
+          "d9",
+          "d3",
+          "d2"
+        ],
+        "dense_original": [
+          "d9",
+          "d4",
+          "d5"
+        ],
+        "hyde_dense": [
+          "d9",
+          "d5",
+          "d1"
+        ]
+      }
+    },
+    "m1": {
+      "class": "multi_aspect",
+      "query": "How do probabilistic ranking and reciprocal fusion approach ranking results?",
+      "relevant_document_ids": [
+        "d3",
+        "d7"
+      ],
+      "rewrite": "How do probabilistic ranking and reciprocal fusion approach ranking results?",
+      "multi_queries": [
+        "How do probabilistic ranking and reciprocal fusion approach ranking results?"
+      ],
+      "query2doc": "How do probabilistic ranking and reciprocal fusion approach ranking results? Probabilistic Ranking and Reciprocal Fusion Approach Ranking Results",
+      "decomposition": [
+        "a, b, c, d, e, f, h, i, j, k, l, m, n, o, p, q, r, t, u, v, w, x, y, z"
+      ],
+      "hyde_document": "The physicists at the University of California, Berkeley have developed a method for estimating the probability of a given event. The method is called reciprocal fusion. The probability of a given event is the probability of a given event being a result of a reciprocal fusion. The probability of a given event being a result of a reciprocal fusion is the probability of a given event being a result",
+      "top3": {
+        "bm25_original": [
+          "d3",
+          "d7",
+          "d1"
+        ],
+        "bm25_rewrite": [
+          "d3",
+          "d7",
+          "d1"
+        ],
+        "multi_query_score_fusion": [
+          "d3",
+          "d7",
+          "d1"
+        ],
+        "rag_fusion_rrf": [
+          "d3",
+          "d7",
+          "d1"
+        ],
+        "query2doc_bm25": [
+          "d3",
+          "d7",
+          "d1"
+        ],
+        "decomposition_rrf": [
+          "d9",
+          "d4",
+          "d2"
+        ],
+        "dense_original": [
+          "d7",
+          "d9",
+          "d3"
+        ],
+        "hyde_dense": [
+          "d7",
+          "d9",
+          "d3"
+        ]
+      }
+    },
+    "m2": {
+      "class": "multi_aspect",
+      "query": "How are vector representations used for semantic matching and compared by orientation?",
+      "relevant_document_ids": [
+        "d5",
+        "d8"
+      ],
+      "rewrite": "How are vector representations used for semantic matching and compared by orientation?",
+      "multi_queries": [
+        "How are vector representations used for semantic matching and compared by orientation?"
+      ],
+      "query2doc": "How are vector representations used for semantic matching and compared by orientation? Vector representations are used for semantic matching and compared by orientation.",
+      "decomposition": [
+        "__author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samuel\" __author__ = \"samue"
+      ],
+      "hyde_document": "Vector representations are used for semantic matching and compared by orientation.",
+      "top3": {
+        "bm25_original": [
+          "d8",
+          "d3",
+          "d2"
+        ],
+        "bm25_rewrite": [
+          "d8",
+          "d3",
+          "d2"
+        ],
+        "multi_query_score_fusion": [
+          "d8",
+          "d3",
+          "d2"
+        ],
+        "rag_fusion_rrf": [
+          "d8",
+          "d3",
+          "d2"
+        ],
+        "query2doc_bm25": [
+          "d8",
+          "d3",
+          "d2"
+        ],
+        "decomposition_rrf": [],
+        "dense_original": [
+          "d8",
+          "d5",
+          "d9"
+        ],
+        "hyde_dense": [
+          "d5",
+          "d8",
+          "d9"
+        ]
+      }
+    },
+    "m3": {
+      "class": "multi_aspect",
+      "query": "How does external evidence grounding address the factual limits of a text generator?",
+      "relevant_document_ids": [
+        "d6",
+        "d10"
+      ],
+      "rewrite": "How does external evidence grounding address the factual limits of a text generator?",
+      "multi_queries": [
+        "How does external evidence grounding address the factual limits of a text generator?"
+      ],
+      "query2doc": "How does external evidence grounding address the factual limits of a text generator? The text generator is a text generator that is used to generate text.",
+      "decomposition": [
+        "a text generator , external evidence grounding , factual limits , text generator"
+      ],
+      "hyde_document": "The text generator is a device that generates text. The text generator is a device that generates text. The text generator is a device that generates text. The text generator is a device that generates text.",
+      "top3": {
+        "bm25_original": [
+          "d10",
+          "d4",
+          "d6"
+        ],
+        "bm25_rewrite": [
+          "d10",
+          "d4",
+          "d6"
+        ],
+        "multi_query_score_fusion": [
+          "d10",
+          "d4",
+          "d6"
+        ],
+        "rag_fusion_rrf": [
+          "d10",
+          "d4",
+          "d6"
+        ],
+        "query2doc_bm25": [
+          "d10",
+          "d8",
+          "d5"
+        ],
+        "decomposition_rrf": [
+          "d10",
+          "d5",
+          "d6"
+        ],
+        "dense_original": [
+          "d10",
+          "d6",
+          "d5"
+        ],
+        "hyde_dense": [
+          "d6",
+          "d10",
+          "d5"
+        ]
+      }
+    }
+  },
+  "warning": "Tiny controlled benchmark. Transformation outputs are retained even when poor; no test-query prompt tuning is used. CPU timings and generated-word counts are mechanism/cost sanity measurements, not production cost estimates."
+}

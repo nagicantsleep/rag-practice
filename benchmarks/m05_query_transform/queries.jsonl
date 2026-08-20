@@ -1,0 +1,12 @@
+{"id":"x1","class":"exact","query":"BM25 probabilistic ranking function","relevant_document_ids":["d3"]}
+{"id":"x2","class":"exact","query":"cosine similarity angle between vectors","relevant_document_ids":["d8"]}
+{"id":"x3","class":"exact","query":"Python programming language Guido van Rossum","relevant_document_ids":["d1"]}
+{"id":"s1","class":"semantic","query":"conceptual likeness between paraphrases","relevant_document_ids":["d5"]}
+{"id":"s2","class":"semantic","query":"evidence lookup combined with a text generator","relevant_document_ids":["d6"]}
+{"id":"s3","class":"semantic","query":"unsupported claims from a predictive text system","relevant_document_ids":["d10"]}
+{"id":"u1","class":"underspecified","query":"ranking lists without comparable scores","relevant_document_ids":["d7"]}
+{"id":"u2","class":"underspecified","query":"term importance from local frequency and collection rarity","relevant_document_ids":["d4"]}
+{"id":"u3","class":"underspecified","query":"search a collection by estimated relevance","relevant_document_ids":["d9"]}
+{"id":"m1","class":"multi_aspect","query":"How do probabilistic ranking and reciprocal fusion approach ranking results?","relevant_document_ids":["d3","d7"]}
+{"id":"m2","class":"multi_aspect","query":"How are vector representations used for semantic matching and compared by orientation?","relevant_document_ids":["d5","d8"]}
+{"id":"m3","class":"multi_aspect","query":"How does external evidence grounding address the factual limits of a text generator?","relevant_document_ids":["d6","d10"]}

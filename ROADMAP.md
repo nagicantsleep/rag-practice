@@ -220,9 +220,71 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m04_context/`, `src/rag_practice/reranking/`, `src/rag_practice/models/flan_t5.py`, `src/rag_practice/generation/query_extract.py`, `labs/04_reranking_context/`, and `.github/workflows/m04-reranking-context.yml`.
 
-### M05 — Query Transformation — `TODO`
+### M05 — Query Transformation — `DONE`
 
-Implement query rewriting, multi-query retrieval, RAG-Fusion, Query2Doc-style expansion, HyDE, and query decomposition. Evaluate original vs transformed retrieval, per-query-class wins/losses, and transformation cost.
+M05 freezes the corpus and retriever family within each comparison and changes only query-side representation/control so retrieval differences remain attributable to query transformation.
+
+Implemented and evaluated:
+
+- single generative query rewrite
+- multi-query retrieval with original-query retention
+- normalized score fusion
+- RAG-Fusion via Reciprocal Rank Fusion
+- Query2Doc-style pseudo-document expansion
+- HyDE using the same fixed MiniLM dense retriever/index as its original-query baseline
+- query decomposition + RRF
+- query classes: exact, semantic/vocabulary mismatch, underspecified, and multi-aspect
+- `complete_recall@3` to require all evidence for multi-aspect information needs
+- transformation latency, end-to-end retrieval latency, generated-word cost proxy, and persisted per-query transformation traces
+- capacity control using the exact same prompts/benchmark/retrievers with FLAN-T5-small versus FLAN-T5-base
+
+FLAN-T5-small summary:
+
+| Method | Recall@1 | Recall@3 | Complete R@3 |
+| --- | ---: | ---: | ---: |
+| BM25 original | 0.792 | 0.875 | 0.833 |
+| Rewrite | 0.792 | 0.875 | 0.833 |
+| Multi-query score fusion | 0.792 | 0.875 | 0.833 |
+| RAG-Fusion / RRF | 0.792 | 0.875 | 0.833 |
+| Query2Doc + BM25 | 0.792 | 0.875 | 0.833 |
+| Decomposition + RRF | 0.167 | 0.250 | 0.167 |
+| Dense original | 0.792 | **0.917** | **0.917** |
+| HyDE + dense | 0.625 | 0.833 | 0.750 |
+
+FLAN-T5-base capacity-control summary:
+
+| Method | Recall@1 | Recall@3 | Complete R@3 |
+| --- | ---: | ---: | ---: |
+| BM25 original | **0.792** | 0.875 | 0.833 |
+| Rewrite | **0.792** | 0.875 | 0.833 |
+| Multi-query score fusion | **0.792** | 0.875 | 0.833 |
+| RAG-Fusion / RRF | **0.792** | 0.875 | 0.833 |
+| Query2Doc + BM25 | **0.792** | 0.833 | 0.750 |
+| Decomposition + RRF | 0.625 | 0.667 | 0.667 |
+| Dense original | **0.792** | **0.917** | **0.917** |
+| HyDE + dense | 0.708 | **0.917** | **0.917** |
+
+Important findings:
+
+- **Query transformation is not a free quality upgrade.** No generative method beats its fair original-query baseline on aggregate in this controlled benchmark.
+- **Keeping the original query is a useful safety measure but not an improvement guarantee.** Rewrite/multi-query/RAG-Fusion preserve BM25 quality here while adding generation latency.
+- **Transformer capacity matters, but reliability still dominates some failures.** FLAN-T5-base raises decomposition R@1 from `0.167` to `0.625` and HyDE from `0.625` to `0.708`, yet neither beats its original-query baseline and malformed outputs remain.
+- **Query2Doc can reduce evidence completeness.** Under the base control it drops R@3/complete R@3 relative to BM25 original, especially on multi-aspect needs.
+- **Dense representation solves the preserved vocabulary-mismatch case more directly than these lexical rewrites.** The M00 paraphrase failure remains missed by BM25 transformations while the pretrained dense original query retrieves the relevant document first.
+- **Decomposition should be routed, not universal.** Bad subquestions can destroy retrieval, directly motivating M06 adaptive routing/correction.
+- **HyDE is sensitive to hypothetical-document drift.** A fluent pseudo-document can move the embedding away from useful evidence; stronger generation does not guarantee better rank-1 retrieval.
+- **Transformation cost belongs in the policy.** Generative paths add hundreds to thousands of CPU milliseconds in these runs versus near-zero BM25 and low-millisecond dense retrieval, so a transformation must earn its cost through measurable quality gains.
+- **This is a valid negative-result milestone.** The methods are complete because mechanisms, controls, baselines, benchmark, metrics, capacity control, costs, failures, and reproducible artifacts are all recorded—not because a transformed query was forced to win.
+
+Evaluation evidence:
+
+- GitHub Actions M05 capacity-control PR run `32413220357` completed successfully on the mechanism tree.
+- Capacity-control mechanism run: **59 tests passed**; FLAN-T5-small baseline and FLAN-T5-base evaluation both succeeded.
+- Model revisions, transformed queries, rankings, class breakdowns, costs, and representative drift failures are persisted as JSON and Markdown.
+- Final documentation/ROADMAP head must pass the same workflow before merge.
+- Generation answer-quality evaluation is **not applicable** to M05 because generation is intentionally used only as a query-transformation mechanism; retrieval effects are evaluated independently.
+
+Artifacts: `benchmarks/m05_query_transform/`, `src/rag_practice/query_transform/`, `labs/05_query_transform/`, and `.github/workflows/m05-query-transform.yml`.
 
 ### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `TODO`
 
@@ -246,4 +308,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Start **M05 — Query Transformation**. Freeze the retriever/index and compare original queries against rewriting, multi-query fusion, Query2Doc-style expansion, HyDE, and decomposition on shared query classes; report both wins and regressions plus transformation latency/cost before introducing more adaptive control flow.
+Start **M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG**. Reuse M05’s finding that unconditional transformation is costly and unreliable: first build an explicit complexity/router baseline, then add iterative retrieval, evidence checks, correction/retry, active retrieval, and reflection one mechanism at a time. Evaluate routing accuracy, retrieval/evidence completeness, answer correctness/groundedness, unsupported/refusal behavior, loop steps, latency, and cost independently.

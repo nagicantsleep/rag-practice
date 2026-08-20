@@ -1,0 +1,2126 @@
+{
+  "hypothesis": "hierarchy helps collection-wide evidence packaging, graph paths help relation chains/global aggregation, and version-aware memory prevents stale current-fact retrieval; no single structure should dominate every query class",
+  "controls": {
+    "shared_static_corpus": true,
+    "flat_bm25_baseline": true,
+    "flat_metadata_control": true,
+    "gold_triples_isolate_graph_retrieval_from_information_extraction": true,
+    "runtime_uses_no_qrels_or_reference_answers": true,
+    "generation_not_involved": "M07 isolates structured retrieval/context evidence; answer generation is intentionally not evaluated"
+  },
+  "retrieval": {
+    "benchmark_queries": 10,
+    "documents": 19,
+    "systems": {
+      "flat_bm25": {
+        "build_ms": 0.17372499996781698,
+        "metrics": {
+          "mean_recall@3": 0.44666666666666666,
+          "mean_recall@5": 0.5666666666666667,
+          "mean_recall@10": 0.6766666666666666,
+          "mean_recall_at_evidence_budget": 0.37666666666666665,
+          "evidence_complete_at_budget": 0.1,
+          "mrr": 0.6599999999999999,
+          "mean_query_ms": 0.029421500005355483,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 0.3333333333333333,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.55,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 1.0
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.0,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.05
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.5,
+              "evidence_complete_at_budget": 0.5,
+              "mrr": 0.75
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 0.4444444444444444,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.8333333333333334
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d11",
+              "d15",
+              "d18",
+              "d3",
+              "d7",
+              "d16",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.04886499999656735
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17",
+              "d16",
+              "d10",
+              "d2",
+              "d6",
+              "d14",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.02701200003230042
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.03637899999375804
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d6",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.034450999976343155
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d10",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.030277999996997096
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d19",
+              "d8",
+              "d16",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.025594000021555985
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d1",
+              "d13",
+              "d16",
+              "d5",
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d11"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 0.6,
+            "recall_at_evidence_budget": 0.6,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.02772100003767264
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d13",
+              "d16"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "recall@10": 0.5,
+            "recall_at_evidence_budget": 0.5,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.015871000016431935
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d13",
+              "d16",
+              "d10"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.3333333333333333,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.1,
+            "query_ms": 0.02446199999894816
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d13",
+              "d16",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d1",
+              "d5",
+              "d9",
+              "d10"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.0,
+            "query_ms": 0.02358199998298005
+          }
+        ]
+      },
+      "flat_metadata_bm25": {
+        "build_ms": 0.1476379999871824,
+        "metrics": {
+          "mean_recall@3": 0.4966666666666667,
+          "mean_recall@5": 0.7,
+          "mean_recall@10": 0.9266666666666665,
+          "mean_recall_at_evidence_budget": 0.3933333333333333,
+          "evidence_complete_at_budget": 0.1,
+          "mrr": 0.7083333333333333,
+          "mean_query_ms": 0.03000539999788998,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 0.3333333333333333,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.6333333333333333,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 1.0
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.0,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.29166666666666663
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.5,
+              "evidence_complete_at_budget": 0.5,
+              "mrr": 0.75
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 0.4444444444444444,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.8333333333333334
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d11",
+              "d15",
+              "d18",
+              "d3",
+              "d7",
+              "d16",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.02521099997920828
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17",
+              "d16",
+              "d10",
+              "d2",
+              "d6",
+              "d14",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.01876100003528336
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.0334449999854769
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d6",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.045747999990908284
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d10",
+              "d11",
+              "d15",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.030008999999608932
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d11",
+              "d3",
+              "d7",
+              "d19",
+              "d8",
+              "d16",
+              "d15"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.027176000003237277
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d1",
+              "d13",
+              "d16",
+              "d5",
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d11"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 0.6,
+            "recall_at_evidence_budget": 0.6,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.029138000002149056
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d13",
+              "d16",
+              "d11",
+              "d3",
+              "d7",
+              "d10",
+              "d2"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.020607999999811
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d10",
+              "d2",
+              "d6",
+              "d12",
+              "d19",
+              "d4",
+              "d8"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.25,
+            "query_ms": 0.03618699997787189
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d13",
+              "d16",
+              "d14",
+              "d17",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d15",
+              "d18"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "query_ms": 0.03377100000534483
+          }
+        ]
+      },
+      "raptor_style": {
+        "build_ms": 0.2767739999853802,
+        "metrics": {
+          "mean_recall@3": 0.63,
+          "mean_recall@5": 0.6833333333333333,
+          "mean_recall@10": 0.76,
+          "mean_recall_at_evidence_budget": 0.5599999999999999,
+          "evidence_complete_at_budget": 0.3,
+          "mrr": 0.725,
+          "mean_query_ms": 0.17382749999228508,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 0.0,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.25
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.3,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.5,
+              "evidence_complete_at_budget": 0.5,
+              "mrr": 0.75
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 0.6666666666666666,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.8333333333333334
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d3",
+              "d11",
+              "d18",
+              "d7",
+              "d15",
+              "d16",
+              "d17",
+              "d5"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.25966599997673256
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17",
+              "d16",
+              "d10",
+              "d2",
+              "d6",
+              "d14",
+              "d1",
+              "d5",
+              "d9",
+              "d18"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.1852249999956257
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d2",
+              "d1",
+              "d3",
+              "d11",
+              "d7",
+              "d5",
+              "d9",
+              "d10",
+              "d6",
+              "d12"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.1994009999748414
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d3",
+              "d7",
+              "d11",
+              "d6",
+              "d9",
+              "d1",
+              "d2",
+              "d10",
+              "d12"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.18390000002455054
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d11",
+              "d7",
+              "d3",
+              "d10",
+              "d1",
+              "d5",
+              "d6",
+              "d2",
+              "d12"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.17939800000021933
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d18",
+              "d11",
+              "d3",
+              "d7",
+              "d15",
+              "d16",
+              "d17",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.3333333333333333,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.25,
+            "query_ms": 0.24175400000103764
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d11",
+              "d3",
+              "d7",
+              "d1",
+              "d5",
+              "d9",
+              "d12",
+              "d19",
+              "d4",
+              "d8"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 0.6,
+            "recall_at_evidence_budget": 0.6,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.1621549999981653
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [],
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.0,
+            "query_ms": 0.03398799998421964
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d10",
+              "d2",
+              "d6",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d1",
+              "d11",
+              "d3"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.15549199997622054
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d14",
+              "d17",
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.1372959999912382
+          }
+        ],
+        "structure": {
+          "leaf_documents": 19,
+          "summary_nodes": 10,
+          "summary_words": 236
+        }
+      },
+      "kag_path": {
+        "build_ms": 0.12943399997311644,
+        "metrics": {
+          "mean_recall@3": 0.7166666666666667,
+          "mean_recall@5": 0.7166666666666667,
+          "mean_recall@10": 0.7166666666666667,
+          "mean_recall_at_evidence_budget": 0.7166666666666667,
+          "evidence_complete_at_budget": 0.6,
+          "mrr": 0.8,
+          "mean_query_ms": 0.030907099994692544,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.16666666666666666,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.41666666666666663,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d1"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.04110399999035508
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.029604999951970967
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.033286000018506456
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.030084999991686345
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03028300000096351
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03769500000316839
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [],
+            "recall@3": 0.0,
+            "recall@5": 0.0,
+            "recall@10": 0.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.0,
+            "query_ms": 0.015759000007165014
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d1",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "recall@10": 0.3333333333333333,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03901700000596975
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d1",
+              "d2"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "recall@10": 0.3333333333333333,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.029413999982352834
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d13",
+              "d14"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "recall@10": 0.5,
+            "recall_at_evidence_budget": 0.5,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.022822999994787097
+          }
+        ],
+        "structure": {
+          "graph_nodes": 24,
+          "graph_edges": 24
+        }
+      },
+      "graph_global": {
+        "build_ms": 0.12943399997311644,
+        "metrics": {
+          "mean_recall@3": 0.58,
+          "mean_recall@5": 0.7666666666666667,
+          "mean_recall@10": 0.9666666666666666,
+          "mean_recall_at_evidence_budget": 0.7,
+          "evidence_complete_at_budget": 0.6,
+          "mrr": 0.8083333333333333,
+          "mean_query_ms": 0.07380140000350366,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 0.3333333333333333,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 0.2222222222222222,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.5277777777777778
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d1",
+              "d16",
+              "d5",
+              "d9",
+              "d13",
+              "d2",
+              "d10",
+              "d11",
+              "d15",
+              "d17"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.13026900001023023
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17",
+              "d10",
+              "d2",
+              "d6",
+              "d14",
+              "d16",
+              "d1",
+              "d5",
+              "d9",
+              "d13"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.07333899998229754
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d1",
+              "d11",
+              "d15",
+              "d16",
+              "d18",
+              "d3"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "query_ms": 0.09293300001900207
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d5",
+              "d1",
+              "d11",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 0.6666666666666666,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.25,
+            "query_ms": 0.08307299998477902
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d12",
+              "d19",
+              "d4",
+              "d8",
+              "d9",
+              "d1",
+              "d11",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.0788450000186458
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d1",
+              "d5",
+              "d9",
+              "d10",
+              "d11",
+              "d2",
+              "d3",
+              "d6",
+              "d7",
+              "d8"
+            ],
+            "recall@3": 0.3333333333333333,
+            "recall@5": 0.3333333333333333,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.3333333333333333,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.07062399998858382
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d11",
+              "d15",
+              "d18",
+              "d3",
+              "d7",
+              "d1",
+              "d13",
+              "d16",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.07108400001243353
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d11",
+              "d3",
+              "d7",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.8333333333333334,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.05032500001789231
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d10",
+              "d2",
+              "d6",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.047833999985869013
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d14",
+              "d17",
+              "d13",
+              "d16"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03968800001530326
+          }
+        ],
+        "structure": {
+          "graph_nodes": 24,
+          "graph_edges": 24
+        }
+      },
+      "hipporag_ppr": {
+        "build_ms": 0.12943399997311644,
+        "metrics": {
+          "mean_recall@3": 0.63,
+          "mean_recall@5": 0.7666666666666666,
+          "mean_recall@10": 0.97,
+          "mean_recall_at_evidence_budget": 0.52,
+          "evidence_complete_at_budget": 0.2,
+          "mrr": 0.8083333333333333,
+          "mean_query_ms": 0.3147705999936079,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.6,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 1.0
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.0,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 0.29166666666666663
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 0.5,
+              "evidence_complete_at_budget": 0.5,
+              "mrr": 0.75
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 0.6666666666666666,
+              "evidence_complete_at_budget": 0.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d1",
+              "d2",
+              "d3",
+              "d9",
+              "d5",
+              "d15",
+              "d4",
+              "d10",
+              "d6",
+              "d11"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.3043380000349316
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d16",
+              "d17",
+              "d13",
+              "d18",
+              "d14",
+              "d19",
+              "d8",
+              "d15",
+              "d7",
+              "d6"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.5,
+            "query_ms": 0.2808499999673586
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d1",
+              "d2",
+              "d3",
+              "d9",
+              "d5",
+              "d4",
+              "d15",
+              "d10",
+              "d6",
+              "d11"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.2856649999785077
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d6",
+              "d7",
+              "d9",
+              "d1",
+              "d8",
+              "d19",
+              "d10",
+              "d2",
+              "d11"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.3103579999788053
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d10",
+              "d11",
+              "d5",
+              "d1",
+              "d12",
+              "d6",
+              "d2",
+              "d3",
+              "d8"
+            ],
+            "recall@3": 0.6666666666666666,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.6666666666666666,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.2948489999994308
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d8",
+              "d7",
+              "d1",
+              "d9",
+              "d6",
+              "d19",
+              "d18",
+              "d2",
+              "d10"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.5268069999715408
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d9",
+              "d5",
+              "d1",
+              "d16",
+              "d13",
+              "d4",
+              "d19",
+              "d8",
+              "d15",
+              "d3"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 0.7,
+            "recall_at_evidence_budget": 0.7,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.3092989999800011
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d9",
+              "d5",
+              "d1",
+              "d10",
+              "d6",
+              "d2",
+              "d11",
+              "d3",
+              "d7",
+              "d12"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.5,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.5,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.26887199999237055
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d9",
+              "d5",
+              "d1",
+              "d10",
+              "d6",
+              "d2",
+              "d11",
+              "d12",
+              "d3",
+              "d7"
+            ],
+            "recall@3": 0.0,
+            "recall@5": 0.6666666666666666,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.25,
+            "query_ms": 0.27889099999356404
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d16",
+              "d13",
+              "d17",
+              "d14",
+              "d15",
+              "d18",
+              "d19",
+              "d4",
+              "d8",
+              "d3"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 0.0,
+            "evidence_complete_at_budget": 0.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "query_ms": 0.2877770000395685
+          }
+        ],
+        "structure": {
+          "graph_nodes": 24,
+          "graph_edges": 24
+        }
+      }
+    }
+  },
+  "memory": {
+    "base_events": 3,
+    "updates": 3,
+    "systems": {
+      "flat_bm25_all_versions": {
+        "metrics": {
+          "hit@1": 0.25,
+          "current_hit@1": 0.0,
+          "previous_hit@1": 1.0,
+          "stale_current_rate": 1.0,
+          "mean_query_ms": 0.022913249992484452
+        },
+        "traces": [
+          {
+            "query_id": "t1",
+            "task": "memory_current",
+            "query": "What database version does Vega Lab currently use?",
+            "relevant": [
+              "mem4"
+            ],
+            "ranking": [
+              "mem1",
+              "mem4",
+              "mem2",
+              "mem3"
+            ],
+            "hit@1": 0.0,
+            "query_ms": 0.02647700000579789
+          },
+          {
+            "query_id": "t2",
+            "task": "memory_previous",
+            "query": "What database version did Vega Lab use before the current version?",
+            "relevant": [
+              "mem1"
+            ],
+            "ranking": [
+              "mem1",
+              "mem4",
+              "mem2",
+              "mem3"
+            ],
+            "hit@1": 1.0,
+            "query_ms": 0.023151999982928828
+          },
+          {
+            "query_id": "t3",
+            "task": "memory_current",
+            "query": "Who is the current lead of Aurora Lab?",
+            "relevant": [
+              "mem5"
+            ],
+            "ranking": [
+              "mem2",
+              "mem5",
+              "mem3",
+              "mem6"
+            ],
+            "hit@1": 0.0,
+            "query_ms": 0.021580999998604966
+          },
+          {
+            "query_id": "t4",
+            "task": "memory_current",
+            "query": "Who is the current lead of Reef Lab?",
+            "relevant": [
+              "mem6"
+            ],
+            "ranking": [
+              "mem3",
+              "mem6",
+              "mem2",
+              "mem5"
+            ],
+            "hit@1": 0.0,
+            "query_ms": 0.020442999982606125
+          }
+        ],
+        "build_ms": 0.04548900000145295
+      },
+      "temporal_memory": {
+        "metrics": {
+          "hit@1": 1.0,
+          "current_hit@1": 1.0,
+          "previous_hit@1": 1.0,
+          "stale_current_rate": 0.0,
+          "mean_query_ms": 0.030594500003644498
+        },
+        "traces": [
+          {
+            "query_id": "t1",
+            "task": "memory_current",
+            "query": "What database version does Vega Lab currently use?",
+            "relevant": [
+              "mem4"
+            ],
+            "ranking": [
+              "mem4",
+              "mem5",
+              "mem6"
+            ],
+            "hit@1": 1.0,
+            "query_ms": 0.031933000002482004
+          },
+          {
+            "query_id": "t2",
+            "task": "memory_previous",
+            "query": "What database version did Vega Lab use before the current version?",
+            "relevant": [
+              "mem1"
+            ],
+            "ranking": [
+              "mem1",
+              "mem2",
+              "mem3"
+            ],
+            "hit@1": 1.0,
+            "query_ms": 0.03394399999478992
+          },
+          {
+            "query_id": "t3",
+            "task": "memory_current",
+            "query": "Who is the current lead of Aurora Lab?",
+            "relevant": [
+              "mem5"
+            ],
+            "ranking": [
+              "mem5",
+              "mem6",
+              "mem4"
+            ],
+            "hit@1": 1.0,
+            "query_ms": 0.03086700002086218
+          },
+          {
+            "query_id": "t4",
+            "task": "memory_current",
+            "query": "Who is the current lead of Reef Lab?",
+            "relevant": [
+              "mem6"
+            ],
+            "ranking": [
+              "mem6",
+              "mem5",
+              "mem4"
+            ],
+            "hit@1": 1.0,
+            "query_ms": 0.02563399999644389
+          }
+        ],
+        "build_ms": 0.026789999992615776,
+        "mean_update_ms": 0.03270033334956679,
+        "structure": {
+          "memory_events": 6,
+          "memory_keys": 3
+        }
+      }
+    }
+  }
+}

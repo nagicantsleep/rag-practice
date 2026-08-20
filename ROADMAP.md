@@ -1,18 +1,18 @@
 # RAG Practice — Learning Roadmap
 
-This file is the source of truth for the learning sequence in this repository. The roadmap may evolve as the field evolves, but milestone order and completion status should be updated here rather than being left only in chat, notes, or commit history.
+This file is the source of truth for the learning sequence in this repository. Update milestone status here so the plan does not live only in chat or commit history.
 
 ## Goal
 
-Learn Retrieval-Augmented Generation by implementing the mechanisms directly, measuring them, comparing alternatives on shared benchmarks, and only then introducing higher-level frameworks or production abstractions.
+Learn Retrieval-Augmented Generation by implementing mechanisms directly, evaluating them on shared benchmarks, comparing them against explicit baselines, and only then introducing higher-level frameworks or production abstractions.
 
-The repository should make it possible to answer not only **“does this RAG pipeline work?”**, but also:
+The repository should answer more than “does it run?”:
 
-- Why does it work?
-- Which component improved or degraded quality?
-- What does it cost in latency, tokens, memory, and index size?
-- On which query classes does it fail?
-- Is the improvement statistically/reproducibly meaningful on the chosen benchmark?
+- why does a method work or fail?
+- which component changed retrieval or answer quality?
+- what are the latency, token, memory, index-size, and cost trade-offs?
+- which query classes improve or regress?
+- are conclusions reproducible on a fixed benchmark?
 
 ## Non-negotiable principles
 
@@ -20,98 +20,90 @@ The repository should make it possible to answer not only **“does this RAG pip
 
 **Every milestone and every lab must include evaluation.** Evaluation is part of the implementation, not a final polishing step.
 
-A lab is incomplete if it contains only a demo or a working pipeline without measurable comparison.
+A demo or working pipeline without a baseline, benchmark, metrics, saved results, and error analysis is not complete.
 
 ### 2. Baseline before improvement
 
-Every new technique must be compared against the simplest relevant prior milestone. Examples:
+Every new technique must be compared with the simplest relevant prior implementation. Examples:
 
 - dense retrieval vs. BM25
-- hybrid retrieval vs. dense and BM25
-- reranking vs. retrieval without reranking
+- hybrid vs. BM25 and dense
+- reranking vs. the same retriever without reranking
 - HyDE vs. the same retriever with the original query
-- CRAG vs. the same underlying RAG pipeline without correction
-- GraphRAG vs. an appropriate flat/hierarchical retrieval baseline
+- CRAG vs. the same RAG pipeline without correction
+- GraphRAG vs. an appropriate flat or hierarchical retrieval baseline
 
 ### 3. Shared benchmarks for comparable experiments
 
-Where techniques solve the same task, reuse the same corpus, question set, relevance labels, and generation-evaluation protocol. Changing both the method and the benchmark at the same time makes conclusions weak.
+When methods solve the same task, reuse the corpus, questions, relevance labels, and evaluation protocol. Do not change both the method and benchmark and then attribute the difference to the method.
 
-### 4. Learn low-level mechanisms first
+### 4. Learn mechanisms before frameworks
 
-For early milestones, avoid hiding the core algorithm behind LangChain, LlamaIndex, or similar orchestration frameworks. Libraries are allowed for models, tokenization, embeddings, numerical operations, and storage, but the retrieval/ranking/control logic should remain visible.
+For early milestones, do not hide the important algorithm behind LangChain, LlamaIndex, or another orchestration framework. Libraries are fine for models, tokenization, embeddings, numerical operations, and storage, but retrieval/ranking/control logic should remain visible.
 
-Framework reproductions can be added later as secondary implementations.
+Framework reproductions can be secondary implementations later.
 
 ### 5. Observable pipelines
 
-Every RAG run should be inspectable. As the repository matures, a run should expose at least:
+As the repository grows, a run should expose at least:
 
 ```text
 question
 → transformed query/queries
-→ retrieved documents + retrieval scores
-→ reranked documents + reranking scores
+→ retrieved documents + scores
+→ reranked documents + scores
 → selected context
 → generated answer
-→ citations / supporting evidence
+→ citations/evidence
 → evaluation metrics
 → latency / tokens / cost
 ```
 
 ### 6. Reproducibility
 
-Experiments should record the dataset version, model names, embedding model, chunking configuration, retrieval parameters, random seed where applicable, and evaluation configuration.
+Record dataset version, model names/versions, embedding model, chunking parameters, retrieval parameters, random seed where applicable, and evaluator configuration.
 
 ## Evaluation contract
 
-Each lab must define the following before it can be marked complete.
+Each lab must define these before it can be marked `DONE`.
 
 ### A. Hypothesis
 
-State what the technique is expected to improve and why.
-
-Example: “Hybrid BM25 + dense retrieval should improve Recall@K on a benchmark containing both exact-name/entity queries and semantic paraphrases.”
+State what should improve and why.
 
 ### B. Baseline
 
-Choose at least one earlier implementation that answers the same task.
+Identify at least one earlier implementation that solves the same task.
 
 ### C. Dataset / benchmark
 
-Document:
-
-- corpus
-- query/question set
-- relevance labels or reference answers
-- train/dev/test split if relevant
-- any generated/synthetic data and how it was produced
+Document the corpus, queries/questions, relevance labels or reference answers, split if relevant, and provenance of any synthetic data.
 
 ### D. Retrieval metrics
 
-Use the subset appropriate for the lab, with common metrics including:
+Use the subset appropriate for the task:
 
 - Hit Rate / Success@K
 - Recall@K
 - Precision@K
 - MRR
-- MAP when appropriate
+- MAP where appropriate
 - nDCG@K
 
-Retrieval-focused milestones should not be judged only by final LLM answers.
+Retrieval-focused work must not be judged only by the final LLM answer.
 
 ### E. Generation / RAG metrics
 
-Use the subset appropriate for the task, including:
+Use the subset appropriate for the task:
 
 - answer correctness
 - faithfulness / groundedness
 - context relevance
 - citation precision
 - citation recall / evidence coverage
-- refusal or unsupported-answer rate when relevant
+- unsupported-answer/refusal behavior where relevant
 
-LLM-as-a-judge may be used, but judge prompts/models/configuration must be versioned and, where practical, checked against deterministic or human-labeled examples.
+LLM-as-a-judge is allowed, but judge prompts/models/config must be versioned and checked against deterministic or human-labeled examples where practical.
 
 ### F. System metrics
 
@@ -120,30 +112,27 @@ Track relevant operational trade-offs:
 - end-to-end latency
 - retrieval latency
 - generation latency
-- prompt/input tokens
-- output tokens
-- estimated monetary cost when paid APIs are used
+- input/output tokens
+- estimated API cost when paid APIs are used
 - index build time
 - index size / memory footprint
 
-Not every lab must optimize these metrics, but regressions should be visible.
-
 ### G. Error analysis
 
-Every evaluation report should include representative failure cases and classify the failure source when possible:
+Classify representative failures where possible:
 
-- bad query understanding/transformation
+- query understanding/transformation
 - retrieval miss
 - ranking failure
-- bad chunk/context construction
+- chunk/context construction
 - insufficient evidence
 - generation hallucination
 - citation/evidence mismatch
-- control-flow/routing error
+- routing/control-flow error
 
-### H. Result artifact
+### H. Saved result artifact
 
-Each completed lab should leave behind a reproducible result artifact, for example:
+A completed lab should leave reproducible results, for example:
 
 ```text
 labs/<lab>/README.md
@@ -151,56 +140,54 @@ labs/<lab>/results/<experiment>.json
 labs/<lab>/results/<experiment>.md
 ```
 
-The report must include configuration, metrics, baseline comparison, and short findings.
+The report must include configuration, metrics, baseline comparison, failures, and findings.
 
 ## Definition of Done for every lab
-
-A lab is **DONE** only when all applicable items below are satisfied:
 
 - [ ] learning objective is written
 - [ ] algorithm/pipeline is implemented
 - [ ] core behavior has automated tests
 - [ ] baseline is identified and runnable
 - [ ] benchmark/evaluation dataset is defined
-- [ ] retrieval evaluation is implemented when retrieval is involved
-- [ ] generation/groundedness evaluation is implemented when generation is involved
+- [ ] retrieval evaluation exists when retrieval is involved
+- [ ] generation/groundedness evaluation exists when generation is involved
 - [ ] latency/resource metrics are recorded where meaningful
 - [ ] experiment configuration is reproducible
-- [ ] results are saved rather than shown only in terminal output
-- [ ] failure cases are inspected
+- [ ] results are saved rather than only printed
+- [ ] representative failures are inspected
 - [ ] findings and trade-offs are written down
 
 ## Milestone roadmap
 
-Statuses:
+Statuses: `TODO`, `IN PROGRESS`, `DONE`.
 
-- `TODO` — not started
-- `IN PROGRESS` — current learning/implementation work
-- `DONE` — satisfies the Definition of Done above
+### M00 — Information Retrieval Fundamentals — `DONE`
 
-### M00 — Information Retrieval Fundamentals — `TODO`
+Purpose: establish retrieval math and trustworthy evaluation utilities reused by every later milestone.
 
-Purpose: build the retrieval/evaluation foundation needed to understand later RAG systems.
+Implemented:
 
-Implement and learn:
-
-- document/query representation
 - tokenization basics
 - inverted index
 - TF / IDF / TF-IDF
-- cosine similarity
-- BM25 from the formula up
-- dense-vector similarity basics
+- dense and sparse cosine similarity
+- BM25 from the formula
 - top-k retrieval
 - relevance judgments
-- Hit Rate / Recall@K / Precision@K / MRR / MAP / nDCG@K
+- Hit Rate@K / Precision@K / Recall@K / MRR / MAP / nDCG@K
+- deterministic benchmark
+- hand-computable metric tests
+- TF-IDF vs. BM25 baseline comparison
+- query-level error analysis
 
-Evaluation gate:
+Artifacts:
 
-- create a small deterministic IR benchmark with relevance labels
-- verify metric implementations against hand-computable examples
-- compare at least TF-IDF/cosine and BM25
-- perform query-level error analysis
+- `src/rag_practice/ir/`
+- `src/rag_practice/evaluation/`
+- `benchmarks/m00_ir/`
+- `labs/00_ir_fundamentals/`
+
+Key finding: both lexical baselines intentionally fail a paraphrase query with vocabulary mismatch. That known retrieval miss becomes a target for dense retrieval.
 
 ### M01 — Naive RAG From Scratch — `TODO`
 
@@ -212,10 +199,10 @@ documents → chunks → embeddings → vector index → top-k retrieval → con
 
 Implement:
 
-- `Document` / `Chunk` data model
+- `Document` / `Chunk` model
 - fixed-size chunking
 - embedding interface
-- minimal in-memory vector index
+- minimal in-memory dense vector index
 - dense retriever
 - prompt/context construction
 - generator interface
@@ -224,34 +211,32 @@ Implement:
 
 Evaluation gate:
 
-- retrieval metrics independent of answer generation
+- reuse/extend the M00 benchmark
+- retrieval metrics independent from answer generation
 - answer correctness + groundedness
 - citation/evidence checks
 - latency/token measurements
-- compare RAG against a no-retrieval generator baseline where meaningful
+- RAG vs. no-retrieval baseline where meaningful
+- verify whether dense retrieval fixes the M00 paraphrase failure
 
 ### M02 — Retrieval Families — `TODO`
 
-Implement as comparable retrievers:
+Implement and compare:
 
-- BM25 / sparse lexical retrieval
+- BM25 / sparse lexical
 - dense retrieval
-- hybrid sparse + dense retrieval
+- hybrid sparse + dense
 - Reciprocal Rank Fusion (RRF)
-- learned sparse retrieval (e.g. SPLADE) as an advanced sub-lab
-- late-interaction retrieval (e.g. ColBERT/ColBERTv2) as an advanced sub-lab
+- learned sparse retrieval such as SPLADE as an advanced sub-lab
+- late-interaction retrieval such as ColBERT/ColBERTv2 as an advanced sub-lab
 
-Evaluation focus:
-
-- Recall@K, MRR, nDCG@K
-- lexical/entity queries vs. semantic/paraphrase queries
-- latency/index-size trade-offs
+Evaluation: Recall@K, MRR, nDCG@K, query-class breakdown, latency, index size.
 
 ### M03 — Indexing and Chunking — `TODO`
 
-Implement and compare:
+Compare:
 
-- fixed-size chunks
+- fixed chunks
 - overlap strategies
 - sentence/paragraph-aware chunks
 - semantic chunking
@@ -259,29 +244,20 @@ Implement and compare:
 - parent-child retrieval
 - hierarchical summaries/indexes
 
-Evaluation focus:
-
-- retrieval quality vs. chunk size/granularity
-- evidence completeness
-- context redundancy
-- token budget utilization
+Evaluation: retrieval quality vs. granularity, evidence completeness, redundancy, token-budget use.
 
 ### M04 — Reranking and Context Construction — `TODO`
 
 Implement:
 
-- retrieve-many / rerank-few pipeline
+- retrieve-many / rerank-few
 - cross-encoder reranking
-- LLM-based reranking
+- LLM reranking
 - Maximum Marginal Relevance (MMR)
 - duplicate/redundancy control
 - context ordering and packing
 
-Evaluation focus:
-
-- ranking metrics before/after reranking
-- answer quality at fixed context-token budgets
-- latency-quality trade-off
+Evaluation: ranking before/after reranking, answer quality at fixed context budgets, latency-quality trade-off.
 
 ### M05 — Query Transformation — `TODO`
 
@@ -294,11 +270,7 @@ Implement:
 - HyDE
 - query decomposition
 
-Evaluation focus:
-
-- original query vs. transformed query retrieval metrics
-- per-query-class wins/losses
-- extra generation cost introduced by transformation
+Evaluation: original vs. transformed-query retrieval, query-class wins/losses, extra generation cost.
 
 ### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `TODO`
 
@@ -306,18 +278,12 @@ Implement progressively:
 
 - multi-hop / iterative retrieval
 - FLARE-style active retrieval concepts
-- routing between no-RAG / single-shot / iterative retrieval
+- no-RAG / single-shot / iterative routing
 - Adaptive-RAG concepts
 - Corrective RAG (CRAG) concepts
 - Self-RAG-style retrieve/critique/reflection control
 
-Evaluation focus:
-
-- simple vs. multi-hop query subsets
-- unnecessary-retrieval rate
-- correction success rate
-- hallucination/unsupported-answer rate
-- cost and latency of additional control loops
+Evaluation: simple vs. multi-hop subsets, unnecessary retrieval rate, correction success, unsupported-answer rate, control-loop cost/latency.
 
 ### M07 — Hierarchical, Graph, and Memory-oriented RAG — `TODO`
 
@@ -331,12 +297,7 @@ Implement progressively:
 - HippoRAG-style associative graph retrieval concepts
 - memory-oriented retrieval patterns
 
-Evaluation focus:
-
-- local fact questions vs. global corpus questions
-- multi-hop relation questions
-- flat-vector baseline vs. hierarchy/graph
-- index construction cost and update complexity
+Evaluation: local vs. global questions, multi-hop relations, flat-vector baseline vs. hierarchy/graph, construction/update cost.
 
 ### M08 — Specialized Sources and Modalities — `TODO`
 
@@ -350,7 +311,7 @@ Sub-labs:
 - visual-document/page-image RAG
 - long-context vs. retrieval routing
 
-Evaluation focus must be modality/source appropriate while preserving the common retrieval, grounding, latency, and cost measurements where applicable.
+Evaluation must be source/modality appropriate while retaining common retrieval, grounding, latency, and cost measurements where applicable.
 
 ### M09 — Agentic RAG — `TODO`
 
@@ -361,19 +322,11 @@ Implement:
 - tool/source router
 - retrieval loop
 - evidence evaluator
-- retry / stop policy
+- retry/stop policy
 - memory/state
-- multi-agent variants only after a single-agent controller is understood
+- multi-agent variants only after the single-agent controller is understood
 
-Evaluation focus:
-
-- task success
-- tool/retrieval precision
-- number of steps/tool calls
-- unnecessary-action rate
-- recovery from failed retrieval
-- answer grounding
-- latency and cost
+Evaluation: task success, tool/retrieval precision, number of steps/tool calls, unnecessary-action rate, recovery, grounding, latency, cost.
 
 ### M10 — Training and Production RAG — `TODO`
 
@@ -386,47 +339,39 @@ Study/implement selectively:
 - caching
 - incremental indexing
 - observability
-- access control / document-level permissions
-- prompt-injection and adversarial-retrieval defenses
+- document-level permissions
+- prompt-injection / adversarial-retrieval defenses
 - freshness/update policies
 - scaling and serving trade-offs
 
-Evaluation focus:
+Evaluation: offline quality, online/system performance, robustness/security, freshness, regression testing.
 
-- offline benchmark quality
-- online/system performance
-- robustness/security evaluation
-- freshness and regression testing
+## Target repository shape
 
-## Repository shape — target, not all created upfront
+Create folders only when their milestone needs them; avoid empty scaffolding.
 
 ```text
 rag-practice/
 ├── README.md
 ├── ROADMAP.md
 ├── pyproject.toml
-├── src/
-│   └── rag_practice/
-│       ├── core/
-│       ├── retrieval/
-│       ├── indexing/
-│       ├── query/
-│       ├── evaluation/
-│       └── tracing/
+├── src/rag_practice/
+│   ├── core/
+│   ├── ir/
+│   ├── retrieval/
+│   ├── indexing/
+│   ├── query/
+│   ├── evaluation/
+│   └── tracing/
 ├── labs/
 │   ├── 00_ir_fundamentals/
 │   ├── 01_naive_rag/
 │   └── ...
-├── datasets/
 ├── benchmarks/
 └── tests/
 ```
 
-Folders should be introduced only when the corresponding milestone needs them; do not scaffold the whole repository with empty placeholders.
-
 ## Suggested experiment record
-
-Each experiment should eventually be serializable to a common schema similar to:
 
 ```yaml
 experiment_id: m02_hybrid_rrf_v1
@@ -457,4 +402,4 @@ notes: <short findings>
 
 ## Immediate next step
 
-Start **M00 — Information Retrieval Fundamentals**. Do not move to M01 until the evaluation utilities and the small deterministic benchmark in M00 are trustworthy, because every later milestone depends on them.
+Start **M01 — Naive RAG From Scratch**. Keep the M00 lexical baselines and benchmark as regression references, and add generation/groundedness evaluation from the first end-to-end RAG implementation.

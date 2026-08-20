@@ -1,0 +1,96 @@
+{
+  "experiment_id": "m00_lexical_baselines_v1",
+  "milestone": "M00",
+  "dataset": "benchmarks/m00_ir@v1",
+  "top_k": 5,
+  "experiments": [
+    {
+      "method": "tfidf_cosine",
+      "metrics": {
+        "mrr": 0.9,
+        "map": 0.9,
+        "hit_rate@1": 0.9,
+        "precision@1": 0.9,
+        "recall@1": 0.75,
+        "ndcg@1": 0.9,
+        "hit_rate@3": 0.9,
+        "precision@3": 0.4,
+        "recall@3": 0.9,
+        "ndcg@3": 0.9,
+        "hit_rate@5": 0.9,
+        "precision@5": 0.24000000000000005,
+        "recall@5": 0.9,
+        "ndcg@5": 0.9
+      },
+      "system": {
+        "queries": 10,
+        "mean_retrieval_latency_ms": 0.025747000003661924
+      },
+      "rankings": {
+        "q1": ["d1", "d2", "d8", "d4", "d6"],
+        "q2": ["d2", "d1"],
+        "q3": ["d3", "d9", "d6", "d5"],
+        "q4": ["d4", "d9", "d6"],
+        "q5": ["d5", "d9", "d4", "d6", "d3"],
+        "q6": ["d6", "d10", "d1", "d3", "d9"],
+        "q7": ["d7"],
+        "q8": ["d8"],
+        "q9": ["d9", "d3", "d7", "d1", "d5"],
+        "q10": ["d8"]
+      },
+      "failures": [
+        {
+          "query_id": "q10",
+          "query": "conceptual likeness between paraphrases",
+          "relevant": ["d5"],
+          "retrieved": ["d8"],
+          "failure_type": "retrieval_miss"
+        }
+      ]
+    },
+    {
+      "method": "bm25",
+      "metrics": {
+        "mrr": 0.9,
+        "map": 0.9,
+        "hit_rate@1": 0.9,
+        "precision@1": 0.9,
+        "recall@1": 0.75,
+        "ndcg@1": 0.9,
+        "hit_rate@3": 0.9,
+        "precision@3": 0.4,
+        "recall@3": 0.9,
+        "ndcg@3": 0.9,
+        "hit_rate@5": 0.9,
+        "precision@5": 0.24000000000000005,
+        "recall@5": 0.9,
+        "ndcg@5": 0.9
+      },
+      "system": {
+        "queries": 10,
+        "mean_retrieval_latency_ms": 0.011066499996559287
+      },
+      "rankings": {
+        "q1": ["d1", "d2", "d8", "d4", "d6"],
+        "q2": ["d2", "d1"],
+        "q3": ["d3", "d9", "d6", "d5"],
+        "q4": ["d4", "d6", "d9"],
+        "q5": ["d5", "d9", "d4", "d6", "d3"],
+        "q6": ["d6", "d10", "d1", "d3", "d9"],
+        "q7": ["d7"],
+        "q8": ["d8"],
+        "q9": ["d9", "d3", "d7", "d1", "d5"],
+        "q10": ["d8"]
+      },
+      "failures": [
+        {
+          "query_id": "q10",
+          "query": "conceptual likeness between paraphrases",
+          "relevant": ["d5"],
+          "retrieved": ["d8"],
+          "failure_type": "retrieval_miss"
+        }
+      ]
+    }
+  ]
+}

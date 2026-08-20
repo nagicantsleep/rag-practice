@@ -1,0 +1,10 @@
+{"id":"d1","text":"Python is a programming language created by Guido van Rossum and first released in 1991."}
+{"id":"d2","text":"Monty Python was a British comedy group known for surreal sketch comedy."}
+{"id":"d3","text":"BM25 is a probabilistic ranking function used by search engines and information retrieval systems."}
+{"id":"d4","text":"TF IDF weights a term using its frequency in a document and its inverse document frequency across the collection."}
+{"id":"d5","text":"Dense retrieval represents queries and documents as embeddings so semantically similar text can match even when exact words differ."}
+{"id":"d6","text":"Retrieval augmented generation combines external document retrieval with language model generation to produce grounded answers."}
+{"id":"d7","text":"Reciprocal rank fusion combines several ranked result lists using reciprocal rank scores without requiring calibrated retriever scores."}
+{"id":"d8","text":"Cosine similarity measures the angle between vectors and is commonly used to compare vector representations."}
+{"id":"d9","text":"Information retrieval systems search a document collection and rank documents according to estimated relevance to a query."}
+{"id":"d10","text":"A language model predicts and generates text from context but does not inherently guarantee factual grounding in external sources."}

@@ -15,6 +15,10 @@ def test_raptor_style_routes_collection_wide_research_evidence():
     ranking=[d for d,_ in index.search("What does Atlas Network labs studies across the collection?",k=3)]
     assert set(ranking)=={"d2","d6","d10"}
 
+def test_raptor_style_returns_empty_when_routed_group_has_no_leaf_match():
+    index=RaptorStyleIndex(docs())
+    assert index.search("Which countries host Atlas Network labs?",k=6)==[]
+
 def test_kag_path_retrieves_complete_three_hop_currency_chain():
     retriever=KAGPathRetriever(KnowledgeGraph(docs()))
     ranking=[d for d,_ in retriever.search("Which currency is used in the country containing Aurora Lab?",k=5)]

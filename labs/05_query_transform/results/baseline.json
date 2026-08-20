@@ -1,5 +1,5 @@
 {
-  "experiment_id": "m05_query_transformation_v1",
+  "experiment_id": "m05_query_transformation_baseline_v1",
   "benchmark": {
     "corpus": "benchmarks/m00_ir/corpus.jsonl",
     "queries": "benchmarks/m05_query_transform/queries.jsonl",
@@ -16,7 +16,8 @@
     "hyde_baseline": "dense_original",
     "multi_query_variants_include_original": true,
     "retrieval_k": 5,
-    "references_not_exposed_to_transformer": true
+    "references_not_exposed_to_transformer": true,
+    "output_stem": "baseline"
   },
   "models": {
     "generator": {
@@ -728,49 +729,49 @@
   },
   "system": {
     "bm25_original": {
-      "mean_total_ms": 0.056152083335092584,
+      "mean_total_ms": 0.05167499999458869,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "bm25_rewrite": {
-      "mean_total_ms": 250.2235260833328,
-      "mean_transform_ms": 250.1567855833334,
+      "mean_total_ms": 241.5747494166567,
+      "mean_transform_ms": 241.51634700000577,
       "mean_generated_words": 9.416666666666666
     },
     "multi_query_score_fusion": {
-      "mean_total_ms": 213.30422675000094,
-      "mean_transform_ms": 213.2057036666666,
+      "mean_total_ms": 204.27898491666005,
+      "mean_transform_ms": 204.19370674999962,
       "mean_generated_words": 4.166666666666667
     },
     "rag_fusion_rrf": {
-      "mean_total_ms": 213.31587849999895,
-      "mean_transform_ms": 213.2057036666666,
+      "mean_total_ms": 204.28923816666136,
+      "mean_transform_ms": 204.19370674999962,
       "mean_generated_words": 4.166666666666667
     },
     "query2doc_bm25": {
-      "mean_total_ms": 947.9493108333348,
-      "mean_transform_ms": 947.8725525833435,
+      "mean_total_ms": 921.8957879166633,
+      "mean_transform_ms": 921.8283060000043,
       "mean_generated_words": 13.166666666666666
     },
     "decomposition_rrf": {
-      "mean_total_ms": 441.41307233333174,
-      "mean_transform_ms": 441.3414994999923,
+      "mean_total_ms": 430.62361891666495,
+      "mean_transform_ms": 430.56130358332706,
       "mean_generated_words": 15.416666666666666
     },
     "dense_original": {
-      "mean_total_ms": 11.710184916663499,
+      "mean_total_ms": 9.1594209999973,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "hyde_dense": {
-      "mean_total_ms": 379.16790299999906,
-      "mean_transform_ms": 366.1352057500065,
+      "mean_total_ms": 366.94995349999243,
+      "mean_transform_ms": 356.5836523333369,
       "mean_generated_words": 13.666666666666666
     },
     "models": {
-      "flan_model_load_ms": 3696.5727759999963,
-      "dense_model_load_ms": 3322.361751999992,
-      "dense_index_build_ms": 51.59862099999657
+      "flan_model_load_ms": 708.2368810000048,
+      "dense_model_load_ms": 781.4429339999833,
+      "dense_index_build_ms": 44.20914500002482
     }
   },
   "per_query": {
@@ -1451,5 +1452,5 @@
       }
     }
   },
-  "warning": "Tiny controlled benchmark. Transformation outputs from FLAN-T5-small are retained even when poor; no test-query prompt tuning is used. CPU timings and generated-word counts are mechanism/cost sanity measurements, not production cost estimates."
+  "warning": "Tiny controlled benchmark. Transformation outputs are retained even when poor; no test-query prompt tuning is used. CPU timings and generated-word counts are mechanism/cost sanity measurements, not production cost estimates."
 }

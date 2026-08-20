@@ -1,0 +1,63 @@
+{
+  "experiment_id": "m01_naive_rag_v1",
+  "benchmark": "benchmarks/m01_rag@v1",
+  "corpus": "benchmarks/m00_ir@v1",
+  "questions": 6,
+  "method": {
+    "chunk_size_words": 80,
+    "overlap_words": 0,
+    "embedder": "HashingEmbedder",
+    "dimensions": 256,
+    "top_k": 3,
+    "generator": "TopChunkExtractiveGenerator"
+  },
+  "retrieval": {
+    "hashing_vector": {
+      "mrr": 0.8333333333333334,
+      "map": 0.8333333333333334,
+      "hit_rate@1": 0.8333333333333334,
+      "precision@1": 0.8333333333333334,
+      "recall@1": 0.8333333333333334,
+      "ndcg@1": 0.8333333333333334,
+      "hit_rate@3": 0.8333333333333334,
+      "precision@3": 0.27777777777777773,
+      "recall@3": 0.8333333333333334,
+      "ndcg@3": 0.8333333333333334
+    },
+    "bm25_baseline": {
+      "mrr": 0.9166666666666666,
+      "map": 0.9166666666666666,
+      "hit_rate@1": 0.8333333333333334,
+      "precision@1": 0.8333333333333334,
+      "recall@1": 0.8333333333333334,
+      "ndcg@1": 0.8333333333333334,
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 0.9384882922619097
+    }
+  },
+  "generation": {
+    "mean_answer_token_f1": 0.3909377753191141,
+    "answer_contains_reference_rate": 0.8333333333333334,
+    "mean_grounded_token_recall": 1.0,
+    "mean_citation_precision": 0.8333333333333334,
+    "mean_citation_recall": 0.8333333333333334,
+    "no_retrieval_answer_contains_reference_rate": 0.0
+  },
+  "system": {
+    "mean_end_to_end_ms_observed": 0.276,
+    "mean_retrieval_ms_observed": 0.245,
+    "mean_prompt_tokens": 70.33333333333333,
+    "mean_output_tokens": 15.5,
+    "note": "Latency is a local sanity measurement on a 10-document corpus, not a performance claim. Re-running run.py overwrites this artifact with current timings."
+  },
+  "per_query": [
+    {"id":"qa1","relevant":"d1","top3":["d1","d4","d8"],"answer_contains_reference":1.0,"grounded_token_recall":1.0,"citation_precision":1.0},
+    {"id":"qa2","relevant":"d3","top3":["d3","d2","d1"],"answer_contains_reference":1.0,"grounded_token_recall":1.0,"citation_precision":1.0},
+    {"id":"qa3","relevant":"d8","top3":["d8","d1","d2"],"answer_contains_reference":1.0,"grounded_token_recall":1.0,"citation_precision":1.0},
+    {"id":"qa4","relevant":"d6","top3":["d6","d3","d4"],"answer_contains_reference":1.0,"grounded_token_recall":1.0,"citation_precision":1.0},
+    {"id":"qa5","relevant":"d5","top3":["d5","d9","d8"],"answer_contains_reference":1.0,"grounded_token_recall":1.0,"citation_precision":1.0},
+    {"id":"qa6","relevant":"d5","top3":["d8","d2","d4"],"answer_contains_reference":0.0,"grounded_token_recall":1.0,"citation_precision":0.0}
+  ]
+}

@@ -1,11 +1,19 @@
 from __future__ import annotations
 
+import math
+from dataclasses import dataclass
 from time import perf_counter
 from typing import Any
 
 
+@dataclass(frozen=True)
+class GenerationWithConfidence:
+    text: str
+    confidence: float
+
+
 class FlanT5Backend:
-    """Small text-to-text backend shared by M04 generation and LLM reranking."""
+    """Small text-to-text backend shared by M04+ generation and LLM scoring."""
 
     def __init__(
         self,
@@ -57,6 +65,47 @@ class FlanT5Backend:
             num_beams=1,
         )
         return self.tokenizer.decode(output[0], skip_special_tokens=True).strip()
+
+    def generate_with_confidence(
+        self,
+        prompt: str,
+        *,
+        max_new_tokens: int = 64,
+    ) -> GenerationWithConfidence:
+        """Greedy generation plus geometric-mean selected-token probability.
+
+        The confidence is intentionally simple and inspectable. It is not calibrated
+        probability of factual correctness; M06 uses it only as a FLARE-style signal
+        for deciding whether another retrieval step may be warranted.
+        """
+
+        try:
+            import torch
+        except ImportError as exc:  # pragma: no cover - environment-specific
+            raise RuntimeError("PyTorch is required for generation confidence") from exc
+
+        encoded = self._encode(prompt)
+        output = self.model.generate(
+            **encoded,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,
+            num_beams=1,
+            return_dict_in_generate=True,
+            output_scores=True,
+        )
+        sequence = output.sequences[0]
+        text = self.tokenizer.decode(sequence, skip_special_tokens=True).strip()
+        scores = list(output.scores or ())
+        if not scores:
+            return GenerationWithConfidence(text=text, confidence=1.0)
+
+        generated_ids = sequence[-len(scores):]
+        log_probabilities: list[float] = []
+        for logits, token_id in zip(scores, generated_ids):
+            probability = torch.softmax(logits[0], dim=-1)[int(token_id)].item()
+            log_probabilities.append(math.log(max(float(probability), 1e-12)))
+        confidence = math.exp(sum(log_probabilities) / len(log_probabilities))
+        return GenerationWithConfidence(text=text, confidence=max(0.0, min(1.0, confidence)))
 
     def score_yes_no(self, prompt: str) -> float:
         """Return a continuous yes-vs-no relevance logit margin."""

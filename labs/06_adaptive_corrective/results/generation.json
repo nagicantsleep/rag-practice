@@ -1,0 +1,1300 @@
+{
+  "experiment_id": "m06_adaptive_generation_v1",
+  "benchmark": "benchmarks/m06_adaptive@v2",
+  "hypothesis": "Complexity routing plus corrective/iterative retrieval should improve evidence completeness while avoiding retrieval on no-RAG queries; confidence-triggered active retrieval and reflection should reduce unsupported answers, but may add latency or over-refuse.",
+  "model": {
+    "name": "google/flan-t5-small",
+    "requested_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "resolved_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+    "model_load_ms": 4123.152610999995
+  },
+  "controls": {
+    "router_train_split_separate_from_heldout": true,
+    "references_or_qrels_exposed_to_runtime": false,
+    "primary_retrieval": "BM25 top-1 per controller step",
+    "max_iterative_steps": 2,
+    "confidence_metric": "geometric mean selected-token probability",
+    "confidence_threshold": 0.5,
+    "reflection_relevance_threshold": 0.12,
+    "reflection_support_threshold": 0.8,
+    "reflection_utility_threshold": 0.65,
+    "active_retrieval_limit": 1,
+    "active_query": "original question + first draft answer"
+  },
+  "systems": {
+    "always_single_rag": {
+      "name": "always_single_rag",
+      "enable_active_reflection": false,
+      "metrics": {
+        "answer_token_f1": 0.5166666666666667,
+        "answer_contains_reference": 0.6,
+        "grounded_token_recall_retrieval_queries": 0.875,
+        "final_evidence_complete": 0.625,
+        "route_accuracy": 0.5833333333333334,
+        "mean_total_retrieval_calls": 1.3333333333333333,
+        "mean_active_retrieval_calls": 0.0,
+        "mean_generation_attempts": 1.0,
+        "mean_generation_ms": 48.9814762500013,
+        "mean_prompt_words": 48.166666666666664,
+        "mean_output_words": 1.3333333333333333,
+        "unnecessary_retrieval_rate": 1.0,
+        "answerable_refusal_rate": 0.0,
+        "unanswerable_refusal_recall": 0.0,
+        "unsupported_answer_rate": 1.0,
+        "mean_end_to_end_ms": 49.13446866666504
+      },
+      "traces": {
+        "n1": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f1"
+          ],
+          "final_context_ids": [
+            "f1"
+          ],
+          "final_answer": "f1",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "f1",
+              "confidence": 0.509382814187747,
+              "context_ids": [
+                "f1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 66.23594300000946,
+              "prompt_words": 45,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "n2": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f1"
+          ],
+          "final_context_ids": [
+            "f1"
+          ],
+          "final_answer": "two",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "two",
+              "confidence": 0.4037577302568414,
+              "context_ids": [
+                "f1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 38.91441999999756,
+              "prompt_words": 49,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": true,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "s1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "Oslo",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Oslo",
+              "confidence": 0.9796974419771098,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 39.47917799999345,
+              "prompt_words": 45,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d2"
+          ],
+          "final_context_ids": [
+            "d2"
+          ],
+          "final_answer": "Vega",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Vega",
+              "confidence": 0.862485047049668,
+              "context_ids": [
+                "d2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 52.605034999999134,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d3"
+          ],
+          "final_context_ids": [
+            "d3"
+          ],
+          "final_answer": "Raft consensus protocol",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Raft consensus protocol",
+              "confidence": 0.9539728848946718,
+              "context_ids": [
+                "d3"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 66.16270899999677,
+              "prompt_words": 49,
+              "output_words": 3,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d2"
+          ],
+          "final_context_ids": [
+            "d2"
+          ],
+          "final_answer": "Vega database",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Vega database",
+              "confidence": 0.7099755863502631,
+              "context_ids": [
+                "d2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 61.35064899999065,
+              "prompt_words": 51,
+              "output_words": 2,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "Norway",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Norway",
+              "confidence": 0.8778206388426448,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.613735000007864,
+              "prompt_words": 50,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "m3": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d5"
+          ],
+          "final_context_ids": [
+            "d5"
+          ],
+          "final_answer": "Python",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Python",
+              "confidence": 0.4773895157017116,
+              "context_ids": [
+                "d5"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.15161799999578,
+              "prompt_words": 49,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": true,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f1"
+          ],
+          "final_context_ids": [
+            "f1"
+          ],
+          "final_answer": "green",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "green",
+              "confidence": 0.8630604841623049,
+              "context_ids": [
+                "f1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.04287600001521,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f2"
+          ],
+          "final_context_ids": [
+            "f2"
+          ],
+          "final_answer": "port 7443",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "port 7443",
+              "confidence": 0.9410966045954754,
+              "context_ids": [
+                "f2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 60.26773600001434,
+              "prompt_words": 49,
+              "output_words": 2,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "d1",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "d1",
+              "confidence": 0.4349579510964542,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 54.011188999993465,
+              "prompt_words": 47,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": true,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d5"
+          ],
+          "final_context_ids": [
+            "d5"
+          ],
+          "final_answer": "Python",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Python",
+              "confidence": 0.7318984307505267,
+              "context_ids": [
+                "d5"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 36.94262700000195,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        }
+      }
+    },
+    "adaptive_control": {
+      "name": "adaptive_control",
+      "enable_active_reflection": false,
+      "metrics": {
+        "answer_token_f1": 0.7166666666666667,
+        "answer_contains_reference": 0.8,
+        "grounded_token_recall_retrieval_queries": 0.875,
+        "final_evidence_complete": 1.0,
+        "route_accuracy": 1.0,
+        "mean_total_retrieval_calls": 1.25,
+        "mean_active_retrieval_calls": 0.0,
+        "mean_generation_attempts": 1.0,
+        "mean_generation_ms": 50.441808499999276,
+        "mean_prompt_words": 46.833333333333336,
+        "mean_output_words": 1.4166666666666667,
+        "unnecessary_retrieval_rate": 0.0,
+        "answerable_refusal_rate": 0.0,
+        "unanswerable_refusal_recall": 0.0,
+        "unsupported_answer_rate": 1.0,
+        "mean_end_to_end_ms": 50.626329083335975
+      },
+      "traces": {
+        "n1": {
+          "route": "no_retrieval",
+          "control_retrieval_calls": 0,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 0,
+          "control_context_ids": [],
+          "final_context_ids": [],
+          "final_answer": "READY",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "READY",
+              "confidence": 0.5010378519422009,
+              "context_ids": [],
+              "trigger_reason": "direct_no_retrieval",
+              "generation_ms": 46.46802399997796,
+              "prompt_words": 18,
+              "output_words": 1,
+              "reflection": null
+            }
+          ]
+        },
+        "n2": {
+          "route": "no_retrieval",
+          "control_retrieval_calls": 0,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 0,
+          "control_context_ids": [],
+          "final_context_ids": [],
+          "final_answer": "0",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "0",
+              "confidence": 0.34486013310489183,
+              "context_ids": [],
+              "trigger_reason": "direct_no_retrieval",
+              "generation_ms": 40.92716700000665,
+              "prompt_words": 22,
+              "output_words": 1,
+              "reflection": null
+            }
+          ]
+        },
+        "s1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "Oslo",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Oslo",
+              "confidence": 0.9796974419771098,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.70141399999716,
+              "prompt_words": 45,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d2"
+          ],
+          "final_context_ids": [
+            "d2"
+          ],
+          "final_answer": "Vega",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Vega",
+              "confidence": 0.862485047049668,
+              "context_ids": [
+                "d2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 51.045530999999755,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d3"
+          ],
+          "final_context_ids": [
+            "d3"
+          ],
+          "final_answer": "Raft consensus protocol",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Raft consensus protocol",
+              "confidence": 0.9539728848946718,
+              "context_ids": [
+                "d3"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 67.16455599999449,
+              "prompt_words": 49,
+              "output_words": 3,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m1": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d2",
+            "d3"
+          ],
+          "final_context_ids": [
+            "d2",
+            "d3"
+          ],
+          "final_answer": "[d3]",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "[d3]",
+              "confidence": 0.9663760171745112,
+              "context_ids": [
+                "d2",
+                "d3"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 61.90821600000618,
+              "prompt_words": 63,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "m2": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d1",
+            "d4"
+          ],
+          "final_context_ids": [
+            "d1",
+            "d4"
+          ],
+          "final_answer": "Norway",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Norway",
+              "confidence": 0.900270719806126,
+              "context_ids": [
+                "d1",
+                "d4"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 39.179386000000704,
+              "prompt_words": 63,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m3": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d5",
+            "d6"
+          ],
+          "final_context_ids": [
+            "d5",
+            "d6"
+          ],
+          "final_answer": "Guido van Rossum",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Guido van Rossum",
+              "confidence": 0.9824414777637616,
+              "context_ids": [
+                "d5",
+                "d6"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 76.65050200000678,
+              "prompt_words": 62,
+              "output_words": 3,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f1"
+          ],
+          "final_context_ids": [
+            "f1"
+          ],
+          "final_answer": "green",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "green",
+              "confidence": 0.8630604841623049,
+              "context_ids": [
+                "f1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.14213899999663,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f2"
+          ],
+          "final_context_ids": [
+            "f2"
+          ],
+          "final_answer": "port 7443",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "port 7443",
+              "confidence": 0.9410966045954754,
+              "context_ids": [
+                "f2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 59.07551900000385,
+              "prompt_words": 49,
+              "output_words": 2,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "d1",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "d1",
+              "confidence": 0.4349579510964542,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 51.753165999997464,
+              "prompt_words": 47,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": true,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d5"
+          ],
+          "final_context_ids": [
+            "d5"
+          ],
+          "final_answer": "Python",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Python",
+              "confidence": 0.7318984307505267,
+              "context_ids": [
+                "d5"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 36.28608200000372,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        }
+      }
+    },
+    "adaptive_active_reflect": {
+      "name": "adaptive_active_reflect",
+      "enable_active_reflection": true,
+      "metrics": {
+        "answer_token_f1": 0.7166666666666667,
+        "answer_contains_reference": 0.8,
+        "grounded_token_recall_retrieval_queries": 0.875,
+        "final_evidence_complete": 1.0,
+        "route_accuracy": 1.0,
+        "mean_total_retrieval_calls": 1.4166666666666667,
+        "mean_active_retrieval_calls": 0.16666666666666666,
+        "mean_generation_attempts": 1.1666666666666667,
+        "mean_generation_ms": 59.22480791666137,
+        "mean_prompt_words": 58.083333333333336,
+        "mean_output_words": 1.5833333333333333,
+        "unnecessary_retrieval_rate": 0.0,
+        "answerable_refusal_rate": 0.1,
+        "unanswerable_refusal_recall": 0.5,
+        "unsupported_answer_rate": 0.5,
+        "mean_end_to_end_ms": 59.42205291666388
+      },
+      "traces": {
+        "n1": {
+          "route": "no_retrieval",
+          "control_retrieval_calls": 0,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 0,
+          "control_context_ids": [],
+          "final_context_ids": [],
+          "final_answer": "READY",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "READY",
+              "confidence": 0.5010378519422009,
+              "context_ids": [],
+              "trigger_reason": "direct_no_retrieval",
+              "generation_ms": 45.44166200000177,
+              "prompt_words": 18,
+              "output_words": 1,
+              "reflection": null
+            }
+          ]
+        },
+        "n2": {
+          "route": "no_retrieval",
+          "control_retrieval_calls": 0,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 0,
+          "control_context_ids": [],
+          "final_context_ids": [],
+          "final_answer": "0",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "0",
+              "confidence": 0.34486013310489183,
+              "context_ids": [],
+              "trigger_reason": "direct_no_retrieval",
+              "generation_ms": 38.34856499997841,
+              "prompt_words": 22,
+              "output_words": 1,
+              "reflection": null
+            }
+          ]
+        },
+        "s1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1"
+          ],
+          "final_answer": "Oslo",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Oslo",
+              "confidence": 0.9796974419771098,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 37.12482999998201,
+              "prompt_words": 45,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d2"
+          ],
+          "final_context_ids": [
+            "d2"
+          ],
+          "final_answer": "Vega",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Vega",
+              "confidence": 0.862485047049668,
+              "context_ids": [
+                "d2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 50.161098999979004,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d3"
+          ],
+          "final_context_ids": [
+            "d3"
+          ],
+          "final_answer": "Raft consensus protocol",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Raft consensus protocol",
+              "confidence": 0.9539728848946718,
+              "context_ids": [
+                "d3"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 63.03862600000798,
+              "prompt_words": 49,
+              "output_words": 3,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m1": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 1,
+          "total_retrieval_calls": 3,
+          "control_context_ids": [
+            "d2",
+            "d3"
+          ],
+          "final_context_ids": [
+            "d2",
+            "d3",
+            "d6"
+          ],
+          "final_answer": "I do not know.",
+          "refused": true,
+          "attempts": [
+            {
+              "answer": "[d3]",
+              "confidence": 0.9663760171745112,
+              "context_ids": [
+                "d2",
+                "d3"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 59.91184699999508,
+              "prompt_words": 63,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            },
+            {
+              "answer": "[d3]",
+              "confidence": 0.9314696444311155,
+              "context_ids": [
+                "d2",
+                "d3",
+                "d6"
+              ],
+              "trigger_reason": "low_confidence_or_reflection_retry",
+              "generation_ms": 63.72675800000138,
+              "prompt_words": 76,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "m2": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d1",
+            "d4"
+          ],
+          "final_context_ids": [
+            "d1",
+            "d4"
+          ],
+          "final_answer": "Norway",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Norway",
+              "confidence": 0.900270719806126,
+              "context_ids": [
+                "d1",
+                "d4"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 38.5436390000109,
+              "prompt_words": 63,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "m3": {
+          "route": "iterative",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d5",
+            "d6"
+          ],
+          "final_context_ids": [
+            "d5",
+            "d6"
+          ],
+          "final_answer": "Guido van Rossum",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Guido van Rossum",
+              "confidence": 0.9824414777637616,
+              "context_ids": [
+                "d5",
+                "d6"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 72.20607700000414,
+              "prompt_words": 62,
+              "output_words": 3,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f1"
+          ],
+          "final_context_ids": [
+            "f1"
+          ],
+          "final_answer": "green",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "green",
+              "confidence": 0.8630604841623049,
+              "context_ids": [
+                "f1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 35.75192600001742,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "control_retrieval_calls": 2,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "f2"
+          ],
+          "final_context_ids": [
+            "f2"
+          ],
+          "final_answer": "port 7443",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "port 7443",
+              "confidence": 0.9410966045954754,
+              "context_ids": [
+                "f2"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 57.20211899998162,
+              "prompt_words": 49,
+              "output_words": 2,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 1,
+          "total_retrieval_calls": 2,
+          "control_context_ids": [
+            "d1"
+          ],
+          "final_context_ids": [
+            "d1",
+            "d3"
+          ],
+          "final_answer": "I do not know.",
+          "refused": true,
+          "attempts": [
+            {
+              "answer": "d1",
+              "confidence": 0.4349579510964542,
+              "context_ids": [
+                "d1"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 51.57939599999395,
+              "prompt_words": 47,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": true,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            },
+            {
+              "answer": "[d3]",
+              "confidence": 0.9487633114495408,
+              "context_ids": [
+                "d1",
+                "d3"
+              ],
+              "trigger_reason": "low_confidence_or_reflection_retry",
+              "generation_ms": 60.92775999999844,
+              "prompt_words": 59,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": false,
+                "utility": 0.3333333333333333
+              }
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "control_retrieval_calls": 1,
+          "active_retrieval_calls": 0,
+          "total_retrieval_calls": 1,
+          "control_context_ids": [
+            "d5"
+          ],
+          "final_context_ids": [
+            "d5"
+          ],
+          "final_answer": "Python",
+          "refused": false,
+          "attempts": [
+            {
+              "answer": "Python",
+              "confidence": 0.7318984307505267,
+              "context_ids": [
+                "d5"
+              ],
+              "trigger_reason": "initial",
+              "generation_ms": 36.733390999984294,
+              "prompt_words": 48,
+              "output_words": 1,
+              "reflection": {
+                "retrieve": false,
+                "relevant": true,
+                "supported": true,
+                "utility": 1.0
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "warning": "Tiny controlled benchmark and FLAN-T5-small CPU sanity evaluation. Token-probability confidence is not calibrated factual correctness. Reflection uses transparent lexical support, not trained Self-RAG reflection tokens."
+}

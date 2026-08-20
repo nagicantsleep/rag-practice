@@ -1,0 +1,24 @@
+{"route":"no_retrieval","query":"Return the word hello exactly."}
+{"route":"no_retrieval","query":"Write READY in uppercase."}
+{"route":"no_retrieval","query":"What is three plus four? Answer only the number."}
+{"route":"no_retrieval","query":"Is nine larger than five? Answer yes or no."}
+{"route":"no_retrieval","query":"Repeat the token done once."}
+{"route":"no_retrieval","query":"Rewrite cat as uppercase letters."}
+{"route":"no_retrieval","query":"What is ten minus two?"}
+{"route":"no_retrieval","query":"Answer yes if seven is greater than one."}
+{"route":"single","query":"Which city hosts Project Cedar?"}
+{"route":"single","query":"Which database does the Orion service use?"}
+{"route":"single","query":"What protocol does the Delta database use?"}
+{"route":"single","query":"What color is the current release badge?"}
+{"route":"single","query":"Which port does the API currently expose?"}
+{"route":"single","query":"Who created the Python language?"}
+{"route":"single","query":"Where is Project Maple deployed?"}
+{"route":"single","query":"What framework powers the service?"}
+{"route":"iterative","query":"Which country contains the city where Project Cedar is hosted?"}
+{"route":"iterative","query":"Who created the language used by Orion automation scripts?"}
+{"route":"iterative","query":"Which consensus protocol is used by the database behind the Delta service?"}
+{"route":"iterative","query":"What currency is used in the country where the project is deployed?"}
+{"route":"iterative","query":"Who founded the company that created the framework used by the service?"}
+{"route":"iterative","query":"Which region contains the city hosting the system's database?"}
+{"route":"iterative","query":"What protocol protects the data store used by the application?"}
+{"route":"iterative","query":"Who wrote the book referenced by the article linked from the report?"}

@@ -1,0 +1,978 @@
+{
+  "experiment_id": "m06_adaptive_control_v1",
+  "benchmark": "benchmarks/m06_adaptive@v1",
+  "hypothesis": "Routing no-retrieval, single-hop, and iterative questions before retrieval should reduce unnecessary calls and improve multi-hop evidence completeness; a qrel-blind retrieval-quality gate should recover stale-source questions through a fallback corpus.",
+  "controls": {
+    "router_train_split_separate_from_heldout": true,
+    "primary_retrieval": "BM25 top-1 per step",
+    "max_iterative_steps": 2,
+    "fallback_source": "separate controlled corpus",
+    "qrels_exposed_to_runtime": false,
+    "oracle_route_is_diagnostic_ceiling_only": true
+  },
+  "systems": {
+    "always_single": {
+      "name": "always_single",
+      "metrics": {
+        "route_accuracy": 0.5833333333333334,
+        "evidence_recall": 0.8125,
+        "evidence_complete": 0.625,
+        "mean_retrieval_calls": 1.3333333333333333,
+        "unnecessary_retrieval_rate": 1.0,
+        "iterative_under_route_rate": 1.0,
+        "correction_precision": 0.5,
+        "correction_recall": 1.0,
+        "mean_control_ms": 0.034827999996878134
+      },
+      "traces": {
+        "n1": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "Return the word READY exactly.",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 0.36832729900299976,
+              "assessment": "ambiguous"
+            },
+            {
+              "query": "Return the word READY exactly.",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 0.6714337560653366,
+              "assessment": "ambiguous"
+            }
+          ]
+        },
+        "n2": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "What is two plus two? Answer only the number.",
+              "source": "primary",
+              "document_id": "d10",
+              "score": 1.462803369635652,
+              "assessment": "ambiguous"
+            },
+            {
+              "query": "What is two plus two? Answer only the number.",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 1.1414373853110722,
+              "assessment": "ambiguous"
+            }
+          ]
+        },
+        "s1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which city hosts Project Ember?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d2"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which database does the Atlas service use?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 5.834792169307628,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What replication method does the Vega database use?",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 5.213468355840737,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d2"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which consensus method protects the data store used by Atlas?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 4.353187628383412,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which country contains the city where Project Ember is hosted?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 7.4262228229488,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m3": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d5"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Who created the language used by Quartz automation scripts?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 8.578487909828642,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "primary",
+              "document_id": "d7",
+              "score": 5.834792169307628,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 4.217456536970774,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f2"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "primary",
+              "document_id": "d8",
+              "score": 5.609495696669435,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "fallback",
+              "document_id": "f2",
+              "score": 3.466301814161634,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What encryption algorithm does Project Ember use?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d5"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which package manager do Quartz automation scripts use?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 6.232246012775052,
+              "assessment": "correct"
+            }
+          ]
+        }
+      }
+    },
+    "keyword_router": {
+      "name": "keyword_router",
+      "metrics": {
+        "route_accuracy": 1.0,
+        "evidence_recall": 1.0,
+        "evidence_complete": 1.0,
+        "mean_retrieval_calls": 1.25,
+        "unnecessary_retrieval_rate": 0.0,
+        "iterative_under_route_rate": 0.0,
+        "correction_precision": 1.0,
+        "correction_recall": 1.0,
+        "mean_control_ms": 0.03170533333237321
+      },
+      "traces": {
+        "n1": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "n2": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "s1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which city hosts Project Ember?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d2"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which database does the Atlas service use?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 5.834792169307628,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What replication method does the Vega database use?",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 5.213468355840737,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m1": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d2",
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which consensus method protects the data store used by Atlas?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 4.353187628383412,
+              "assessment": "correct"
+            },
+            {
+              "query": "Vega consensus method protects store",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 3.4740347056144216,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m2": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d1",
+            "d4"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which country contains the city where Project Ember is hosted?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 7.4262228229488,
+              "assessment": "correct"
+            },
+            {
+              "query": "Oslo country contains city",
+              "source": "primary",
+              "document_id": "d4",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m3": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d5",
+            "d6"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Who created the language used by Quartz automation scripts?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 8.578487909828642,
+              "assessment": "correct"
+            },
+            {
+              "query": "Python created used",
+              "source": "primary",
+              "document_id": "d6",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "primary",
+              "document_id": "d7",
+              "score": 5.834792169307628,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 4.217456536970774,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f2"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "primary",
+              "document_id": "d8",
+              "score": 5.609495696669435,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "fallback",
+              "document_id": "f2",
+              "score": 3.466301814161634,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What encryption algorithm does Project Ember use?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d5"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which package manager do Quartz automation scripts use?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 6.232246012775052,
+              "assessment": "correct"
+            }
+          ]
+        }
+      }
+    },
+    "naive_bayes_router": {
+      "name": "naive_bayes_router",
+      "metrics": {
+        "route_accuracy": 1.0,
+        "evidence_recall": 1.0,
+        "evidence_complete": 1.0,
+        "mean_retrieval_calls": 1.25,
+        "unnecessary_retrieval_rate": 0.0,
+        "iterative_under_route_rate": 0.0,
+        "correction_precision": 1.0,
+        "correction_recall": 1.0,
+        "mean_control_ms": 0.0563993333339378
+      },
+      "traces": {
+        "n1": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "n2": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "s1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which city hosts Project Ember?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d2"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which database does the Atlas service use?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 5.834792169307628,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What replication method does the Vega database use?",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 5.213468355840737,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m1": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d2",
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which consensus method protects the data store used by Atlas?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 4.353187628383412,
+              "assessment": "correct"
+            },
+            {
+              "query": "Vega consensus method protects store",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 3.4740347056144216,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m2": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d1",
+            "d4"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which country contains the city where Project Ember is hosted?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 7.4262228229488,
+              "assessment": "correct"
+            },
+            {
+              "query": "Oslo country contains city",
+              "source": "primary",
+              "document_id": "d4",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m3": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d5",
+            "d6"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Who created the language used by Quartz automation scripts?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 8.578487909828642,
+              "assessment": "correct"
+            },
+            {
+              "query": "Python created used",
+              "source": "primary",
+              "document_id": "d6",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "primary",
+              "document_id": "d7",
+              "score": 5.834792169307628,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 4.217456536970774,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f2"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "primary",
+              "document_id": "d8",
+              "score": 5.609495696669435,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "fallback",
+              "document_id": "f2",
+              "score": 3.466301814161634,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What encryption algorithm does Project Ember use?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d5"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which package manager do Quartz automation scripts use?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 6.232246012775052,
+              "assessment": "correct"
+            }
+          ]
+        }
+      }
+    },
+    "oracle_route_ceiling": {
+      "name": "oracle_route_ceiling",
+      "metrics": {
+        "route_accuracy": 1.0,
+        "evidence_recall": 1.0,
+        "evidence_complete": 1.0,
+        "mean_retrieval_calls": 1.25,
+        "unnecessary_retrieval_rate": 0.0,
+        "iterative_under_route_rate": 0.0,
+        "correction_precision": 1.0,
+        "correction_recall": 1.0,
+        "mean_control_ms": 0.027353749992187204
+      },
+      "traces": {
+        "n1": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "n2": {
+          "route": "no_retrieval",
+          "retrieval_calls": 0,
+          "selected_document_ids": [],
+          "correction_triggered": false,
+          "steps": []
+        },
+        "s1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which city hosts Project Ember?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d2"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which database does the Atlas service use?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 5.834792169307628,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "s3": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What replication method does the Vega database use?",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 5.213468355840737,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m1": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d2",
+            "d3"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which consensus method protects the data store used by Atlas?",
+              "source": "primary",
+              "document_id": "d2",
+              "score": 4.353187628383412,
+              "assessment": "correct"
+            },
+            {
+              "query": "Vega consensus method protects store",
+              "source": "primary",
+              "document_id": "d3",
+              "score": 3.4740347056144216,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m2": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d1",
+            "d4"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which country contains the city where Project Ember is hosted?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 7.4262228229488,
+              "assessment": "correct"
+            },
+            {
+              "query": "Oslo country contains city",
+              "source": "primary",
+              "document_id": "d4",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "m3": {
+          "route": "iterative",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "d5",
+            "d6"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Who created the language used by Quartz automation scripts?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 8.578487909828642,
+              "assessment": "correct"
+            },
+            {
+              "query": "Python created used",
+              "source": "primary",
+              "document_id": "d6",
+              "score": 3.3375005905466057,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c1": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f1"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "primary",
+              "document_id": "d7",
+              "score": 5.834792169307628,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "What color is the current Aurora release badge?",
+              "source": "fallback",
+              "document_id": "f1",
+              "score": 4.217456536970774,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "c2": {
+          "route": "single",
+          "retrieval_calls": 2,
+          "selected_document_ids": [
+            "f2"
+          ],
+          "correction_triggered": true,
+          "steps": [
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "primary",
+              "document_id": "d8",
+              "score": 5.609495696669435,
+              "assessment": "incorrect"
+            },
+            {
+              "query": "Which port does the Nova API currently expose?",
+              "source": "fallback",
+              "document_id": "f2",
+              "score": 3.466301814161634,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u1": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d1"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "What encryption algorithm does Project Ember use?",
+              "source": "primary",
+              "document_id": "d1",
+              "score": 4.154830675183368,
+              "assessment": "correct"
+            }
+          ]
+        },
+        "u2": {
+          "route": "single",
+          "retrieval_calls": 1,
+          "selected_document_ids": [
+            "d5"
+          ],
+          "correction_triggered": false,
+          "steps": [
+            {
+              "query": "Which package manager do Quartz automation scripts use?",
+              "source": "primary",
+              "document_id": "d5",
+              "score": 6.232246012775052,
+              "assessment": "correct"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "warning": "Tiny controlled benchmark. The fallback corpus simulates CRAG-style external correction without making network calls; the oracle route is only a diagnostic ceiling and is not a deployable system."
+}

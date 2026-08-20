@@ -280,15 +280,67 @@ Evaluation evidence:
 
 - GitHub Actions M05 capacity-control PR run `32413220357` completed successfully on the mechanism tree.
 - Capacity-control mechanism run: **59 tests passed**; FLAN-T5-small baseline and FLAN-T5-base evaluation both succeeded.
+- Final completion-tree run `32414426515` also passed 59 tests plus both FLAN-small and FLAN-base evaluations before merge.
 - Model revisions, transformed queries, rankings, class breakdowns, costs, and representative drift failures are persisted as JSON and Markdown.
-- Final documentation/ROADMAP head must pass the same workflow before merge.
 - Generation answer-quality evaluation is **not applicable** to M05 because generation is intentionally used only as a query-transformation mechanism; retrieval effects are evaluated independently.
 
 Artifacts: `benchmarks/m05_query_transform/`, `src/rag_practice/query_transform/`, `labs/05_query_transform/`, and `.github/workflows/m05-query-transform.yml`.
 
-### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `TODO`
+### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `DONE`
 
-Implement multi-hop/iterative retrieval, FLARE-style active retrieval, no-RAG/single/iterative routing, Adaptive-RAG concepts, Corrective RAG, and Self-RAG-style retrieve/critique/reflection control. Evaluate complexity routing, correction, unsupported-answer rate, and loop cost.
+M06 adds explicit control flow after M05 showed that expensive transformations should not run unconditionally. It separates **route selection**, **iterative/corrective retrieval**, **generation**, and **post-generation reflection** so failures can be attributed to the right layer.
+
+Implemented and evaluated:
+
+- from-scratch multinomial Naive Bayes router over separate training data for `no_retrieval`, `single`, and `iterative` routes
+- transparent keyword-router baseline and always-single baseline
+- two-hop bridge planning from newly discovered entities plus unresolved query terms
+- qrel-blind lexical retrieval-quality judge
+- controlled CRAG-style fallback for explicitly stale primary evidence
+- FLARE-style active retrieval using pinned FLAN token-probability confidence as an explicit trigger signal
+- Self-RAG-style separate retrieve/relevance/support/utility reflection primitives
+- one-retry active retrieval + refusal path
+- deliberately unanswerable held-out questions for unsupported-answer/refusal evaluation
+- per-step control traces, generation confidence, reflection signals, latency, retrieval calls, attempts, prompt/output word proxies, and persisted JSON/Markdown reports
+
+Phase-1 control summary:
+
+| System | Route acc | Evidence recall | Evidence complete | Mean calls | Unnecessary retrieval | Iterative under-route | Correction P | Correction R |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| always_single | 0.583 | 0.812 | 0.625 | 1.33 | 1.000 | 1.000 | 0.500 | 1.000 |
+| keyword_router | 1.000 | 1.000 | 1.000 | 1.25 | 0.000 | 0.000 | 1.000 | 1.000 |
+| naive_bayes_router | 1.000 | 1.000 | 1.000 | 1.25 | 0.000 | 0.000 | 1.000 | 1.000 |
+| oracle_route_ceiling | 1.000 | 1.000 | 1.000 | 1.25 | 0.000 | 0.000 | 1.000 | 1.000 |
+
+Phase-2 generation summary with pinned `google/flan-t5-small`:
+
+| System | Answer F1 | Contains ref | Grounded | Evidence complete | Unsupported answer | Answerable refusal | Unanswerable refusal recall | Mean retrieval calls | Active calls | Attempts | E2E ms |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| always_single_rag | 0.517 | 0.600 | 0.875 | 0.625 | 1.000 | 0.000 | 0.000 | 1.33 | 0.00 | 1.00 | 93.90 |
+| adaptive_control | **0.717** | **0.800** | 0.875 | **1.000** | 1.000 | **0.000** | 0.000 | **1.25** | 0.00 | 1.00 | 100.43 |
+| adaptive_active_reflect | **0.717** | **0.800** | 0.875 | **1.000** | **0.500** | 0.100 | **0.500** | 1.42 | 0.17 | 1.17 | 122.63 |
+
+Important findings:
+
+- **Routing is a first-class RAG decision.** The adaptive controller eliminates retrieval on held-out no-RAG tasks and recovers all three controlled two-hop chains while the always-single baseline under-routes every iterative query.
+- **Adaptive retrieval improves downstream generation here.** Evidence completeness rises from `0.625` to `1.000`, answer F1 from `0.517` to `0.717`, and reference containment from `0.600` to `0.800`.
+- **Correct routing cannot fix generator competence.** The no-RAG arithmetic query is routed correctly with zero retrieval calls, yet FLAN still answers incorrectly.
+- **Complete evidence is not answer correctness.** On the Atlas → Vega → Raft query, both required documents are retrieved, but FLAN emits `[d3]` with token-probability confidence around `0.97`.
+- **Active retrieval needs failure attribution.** Reflection correctly notices that `[d3]` is unsupported, but another retrieval adds unrelated context; the system then falsely refuses an answerable query. More retrieval is the wrong recovery action for a generation-format failure.
+- **Reflection can reduce unsupported output without improving aggregate correctness.** The active/reflection system correctly refuses one of two deliberately unanswerable queries, reducing unsupported-answer rate from `1.0` to `0.5`, but F1 stays `0.717` and answerable false-refusal rises to `0.10`.
+- **Lexical support is not semantic answer relevance.** The other unanswerable query asks for a package manager; FLAN answers `Python`, which appears in context, so the lexical support critic accepts a non-responsive answer.
+- **Adaptive loops have measurable cost.** Active/reflection raises mean calls `1.25 → 1.42`, attempts `1.00 → 1.17`, and recorded end-to-end CPU latency from roughly `100 → 123 ms/query` without improving F1.
+- **Perfect route accuracy is a benchmark limitation, not a production claim.** The held-out split is tiny and template-like; the synthetic `STALE:` marker and controlled fallback similarly isolate mechanism behavior rather than model real-world freshness.
+
+Evaluation evidence:
+
+- M06 mechanism/evaluation PR run `32416264406` completed successfully.
+- Full repository suite on that tree: **70 tests passed**; phase-1 routing/correction and phase-2 pinned-FLAN generation/active/reflection evaluations both succeeded.
+- Runtime never receives qrels, answer references, or answerability labels.
+- Per-query failures, confidence/reflection traces, system costs, and limitations are persisted in `labs/06_adaptive_corrective/results/m06_summary.md` plus machine-readable artifacts.
+- Final completion-documentation tree must pass the same M06 workflow before merge.
+
+Artifacts: `benchmarks/m06_adaptive/`, `src/rag_practice/adaptive/`, `src/rag_practice/evaluation/adaptive.py`, `src/rag_practice/evaluation/adaptive_generation.py`, `labs/06_adaptive_corrective/`, and `.github/workflows/m06-adaptive-corrective.yml`.
 
 ### M07 — Hierarchical, Graph, and Memory-oriented RAG — `TODO`
 
@@ -308,4 +360,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Start **M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG**. Reuse M05’s finding that unconditional transformation is costly and unreliable: first build an explicit complexity/router baseline, then add iterative retrieval, evidence checks, correction/retry, active retrieval, and reflection one mechanism at a time. Evaluate routing accuracy, retrieval/evidence completeness, answer correctness/groundedness, unsupported/refusal behavior, loop steps, latency, and cost independently.
+Start **M07 — Hierarchical, Graph, and Memory-oriented RAG**. Preserve M06's lesson that a controller must distinguish retrieval insufficiency from generation/critic failure: first build transparent hierarchical and graph retrieval structures, then compare local, global, and multi-hop relation retrieval with explicit construction/update cost and evidence-completeness metrics before adding memory-oriented behavior.

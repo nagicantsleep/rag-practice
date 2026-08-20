@@ -1,0 +1,10 @@
+{"id":"d1","text":"Project Ember is hosted in Oslo for its production deployment."}
+{"id":"d2","text":"The Atlas service stores its operational data in the Vega database."}
+{"id":"d3","text":"Vega database replicas use the Raft consensus protocol to stay synchronized."}
+{"id":"d4","text":"Oslo is a city in Norway and serves as the national capital."}
+{"id":"d5","text":"Quartz automation scripts are written in the Python programming language."}
+{"id":"d6","text":"Python was created by Guido van Rossum and first released in 1991."}
+{"id":"d7","text":"STALE: The Aurora release badge was blue before the product redesign."}
+{"id":"d8","text":"STALE: The Nova API formerly exposed port 7000 before the network migration."}
+{"id":"d9","text":"The Aurora observatory uses blue optical filters for one telescope instrument."}
+{"id":"d10","text":"Nova Scotia is a Canadian province on the Atlantic coast."}

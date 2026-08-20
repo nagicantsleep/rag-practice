@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - labs/02_retrieval_families/results/pretrained_sentence_transformer.json
       - labs/02_retrieval_families/results/pretrained_sentence_transformer.md
+      - labs/02_retrieval_families/results/scaling.json
+      - labs/02_retrieval_families/results/scaling.md
 
 permissions:
   contents: write
@@ -34,13 +36,17 @@ jobs:
         run: pytest -q
       - name: Evaluate pinned pretrained dense model
         run: python labs/02_retrieval_families/run_pretrained.py
+      - name: Run candidate-set scaling stress test
+        run: python labs/02_retrieval_families/run_scaling.py
       - name: Persist evaluation evidence on feature branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add labs/02_retrieval_families/results/pretrained_sentence_transformer.json
           git add labs/02_retrieval_families/results/pretrained_sentence_transformer.md
+          git add labs/02_retrieval_families/results/scaling.json
+          git add labs/02_retrieval_families/results/scaling.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M02 pretrained dense evaluation [skip ci]"
+            git commit -m "test: record M02 pretrained and scaling evaluation [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}
           fi

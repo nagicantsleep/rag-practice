@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - labs/03_indexing_chunking/results/phase1.json
       - labs/03_indexing_chunking/results/phase1.md
+      - labs/03_indexing_chunking/results/phase2.json
+      - labs/03_indexing_chunking/results/phase2.md
   pull_request:
 
 permissions:
@@ -30,14 +32,18 @@ jobs:
         run: pytest -q
       - name: Evaluate chunking strategies
         run: python labs/03_indexing_chunking/run.py
-      - name: Persist phase-1 evidence on feature branch
+      - name: Evaluate parent-child and hierarchical strategies
+        run: python labs/03_indexing_chunking/run_phase2.py
+      - name: Persist M03 evaluation evidence on feature branch
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add labs/03_indexing_chunking/results/phase1.json
           git add labs/03_indexing_chunking/results/phase1.md
+          git add labs/03_indexing_chunking/results/phase2.json
+          git add labs/03_indexing_chunking/results/phase2.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M03 chunking phase-1 evaluation [skip ci]"
+            git commit -m "test: record M03 indexing evaluation [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}
           fi

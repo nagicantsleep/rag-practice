@@ -6,10 +6,13 @@ from .chunking import (
     SemanticChunker,
     SentenceChunker,
 )
+from .hierarchy import HierarchicalBM25Index, ParentChildBM25Index
 
 __all__ = [
+    "HierarchicalBM25Index",
     "MetadataEnrichedChunker",
     "ParagraphChunker",
+    "ParentChildBM25Index",
     "SemanticChunker",
     "SentenceChunker",
 ]

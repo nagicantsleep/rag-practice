@@ -61,9 +61,9 @@
     ]
   },
   "system": {
-    "model_load_ms": 3623.3621449999873,
-    "index_build_ms": 53.00851900000225,
-    "mean_query_ms": 9.96084930000336,
+    "model_load_ms": 4036.765232999983,
+    "index_build_ms": 42.43336100000761,
+    "mean_query_ms": 8.765727000002244,
     "logical_index_bytes_float32": 15360
   },
   "core_comparison": {

@@ -47,10 +47,10 @@
     }
   },
   "system": {
-    "snapshot_resolution_ms": 6544.007926000006,
-    "model_load_ms": 202.7865130000066,
-    "document_encoding_ms": 354.6901350000269,
-    "mean_query_ms": 71.81314559999805,
+    "snapshot_resolution_ms": 9671.027325000012,
+    "model_load_ms": 167.87647099999958,
+    "document_encoding_ms": 282.96765600003937,
+    "mean_query_ms": 59.544257499999276,
     "document_token_vectors": 211,
     "logical_embedding_bytes": 108032
   },

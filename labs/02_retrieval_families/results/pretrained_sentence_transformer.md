@@ -24,9 +24,9 @@ Evaluate a broadly pretrained semantic sentence encoder under the same M02 ranki
 
 ## System sanity measurements
 
-- model load: 3623.4 ms
-- 10-document index encoding: 53.0 ms
-- mean query retrieval: 9.96 ms
+- model load: 4036.8 ms
+- 10-document index encoding: 42.4 ms
+- mean query retrieval: 8.77 ms
 - logical float32 embedding payload: 15360 bytes
 
 ## Interpretation

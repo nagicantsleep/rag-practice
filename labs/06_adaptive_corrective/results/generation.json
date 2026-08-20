@@ -6,7 +6,7 @@
     "name": "google/flan-t5-small",
     "requested_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
     "resolved_revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
-    "model_load_ms": 5437.478258000013
+    "model_load_ms": 4123.152610999995
   },
   "controls": {
     "router_train_split_separate_from_heldout": true,
@@ -34,14 +34,14 @@
         "mean_total_retrieval_calls": 1.3333333333333333,
         "mean_active_retrieval_calls": 0.0,
         "mean_generation_attempts": 1.0,
-        "mean_generation_ms": 101.517064833331,
+        "mean_generation_ms": 48.9814762500013,
         "mean_prompt_words": 48.166666666666664,
         "mean_output_words": 1.3333333333333333,
         "unnecessary_retrieval_rate": 1.0,
         "answerable_refusal_rate": 0.0,
         "unanswerable_refusal_recall": 0.0,
         "unsupported_answer_rate": 1.0,
-        "mean_end_to_end_ms": 101.688978083331
+        "mean_end_to_end_ms": 49.13446866666504
       },
       "traces": {
         "n1": {
@@ -60,12 +60,12 @@
           "attempts": [
             {
               "answer": "f1",
-              "confidence": 0.5093854552217915,
+              "confidence": 0.509382814187747,
               "context_ids": [
                 "f1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 129.86400399998388,
+              "generation_ms": 66.23594300000946,
               "prompt_words": 45,
               "output_words": 1,
               "reflection": {
@@ -93,12 +93,12 @@
           "attempts": [
             {
               "answer": "two",
-              "confidence": 0.4037593160533507,
+              "confidence": 0.4037577302568414,
               "context_ids": [
                 "f1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 76.63222799999403,
+              "generation_ms": 38.91441999999756,
               "prompt_words": 49,
               "output_words": 1,
               "reflection": {
@@ -126,12 +126,12 @@
           "attempts": [
             {
               "answer": "Oslo",
-              "confidence": 0.9796995654135519,
+              "confidence": 0.9796974419771098,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.99829799999702,
+              "generation_ms": 39.47917799999345,
               "prompt_words": 45,
               "output_words": 1,
               "reflection": {
@@ -159,12 +159,12 @@
           "attempts": [
             {
               "answer": "Vega",
-              "confidence": 0.8624874825078089,
+              "confidence": 0.862485047049668,
               "context_ids": [
                 "d2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 114.5903750000059,
+              "generation_ms": 52.605034999999134,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -192,12 +192,12 @@
           "attempts": [
             {
               "answer": "Raft consensus protocol",
-              "confidence": 0.9539749477953943,
+              "confidence": 0.9539728848946718,
               "context_ids": [
                 "d3"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 144.09441099999754,
+              "generation_ms": 66.16270899999677,
               "prompt_words": 49,
               "output_words": 3,
               "reflection": {
@@ -225,12 +225,12 @@
           "attempts": [
             {
               "answer": "Vega database",
-              "confidence": 0.7099788735774399,
+              "confidence": 0.7099755863502631,
               "context_ids": [
                 "d2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 133.9484000000084,
+              "generation_ms": 61.35064899999065,
               "prompt_words": 51,
               "output_words": 2,
               "reflection": {
@@ -258,12 +258,12 @@
           "attempts": [
             {
               "answer": "Norway",
-              "confidence": 0.8778223988895469,
+              "confidence": 0.8778206388426448,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.74117500001398,
+              "generation_ms": 37.613735000007864,
               "prompt_words": 50,
               "output_words": 1,
               "reflection": {
@@ -291,12 +291,12 @@
           "attempts": [
             {
               "answer": "Python",
-              "confidence": 0.4773912418605657,
+              "confidence": 0.4773895157017116,
               "context_ids": [
                 "d5"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.44756199998892,
+              "generation_ms": 37.15161799999578,
               "prompt_words": 49,
               "output_words": 1,
               "reflection": {
@@ -324,12 +324,12 @@
           "attempts": [
             {
               "answer": "green",
-              "confidence": 0.8630667852286937,
+              "confidence": 0.8630604841623049,
               "context_ids": [
                 "f1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.46375199998556,
+              "generation_ms": 37.04287600001521,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -357,12 +357,12 @@
           "attempts": [
             {
               "answer": "port 7443",
-              "confidence": 0.9410995711261286,
+              "confidence": 0.9410966045954754,
               "context_ids": [
                 "f2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 130.88535299999648,
+              "generation_ms": 60.26773600001434,
               "prompt_words": 49,
               "output_words": 2,
               "reflection": {
@@ -390,12 +390,12 @@
           "attempts": [
             {
               "answer": "d1",
-              "confidence": 0.43496097274454837,
+              "confidence": 0.4349579510964542,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 115.19879899998386,
+              "generation_ms": 54.011188999993465,
               "prompt_words": 47,
               "output_words": 1,
               "reflection": {
@@ -423,12 +423,12 @@
           "attempts": [
             {
               "answer": "Python",
-              "confidence": 0.7319026618821352,
+              "confidence": 0.7318984307505267,
               "context_ids": [
                 "d5"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.34042100001648,
+              "generation_ms": 36.94262700000195,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -454,14 +454,14 @@
         "mean_total_retrieval_calls": 1.25,
         "mean_active_retrieval_calls": 0.0,
         "mean_generation_attempts": 1.0,
-        "mean_generation_ms": 106.83154583333732,
+        "mean_generation_ms": 50.441808499999276,
         "mean_prompt_words": 46.833333333333336,
         "mean_output_words": 1.4166666666666667,
         "unnecessary_retrieval_rate": 0.0,
         "answerable_refusal_rate": 0.0,
         "unanswerable_refusal_recall": 0.0,
         "unsupported_answer_rate": 1.0,
-        "mean_end_to_end_ms": 107.0414134999993
+        "mean_end_to_end_ms": 50.626329083335975
       },
       "traces": {
         "n1": {
@@ -476,10 +476,10 @@
           "attempts": [
             {
               "answer": "READY",
-              "confidence": 0.5010400220503715,
+              "confidence": 0.5010378519422009,
               "context_ids": [],
               "trigger_reason": "direct_no_retrieval",
-              "generation_ms": 98.90730800000824,
+              "generation_ms": 46.46802399997796,
               "prompt_words": 18,
               "output_words": 1,
               "reflection": null
@@ -498,10 +498,10 @@
           "attempts": [
             {
               "answer": "0",
-              "confidence": 0.3448620722718093,
+              "confidence": 0.34486013310489183,
               "context_ids": [],
               "trigger_reason": "direct_no_retrieval",
-              "generation_ms": 79.12446299999942,
+              "generation_ms": 40.92716700000665,
               "prompt_words": 22,
               "output_words": 1,
               "reflection": null
@@ -524,12 +524,12 @@
           "attempts": [
             {
               "answer": "Oslo",
-              "confidence": 0.9796995654135519,
+              "confidence": 0.9796974419771098,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 71.79688100001158,
+              "generation_ms": 37.70141399999716,
               "prompt_words": 45,
               "output_words": 1,
               "reflection": {
@@ -557,12 +557,12 @@
           "attempts": [
             {
               "answer": "Vega",
-              "confidence": 0.8624874825078089,
+              "confidence": 0.862485047049668,
               "context_ids": [
                 "d2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 105.42482800002517,
+              "generation_ms": 51.045530999999755,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -590,12 +590,12 @@
           "attempts": [
             {
               "answer": "Raft consensus protocol",
-              "confidence": 0.9539749477953943,
+              "confidence": 0.9539728848946718,
               "context_ids": [
                 "d3"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 141.5525129999935,
+              "generation_ms": 67.16455599999449,
               "prompt_words": 49,
               "output_words": 3,
               "reflection": {
@@ -625,13 +625,13 @@
           "attempts": [
             {
               "answer": "[d3]",
-              "confidence": 0.9663791642878911,
+              "confidence": 0.9663760171745112,
               "context_ids": [
                 "d2",
                 "d3"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 147.3104560000138,
+              "generation_ms": 61.90821600000618,
               "prompt_words": 63,
               "output_words": 1,
               "reflection": {
@@ -661,13 +661,13 @@
           "attempts": [
             {
               "answer": "Norway",
-              "confidence": 0.9002721908392228,
+              "confidence": 0.900270719806126,
               "context_ids": [
                 "d1",
                 "d4"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 84.66415499998448,
+              "generation_ms": 39.179386000000704,
               "prompt_words": 63,
               "output_words": 1,
               "reflection": {
@@ -697,13 +697,13 @@
           "attempts": [
             {
               "answer": "Guido van Rossum",
-              "confidence": 0.9824426489833668,
+              "confidence": 0.9824414777637616,
               "context_ids": [
                 "d5",
                 "d6"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 164.68557500002134,
+              "generation_ms": 76.65050200000678,
               "prompt_words": 62,
               "output_words": 3,
               "reflection": {
@@ -731,12 +731,12 @@
           "attempts": [
             {
               "answer": "green",
-              "confidence": 0.8630667852286937,
+              "confidence": 0.8630604841623049,
               "context_ids": [
                 "f1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 73.82455100000129,
+              "generation_ms": 37.14213899999663,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -764,12 +764,12 @@
           "attempts": [
             {
               "answer": "port 7443",
-              "confidence": 0.9410995711261286,
+              "confidence": 0.9410966045954754,
               "context_ids": [
                 "f2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 130.81651400000283,
+              "generation_ms": 59.07551900000385,
               "prompt_words": 49,
               "output_words": 2,
               "reflection": {
@@ -797,12 +797,12 @@
           "attempts": [
             {
               "answer": "d1",
-              "confidence": 0.43496097274454837,
+              "confidence": 0.4349579510964542,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 108.17846300000156,
+              "generation_ms": 51.753165999997464,
               "prompt_words": 47,
               "output_words": 1,
               "reflection": {
@@ -830,12 +830,12 @@
           "attempts": [
             {
               "answer": "Python",
-              "confidence": 0.7319026618821352,
+              "confidence": 0.7318984307505267,
               "context_ids": [
                 "d5"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 75.69284299998458,
+              "generation_ms": 36.28608200000372,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -861,14 +861,14 @@
         "mean_total_retrieval_calls": 1.4166666666666667,
         "mean_active_retrieval_calls": 0.16666666666666666,
         "mean_generation_attempts": 1.1666666666666667,
-        "mean_generation_ms": 131.14499908333244,
+        "mean_generation_ms": 59.22480791666137,
         "mean_prompt_words": 58.083333333333336,
         "mean_output_words": 1.5833333333333333,
         "unnecessary_retrieval_rate": 0.0,
         "answerable_refusal_rate": 0.1,
         "unanswerable_refusal_recall": 0.5,
         "unsupported_answer_rate": 0.5,
-        "mean_end_to_end_ms": 131.37739474999913
+        "mean_end_to_end_ms": 59.42205291666388
       },
       "traces": {
         "n1": {
@@ -883,10 +883,10 @@
           "attempts": [
             {
               "answer": "READY",
-              "confidence": 0.5010400220503715,
+              "confidence": 0.5010378519422009,
               "context_ids": [],
               "trigger_reason": "direct_no_retrieval",
-              "generation_ms": 99.20882500000516,
+              "generation_ms": 45.44166200000177,
               "prompt_words": 18,
               "output_words": 1,
               "reflection": null
@@ -905,10 +905,10 @@
           "attempts": [
             {
               "answer": "0",
-              "confidence": 0.3448620722718093,
+              "confidence": 0.34486013310489183,
               "context_ids": [],
               "trigger_reason": "direct_no_retrieval",
-              "generation_ms": 77.74484999998776,
+              "generation_ms": 38.34856499997841,
               "prompt_words": 22,
               "output_words": 1,
               "reflection": null
@@ -931,12 +931,12 @@
           "attempts": [
             {
               "answer": "Oslo",
-              "confidence": 0.9796995654135519,
+              "confidence": 0.9796974419771098,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.50371800001676,
+              "generation_ms": 37.12482999998201,
               "prompt_words": 45,
               "output_words": 1,
               "reflection": {
@@ -964,12 +964,12 @@
           "attempts": [
             {
               "answer": "Vega",
-              "confidence": 0.8624874825078089,
+              "confidence": 0.862485047049668,
               "context_ids": [
                 "d2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 111.34851199997797,
+              "generation_ms": 50.161098999979004,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -997,12 +997,12 @@
           "attempts": [
             {
               "answer": "Raft consensus protocol",
-              "confidence": 0.9539749477953943,
+              "confidence": 0.9539728848946718,
               "context_ids": [
                 "d3"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 144.35073399999965,
+              "generation_ms": 63.03862600000798,
               "prompt_words": 49,
               "output_words": 3,
               "reflection": {
@@ -1033,13 +1033,13 @@
           "attempts": [
             {
               "answer": "[d3]",
-              "confidence": 0.9663791642878911,
+              "confidence": 0.9663760171745112,
               "context_ids": [
                 "d2",
                 "d3"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 142.41053599999987,
+              "generation_ms": 59.91184699999508,
               "prompt_words": 63,
               "output_words": 1,
               "reflection": {
@@ -1051,14 +1051,14 @@
             },
             {
               "answer": "[d3]",
-              "confidence": 0.9314738808706159,
+              "confidence": 0.9314696444311155,
               "context_ids": [
                 "d2",
                 "d3",
                 "d6"
               ],
               "trigger_reason": "low_confidence_or_reflection_retry",
-              "generation_ms": 147.94223299998066,
+              "generation_ms": 63.72675800000138,
               "prompt_words": 76,
               "output_words": 1,
               "reflection": {
@@ -1088,13 +1088,13 @@
           "attempts": [
             {
               "answer": "Norway",
-              "confidence": 0.9002721908392228,
+              "confidence": 0.900270719806126,
               "context_ids": [
                 "d1",
                 "d4"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 81.70512399999552,
+              "generation_ms": 38.5436390000109,
               "prompt_words": 63,
               "output_words": 1,
               "reflection": {
@@ -1124,13 +1124,13 @@
           "attempts": [
             {
               "answer": "Guido van Rossum",
-              "confidence": 0.9824426489833668,
+              "confidence": 0.9824414777637616,
               "context_ids": [
                 "d5",
                 "d6"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 170.76248700001884,
+              "generation_ms": 72.20607700000414,
               "prompt_words": 62,
               "output_words": 3,
               "reflection": {
@@ -1158,12 +1158,12 @@
           "attempts": [
             {
               "answer": "green",
-              "confidence": 0.8630667852286937,
+              "confidence": 0.8630604841623049,
               "context_ids": [
                 "f1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.19118100000333,
+              "generation_ms": 35.75192600001742,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {
@@ -1191,12 +1191,12 @@
           "attempts": [
             {
               "answer": "port 7443",
-              "confidence": 0.9410995711261286,
+              "confidence": 0.9410966045954754,
               "context_ids": [
                 "f2"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 126.36913500000446,
+              "generation_ms": 57.20211899998162,
               "prompt_words": 49,
               "output_words": 2,
               "reflection": {
@@ -1225,12 +1225,12 @@
           "attempts": [
             {
               "answer": "d1",
-              "confidence": 0.43496097274454837,
+              "confidence": 0.4349579510964542,
               "context_ids": [
                 "d1"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 109.83111900000608,
+              "generation_ms": 51.57939599999395,
               "prompt_words": 47,
               "output_words": 1,
               "reflection": {
@@ -1242,13 +1242,13 @@
             },
             {
               "answer": "[d3]",
-              "confidence": 0.9487664659524343,
+              "confidence": 0.9487633114495408,
               "context_ids": [
                 "d1",
                 "d3"
               ],
               "trigger_reason": "low_confidence_or_reflection_retry",
-              "generation_ms": 138.432698999992,
+              "generation_ms": 60.92775999999844,
               "prompt_words": 59,
               "output_words": 1,
               "reflection": {
@@ -1276,12 +1276,12 @@
           "attempts": [
             {
               "answer": "Python",
-              "confidence": 0.7319026618821352,
+              "confidence": 0.7318984307505267,
               "context_ids": [
                 "d5"
               ],
               "trigger_reason": "initial",
-              "generation_ms": 74.93883600000117,
+              "generation_ms": 36.733390999984294,
               "prompt_words": 48,
               "output_words": 1,
               "reflection": {

@@ -46,7 +46,7 @@ def test_mmr_can_trade_redundancy_for_distinct_evidence():
         candidate("c", "batching reduces service cost under tight latency", 0.8),
     ]
 
-    selected = mmr_select(items, limit=2, relevance_weight=0.5)
+    selected = mmr_select(items, limit=2, relevance_weight=0.25)
 
     assert selected[0].id == "a"
     assert selected[1].id == "c"

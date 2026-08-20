@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from time import perf_counter
 from typing import Protocol
 
 from rag_practice.adaptive.control import AdaptiveRAGController, ControlTrace
@@ -25,6 +26,9 @@ class GenerationAttempt:
     context_ids: tuple[str, ...]
     reflection: ReflectionSignals | None
     trigger_reason: str
+    generation_ms: float
+    prompt_words: int
+    output_words: int
 
 
 @dataclass(frozen=True)
@@ -40,6 +44,18 @@ class AdaptiveAnswerTrace:
     @property
     def total_retrieval_calls(self) -> int:
         return self.control.retrieval_calls + self.active_retrieval_calls
+
+    @property
+    def total_generation_ms(self) -> float:
+        return sum(attempt.generation_ms for attempt in self.attempts)
+
+    @property
+    def total_prompt_words(self) -> int:
+        return sum(attempt.prompt_words for attempt in self.attempts)
+
+    @property
+    def total_output_words(self) -> int:
+        return sum(attempt.output_words for attempt in self.attempts)
 
 
 def _rag_prompt(question: str, contexts: list[tuple[str, str]]) -> str:
@@ -60,6 +76,10 @@ def _direct_prompt(question: str) -> str:
         f"Question: {question}\n"
         "Answer:"
     )
+
+
+def _word_count(text: str) -> int:
+    return len(text.split())
 
 
 class AdaptiveGenerationPipeline:
@@ -112,6 +132,14 @@ class AdaptiveGenerationPipeline:
                     return document_id
         return None
 
+    def _call_generator(self, prompt: str) -> tuple[GenerationWithConfidence, float]:
+        start = perf_counter()
+        generated = self.generator.generate_with_confidence(
+            prompt,
+            max_new_tokens=self.max_new_tokens,
+        )
+        return generated, (perf_counter() - start) * 1000
+
     def _generate_with_context(
         self,
         question: str,
@@ -120,10 +148,8 @@ class AdaptiveGenerationPipeline:
         trigger_reason: str,
     ) -> GenerationAttempt:
         contexts = self._contexts(context_ids)
-        generated = self.generator.generate_with_confidence(
-            _rag_prompt(question, contexts),
-            max_new_tokens=self.max_new_tokens,
-        )
+        prompt = _rag_prompt(question, contexts)
+        generated, generation_ms = self._call_generator(prompt)
         reflection = self.critic.reflect(
             question=question,
             answer=generated.text,
@@ -136,21 +162,25 @@ class AdaptiveGenerationPipeline:
             context_ids=tuple(context_ids),
             reflection=reflection,
             trigger_reason=trigger_reason,
+            generation_ms=generation_ms,
+            prompt_words=_word_count(prompt),
+            output_words=_word_count(generated.text),
         )
 
     def run(self, question: str, *, enable_active_reflection: bool = True) -> AdaptiveAnswerTrace:
         control = self.controller.run(question)
         if control.route == Route.NO_RETRIEVAL:
-            generated = self.generator.generate_with_confidence(
-                _direct_prompt(question),
-                max_new_tokens=self.max_new_tokens,
-            )
+            prompt = _direct_prompt(question)
+            generated, generation_ms = self._call_generator(prompt)
             attempt = GenerationAttempt(
                 answer=generated.text,
                 confidence=generated.confidence,
                 context_ids=(),
                 reflection=None,
                 trigger_reason="direct_no_retrieval",
+                generation_ms=generation_ms,
+                prompt_words=_word_count(prompt),
+                output_words=_word_count(generated.text),
             )
             return AdaptiveAnswerTrace(
                 question=question,

@@ -1,0 +1,3 @@
+{"id":"mem4","memory_key":"vega_database","sequence":2,"text":"Vega Lab uses NimbusDB version 3.","entity":"Vega Lab","relation":"database_version","value":"NimbusDB version 3"}
+{"id":"mem5","memory_key":"aurora_lead","sequence":2,"text":"Aurora Lab lead is Leo Chen.","entity":"Aurora Lab","relation":"lead","value":"Leo Chen"}
+{"id":"mem6","memory_key":"reef_lead","sequence":4,"text":"Reef Lab lead is Beatriz Silva.","entity":"Reef Lab","relation":"lead","value":"Beatriz Silva"}

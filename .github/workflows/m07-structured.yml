@@ -1,0 +1,43 @@
+name: M07 hierarchical graph and memory evaluation
+
+on:
+  push:
+    branches:
+      - feat/m07-hierarchical-graph-memory
+    paths-ignore:
+      - labs/07_hierarchical_graph_memory/results/results.json
+      - labs/07_hierarchical_graph_memory/results/results.md
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project test dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate hierarchy, graph, and temporal memory
+        run: python labs/07_hierarchical_graph_memory/run.py
+      - name: Persist M07 evaluation evidence on feature branch
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add labs/07_hierarchical_graph_memory/results/results.json
+          git add labs/07_hierarchical_graph_memory/results/results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M07 structured evaluation [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi

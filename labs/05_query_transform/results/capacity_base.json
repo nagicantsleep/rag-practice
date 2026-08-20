@@ -729,49 +729,49 @@
   },
   "system": {
     "bm25_original": {
-      "mean_total_ms": 0.059208666669974264,
+      "mean_total_ms": 0.05220233333602664,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "bm25_rewrite": {
-      "mean_total_ms": 842.87325116667,
-      "mean_transform_ms": 842.8034154999959,
+      "mean_total_ms": 733.6925405833341,
+      "mean_transform_ms": 733.6327171666711,
       "mean_generated_words": 8.25
     },
     "multi_query_score_fusion": {
-      "mean_total_ms": 761.1113875000015,
-      "mean_transform_ms": 760.9965071666617,
+      "mean_total_ms": 655.5628952500073,
+      "mean_transform_ms": 655.4741574166723,
       "mean_generated_words": 3.75
     },
     "rag_fusion_rrf": {
-      "mean_total_ms": 761.1248153333369,
-      "mean_transform_ms": 760.9965071666617,
+      "mean_total_ms": 655.5737564166719,
+      "mean_transform_ms": 655.4741574166723,
       "mean_generated_words": 3.75
     },
     "query2doc_bm25": {
-      "mean_total_ms": 705.9428720000014,
-      "mean_transform_ms": 705.8710931666686,
+      "mean_total_ms": 612.5172158333332,
+      "mean_transform_ms": 612.4567455833349,
       "mean_generated_words": 6.75
     },
     "decomposition_rrf": {
-      "mean_total_ms": 1935.8713563333295,
-      "mean_transform_ms": 1935.7966091666656,
+      "mean_total_ms": 1698.5373430000006,
+      "mean_transform_ms": 1698.4723018333364,
       "mean_generated_words": 11.083333333333334
     },
     "dense_original": {
-      "mean_total_ms": 10.560401416661591,
+      "mean_total_ms": 9.229109249995796,
       "mean_transform_ms": 0.0,
       "mean_generated_words": 0.0
     },
     "hyde_dense": {
-      "mean_total_ms": 1747.9425455833327,
-      "mean_transform_ms": 1735.2579709166682,
+      "mean_total_ms": 1539.6887109166664,
+      "mean_transform_ms": 1528.7502706666676,
       "mean_generated_words": 20.416666666666668
     },
     "models": {
-      "flan_model_load_ms": 7380.333702000002,
-      "dense_model_load_ms": 541.2083629999813,
-      "dense_index_build_ms": 52.333703000016385
+      "flan_model_load_ms": 552.4596169999825,
+      "dense_model_load_ms": 752.9080859999908,
+      "dense_index_build_ms": 53.84520600000542
     }
   },
   "per_query": {

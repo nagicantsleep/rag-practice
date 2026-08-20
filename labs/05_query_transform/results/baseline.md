@@ -6,13 +6,13 @@ BM25-family methods are compared with `bm25_original`; HyDE is compared with `de
 
 | Method | R@1 | R@3 | Complete R@3 | Exact R@1 | Semantic R@1 | Underspecified R@1 | Multi-aspect R@3 | Mean total ms |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| bm25_original | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 0.06 |
-| bm25_rewrite | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 271.92 |
-| multi_query_score_fusion | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 229.16 |
-| rag_fusion_rrf | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 229.17 |
-| query2doc_bm25 | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 1020.73 |
-| decomposition_rrf | 0.167 | 0.250 | 0.167 | 0.333 | 0.000 | 0.333 | 0.333 | 477.45 |
-| dense_original | 0.792 | 0.917 | 0.917 | 1.000 | 0.667 | 1.000 | 1.000 | 10.60 |
-| hyde_dense | 0.625 | 0.833 | 0.750 | 1.000 | 0.333 | 0.667 | 0.667 | 409.20 |
+| bm25_original | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 0.05 |
+| bm25_rewrite | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 245.19 |
+| multi_query_score_fusion | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 207.26 |
+| rag_fusion_rrf | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 207.27 |
+| query2doc_bm25 | 0.792 | 0.875 | 0.833 | 1.000 | 0.667 | 1.000 | 0.833 | 939.84 |
+| decomposition_rrf | 0.167 | 0.250 | 0.167 | 0.333 | 0.000 | 0.333 | 0.333 | 437.00 |
+| dense_original | 0.792 | 0.917 | 0.917 | 1.000 | 0.667 | 1.000 | 1.000 | 9.16 |
+| hyde_dense | 0.625 | 0.833 | 0.750 | 1.000 | 0.333 | 0.667 | 0.667 | 373.25 |
 
 `complete_recall@3` requires every relevant document to be present, which matters for multi-aspect queries where ordinary hit-rate can hide partial retrieval.

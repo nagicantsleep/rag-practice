@@ -28,6 +28,19 @@ class ActiveRetrievalPolicy:
         return confidence < self.confidence_threshold
 
 
+def _support_token(token: str) -> str:
+    """Apply only a tiny transparent inflection normalization for support checks.
+
+    This intentionally is not a general stemmer. The reflection critic should not
+    treat a third-person/plural trailing ``s`` difference as hallucination, while
+    keeping the transformation inspectable and deterministic.
+    """
+
+    if len(token) > 3 and token.endswith("s"):
+        return token[:-1]
+    return token
+
+
 class ReflectionCritic:
     """Inspectable Self-RAG-style relevance/support/utility critic.
 
@@ -59,10 +72,13 @@ class ReflectionCritic:
         return len(query_terms & context_terms) / len(query_terms)
 
     def support_score(self, answer: str, contexts: list[str]) -> float:
-        answer_terms = tokenize(answer)
+        answer_terms = [_support_token(token) for token in tokenize(answer)]
         if not answer_terms:
             return 0.0
-        context_terms = set(tokenize(" ".join(contexts)))
+        context_terms = {
+            _support_token(token)
+            for token in tokenize(" ".join(contexts))
+        }
         return sum(term in context_terms for term in answer_terms) / len(answer_terms)
 
     def reflect(

@@ -14,6 +14,7 @@ dependencies = []
 dev = ["pytest>=8.0"]
 neural = ["torch>=2.0"]
 pretrained = ["sentence-transformers==5.6.1"]
+colbert = ["pylate==1.6.0"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

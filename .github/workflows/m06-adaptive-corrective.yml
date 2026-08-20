@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - labs/06_adaptive_corrective/results/control.json
       - labs/06_adaptive_corrective/results/control.md
+      - labs/06_adaptive_corrective/results/generation.json
+      - labs/06_adaptive_corrective/results/generation.md
   pull_request:
 
 permissions:
@@ -15,7 +17,7 @@ permissions:
 jobs:
   evaluate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,20 +26,29 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+      - name: Cache Hugging Face model files
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-m06-${{ runner.os }}-flan-small-0fc9ddf
       - name: Install project with pretrained test dependencies
-        run: python -m pip install -e ".[dev,pretrained]"
+        run: python -m pip install -e ".[dev,neural,pretrained]"
       - name: Run full test suite
         run: pytest -q
       - name: Evaluate adaptive routing and corrective retrieval
         run: python labs/06_adaptive_corrective/run_control.py
-      - name: Persist M06 phase-1 evidence on feature branch
+      - name: Evaluate adaptive generation, active retrieval, and reflection
+        run: python labs/06_adaptive_corrective/run_generation.py
+      - name: Persist M06 evaluation evidence on feature branch
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add labs/06_adaptive_corrective/results/control.json
           git add labs/06_adaptive_corrective/results/control.md
+          git add labs/06_adaptive_corrective/results/generation.json
+          git add labs/06_adaptive_corrective/results/generation.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M06 adaptive control evaluation [skip ci]"
+            git commit -m "test: record M06 adaptive evaluation [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}
           fi

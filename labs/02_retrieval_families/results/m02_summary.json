@@ -1,0 +1,42 @@
+{
+  "experiment_id": "m02_retrieval_families_summary_v1",
+  "milestone": "M02",
+  "status": "DONE",
+  "benchmark": "benchmarks/m02_retrieval@v1",
+  "ci": {
+    "workflow_run_id": 32395089427,
+    "conclusion": "success",
+    "tests_passed": 32,
+    "successful_evaluation_steps": [
+      "pretrained MiniLM dense",
+      "pretrained SPLADE sparse",
+      "candidate-set scaling stress test",
+      "pretrained ColBERTv2 late interaction"
+    ]
+  },
+  "held_out": {
+    "bm25": {"recall_at_1": 0.8, "exact_recall_at_1": 1.0, "semantic_recall_at_1": 0.6, "recall_at_3": 0.9, "mrr": 0.85},
+    "hashing": {"recall_at_1": 0.8, "exact_recall_at_1": 1.0, "semantic_recall_at_1": 0.6, "recall_at_3": 0.8, "mrr": 0.835},
+    "minilm": {"recall_at_1": 0.9, "exact_recall_at_1": 1.0, "semantic_recall_at_1": 0.8, "recall_at_3": 0.9, "mrr": 0.925},
+    "splade_checkpoint": {"recall_at_1": 0.9, "exact_recall_at_1": 1.0, "semantic_recall_at_1": 0.8, "recall_at_3": 1.0, "mrr": 0.95},
+    "colbertv2_checkpoint": {"recall_at_1": 0.9, "exact_recall_at_1": 1.0, "semantic_recall_at_1": 0.8, "recall_at_3": 1.0, "mrr": 0.95}
+  },
+  "checkpoint_revisions": {
+    "minilm": "1c82ace116a2629de82404c4be48c0e5d4cf08be",
+    "splade_v3_distilbert": "2db06b86d65e316e2ca9907aa1aa8be6f8c4e739",
+    "colbertv2": "c1e84128e85ef755c096a95bdb06b47793b13acf"
+  },
+  "failure_patterns": {
+    "minilm": "fixes s1 at rank 1 but misses s2 in top 3",
+    "splade": "misses s1 at rank 1 but recovers d5 at rank 2; solves s2 at rank 1",
+    "colbertv2": "misses s1 at rank 1 but recovers d5 at rank 2; solves s2 at rank 1"
+  },
+  "scaling": {
+    "documents": [10, 100, 1000],
+    "minilm_recall_at_1": [0.9, 0.9, 0.9],
+    "hashing_recall_at_1": [0.8, 0.7, 0.7],
+    "note": "deterministic off-topic distractor stress test, not a broader semantic benchmark"
+  },
+  "generation_evaluation": "not applicable: M02 intentionally isolates retrieval",
+  "conclusion": "M02 meets the repository Definition of Done and can be used as the retriever baseline library for later milestones."
+}

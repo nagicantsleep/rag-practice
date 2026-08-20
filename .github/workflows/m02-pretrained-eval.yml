@@ -1,0 +1,79 @@
+name: M02 pretrained retrieval evaluation
+
+on:
+  push:
+    branches:
+      - feat/m02-pretrained-ci
+    paths-ignore:
+      - labs/02_retrieval_families/results/pretrained_sentence_transformer.json
+      - labs/02_retrieval_families/results/pretrained_sentence_transformer.md
+      - labs/02_retrieval_families/results/splade_checkpoint.json
+      - labs/02_retrieval_families/results/splade_checkpoint.md
+      - labs/02_retrieval_families/results/colbert_checkpoint.json
+      - labs/02_retrieval_families/results/colbert_checkpoint.md
+      - labs/02_retrieval_families/results/scaling.json
+      - labs/02_retrieval_families/results/scaling.md
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - labs/02_retrieval_families/results/pretrained_sentence_transformer.json
+      - labs/02_retrieval_families/results/pretrained_sentence_transformer.md
+      - labs/02_retrieval_families/results/splade_checkpoint.json
+      - labs/02_retrieval_families/results/splade_checkpoint.md
+      - labs/02_retrieval_families/results/colbert_checkpoint.json
+      - labs/02_retrieval_families/results/colbert_checkpoint.md
+      - labs/02_retrieval_families/results/scaling.json
+      - labs/02_retrieval_families/results/scaling.md
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Cache Hugging Face model files
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-m02-retrieval-${{ runner.os }}-v2
+      - name: Install project with evaluation extras
+        run: python -m pip install -e ".[dev,neural,pretrained]"
+      - name: Run test suite
+        run: pytest -q
+      - name: Evaluate pinned pretrained dense model
+        run: python labs/02_retrieval_families/run_pretrained.py
+      - name: Evaluate full pretrained SPLADE checkpoint
+        run: python labs/02_retrieval_families/run_splade_checkpoint.py
+      - name: Run candidate-set scaling stress test
+        run: python labs/02_retrieval_families/run_scaling.py
+      - name: Install PyLate ColBERT environment
+        run: python -m pip install "pylate==1.6.0"
+      - name: Evaluate full pretrained ColBERTv2 checkpoint
+        run: python labs/02_retrieval_families/run_colbert_checkpoint.py
+      - name: Persist evaluation evidence on feature branch
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add labs/02_retrieval_families/results/pretrained_sentence_transformer.json
+          git add labs/02_retrieval_families/results/pretrained_sentence_transformer.md
+          git add labs/02_retrieval_families/results/splade_checkpoint.json
+          git add labs/02_retrieval_families/results/splade_checkpoint.md
+          git add labs/02_retrieval_families/results/colbert_checkpoint.json
+          git add labs/02_retrieval_families/results/colbert_checkpoint.md
+          git add labs/02_retrieval_families/results/scaling.json
+          git add labs/02_retrieval_families/results/scaling.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M02 full checkpoint evaluation [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi

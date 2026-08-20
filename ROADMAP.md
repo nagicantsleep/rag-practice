@@ -59,53 +59,58 @@ Includes data models, fixed-size chunking, hashing embeddings, vector index, gen
 
 Key finding: a RAG answer can be **fully grounded but wrong** when retrieval selects the wrong evidence.
 
-### M02 — Retrieval Families — `IN PROGRESS`
+### M02 — Retrieval Families — `DONE`
 
-#### Core sub-lab — `DONE`
+M02 compares retrieval families under the same held-out exact/semantic benchmark and separates representation quality from storage/index mechanics.
 
-Implemented and evaluated BM25, hashing-vector retrieval, a supervised neural dual encoder, RRF, weighted sparse+dense fusion, train/dev/test separation, and exact-vs-semantic breakdown.
+Implemented and evaluated:
 
-| Method | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 |
-| --- | ---: | ---: | ---: | ---: |
-| BM25 | 0.800 | 1.000 | 0.600 | 0.900 |
-| Hashing | 0.800 | 1.000 | 0.600 | 0.800 |
-| Neural dual encoder | 0.800 | 0.800 | 0.800 | 1.000 |
-| Hybrid RRF | 0.800 | 0.800 | 0.800 | 1.000 |
-| Hybrid weighted | **0.900** | **1.000** | **0.800** | **1.000** |
+- BM25 lexical retrieval
+- hashing-vector dense-storage mechanics baseline
+- supervised neural dual encoder trained from scratch
+- Reciprocal Rank Fusion (RRF)
+- weighted sparse+dense score fusion tuned only on a separate dev split
+- transparent SPLADE-style learned-sparse mechanics
+- transparent ColBERT-style MaxSim mechanics
+- pretrained `sentence-transformers/all-MiniLM-L6-v2`
+- full pretrained SPLADE-family `naver/splade-v3-distilbert`
+- full pretrained `colbert-ir/colbertv2.0` via PyLate exhaustive MaxSim
+- deterministic 10 → 100 → 1000 candidate-set scaling stress test
+- representation/index footprint and CPU latency sanity measurements
 
-The learned neural encoder and weighted hybrid fix the preserved paraphrase failure. Dense retrieval also regresses some exact queries, making sparse+dense complementarity measurable.
+Held-out checkpoint summary:
 
-#### Advanced mechanism sub-lab — `DONE`
+| Method | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 | MRR |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| BM25 | 0.800 | 1.000 | 0.600 | 0.900 | 0.850 |
+| Hashing vector | 0.800 | 1.000 | 0.600 | 0.800 | 0.835 |
+| Tiny neural dual encoder | 0.800 | 0.800 | 0.800 | 1.000 | — |
+| Tiny weighted hybrid | **0.900** | **1.000** | **0.800** | **1.000** | — |
+| MiniLM pretrained dense | **0.900** | **1.000** | **0.800** | 0.900 | 0.925 |
+| SPLADE pretrained sparse | **0.900** | **1.000** | **0.800** | **1.000** | **0.950** |
+| ColBERTv2 pretrained late interaction | **0.900** | **1.000** | **0.800** | **1.000** | **0.950** |
 
-Implemented transparent, non-checkpoint versions of:
+Important findings:
 
-- SPLADE-style learned sparse lexical expansion with log-saturated non-negative weights and sparsity pressure
-- ColBERT-style token-level late interaction with MaxSim
-- explicit representation-footprint measurements
+- **A dense vector index does not create semantics; learned/pretrained representations do.** The hashing baseline remains lexical-like, while learned models recover vocabulary-mismatch queries.
+- **Aggregate scores hide different errors.** MiniLM fixes preserved query `s1` (`conceptual likeness between paraphrases → d5`) but misses `s2`; SPLADE and ColBERTv2 rank `s1` second but solve `s2` at rank 1.
+- **Pretrained contextual backbones matter.** The earlier mechanism-only SPLADE/ColBERT implementations underperform their real checkpoints; the formulas alone are not the research systems.
+- **Hybrid is not automatically better.** With MiniLM, dev-set tuning selects BM25 weight `0.0`; adding sparse score hurts or adds no value on this tiny dev set. The earlier from-scratch neural model did benefit from sparse+dense fusion.
+- **Representations have different serving costs.** Dense stores one vector/document; SPLADE stores sparse vocabulary activations; ColBERT stores many token vectors/document. ColBERTv2 used 211 document token vectors / 108,032 logical embedding bytes on the 10-document corpus; SPLADE averaged 183.2 non-zero values/document.
+- **Candidate-set size matters.** In the deterministic stress test, MiniLM quality stays at Recall@1 `0.9` from 10 to 1000 docs while the educational Python hashing scan falls from `0.8` to `0.7` and grows from roughly `0.4 ms` to `31 ms/query`. These are implementation sanity measurements, not ANN serving claims.
 
-Held-out summary:
+Evaluation evidence:
 
-| Mechanism model | Recall@1 | Exact R@1 | Semantic R@1 | Recall@3 |
-| --- | ---: | ---: | ---: | ---: |
-| SPLADE-style mechanics | 0.600 | 0.800 | 0.400 | 0.800 |
-| ColBERT-style mechanics | 0.700 | 0.800 | 0.600 | 0.800 |
+- Final GitHub Actions PR run `32395089427` completed successfully.
+- Final CI run: **32 tests passed**; pretrained dense, SPLADE checkpoint, scaling stress test, PyLate installation, and ColBERTv2 checkpoint steps all succeeded.
+- Model revisions are resolved/pinned in result artifacts.
+- Generation evaluation is **not applicable** to M02 because this milestone intentionally isolates retrieval quality; M01 already established separate end-to-end generation evaluation.
 
-The simplified models do not beat BM25/core neural baselines. This is recorded as evidence that the pretrained contextual backbone and training recipe are material parts of SPLADE/ColBERT, not incidental implementation details. The learned sparse model nevertheless demonstrates interpretable expansion (`orientation of numerical representations` learns `vector` and `similarity` dimensions), while late interaction makes its larger multi-vector index footprint explicit.
-
-Artifacts: `src/rag_practice/retrieval/learned_sparse.py`, `src/rag_practice/retrieval/late_interaction.py`, and `labs/02_retrieval_families/results/advanced_mechanics.*`.
-
-#### Remaining M02 sub-labs
-
-- [ ] pretrained general-purpose semantic embedding baseline
-- [ ] full pretrained SPLADE checkpoint evaluation
-- [ ] full pretrained ColBERT/ColBERTv2 checkpoint evaluation
-- [ ] larger benchmark / index-size and latency comparison
-
-Current environment evidence: PyTorch is available, but `transformers`, `sentence-transformers`, pretrained model cache, and embedding API credentials are unavailable. Checkpoint sub-labs remain open rather than being marked complete without evaluation.
+Artifacts: `benchmarks/m02_retrieval/`, `src/rag_practice/retrieval/`, `labs/02_retrieval_families/`, and `.github/workflows/m02-pretrained-eval.yml`.
 
 ### M03 — Indexing and Chunking — `TODO`
 
-Compare fixed chunks, overlap, sentence/paragraph-aware chunks, semantic chunking, metadata enrichment, parent-child retrieval, and hierarchical indexes. Evaluate retrieval vs granularity, evidence completeness, redundancy, and token-budget utilization.
+Compare fixed chunks, overlap, sentence/paragraph-aware chunks, semantic chunking, metadata enrichment, parent-child retrieval, and hierarchical indexes. Evaluate retrieval vs granularity, evidence completeness, redundancy, and context-token utilization.
 
 ### M04 — Reranking and Context Construction — `TODO`
 
@@ -113,7 +118,7 @@ Implement retrieve-many/rerank-few, cross-encoder reranking, LLM reranking, MMR,
 
 ### M05 — Query Transformation — `TODO`
 
-Implement query rewriting, multi-query retrieval, RAG-Fusion, Query2Doc-style expansion, HyDE, and query decomposition. Evaluate original vs transformed retrieval, query-class wins/losses, and transformation cost.
+Implement query rewriting, multi-query retrieval, RAG-Fusion, Query2Doc-style expansion, HyDE, and query decomposition. Evaluate original vs transformed retrieval, per-query-class wins/losses, and transformation cost.
 
 ### M06 — Multi-hop, Active, Adaptive, and Self-correcting RAG — `TODO`
 
@@ -137,4 +142,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-The pretrained-checkpoint part of M02 is blocked by unavailable model artifacts in the current execution environment. Keep that work explicitly open and continue with an evaluable M02 scaling/indexing benchmark rather than fabricating pretrained results.
+Start **M03 — Indexing and Chunking**. Hold the retriever/model constant where possible and vary chunk construction so indexing effects are measurable independently from retriever changes.

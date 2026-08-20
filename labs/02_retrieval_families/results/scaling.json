@@ -1,0 +1,542 @@
+{
+  "experiment_id": "m02_scaling_stress_v1",
+  "benchmark": "m02 held-out queries + deterministic off-topic distractors",
+  "warning": "This is a candidate-set scaling/robustness stress test, not a broader semantic benchmark.",
+  "model": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be"
+  },
+  "hybrid_tuning": {
+    "selected_bm25_weight": 0.0,
+    "selected_pretrained_weight": 1.0,
+    "dev_trials": [
+      {
+        "bm25_weight": 0.0,
+        "metrics": {
+          "mrr": 0.9166666666666666,
+          "map": 0.9166666666666666,
+          "hit_rate@1": 0.8333333333333334,
+          "precision@1": 0.8333333333333334,
+          "recall@1": 0.8333333333333334,
+          "ndcg@1": 0.8333333333333334,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.9384882922619097
+        }
+      },
+      {
+        "bm25_weight": 0.1,
+        "metrics": {
+          "mrr": 0.9166666666666666,
+          "map": 0.9166666666666666,
+          "hit_rate@1": 0.8333333333333334,
+          "precision@1": 0.8333333333333334,
+          "recall@1": 0.8333333333333334,
+          "ndcg@1": 0.8333333333333334,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.9384882922619097
+        }
+      },
+      {
+        "bm25_weight": 0.2,
+        "metrics": {
+          "mrr": 0.9166666666666666,
+          "map": 0.9166666666666666,
+          "hit_rate@1": 0.8333333333333334,
+          "precision@1": 0.8333333333333334,
+          "recall@1": 0.8333333333333334,
+          "ndcg@1": 0.8333333333333334,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.9384882922619097
+        }
+      },
+      {
+        "bm25_weight": 0.3,
+        "metrics": {
+          "mrr": 0.9166666666666666,
+          "map": 0.9166666666666666,
+          "hit_rate@1": 0.8333333333333334,
+          "precision@1": 0.8333333333333334,
+          "recall@1": 0.8333333333333334,
+          "ndcg@1": 0.8333333333333334,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.9384882922619097
+        }
+      },
+      {
+        "bm25_weight": 0.4,
+        "metrics": {
+          "mrr": 0.9166666666666666,
+          "map": 0.9166666666666666,
+          "hit_rate@1": 0.8333333333333334,
+          "precision@1": 0.8333333333333334,
+          "recall@1": 0.8333333333333334,
+          "ndcg@1": 0.8333333333333334,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.9384882922619097
+        }
+      },
+      {
+        "bm25_weight": 0.5,
+        "metrics": {
+          "mrr": 0.8333333333333334,
+          "map": 0.8333333333333334,
+          "hit_rate@1": 0.6666666666666666,
+          "precision@1": 0.6666666666666666,
+          "recall@1": 0.6666666666666666,
+          "ndcg@1": 0.6666666666666666,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.8769765845238192
+        }
+      },
+      {
+        "bm25_weight": 0.6,
+        "metrics": {
+          "mrr": 0.8333333333333334,
+          "map": 0.8333333333333334,
+          "hit_rate@1": 0.6666666666666666,
+          "precision@1": 0.6666666666666666,
+          "recall@1": 0.6666666666666666,
+          "ndcg@1": 0.6666666666666666,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.8769765845238192
+        }
+      },
+      {
+        "bm25_weight": 0.7,
+        "metrics": {
+          "mrr": 0.8333333333333334,
+          "map": 0.8333333333333334,
+          "hit_rate@1": 0.6666666666666666,
+          "precision@1": 0.6666666666666666,
+          "recall@1": 0.6666666666666666,
+          "ndcg@1": 0.6666666666666666,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.8769765845238192
+        }
+      },
+      {
+        "bm25_weight": 0.8,
+        "metrics": {
+          "mrr": 0.8333333333333334,
+          "map": 0.8333333333333334,
+          "hit_rate@1": 0.6666666666666666,
+          "precision@1": 0.6666666666666666,
+          "recall@1": 0.6666666666666666,
+          "ndcg@1": 0.6666666666666666,
+          "hit_rate@3": 1.0,
+          "precision@3": 0.3333333333333333,
+          "recall@3": 1.0,
+          "ndcg@3": 0.8769765845238192
+        }
+      },
+      {
+        "bm25_weight": 0.9,
+        "metrics": {
+          "mrr": 0.7916666666666666,
+          "map": 0.7916666666666666,
+          "hit_rate@1": 0.6666666666666666,
+          "precision@1": 0.6666666666666666,
+          "recall@1": 0.6666666666666666,
+          "ndcg@1": 0.6666666666666666,
+          "hit_rate@3": 0.8333333333333334,
+          "precision@3": 0.27777777777777773,
+          "recall@3": 0.8333333333333334,
+          "ndcg@3": 0.7718216255952429
+        }
+      },
+      {
+        "bm25_weight": 1.0,
+        "metrics": {
+          "mrr": 0.6527777777777778,
+          "map": 0.6527777777777778,
+          "hit_rate@1": 0.5,
+          "precision@1": 0.5,
+          "recall@1": 0.5,
+          "ndcg@1": 0.5,
+          "hit_rate@3": 0.6666666666666666,
+          "precision@3": 0.2222222222222222,
+          "recall@3": 0.6666666666666666,
+          "ndcg@3": 0.6051549589285763
+        }
+      }
+    ]
+  },
+  "scales": [
+    {
+      "documents": 10,
+      "metrics": {
+        "bm25": {
+          "mrr": 0.85,
+          "map": 0.85,
+          "hit_rate@1": 0.8,
+          "precision@1": 0.8,
+          "recall@1": 0.8,
+          "ndcg@1": 0.8,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.8630929753571458
+        },
+        "hashing": {
+          "mrr": 0.835,
+          "map": 0.835,
+          "hit_rate@1": 0.8,
+          "precision@1": 0.8,
+          "recall@1": 0.8,
+          "ndcg@1": 0.8,
+          "hit_rate@3": 0.8,
+          "precision@3": 0.26666666666666666,
+          "recall@3": 0.8,
+          "ndcg@3": 0.8
+        },
+        "pretrained": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        },
+        "hybrid": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        }
+      },
+      "mean_query_ms": {
+        "bm25": 0.04871149999985391,
+        "hashing": 0.3326125000000957,
+        "pretrained": 8.750596200007976,
+        "hybrid": 8.83108680000646
+      },
+      "build_ms": {
+        "bm25": 0.1371170000084021,
+        "hashing": 0.5545579999761685,
+        "pretrained": 39.79404599999725
+      },
+      "footprint": {
+        "bm25_vocabulary_terms": 111,
+        "bm25_posting_entries": 150,
+        "hashing_logical_float32_bytes": 10240,
+        "pretrained_logical_float32_bytes": 15360
+      },
+      "top1": {
+        "bm25": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d8",
+          "s2": "d6",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hashing": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d2",
+          "s2": "d6",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "pretrained": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hybrid": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        }
+      }
+    },
+    {
+      "documents": 100,
+      "metrics": {
+        "bm25": {
+          "mrr": 0.85,
+          "map": 0.85,
+          "hit_rate@1": 0.8,
+          "precision@1": 0.8,
+          "recall@1": 0.8,
+          "ndcg@1": 0.8,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.8630929753571458
+        },
+        "hashing": {
+          "mrr": 0.7333333333333333,
+          "map": 0.7333333333333333,
+          "hit_rate@1": 0.7,
+          "precision@1": 0.7,
+          "recall@1": 0.7,
+          "ndcg@1": 0.7,
+          "hit_rate@3": 0.8,
+          "precision@3": 0.26666666666666666,
+          "recall@3": 0.8,
+          "ndcg@3": 0.75
+        },
+        "pretrained": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        },
+        "hybrid": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        }
+      },
+      "mean_query_ms": {
+        "bm25": 0.05685269999275988,
+        "hashing": 2.5708115999918846,
+        "pretrained": 8.475697999989507,
+        "hybrid": 8.613265599996112
+      },
+      "build_ms": {
+        "bm25": 1.272722999999587,
+        "hashing": 3.884277999986807,
+        "pretrained": 358.1937749999611
+      },
+      "footprint": {
+        "bm25_vocabulary_terms": 262,
+        "bm25_posting_entries": 1636,
+        "hashing_logical_float32_bytes": 102400,
+        "pretrained_logical_float32_bytes": 153600
+      },
+      "top1": {
+        "bm25": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d8",
+          "s2": "d6",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hashing": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "scale-00088",
+          "s2": "scale-00004",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "pretrained": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hybrid": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        }
+      }
+    },
+    {
+      "documents": 1000,
+      "metrics": {
+        "bm25": {
+          "mrr": 0.85,
+          "map": 0.85,
+          "hit_rate@1": 0.8,
+          "precision@1": 0.8,
+          "recall@1": 0.8,
+          "ndcg@1": 0.8,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.8630929753571458
+        },
+        "hashing": {
+          "mrr": 0.7333333333333333,
+          "map": 0.7333333333333333,
+          "hit_rate@1": 0.7,
+          "precision@1": 0.7,
+          "recall@1": 0.7,
+          "ndcg@1": 0.7,
+          "hit_rate@3": 0.8,
+          "precision@3": 0.26666666666666666,
+          "recall@3": 0.8,
+          "ndcg@3": 0.75
+        },
+        "pretrained": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        },
+        "hybrid": {
+          "mrr": 0.925,
+          "map": 0.925,
+          "hit_rate@1": 0.9,
+          "precision@1": 0.9,
+          "recall@1": 0.9,
+          "ndcg@1": 0.9,
+          "hit_rate@3": 0.9,
+          "precision@3": 0.3,
+          "recall@3": 0.9,
+          "ndcg@3": 0.9
+        }
+      },
+      "mean_query_ms": {
+        "bm25": 0.18075700001531914,
+        "hashing": 25.75595199999725,
+        "pretrained": 9.495771000001696,
+        "hybrid": 9.762295400020093
+      },
+      "build_ms": {
+        "bm25": 12.05949799998507,
+        "hashing": 43.3711379999977,
+        "pretrained": 3599.361036000005
+      },
+      "footprint": {
+        "bm25_vocabulary_terms": 1166,
+        "bm25_posting_entries": 16584,
+        "hashing_logical_float32_bytes": 1024000,
+        "pretrained_logical_float32_bytes": 1536000
+      },
+      "top1": {
+        "bm25": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d8",
+          "s2": "d6",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hashing": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "scale-00094",
+          "s2": "scale-00004",
+          "s3": "d5",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "pretrained": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        },
+        "hybrid": {
+          "e1": "d1",
+          "e2": "d3",
+          "e3": "d6",
+          "e4": "d7",
+          "e5": "d8",
+          "s1": "d5",
+          "s2": "d10",
+          "s3": "d7",
+          "s4": "d8",
+          "s5": "d10"
+        }
+      }
+    }
+  ]
+}

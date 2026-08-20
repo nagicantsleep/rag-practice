@@ -1,0 +1,199 @@
+{
+  "experiment_id": "m02_colbertv2_checkpoint_v1",
+  "benchmark": "benchmarks/m02_retrieval@v1",
+  "scope": "Full pretrained ColBERTv2 checkpoint with exhaustive MaxSim reranking over all 10 documents; no PLAID/ANN index.",
+  "model": {
+    "name": "colbert-ir/colbertv2.0",
+    "resolved_revision": "c1e84128e85ef755c096a95bdb06b47793b13acf",
+    "pylate_version": "1.6.0",
+    "device": "cpu"
+  },
+  "metrics": {
+    "all": {
+      "mrr": 0.95,
+      "map": 0.95,
+      "hit_rate@1": 0.9,
+      "precision@1": 0.9,
+      "recall@1": 0.9,
+      "ndcg@1": 0.9,
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 0.9630929753571458
+    },
+    "exact": {
+      "mrr": 1.0,
+      "map": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@1": 1.0,
+      "recall@1": 1.0,
+      "ndcg@1": 1.0,
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 1.0
+    },
+    "semantic": {
+      "mrr": 0.9,
+      "map": 0.9,
+      "hit_rate@1": 0.8,
+      "precision@1": 0.8,
+      "recall@1": 0.8,
+      "ndcg@1": 0.8,
+      "hit_rate@3": 1.0,
+      "precision@3": 0.3333333333333333,
+      "recall@3": 1.0,
+      "ndcg@3": 0.9261859507142916
+    }
+  },
+  "system": {
+    "snapshot_resolution_ms": 9671.027325000012,
+    "model_load_ms": 167.87647099999958,
+    "document_encoding_ms": 282.96765600003937,
+    "mean_query_ms": 59.544257499999276,
+    "document_token_vectors": 211,
+    "logical_embedding_bytes": 108032
+  },
+  "per_query": [
+    {
+      "id": "e1",
+      "class": "exact",
+      "query": "python programming language created by",
+      "relevant": [
+        "d1"
+      ],
+      "top1": "d1",
+      "top3": [
+        "d1",
+        "d2",
+        "d10"
+      ]
+    },
+    {
+      "id": "e2",
+      "class": "exact",
+      "query": "probabilistic ranking function search engines",
+      "relevant": [
+        "d3"
+      ],
+      "top1": "d3",
+      "top3": [
+        "d3",
+        "d9",
+        "d7"
+      ]
+    },
+    {
+      "id": "e3",
+      "class": "exact",
+      "query": "retrieval augmented generation external document retrieval language model",
+      "relevant": [
+        "d6"
+      ],
+      "top1": "d6",
+      "top3": [
+        "d6",
+        "d5",
+        "d9"
+      ]
+    },
+    {
+      "id": "e4",
+      "class": "exact",
+      "query": "reciprocal rank fusion ranked result lists",
+      "relevant": [
+        "d7"
+      ],
+      "top1": "d7",
+      "top3": [
+        "d7",
+        "d3",
+        "d9"
+      ]
+    },
+    {
+      "id": "e5",
+      "class": "exact",
+      "query": "cosine similarity angle between vectors",
+      "relevant": [
+        "d8"
+      ],
+      "top1": "d8",
+      "top3": [
+        "d8",
+        "d5",
+        "d7"
+      ]
+    },
+    {
+      "id": "s1",
+      "class": "semantic",
+      "query": "conceptual likeness between paraphrases",
+      "relevant": [
+        "d5"
+      ],
+      "top1": "d8",
+      "top3": [
+        "d8",
+        "d5",
+        "d7"
+      ]
+    },
+    {
+      "id": "s2",
+      "class": "semantic",
+      "query": "evidence lookup combined with a text generator",
+      "relevant": [
+        "d6"
+      ],
+      "top1": "d6",
+      "top3": [
+        "d6",
+        "d10",
+        "d5"
+      ]
+    },
+    {
+      "id": "s3",
+      "class": "semantic",
+      "query": "combine rankings even when their scores are incomparable",
+      "relevant": [
+        "d7"
+      ],
+      "top1": "d7",
+      "top3": [
+        "d7",
+        "d3",
+        "d8"
+      ]
+    },
+    {
+      "id": "s4",
+      "class": "semantic",
+      "query": "orientation of numerical representations",
+      "relevant": [
+        "d8"
+      ],
+      "top1": "d8",
+      "top3": [
+        "d8",
+        "d7",
+        "d3"
+      ]
+    },
+    {
+      "id": "s5",
+      "class": "semantic",
+      "query": "unsupported claims from a predictive text system",
+      "relevant": [
+        "d10"
+      ],
+      "top1": "d10",
+      "top3": [
+        "d10",
+        "d5",
+        "d9"
+      ]
+    }
+  ]
+}

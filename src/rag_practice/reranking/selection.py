@@ -162,3 +162,33 @@ def context_source_utilization(candidates: Iterable[RankedCandidate]) -> float:
     for item in items:
         unique_positions.update((item.document_id, position) for position in _source_positions(item))
     return len(unique_positions) / context_words
+
+
+def source_order(candidates: Iterable[RankedCandidate]) -> list[RankedCandidate]:
+    """Order selected context by source document and source position."""
+
+    return sorted(candidates, key=lambda item: (item.document_id, item.start_word, item.end_word, item.id))
+
+
+def edge_biased_order(candidates: Iterable[RankedCandidate]) -> list[RankedCandidate]:
+    """Place higher-ranked evidence near context edges while preserving the set.
+
+    Rank 1 goes first, rank 2 last, rank 3 second, rank 4 second-last, and so on.
+    This is an explicit ordering experiment rather than a claim of universal
+    lost-in-the-middle mitigation.
+    """
+
+    items = list(candidates)
+    if len(items) <= 2:
+        return items
+    ordered: list[RankedCandidate | None] = [None] * len(items)
+    left = 0
+    right = len(items) - 1
+    for index, item in enumerate(items):
+        if index % 2 == 0:
+            ordered[left] = item
+            left += 1
+        else:
+            ordered[right] = item
+            right -= 1
+    return [item for item in ordered if item is not None]

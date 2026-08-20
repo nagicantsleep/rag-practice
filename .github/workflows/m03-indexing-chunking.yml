@@ -8,8 +8,6 @@ on:
       - labs/03_indexing_chunking/results/phase1.json
       - labs/03_indexing_chunking/results/phase1.md
   pull_request:
-    branches:
-      - main
 
 permissions:
   contents: write

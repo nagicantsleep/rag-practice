@@ -13,7 +13,7 @@ All policies share the same frozen BM25 top-6 candidate sets. Source-order and e
 | cross_pack100_edge_order | 0.800 | 1.000 | 0.904 | 84.4 | 0.387 | 1.000 | 0.452 | 0.575 |
 | llm_pack100_relevance | 0.800 | 1.000 | 0.819 | 83.2 | 0.387 | 1.000 | 0.452 | 0.575 |
 
-Mean cross-encoder rerank latency: **67.35 ms/query**  
-Mean pointwise FLAN rerank latency: **325.13 ms/query**
+Mean cross-encoder rerank latency: **74.52 ms/query**  
+Mean pointwise FLAN rerank latency: **359.55 ms/query**
 
 Extractive generation is qrel-blind and deterministic. FLAN receives only question + ordered context. References are used only after generation for evaluation.

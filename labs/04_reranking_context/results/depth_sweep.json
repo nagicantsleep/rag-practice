@@ -21,7 +21,7 @@
         "source_token_utilization@3": 0.6401256972517625,
         "relevant_context_fraction@3": 0.833344187561055
       },
-      "mean_rerank_ms": 34.13311959999987
+      "mean_rerank_ms": 37.37609060001432
     },
     {
       "candidate_k": 4,
@@ -36,7 +36,7 @@
         "source_token_utilization@3": 0.6303954802259887,
         "relevant_context_fraction@3": 0.757657935285054
       },
-      "mean_rerank_ms": 48.783686199999465
+      "mean_rerank_ms": 56.74640619999991
     },
     {
       "candidate_k": 6,
@@ -51,7 +51,7 @@
         "source_token_utilization@3": 0.6317788794354748,
         "relevant_context_fraction@3": 0.8139161698041579
       },
-      "mean_rerank_ms": 71.09982380000588
+      "mean_rerank_ms": 79.05400699999063
     }
   ],
   "warning": "Tiny controlled corpus and CPU timings. This measures the retrieve-many/rerank-few mechanism, not production throughput."

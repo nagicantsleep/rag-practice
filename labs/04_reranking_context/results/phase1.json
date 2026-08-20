@@ -53,8 +53,8 @@
     }
   },
   "system": {
-    "model_load_ms": 7543.956634000011,
-    "mean_rerank_ms": 67.28918020000378,
+    "model_load_ms": 5180.246939,
+    "mean_rerank_ms": 79.37457339999696,
     "mean_packed_source_utilization": 0.6537910479957649
   },
   "per_query": [

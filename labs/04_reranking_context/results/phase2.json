@@ -52,7 +52,7 @@
         "contains_reference": 0.2,
         "grounded_token_recall": 0.775
       },
-      "mean_flan_generation_ms": 270.3010172000006
+      "mean_flan_generation_ms": 300.4324009999891
     },
     "cross_encoder_top3": {
       "context": {
@@ -76,7 +76,7 @@
         "contains_reference": 0.6,
         "grounded_token_recall": 0.775
       },
-      "mean_flan_generation_ms": 378.9519938000012
+      "mean_flan_generation_ms": 429.8758215999953
     },
     "cross_pack100_relevance": {
       "context": {
@@ -100,7 +100,7 @@
         "contains_reference": 0.2,
         "grounded_token_recall": 0.575
       },
-      "mean_flan_generation_ms": 238.31823300000679
+      "mean_flan_generation_ms": 271.03018699999666
     },
     "cross_pack100_source_order": {
       "context": {
@@ -124,7 +124,7 @@
         "contains_reference": 0.2,
         "grounded_token_recall": 0.575
       },
-      "mean_flan_generation_ms": 239.90830339999434
+      "mean_flan_generation_ms": 265.77864000000204
     },
     "cross_pack100_edge_order": {
       "context": {
@@ -148,7 +148,7 @@
         "contains_reference": 0.2,
         "grounded_token_recall": 0.575
       },
-      "mean_flan_generation_ms": 237.8288310000073
+      "mean_flan_generation_ms": 264.702602400007
     },
     "llm_pack100_relevance": {
       "context": {
@@ -172,14 +172,14 @@
         "contains_reference": 0.2,
         "grounded_token_recall": 0.575
       },
-      "mean_flan_generation_ms": 237.3559518000036
+      "mean_flan_generation_ms": 264.99164920000453
     }
   },
   "system": {
-    "cross_encoder_model_load_ms": 5691.413508000011,
-    "flan_model_load_ms": 4025.6711440000004,
-    "mean_cross_encoder_rerank_ms": 67.35489419999112,
-    "mean_pointwise_llm_rerank_ms": 325.1277420000122
+    "cross_encoder_model_load_ms": 5153.208355999994,
+    "flan_model_load_ms": 621.550706999983,
+    "mean_cross_encoder_rerank_ms": 74.51552539999398,
+    "mean_pointwise_llm_rerank_ms": 359.5458398000005
   },
   "per_query": {
     "q1": {

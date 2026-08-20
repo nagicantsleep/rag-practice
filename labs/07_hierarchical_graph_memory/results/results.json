@@ -6,14 +6,15 @@
     "flat_metadata_control": true,
     "gold_triples_isolate_graph_retrieval_from_information_extraction": true,
     "runtime_uses_no_qrels_or_reference_answers": true,
-    "generation_not_involved": "M07 isolates structured retrieval/context evidence; answer generation is intentionally not evaluated"
+    "generation_not_involved": "M07 isolates structured retrieval/context evidence; answer generation is intentionally not evaluated",
+    "light_rag_dual_level_is_post_hoc_exploratory": true
   },
   "retrieval": {
     "benchmark_queries": 10,
     "documents": 19,
     "systems": {
       "flat_bm25": {
-        "build_ms": 0.17372499996781698,
+        "build_ms": 0.14366599998538732,
         "metrics": {
           "mean_recall@3": 0.44666666666666666,
           "mean_recall@5": 0.5666666666666667,
@@ -21,7 +22,7 @@
           "mean_recall_at_evidence_budget": 0.37666666666666665,
           "evidence_complete_at_budget": 0.1,
           "mrr": 0.6599999999999999,
-          "mean_query_ms": 0.029421500005355483,
+          "mean_query_ms": 0.02695770000968878,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -81,7 +82,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.04886499999656735
+            "query_ms": 0.04001000002062938
           },
           {
             "query_id": "l2",
@@ -107,7 +108,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.02701200003230042
+            "query_ms": 0.024136000035923644
           },
           {
             "query_id": "m1",
@@ -136,7 +137,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.03637899999375804
+            "query_ms": 0.037437000003137655
           },
           {
             "query_id": "m2",
@@ -165,7 +166,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.034450999976343155
+            "query_ms": 0.03258899999991627
           },
           {
             "query_id": "m3",
@@ -194,7 +195,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.030277999996997096
+            "query_ms": 0.02963500003261288
           },
           {
             "query_id": "a1",
@@ -223,7 +224,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.025594000021555985
+            "query_ms": 0.0255990000255224
           },
           {
             "query_id": "g1",
@@ -259,7 +260,7 @@
             "recall_at_evidence_budget": 0.6,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.02772100003767264
+            "query_ms": 0.02277400000139096
           },
           {
             "query_id": "g2",
@@ -286,7 +287,7 @@
             "recall_at_evidence_budget": 0.5,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.015871000016431935
+            "query_ms": 0.01453200002288213
           },
           {
             "query_id": "h1",
@@ -315,7 +316,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.1,
-            "query_ms": 0.02446199999894816
+            "query_ms": 0.022493999949801946
           },
           {
             "query_id": "h2",
@@ -343,12 +344,12 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.0,
-            "query_ms": 0.02358199998298005
+            "query_ms": 0.020371000005070528
           }
         ]
       },
       "flat_metadata_bm25": {
-        "build_ms": 0.1476379999871824,
+        "build_ms": 0.14785199999778342,
         "metrics": {
           "mean_recall@3": 0.4966666666666667,
           "mean_recall@5": 0.7,
@@ -356,7 +357,7 @@
           "mean_recall_at_evidence_budget": 0.3933333333333333,
           "evidence_complete_at_budget": 0.1,
           "mrr": 0.7083333333333333,
-          "mean_query_ms": 0.03000539999788998,
+          "mean_query_ms": 0.02511580000259528,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -416,7 +417,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.02521099997920828
+            "query_ms": 0.0234550000186573
           },
           {
             "query_id": "l2",
@@ -442,7 +443,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.01876100003528336
+            "query_ms": 0.01749599999811835
           },
           {
             "query_id": "m1",
@@ -471,7 +472,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.0334449999854769
+            "query_ms": 0.030847000004996517
           },
           {
             "query_id": "m2",
@@ -500,7 +501,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.045747999990908284
+            "query_ms": 0.02764199996363459
           },
           {
             "query_id": "m3",
@@ -529,7 +530,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.030008999999608932
+            "query_ms": 0.02633000002560948
           },
           {
             "query_id": "a1",
@@ -558,7 +559,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.027176000003237277
+            "query_ms": 0.02435699997249685
           },
           {
             "query_id": "g1",
@@ -594,7 +595,7 @@
             "recall_at_evidence_budget": 0.6,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.029138000002149056
+            "query_ms": 0.0211310000395315
           },
           {
             "query_id": "g2",
@@ -626,7 +627,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.020607999999811
+            "query_ms": 0.016604999984792812
           },
           {
             "query_id": "h1",
@@ -655,7 +656,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.25,
-            "query_ms": 0.03618699997787189
+            "query_ms": 0.032959000009213923
           },
           {
             "query_id": "h2",
@@ -683,12 +684,12 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.3333333333333333,
-            "query_ms": 0.03377100000534483
+            "query_ms": 0.030336000008901465
           }
         ]
       },
       "raptor_style": {
-        "build_ms": 0.2767739999853802,
+        "build_ms": 0.25958100002299034,
         "metrics": {
           "mean_recall@3": 0.63,
           "mean_recall@5": 0.6833333333333333,
@@ -696,7 +697,7 @@
           "mean_recall_at_evidence_budget": 0.5599999999999999,
           "evidence_complete_at_budget": 0.3,
           "mrr": 0.725,
-          "mean_query_ms": 0.17382749999228508,
+          "mean_query_ms": 0.15054880000775483,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -756,7 +757,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.25966599997673256
+            "query_ms": 0.20525900004031428
           },
           {
             "query_id": "l2",
@@ -783,7 +784,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.1852249999956257
+            "query_ms": 0.19276000000445492
           },
           {
             "query_id": "m1",
@@ -812,7 +813,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.1994009999748414
+            "query_ms": 0.17853899998954148
           },
           {
             "query_id": "m2",
@@ -841,7 +842,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.18390000002455054
+            "query_ms": 0.16868399995928485
           },
           {
             "query_id": "m3",
@@ -870,7 +871,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.17939800000021933
+            "query_ms": 0.1618740000139951
           },
           {
             "query_id": "a1",
@@ -899,7 +900,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.25,
-            "query_ms": 0.24175400000103764
+            "query_ms": 0.16473800002358985
           },
           {
             "query_id": "g1",
@@ -935,7 +936,7 @@
             "recall_at_evidence_budget": 0.6,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.1621549999981653
+            "query_ms": 0.14808299999913288
           },
           {
             "query_id": "g2",
@@ -956,7 +957,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.0,
-            "query_ms": 0.03398799998421964
+            "query_ms": 0.030076000030021532
           },
           {
             "query_id": "h1",
@@ -985,7 +986,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.15549199997622054
+            "query_ms": 0.13692600003878397
           },
           {
             "query_id": "h2",
@@ -1013,7 +1014,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.1372959999912382
+            "query_ms": 0.11854899997842949
           }
         ],
         "structure": {
@@ -1023,7 +1024,7 @@
         }
       },
       "kag_path": {
-        "build_ms": 0.12943399997311644,
+        "build_ms": 0.11336000000028434,
         "metrics": {
           "mean_recall@3": 0.7166666666666667,
           "mean_recall@5": 0.7166666666666667,
@@ -1031,7 +1032,7 @@
           "mean_recall_at_evidence_budget": 0.7166666666666667,
           "evidence_complete_at_budget": 0.6,
           "mrr": 0.8,
-          "mean_query_ms": 0.030907099994692544,
+          "mean_query_ms": 0.024455899989561658,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -1082,7 +1083,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.04110399999035508
+            "query_ms": 0.03392099995380704
           },
           {
             "query_id": "l2",
@@ -1100,7 +1101,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.029604999951970967
+            "query_ms": 0.02609000000575179
           },
           {
             "query_id": "m1",
@@ -1122,7 +1123,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.033286000018506456
+            "query_ms": 0.02747100000988212
           },
           {
             "query_id": "m2",
@@ -1144,7 +1145,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.030084999991686345
+            "query_ms": 0.025808999964738177
           },
           {
             "query_id": "m3",
@@ -1166,7 +1167,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.03028300000096351
+            "query_ms": 0.021522999986700597
           },
           {
             "query_id": "a1",
@@ -1188,7 +1189,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.03769500000316839
+            "query_ms": 0.03202800002100048
           },
           {
             "query_id": "g1",
@@ -1213,7 +1214,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.0,
-            "query_ms": 0.015759000007165014
+            "query_ms": 0.01279999997905179
           },
           {
             "query_id": "g2",
@@ -1237,7 +1238,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.03901700000596975
+            "query_ms": 0.024405999965892988
           },
           {
             "query_id": "h1",
@@ -1258,7 +1259,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.029413999982352834
+            "query_ms": 0.021011999990605545
           },
           {
             "query_id": "h2",
@@ -1278,7 +1279,7 @@
             "recall_at_evidence_budget": 0.5,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.022822999994787097
+            "query_ms": 0.019499000018186052
           }
         ],
         "structure": {
@@ -1287,7 +1288,7 @@
         }
       },
       "graph_global": {
-        "build_ms": 0.12943399997311644,
+        "build_ms": 0.11336000000028434,
         "metrics": {
           "mean_recall@3": 0.58,
           "mean_recall@5": 0.7666666666666667,
@@ -1295,7 +1296,7 @@
           "mean_recall_at_evidence_budget": 0.7,
           "evidence_complete_at_budget": 0.6,
           "mrr": 0.8083333333333333,
-          "mean_query_ms": 0.07380140000350366,
+          "mean_query_ms": 0.06603350000773389,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -1355,7 +1356,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.13026900001023023
+            "query_ms": 0.11287000000947955
           },
           {
             "query_id": "l2",
@@ -1382,7 +1383,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.07333899998229754
+            "query_ms": 0.05951999997932944
           },
           {
             "query_id": "m1",
@@ -1411,7 +1412,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.3333333333333333,
-            "query_ms": 0.09293300001900207
+            "query_ms": 0.07801700002119105
           },
           {
             "query_id": "m2",
@@ -1440,7 +1441,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.25,
-            "query_ms": 0.08307299998477902
+            "query_ms": 0.08835299996690082
           },
           {
             "query_id": "m3",
@@ -1469,7 +1470,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.0788450000186458
+            "query_ms": 0.0806020000254648
           },
           {
             "query_id": "a1",
@@ -1498,7 +1499,7 @@
             "recall_at_evidence_budget": 0.3333333333333333,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.07062399998858382
+            "query_ms": 0.05925900001102491
           },
           {
             "query_id": "g1",
@@ -1534,7 +1535,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.07108400001243353
+            "query_ms": 0.06149300003244207
           },
           {
             "query_id": "g2",
@@ -1562,7 +1563,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.05032500001789231
+            "query_ms": 0.04427700002906931
           },
           {
             "query_id": "h1",
@@ -1587,7 +1588,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.047833999985869013
+            "query_ms": 0.04280399997469431
           },
           {
             "query_id": "h2",
@@ -1609,7 +1610,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.03968800001530326
+            "query_ms": 0.033140000027742644
           }
         ],
         "structure": {
@@ -1617,8 +1618,304 @@
           "graph_edges": 24
         }
       },
+      "light_rag_dual": {
+        "build_ms": 0.11336000000028434,
+        "metrics": {
+          "mean_recall@3": 0.8800000000000001,
+          "mean_recall@5": 0.9333333333333333,
+          "mean_recall@10": 1.0,
+          "mean_recall_at_evidence_budget": 1.0,
+          "evidence_complete_at_budget": 1.0,
+          "mrr": 1.0,
+          "mean_query_ms": 0.04691869999078335,
+          "by_task": {
+            "associative": {
+              "queries": 1,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "global_relation": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "hierarchical": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "local": {
+              "queries": 2,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            },
+            "multi_hop": {
+              "queries": 3,
+              "mean_recall_at_evidence_budget": 1.0,
+              "evidence_complete_at_budget": 1.0,
+              "mrr": 1.0
+            }
+          }
+        },
+        "traces": [
+          {
+            "query_id": "l1",
+            "task": "local",
+            "query": "Where is Aurora Lab located?",
+            "relevant": [
+              "d1"
+            ],
+            "ranking": [
+              "d1"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.036104000002978864,
+            "route_level": "low"
+          },
+          {
+            "query_id": "l2",
+            "task": "local",
+            "query": "What does Reef Lab studies?",
+            "relevant": [
+              "d17"
+            ],
+            "ranking": [
+              "d17"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03320000001849621,
+            "route_level": "low"
+          },
+          {
+            "query_id": "m1",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Aurora Lab?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "ranking": [
+              "d1",
+              "d3",
+              "d4"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03677499995546896,
+            "route_level": "low"
+          },
+          {
+            "query_id": "m2",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Vega Lab?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.03481199996713258,
+            "route_level": "low"
+          },
+          {
+            "query_id": "m3",
+            "task": "multi_hop",
+            "query": "Which currency is used in the country containing Cedar Lab?",
+            "relevant": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "ranking": [
+              "d9",
+              "d11",
+              "d12"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.036274999956731335,
+            "route_level": "low"
+          },
+          {
+            "query_id": "a1",
+            "task": "associative",
+            "query": "Which Atlas Network lab is connected to euro?",
+            "relevant": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "ranking": [
+              "d5",
+              "d7",
+              "d8"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.045448999969721626,
+            "route_level": "low"
+          },
+          {
+            "query_id": "g1",
+            "task": "global_relation",
+            "query": "Which network has labs in the most distinct countries?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11",
+              "d13",
+              "d15",
+              "d16",
+              "d18"
+            ],
+            "ranking": [
+              "d11",
+              "d15",
+              "d18",
+              "d3",
+              "d7",
+              "d1",
+              "d13",
+              "d16",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 0.3,
+            "recall@5": 0.5,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.08020100000294406,
+            "route_level": "high"
+          },
+          {
+            "query_id": "g2",
+            "task": "global_relation",
+            "query": "Which countries host Atlas Network labs?",
+            "relevant": [
+              "d1",
+              "d3",
+              "d5",
+              "d7",
+              "d9",
+              "d11"
+            ],
+            "ranking": [
+              "d11",
+              "d3",
+              "d7",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 0.5,
+            "recall@5": 0.8333333333333334,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.058398000021497865,
+            "route_level": "high"
+          },
+          {
+            "query_id": "h1",
+            "task": "hierarchical",
+            "query": "What does Atlas Network labs studies across the collection?",
+            "relevant": [
+              "d2",
+              "d6",
+              "d10"
+            ],
+            "ranking": [
+              "d10",
+              "d2",
+              "d6",
+              "d1",
+              "d5",
+              "d9"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.05466300001444324,
+            "route_level": "high"
+          },
+          {
+            "query_id": "h2",
+            "task": "hierarchical",
+            "query": "What does Pelagic Network sites studies across the collection?",
+            "relevant": [
+              "d14",
+              "d17"
+            ],
+            "ranking": [
+              "d14",
+              "d17",
+              "d13",
+              "d16"
+            ],
+            "recall@3": 1.0,
+            "recall@5": 1.0,
+            "recall@10": 1.0,
+            "recall_at_evidence_budget": 1.0,
+            "evidence_complete_at_budget": 1.0,
+            "reciprocal_rank": 1.0,
+            "query_ms": 0.05330999999841879,
+            "route_level": "high"
+          }
+        ],
+        "structure": {
+          "graph_nodes": 24,
+          "graph_edges": 24
+        },
+        "evaluation_note": "post-hoc exploratory: dual-level controller added after first M07 benchmark inspection; do not treat its aggregate score as fresh held-out evidence"
+      },
       "hipporag_ppr": {
-        "build_ms": 0.12943399997311644,
+        "build_ms": 0.11336000000028434,
         "metrics": {
           "mean_recall@3": 0.63,
           "mean_recall@5": 0.7666666666666666,
@@ -1626,7 +1923,7 @@
           "mean_recall_at_evidence_budget": 0.52,
           "evidence_complete_at_budget": 0.2,
           "mrr": 0.8083333333333333,
-          "mean_query_ms": 0.3147705999936079,
+          "mean_query_ms": 0.2862789000118937,
           "by_task": {
             "associative": {
               "queries": 1,
@@ -1686,7 +1983,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.3043380000349316
+            "query_ms": 0.2809220000017376
           },
           {
             "query_id": "l2",
@@ -1713,7 +2010,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.5,
-            "query_ms": 0.2808499999673586
+            "query_ms": 0.25701700002400685
           },
           {
             "query_id": "m1",
@@ -1742,7 +2039,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.2856649999785077
+            "query_ms": 0.2681740000411992
           },
           {
             "query_id": "m2",
@@ -1771,7 +2068,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.3103579999788053
+            "query_ms": 0.2712780000138082
           },
           {
             "query_id": "m3",
@@ -1800,7 +2097,7 @@
             "recall_at_evidence_budget": 0.6666666666666666,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.2948489999994308
+            "query_ms": 0.2594910000084383
           },
           {
             "query_id": "a1",
@@ -1829,7 +2126,7 @@
             "recall_at_evidence_budget": 1.0,
             "evidence_complete_at_budget": 1.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.5268069999715408
+            "query_ms": 0.4913989999977275
           },
           {
             "query_id": "g1",
@@ -1865,7 +2162,7 @@
             "recall_at_evidence_budget": 0.7,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.3092989999800011
+            "query_ms": 0.26957599999377635
           },
           {
             "query_id": "g2",
@@ -1897,7 +2194,7 @@
             "recall_at_evidence_budget": 0.5,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 1.0,
-            "query_ms": 0.26887199999237055
+            "query_ms": 0.24346700001842692
           },
           {
             "query_id": "h1",
@@ -1926,7 +2223,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.25,
-            "query_ms": 0.27889099999356404
+            "query_ms": 0.2502570000046944
           },
           {
             "query_id": "h2",
@@ -1954,7 +2251,7 @@
             "recall_at_evidence_budget": 0.0,
             "evidence_complete_at_budget": 0.0,
             "reciprocal_rank": 0.3333333333333333,
-            "query_ms": 0.2877770000395685
+            "query_ms": 0.2712080000151218
           }
         ],
         "structure": {
@@ -1974,7 +2271,7 @@
           "current_hit@1": 0.0,
           "previous_hit@1": 1.0,
           "stale_current_rate": 1.0,
-          "mean_query_ms": 0.022913249992484452
+          "mean_query_ms": 0.019469249977532854
         },
         "traces": [
           {
@@ -1991,7 +2288,7 @@
               "mem3"
             ],
             "hit@1": 0.0,
-            "query_ms": 0.02647700000579789
+            "query_ms": 0.022814999965703464
           },
           {
             "query_id": "t2",
@@ -2007,7 +2304,7 @@
               "mem3"
             ],
             "hit@1": 1.0,
-            "query_ms": 0.023151999982928828
+            "query_ms": 0.019689999987804185
           },
           {
             "query_id": "t3",
@@ -2023,7 +2320,7 @@
               "mem6"
             ],
             "hit@1": 0.0,
-            "query_ms": 0.021580999998604966
+            "query_ms": 0.018517000000883854
           },
           {
             "query_id": "t4",
@@ -2039,10 +2336,10 @@
               "mem5"
             ],
             "hit@1": 0.0,
-            "query_ms": 0.020442999982606125
+            "query_ms": 0.016854999955739913
           }
         ],
-        "build_ms": 0.04548900000145295
+        "build_ms": 0.03973000002588378
       },
       "temporal_memory": {
         "metrics": {
@@ -2050,7 +2347,7 @@
           "current_hit@1": 1.0,
           "previous_hit@1": 1.0,
           "stale_current_rate": 0.0,
-          "mean_query_ms": 0.030594500003644498
+          "mean_query_ms": 0.025222750011266726
         },
         "traces": [
           {
@@ -2066,7 +2363,7 @@
               "mem6"
             ],
             "hit@1": 1.0,
-            "query_ms": 0.031933000002482004
+            "query_ms": 0.02606900000046153
           },
           {
             "query_id": "t2",
@@ -2081,7 +2378,7 @@
               "mem3"
             ],
             "hit@1": 1.0,
-            "query_ms": 0.03394399999478992
+            "query_ms": 0.02748100001781495
           },
           {
             "query_id": "t3",
@@ -2096,7 +2393,7 @@
               "mem4"
             ],
             "hit@1": 1.0,
-            "query_ms": 0.03086700002086218
+            "query_ms": 0.025368000024172943
           },
           {
             "query_id": "t4",
@@ -2111,11 +2408,11 @@
               "mem4"
             ],
             "hit@1": 1.0,
-            "query_ms": 0.02563399999644389
+            "query_ms": 0.021973000002617482
           }
         ],
-        "build_ms": 0.026789999992615776,
-        "mean_update_ms": 0.03270033334956679,
+        "build_ms": 0.022884000031808682,
+        "mean_update_ms": 0.028064999999818003,
         "structure": {
           "memory_events": 6,
           "memory_keys": 3

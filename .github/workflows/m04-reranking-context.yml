@@ -9,6 +9,8 @@ on:
       - labs/04_reranking_context/results/phase1.md
       - labs/04_reranking_context/results/phase2.json
       - labs/04_reranking_context/results/phase2.md
+      - labs/04_reranking_context/results/depth_sweep.json
+      - labs/04_reranking_context/results/depth_sweep.md
   pull_request:
 
 permissions:
@@ -39,6 +41,8 @@ jobs:
         run: python labs/04_reranking_context/run_phase1.py
       - name: Evaluate LLM reranking, ordering, and answer quality
         run: python labs/04_reranking_context/run_phase2.py
+      - name: Evaluate candidate-depth latency quality trade-off
+        run: python labs/04_reranking_context/run_depth_sweep.py
       - name: Persist M04 evaluation evidence on feature branch
         if: github.event_name == 'push'
         run: |
@@ -48,6 +52,8 @@ jobs:
           git add labs/04_reranking_context/results/phase1.md
           git add labs/04_reranking_context/results/phase2.json
           git add labs/04_reranking_context/results/phase2.md
+          git add labs/04_reranking_context/results/depth_sweep.json
+          git add labs/04_reranking_context/results/depth_sweep.md
           if ! git diff --cached --quiet; then
             git commit -m "test: record M04 reranking and generation evaluation [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}

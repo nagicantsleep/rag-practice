@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - labs/05_query_transform/results/baseline.json
       - labs/05_query_transform/results/baseline.md
+      - labs/05_query_transform/results/capacity_base.json
+      - labs/05_query_transform/results/capacity_base.md
       - labs/05_query_transform/results/m05_summary.md
   pull_request:
 
@@ -16,7 +18,7 @@ permissions:
 jobs:
   evaluate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,12 +31,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: hf-m05-${{ runner.os }}-flan-0fc9ddf-minilm-1c82ace
+          key: hf-m05-${{ runner.os }}-flan-small-0fc9ddf-flan-base-7bcac57-minilm-1c82ace
       - name: Install project with pretrained evaluation extras
         run: python -m pip install -e ".[dev,neural,pretrained]"
       - name: Run full test suite
         run: pytest -q
-      - name: Evaluate query transformations
+      - name: Evaluate query transformations with FLAN-T5-small
+        run: python labs/05_query_transform/run.py
+      - name: Evaluate transformer capacity control with FLAN-T5-base
+        env:
+          M05_FLAN_MODEL: google/flan-t5-base
+          M05_FLAN_REVISION: 7bcac572ce56db69c1ea7c8af255c5d7c9672fc2
+          M05_OUTPUT_STEM: capacity_base
         run: python labs/05_query_transform/run.py
       - name: Persist M05 evaluation evidence on feature branch
         if: github.event_name == 'push'
@@ -43,7 +51,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add labs/05_query_transform/results/baseline.json
           git add labs/05_query_transform/results/baseline.md
+          git add labs/05_query_transform/results/capacity_base.json
+          git add labs/05_query_transform/results/capacity_base.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M05 query transformation evaluation [skip ci]"
+            git commit -m "test: record M05 capacity-control evaluation [skip ci]"
             git push origin HEAD:${GITHUB_REF_NAME}
           fi

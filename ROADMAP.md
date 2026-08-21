@@ -521,6 +521,38 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m08_multimodal/`, `src/rag_practice/multimodal/`, `src/rag_practice/evaluation/multimodal.py`, `labs/08_specialized_sources/multimodal/`, and `.github/workflows/m08-multimodal.yml`.
 
+### Visual-document / page-image RAG summary
+
+Visual-document RAG freezes one 6-page/10-query synthetic document benchmark and keeps OCR/text extraction, rendered page pixels, page retrieval, region provenance, answer correctness, abstention, latency, and representation footprint as separate evidence contracts.
+
+| System | Recall@3 | Hit@1 | Visual Hit@1 | Cross-modal Hit@1 | Text Hit@1 | No-evidence | Answer correct | Visual grounded | Region locator | Visual candidates |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| OCR surrogate | 0.875 | 0.750 | 0.667 | **1.000** | **1.000** | 0.500 | 0.400 | 0.000 | 0.000 | **0.0** |
+| page-native control | 0.750 | 0.750 | **1.000** | **1.000** | 0.000 | **1.000** | 0.700 | **1.000** | **1.000** | 4.2 |
+| OCR + page fusion | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | 3.2 |
+| pinned ColSmol | **1.000** | 0.875 | **1.000** | **1.000** | 0.500 | 0.000 | 0.400 | **1.000** | 0.000 | 6.0 |
+
+Important visual-document findings:
+
+- **OCR evidence is not page-image evidence.** OCR retrieval solves the frozen text facts but has visual grounding and region-locator accuracy `0.0` because pixels are never inspected.
+- **Page pixels can solve layout while missing extracted facts.** The deterministic page-native control reaches visual Hit@1, visual grounding, and region-locator accuracy `1.0`, but text-sufficient Hit@1 is `0.0` by construction.
+- **Explicit OCR+page fusion is a mechanism control, not a production document-AI claim.** Its perfect controlled score comes from transparent OCR plus exact deterministic raster features on a tiny synthetic corpus.
+- **The pinned pretrained result is retained without benchmark tuning.** ColSmol reaches Recall@3 `1.0`, Hit@1 `0.875`, and visual/cross-modal Hit@1 `1.0`; the preserved rank-1 error puts the Alpha appendix above the Alpha operations page for the hotline query.
+- **Page retrieval does not imply answer extraction.** Frozen OCR is deliberately unavailable after pretrained ranking, so text/table value answers remain unsupported and ColSmol answer correctness is `0.4` even when the correct page is retrieved.
+- **Page retrieval does not imply region provenance.** The pretrained control exposes no region locator, so region-locator accuracy remains `0.0`; no deterministic region heuristic is added after ranking.
+- **An exhaustive retriever is not an abstention policy.** ColSmol scores all six pages and reaches no-evidence accuracy `0.0`; both false-positive cases are retained rather than calibrated on the test set.
+- **Checkpoint composition must also be reproducible.** The adapter is pinned to `a59110fdf114638b8018e6c9a018907e12f14855`, and its full-weight base is separately pinned to `8a0cee6d479200dbce31dbfef88c66175d89cddc` because the upstream base default revision is mutable.
+- **Benchmark transport repairs did not change rendered evidence.** Before successful pretrained inference, JSON/gzip envelope defects were repaired and all six XPM pages were revalidated against already-frozen RGB SHA-256 hashes; qrels, OCR text, expected answers, regions, and rendered pixels were not changed to fit the model.
+
+Evaluation evidence:
+
+- Repaired-benchmark gate `32474824392` / job `96748883250`: **116 tests passed** and deterministic evaluation passed; the then-mutable upstream base lookup failed before pretrained inference.
+- Full pinned pretrained gate `32475115855` / job `96749747685`: **116 tests passed**, deterministic visual-document evaluation passed, and pinned ColSmol evaluation passed.
+- Deterministic and ColSmol JSON/Markdown evidence was persisted in commit `a263bc29c43bd2921c49aeb0958c9a582af2da61`.
+- Final source-of-truth gate on the findings/ROADMAP tree is required before changing the sub-lab status to `DONE`.
+
+Artifacts: `benchmarks/m08_visual_document/`, `src/rag_practice/visual_document/`, `src/rag_practice/evaluation/visual_document.py`, `labs/08_specialized_sources/visual_document/`, and `.github/workflows/m08-visual-document.yml`.
+
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.

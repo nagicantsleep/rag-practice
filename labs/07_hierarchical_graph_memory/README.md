@@ -2,6 +2,8 @@
 
 Status: **COMPLETION CANDIDATE** — final full-suite/evaluation gate pending.
 
+Final-gate trigger note: this documentation-only commit intentionally leaves the M07 implementation, benchmark, tests, and evaluator unchanged so the already-defined workflow can validate the exact completion candidate tree.
+
 M07 isolates structural retrieval before adding another generator. The question is not whether a graph, tree, or memory system sounds more advanced than BM25, but **which structure helps which information need, at what construction/update cost, and with what failure modes?**
 
 ## Hypothesis

@@ -1,0 +1,1255 @@
+{
+  "hypothesis": "filter placement is part of retrieval correctness: unfiltered ranking can leak unauthorized records, while post-filtering can be safe yet lose recall when forbidden or mismatched records consume the candidate budget",
+  "benchmark": {
+    "records": 19,
+    "queries": 9,
+    "tenants": [
+      "alpha",
+      "beta",
+      "shared"
+    ],
+    "hard_security_constraints": [
+      "tenant",
+      "role"
+    ],
+    "explicit_query_filters": [
+      "product",
+      "region",
+      "updated_after",
+      "updated_before"
+    ]
+  },
+  "systems": {
+    "unfiltered_bm25": {
+      "metrics": {
+        "recall@3": 1.0,
+        "hit_rate@1": 0.25,
+        "constraint_satisfaction_rate": 0.33333333333333337,
+        "security_leakage_rate": 0.4444444444444444,
+        "explicit_filter_violation_rate": 0.6666666666666666,
+        "empty_filter_accuracy": 0.0,
+        "answer_correct_rate": 0.2222222222222222,
+        "answered_rate": 1.0,
+        "grounded_answer_rate_when_answered": 1.0,
+        "mean_records_indexed_for_lexical_search": 19.0,
+        "mean_ranked_candidates_examined": 3.0,
+        "mean_rejected_after_ranking": 0.0,
+        "mean_eligible_records": 2.6666666666666665,
+        "mean_latency_ms": 0.21631588888876901
+      }
+    },
+    "postfilter_k2": {
+      "metrics": {
+        "recall@3": 0.375,
+        "hit_rate@1": 0.375,
+        "constraint_satisfaction_rate": 1.0,
+        "security_leakage_rate": 0.0,
+        "explicit_filter_violation_rate": 0.0,
+        "empty_filter_accuracy": 1.0,
+        "answer_correct_rate": 0.4444444444444444,
+        "answered_rate": 0.3333333333333333,
+        "grounded_answer_rate_when_answered": 1.0,
+        "mean_records_indexed_for_lexical_search": 19.0,
+        "mean_ranked_candidates_examined": 2.0,
+        "mean_rejected_after_ranking": 1.6666666666666667,
+        "mean_eligible_records": 2.6666666666666665,
+        "mean_latency_ms": 0.18729677777666134
+      }
+    },
+    "postfilter_oversample_k5": {
+      "metrics": {
+        "recall@3": 1.0,
+        "hit_rate@1": 1.0,
+        "constraint_satisfaction_rate": 1.0,
+        "security_leakage_rate": 0.0,
+        "explicit_filter_violation_rate": 0.0,
+        "empty_filter_accuracy": 1.0,
+        "answer_correct_rate": 1.0,
+        "answered_rate": 0.8888888888888888,
+        "grounded_answer_rate_when_answered": 1.0,
+        "mean_records_indexed_for_lexical_search": 19.0,
+        "mean_ranked_candidates_examined": 5.0,
+        "mean_rejected_after_ranking": 3.5555555555555554,
+        "mean_eligible_records": 2.6666666666666665,
+        "mean_latency_ms": 0.18778100000184217
+      }
+    },
+    "prefilter_bm25": {
+      "metrics": {
+        "recall@3": 1.0,
+        "hit_rate@1": 1.0,
+        "constraint_satisfaction_rate": 1.0,
+        "security_leakage_rate": 0.0,
+        "explicit_filter_violation_rate": 0.0,
+        "empty_filter_accuracy": 1.0,
+        "answer_correct_rate": 1.0,
+        "answered_rate": 0.8888888888888888,
+        "grounded_answer_rate_when_answered": 1.0,
+        "mean_records_indexed_for_lexical_search": 2.6666666666666665,
+        "mean_ranked_candidates_examined": 1.4444444444444444,
+        "mean_rejected_after_ranking": 0.0,
+        "mean_eligible_records": 2.6666666666666665,
+        "mean_latency_ms": 0.04442366666365968
+      }
+    }
+  },
+  "per_query": {
+    "unfiltered_bm25": [
+      {
+        "id": "m1",
+        "task": "tenant_collision",
+        "query": "NimbusDB encryption key rotation procedure",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin"
+        },
+        "relevant": [
+          "a1"
+        ],
+        "ranking": [
+          "b1",
+          "b2",
+          "a1"
+        ],
+        "top_locator": "memory://metadata/b1",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-07-01"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 12,
+        "latency_ms": 0.3931619999946179
+      },
+      {
+        "id": "m2",
+        "task": "acl_collision",
+        "query": "Aurora incident response escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer"
+        },
+        "relevant": [
+          "a2"
+        ],
+        "ranking": [
+          "b3",
+          "a3",
+          "a2"
+        ],
+        "top_locator": "memory://metadata/b3",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "viewer",
+            "admin",
+            "developer"
+          ],
+          "updated_at": "2026-07-20"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 3,
+        "latency_ms": 0.2182989999965912
+      },
+      {
+        "id": "m3",
+        "task": "region_filter",
+        "query": "NimbusDB backup retention",
+        "filters": {
+          "tenant": "alpha",
+          "role": "analyst",
+          "product": "nimbusdb",
+          "region": "eu"
+        },
+        "relevant": [
+          "a4"
+        ],
+        "ranking": [
+          "b4",
+          "a9",
+          "a4"
+        ],
+        "top_locator": "memory://metadata/b4",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "nimbusdb",
+          "region": "eu",
+          "allowed_roles": [
+            "analyst",
+            "admin"
+          ],
+          "updated_at": "2026-05-10"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.2055389999924273
+      },
+      {
+        "id": "m4",
+        "task": "time_filter",
+        "query": "NimbusDB migration guide current",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "nimbusdb",
+          "updated_after": "2026-01-01"
+        },
+        "relevant": [
+          "a5"
+        ],
+        "ranking": [
+          "b5",
+          "a6",
+          "a5"
+        ],
+        "top_locator": "memory://metadata/b5",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-07-20"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.194914000005042
+      },
+      {
+        "id": "m5",
+        "task": "region_filter",
+        "query": "Aurora deployment endpoint",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "aurora",
+          "region": "apac"
+        },
+        "relevant": [
+          "a7"
+        ],
+        "ranking": [
+          "b6",
+          "a10",
+          "a7"
+        ],
+        "top_locator": "memory://metadata/b6",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "aurora",
+          "region": "apac",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-06-25"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.18645100000469483
+      },
+      {
+        "id": "m6",
+        "task": "empty_filter",
+        "query": "NimbusDB compliance controls",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer",
+          "product": "nimbusdb",
+          "region": "latam"
+        },
+        "relevant": [],
+        "ranking": [
+          "x1",
+          "a5",
+          "b5"
+        ],
+        "top_locator": "memory://metadata/x1",
+        "top_metadata": {
+          "tenant": "shared",
+          "product": "catalog",
+          "region": "global",
+          "allowed_roles": [
+            "viewer",
+            "analyst",
+            "developer",
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-01-01"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 0,
+        "latency_ms": 0.1950040000053832
+      },
+      {
+        "id": "m7",
+        "task": "tenant_beta",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "beta",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "b7"
+        ],
+        "ranking": [
+          "b7",
+          "a8",
+          "x1"
+        ],
+        "top_locator": "memory://metadata/b7",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-22"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.18310599999438182
+      },
+      {
+        "id": "m8",
+        "task": "tenant_alpha",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "alpha",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "a8"
+        ],
+        "ranking": [
+          "b7",
+          "a8",
+          "x1"
+        ],
+        "top_locator": "memory://metadata/b7",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-22"
+        },
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.1846979999982068
+      },
+      {
+        "id": "m9",
+        "task": "role_admin",
+        "query": "Aurora confidential emergency escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin",
+          "product": "aurora"
+        },
+        "relevant": [
+          "a3"
+        ],
+        "ranking": [
+          "a3",
+          "b3",
+          "a2"
+        ],
+        "top_locator": "memory://metadata/a3",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-08-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 4,
+        "latency_ms": 0.18567000000757616
+      }
+    ],
+    "postfilter_k2": [
+      {
+        "id": "m1",
+        "task": "tenant_collision",
+        "query": "NimbusDB encryption key rotation procedure",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin"
+        },
+        "relevant": [
+          "a1"
+        ],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 12,
+        "latency_ms": 0.2024449999993294
+      },
+      {
+        "id": "m2",
+        "task": "acl_collision",
+        "query": "Aurora incident response escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer"
+        },
+        "relevant": [
+          "a2"
+        ],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 3,
+        "latency_ms": 0.19117800000856278
+      },
+      {
+        "id": "m3",
+        "task": "region_filter",
+        "query": "NimbusDB backup retention",
+        "filters": {
+          "tenant": "alpha",
+          "role": "analyst",
+          "product": "nimbusdb",
+          "region": "eu"
+        },
+        "relevant": [
+          "a4"
+        ],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 1,
+        "latency_ms": 0.18891399999176883
+      },
+      {
+        "id": "m4",
+        "task": "time_filter",
+        "query": "NimbusDB migration guide current",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "nimbusdb",
+          "updated_after": "2026-01-01"
+        },
+        "relevant": [
+          "a5"
+        ],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 1,
+        "latency_ms": 0.18767299999922216
+      },
+      {
+        "id": "m5",
+        "task": "region_filter",
+        "query": "Aurora deployment endpoint",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "aurora",
+          "region": "apac"
+        },
+        "relevant": [
+          "a7"
+        ],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": false,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 1,
+        "latency_ms": 0.18319699999835848
+      },
+      {
+        "id": "m6",
+        "task": "empty_filter",
+        "query": "NimbusDB compliance controls",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer",
+          "product": "nimbusdb",
+          "region": "latam"
+        },
+        "relevant": [],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 2,
+        "eligible_records": 0,
+        "latency_ms": 0.1791600000018434
+      },
+      {
+        "id": "m7",
+        "task": "tenant_beta",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "beta",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "b7"
+        ],
+        "ranking": [
+          "b7"
+        ],
+        "top_locator": "memory://metadata/b7",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-22"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 1,
+        "eligible_records": 1,
+        "latency_ms": 0.1924700000017765
+      },
+      {
+        "id": "m8",
+        "task": "tenant_alpha",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "alpha",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "a8"
+        ],
+        "ranking": [
+          "a8"
+        ],
+        "top_locator": "memory://metadata/a8",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-20"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 1,
+        "eligible_records": 1,
+        "latency_ms": 0.17967099999793845
+      },
+      {
+        "id": "m9",
+        "task": "role_admin",
+        "query": "Aurora confidential emergency escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin",
+          "product": "aurora"
+        },
+        "relevant": [
+          "a3"
+        ],
+        "ranking": [
+          "a3"
+        ],
+        "top_locator": "memory://metadata/a3",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-08-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 1,
+        "eligible_records": 4,
+        "latency_ms": 0.18096299999115217
+      }
+    ],
+    "postfilter_oversample_k5": [
+      {
+        "id": "m1",
+        "task": "tenant_collision",
+        "query": "NimbusDB encryption key rotation procedure",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin"
+        },
+        "relevant": [
+          "a1"
+        ],
+        "ranking": [
+          "a1",
+          "x1",
+          "a5"
+        ],
+        "top_locator": "memory://metadata/a1",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-07-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 2,
+        "eligible_records": 12,
+        "latency_ms": 0.1964970000045696
+      },
+      {
+        "id": "m2",
+        "task": "acl_collision",
+        "query": "Aurora incident response escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer"
+        },
+        "relevant": [
+          "a2"
+        ],
+        "ranking": [
+          "a2",
+          "x1"
+        ],
+        "top_locator": "memory://metadata/a2",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "viewer",
+            "admin",
+            "developer"
+          ],
+          "updated_at": "2026-06-10"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 3,
+        "eligible_records": 3,
+        "latency_ms": 0.18781299999659495
+      },
+      {
+        "id": "m3",
+        "task": "region_filter",
+        "query": "NimbusDB backup retention",
+        "filters": {
+          "tenant": "alpha",
+          "role": "analyst",
+          "product": "nimbusdb",
+          "region": "eu"
+        },
+        "relevant": [
+          "a4"
+        ],
+        "ranking": [
+          "a4"
+        ],
+        "top_locator": "memory://metadata/a4",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "eu",
+          "allowed_roles": [
+            "analyst",
+            "admin"
+          ],
+          "updated_at": "2026-05-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 4,
+        "eligible_records": 1,
+        "latency_ms": 0.1997509999966951
+      },
+      {
+        "id": "m4",
+        "task": "time_filter",
+        "query": "NimbusDB migration guide current",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "nimbusdb",
+          "updated_after": "2026-01-01"
+        },
+        "relevant": [
+          "a5"
+        ],
+        "ranking": [
+          "a5"
+        ],
+        "top_locator": "memory://metadata/a5",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-07-15"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 4,
+        "eligible_records": 1,
+        "latency_ms": 0.19176900001127706
+      },
+      {
+        "id": "m5",
+        "task": "region_filter",
+        "query": "Aurora deployment endpoint",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "aurora",
+          "region": "apac"
+        },
+        "relevant": [
+          "a7"
+        ],
+        "ranking": [
+          "a7"
+        ],
+        "top_locator": "memory://metadata/a7",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "apac",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-06-20"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 4,
+        "eligible_records": 1,
+        "latency_ms": 0.18503900000155227
+      },
+      {
+        "id": "m6",
+        "task": "empty_filter",
+        "query": "NimbusDB compliance controls",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer",
+          "product": "nimbusdb",
+          "region": "latam"
+        },
+        "relevant": [],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 5,
+        "eligible_records": 0,
+        "latency_ms": 0.1785489999974743
+      },
+      {
+        "id": "m7",
+        "task": "tenant_beta",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "beta",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "b7"
+        ],
+        "ranking": [
+          "b7"
+        ],
+        "top_locator": "memory://metadata/b7",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-22"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 4,
+        "eligible_records": 1,
+        "latency_ms": 0.17947099999560123
+      },
+      {
+        "id": "m8",
+        "task": "tenant_alpha",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "alpha",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "a8"
+        ],
+        "ranking": [
+          "a8"
+        ],
+        "top_locator": "memory://metadata/a8",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-20"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 4,
+        "eligible_records": 1,
+        "latency_ms": 0.18678200000010747
+      },
+      {
+        "id": "m9",
+        "task": "role_admin",
+        "query": "Aurora confidential emergency escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin",
+          "product": "aurora"
+        },
+        "relevant": [
+          "a3"
+        ],
+        "ranking": [
+          "a3",
+          "a2",
+          "a7"
+        ],
+        "top_locator": "memory://metadata/a3",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-08-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 19,
+        "ranked_candidates_examined": 5,
+        "rejected_after_ranking": 2,
+        "eligible_records": 4,
+        "latency_ms": 0.18435800001270763
+      }
+    ],
+    "prefilter_bm25": [
+      {
+        "id": "m1",
+        "task": "tenant_collision",
+        "query": "NimbusDB encryption key rotation procedure",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin"
+        },
+        "relevant": [
+          "a1"
+        ],
+        "ranking": [
+          "a1",
+          "x1",
+          "a5"
+        ],
+        "top_locator": "memory://metadata/a1",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-07-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 12,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 12,
+        "latency_ms": 0.13645599999279057
+      },
+      {
+        "id": "m2",
+        "task": "acl_collision",
+        "query": "Aurora incident response escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer"
+        },
+        "relevant": [
+          "a2"
+        ],
+        "ranking": [
+          "a2",
+          "x1"
+        ],
+        "top_locator": "memory://metadata/a2",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "viewer",
+            "admin",
+            "developer"
+          ],
+          "updated_at": "2026-06-10"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 3,
+        "ranked_candidates_examined": 2,
+        "rejected_after_ranking": 0,
+        "eligible_records": 3,
+        "latency_ms": 0.051057000007403985
+      },
+      {
+        "id": "m3",
+        "task": "region_filter",
+        "query": "NimbusDB backup retention",
+        "filters": {
+          "tenant": "alpha",
+          "role": "analyst",
+          "product": "nimbusdb",
+          "region": "eu"
+        },
+        "relevant": [
+          "a4"
+        ],
+        "ranking": [
+          "a4"
+        ],
+        "top_locator": "memory://metadata/a4",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "eu",
+          "allowed_roles": [
+            "analyst",
+            "admin"
+          ],
+          "updated_at": "2026-05-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 1,
+        "ranked_candidates_examined": 1,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.030304999995678372
+      },
+      {
+        "id": "m4",
+        "task": "time_filter",
+        "query": "NimbusDB migration guide current",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "nimbusdb",
+          "updated_after": "2026-01-01"
+        },
+        "relevant": [
+          "a5"
+        ],
+        "ranking": [
+          "a5"
+        ],
+        "top_locator": "memory://metadata/a5",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "nimbusdb",
+          "region": "us",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-07-15"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 1,
+        "ranked_candidates_examined": 1,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.029153999989262047
+      },
+      {
+        "id": "m5",
+        "task": "region_filter",
+        "query": "Aurora deployment endpoint",
+        "filters": {
+          "tenant": "alpha",
+          "role": "developer",
+          "product": "aurora",
+          "region": "apac"
+        },
+        "relevant": [
+          "a7"
+        ],
+        "ranking": [
+          "a7"
+        ],
+        "top_locator": "memory://metadata/a7",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "apac",
+          "allowed_roles": [
+            "developer",
+            "admin"
+          ],
+          "updated_at": "2026-06-20"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 1,
+        "ranked_candidates_examined": 1,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.026219999995191756
+      },
+      {
+        "id": "m6",
+        "task": "empty_filter",
+        "query": "NimbusDB compliance controls",
+        "filters": {
+          "tenant": "alpha",
+          "role": "viewer",
+          "product": "nimbusdb",
+          "region": "latam"
+        },
+        "relevant": [],
+        "ranking": [],
+        "top_locator": "",
+        "top_metadata": {},
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 0,
+        "ranked_candidates_examined": 0,
+        "rejected_after_ranking": 0,
+        "eligible_records": 0,
+        "latency_ms": 0.008712999999715976
+      },
+      {
+        "id": "m7",
+        "task": "tenant_beta",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "beta",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "b7"
+        ],
+        "ranking": [
+          "b7"
+        ],
+        "top_locator": "memory://metadata/b7",
+        "top_metadata": {
+          "tenant": "beta",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-22"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 1,
+        "ranked_candidates_examined": 1,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.028822999993849407
+      },
+      {
+        "id": "m8",
+        "task": "tenant_alpha",
+        "query": "QueryGuard audit API EU",
+        "filters": {
+          "tenant": "alpha",
+          "role": "security",
+          "product": "queryguard",
+          "region": "eu"
+        },
+        "relevant": [
+          "a8"
+        ],
+        "ranking": [
+          "a8"
+        ],
+        "top_locator": "memory://metadata/a8",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "queryguard",
+          "region": "eu",
+          "allowed_roles": [
+            "security",
+            "admin"
+          ],
+          "updated_at": "2026-07-20"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 1,
+        "ranked_candidates_examined": 1,
+        "rejected_after_ranking": 0,
+        "eligible_records": 1,
+        "latency_ms": 0.029323999996222483
+      },
+      {
+        "id": "m9",
+        "task": "role_admin",
+        "query": "Aurora confidential emergency escalation contacts",
+        "filters": {
+          "tenant": "alpha",
+          "role": "admin",
+          "product": "aurora"
+        },
+        "relevant": [
+          "a3"
+        ],
+        "ranking": [
+          "a3",
+          "a2",
+          "a7"
+        ],
+        "top_locator": "memory://metadata/a3",
+        "top_metadata": {
+          "tenant": "alpha",
+          "product": "aurora",
+          "region": "us",
+          "allowed_roles": [
+            "admin",
+            "security"
+          ],
+          "updated_at": "2026-08-01"
+        },
+        "answer_correct": true,
+        "records_indexed_for_lexical_search": 4,
+        "ranked_candidates_examined": 3,
+        "rejected_after_ranking": 0,
+        "eligible_records": 4,
+        "latency_ms": 0.059761000002822584
+      }
+    ]
+  },
+  "guardrails": [
+    "tenant/role are treated as hard authorization predicates, not relevance features",
+    "qrels/reference strings are used only after retrieval",
+    "BM25 text is identical across systems; only filter placement/candidate budget changes",
+    "postfilter oversampling is a cost/recall control, not a security substitute for prefiltering",
+    "grounded extractive text can still be unauthorized or filter-invalid"
+  ]
+}

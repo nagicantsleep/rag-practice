@@ -1,0 +1,134 @@
+name: M10 training and production evaluation
+
+on:
+  push:
+    branches:
+      - feat/m10-training-production-rag
+    paths:
+      - "src/rag_practice/training/**"
+      - "src/rag_practice/production/**"
+      - "src/rag_practice/evaluation/training.py"
+      - "src/rag_practice/evaluation/production.py"
+      - "benchmarks/m10_training/**"
+      - "benchmarks/m10_production/**"
+      - "labs/10_training_production/**"
+      - "tests/test_m10_training.py"
+      - "tests/test_m10_reranker.py"
+      - "tests/test_m10_production.py"
+      - ".github/workflows/m10-training-production.yml"
+      - "pyproject.toml"
+      - "ROADMAP.md"
+  pull_request:
+    paths:
+      - "src/rag_practice/training/**"
+      - "src/rag_practice/production/**"
+      - "src/rag_practice/evaluation/training.py"
+      - "src/rag_practice/evaluation/production.py"
+      - "benchmarks/m10_training/**"
+      - "benchmarks/m10_production/**"
+      - "labs/10_training_production/**"
+      - "tests/test_m10_training.py"
+      - "tests/test_m10_reranker.py"
+      - "tests/test_m10_production.py"
+      - ".github/workflows/m10-training-production.yml"
+      - "pyproject.toml"
+      - "ROADMAP.md"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression dependencies
+        run: python -m pip install -e ".[dev,pretrained,visual_document]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate pinned M10.1 retriever training controls
+        run: python labs/10_training_production/run_training.py
+      - name: Evaluate frozen M10.1b learned reranker
+        run: python labs/10_training_production/run_reranker.py
+      - name: Evaluate frozen M10.2 production serving controls
+        run: python labs/10_training_production/run_production.py
+      - name: Persist M10 evidence
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            labs/10_training_production/results/training_results.json \
+            labs/10_training_production/results/training_results.md \
+            labs/10_training_production/results/reranker_results.json \
+            labs/10_training_production/results/reranker_results.md \
+            labs/10_training_production/results/production_results.json \
+            labs/10_training_production/results/production_results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M10 evaluation evidence [skip ci]"
+            git push origin HEAD:feat/m10-training-production-rag
+          fi
+      - name: Mark M10 complete after successful source-of-truth gate
+        if: github.event_name == 'push'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          roadmap = Path("ROADMAP.md")
+          text = roadmap.read_text()
+          old = '''### M10 — Training and Production RAG — `TODO`
+
+          Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, end-to-end RAG concepts, caching, incremental indexing, observability, permissions, adversarial retrieval defenses, freshness policies, scaling, and serving. Evaluate offline quality, system performance, robustness/security, freshness, and regressions.
+
+          ## Immediate next step
+
+          Continue **M10 — Training and Production RAG**. Start with a frozen train/dev/test retrieval setup for retriever fine-tuning and hard-negative mining, compare against the existing pretrained retrieval baselines, and keep offline quality, serving cost, freshness, robustness, permissions, and observability as separate production contracts.'''
+          new = '''### M10 — Training and Production RAG — `DONE`
+
+          M10 separates training evidence from serving evidence. Retriever fine-tuning, explicit hard-negative mining, a learned reranker control, guarded caching, incremental indexing, ACL/freshness/trust filtering, observability, adversarial evidence rejection, and deterministic scale sanity are implemented and evaluated under frozen-before-inspection contracts.
+
+          Key findings:
+
+          - the pinned MiniLM held-out test is already rank-saturated at Recall@1/MRR `1.0`, so pair-only and hard-negative fine-tuning are not credited with rank gains; pair-only increases score margin more than the explicit hard-negative variant under the frozen contract;
+          - the five-parameter learned reranker changes learned-score separation but does not improve held-out rank quality;
+          - unsafe query-only caching fails invalidation/no-evidence behavior and exposes unauthorized, stale, and untrusted evidence on the frozen serving workload;
+          - guarded role+generation-aware caching plus ACL → freshness → trust filtering and explicit lexical evidence requirements reaches perfect controlled serving correctness with zero policy exposure on the same workload;
+          - 100/1000-document scale measurements are implementation sanity checks, not production throughput or ANN claims.
+
+          Evaluation evidence:
+
+          - retriever training gate `32508731504` / job `96854692711` passed;
+          - learned-reranker gate `32509314025` / job `96856483683` passed;
+          - valid production gate `32510837455` / job `96861322550` passed with **148 repository tests** plus retriever, reranker, and production evaluators;
+          - final source-of-truth gate runs on the completed evidence/workflow head before this automated `[skip ci]` roadmap completion update.
+
+          Artifacts: `benchmarks/m10_training/`, `benchmarks/m10_production/`, `src/rag_practice/training/`, `src/rag_practice/production/`, `src/rag_practice/evaluation/training.py`, `src/rag_practice/evaluation/production.py`, `labs/10_training_production/`, and `.github/workflows/m10-training-production.yml`.
+
+          ## Immediate next step
+
+          M00–M10 are complete. Extend the roadmap only by freezing a new learning objective and evaluation contract before implementation.'''
+          if old not in text:
+              raise SystemExit("expected M10 TODO block not found; refusing broad roadmap rewrite")
+          roadmap.write_text(text.replace(old, new, 1))
+
+          readme = Path("labs/10_training_production/README.md")
+          readme_text = readme.read_text()
+          old_status = "Status: **IN PROGRESS — TRAINING + PRODUCTION EVIDENCE COMPLETE / FINAL GATE PENDING**"
+          new_status = "Status: **DONE**"
+          if old_status not in readme_text:
+              raise SystemExit("expected M10 README status not found")
+          readme.write_text(readme_text.replace(old_status, new_status, 1))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ROADMAP.md labs/10_training_production/README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: mark M10 complete [skip ci]"
+            git push origin HEAD:feat/m10-training-production-rag
+          fi

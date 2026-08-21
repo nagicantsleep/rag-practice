@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "status": "frozen_before_first_reranker_result",
+  "candidate_generator": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be",
+    "candidate_k": 3,
+    "split": "unchanged benchmarks/m10_training/dataset.json"
+  },
+  "features": [
+    "dense_cosine_similarity",
+    "bm25_raw_score",
+    "query_token_overlap_fraction",
+    "reciprocal_first_stage_rank"
+  ],
+  "training": {
+    "seed": 29,
+    "epochs": 80,
+    "learning_rate": 0.05,
+    "weight_decay": 0.0,
+    "loss": "pairwise_softplus",
+    "positive_negative_pairs": "Within each TRAIN query's baseline top-3 candidates, pair the relevant document against every non-relevant candidate. Queries whose positive is absent from top-3 contribute no pair and remain visible in candidate-recall metrics.",
+    "feature_scaling": "none",
+    "optimizer": "Adam"
+  },
+  "evaluation": {
+    "candidate_recall_at_3_before_rerank": true,
+    "metrics": ["recall@1", "recall@3", "mrr", "mean_score_margin"],
+    "dev_is_diagnostic_only": true,
+    "test_labels_not_used_for_training_or_selection": true
+  },
+  "integrity": "Do not change candidate depth, features, feature definitions, seed, epochs, optimizer, learning rate, weight decay, or loss after the first reranker result is inspected. The M10.1 document/query/qrel split remains unchanged."
+}

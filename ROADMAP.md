@@ -614,10 +614,27 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m09_agentic/`, `src/rag_practice/agentic/`, `src/rag_practice/evaluation/agentic.py`, `src/rag_practice/evaluation/agentic_pretrained.py`, `src/rag_practice/evaluation/agentic_multi.py`, `labs/09_agentic_rag/`, and `.github/workflows/m09-agentic.yml`.
 
-### M10 — Training and Production RAG — `TODO`
+### M10 — Training and Production RAG — `DONE`
 
-Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, end-to-end RAG concepts, caching, incremental indexing, observability, permissions, adversarial retrieval defenses, freshness policies, scaling, and serving. Evaluate offline quality, system performance, robustness/security, freshness, and regressions.
+M10 separates training evidence from serving evidence. Retriever fine-tuning, explicit hard-negative mining, a learned reranker control, guarded caching, incremental indexing, ACL/freshness/trust filtering, observability, adversarial evidence rejection, and deterministic scale sanity are implemented and evaluated under frozen-before-inspection contracts.
+
+Key findings:
+
+- the pinned MiniLM held-out test is already rank-saturated at Recall@1/MRR `1.0`, so pair-only and hard-negative fine-tuning are not credited with rank gains; pair-only increases score margin more than the explicit hard-negative variant under the frozen contract;
+- the five-parameter learned reranker changes learned-score separation but does not improve held-out rank quality;
+- unsafe query-only caching fails invalidation/no-evidence behavior and exposes unauthorized, stale, and untrusted evidence on the frozen serving workload;
+- guarded role+generation-aware caching plus ACL → freshness → trust filtering and explicit lexical evidence requirements reaches perfect controlled serving correctness with zero policy exposure on the same workload;
+- 100/1000-document scale measurements are implementation sanity checks, not production throughput or ANN claims.
+
+Evaluation evidence:
+
+- retriever training gate `32508731504` / job `96854692711` passed;
+- learned-reranker gate `32509314025` / job `96856483683` passed;
+- valid production gate `32510837455` / job `96861322550` passed with **148 repository tests** plus retriever, reranker, and production evaluators;
+- final source-of-truth gate runs on the completed evidence/workflow head before this automated `[skip ci]` roadmap completion update.
+
+Artifacts: `benchmarks/m10_training/`, `benchmarks/m10_production/`, `src/rag_practice/training/`, `src/rag_practice/production/`, `src/rag_practice/evaluation/training.py`, `src/rag_practice/evaluation/production.py`, `labs/10_training_production/`, and `.github/workflows/m10-training-production.yml`.
 
 ## Immediate next step
 
-Continue **M10 — Training and Production RAG**. Start with a frozen train/dev/test retrieval setup for retriever fine-tuning and hard-negative mining, compare against the existing pretrained retrieval baselines, and keep offline quality, serving cost, freshness, robustness, permissions, and observability as separate production contracts.
+M00–M10 are complete. Extend the roadmap only by freezing a new learning objective and evaluation contract before implementation.

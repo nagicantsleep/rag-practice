@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -10,6 +11,14 @@ from rag_practice.visual_document import VisualDocumentIndex
 
 ROOT = Path(__file__).resolve().parents[1]
 BENCHMARK = ROOT / "benchmarks" / "m08_visual_document"
+EXPECTED_RGB_SHA256 = {
+    "alpha_p1.xpm": "15c93dc5c951f525e27978dfa757c73714634f13bd9ed376f7a5376fefaacb1f",
+    "alpha_p2.xpm": "03f049e7aa405d63d86bb1fc5ec2e42f7cfab3054f7633061255b20f5ce38f47",
+    "beta_p1.xpm": "ae674840a383d117e6b1078ad3d1b9fabcbc1eb0eb71de7b78157d3dcb69c3e4",
+    "beta_p2.xpm": "7afde784c14c6af04df50d764f647a75f981bbdfe2c9efc2638a5e944ba06b71",
+    "gamma_p1.xpm": "416d3deb7fa1960517f8a1f58106b516b3319dbf699cca87d607132db0dfd5e0",
+    "gamma_p2.xpm": "13ecb9f7f770ba0fc2abfbc8ba2dad27def25c6c31aea3f6bce640a7000d2d88",
+}
 
 
 def _queries() -> list[dict[str, object]]:
@@ -67,11 +76,18 @@ def _metrics(index: VisualDocumentIndex, system: str) -> dict[str, float]:
 
 def test_frozen_visual_document_benchmark_shape_and_rasters() -> None:
     index = VisualDocumentIndex(BENCHMARK)
+    bundle = json.loads((BENCHMARK / "images.json").read_text())
     assert len(index.assets) == 6
     assert len(_queries()) == 10
     assert set(index.page_payloads) == {asset.file_name for asset in index.assets}
     assert {image.size for image in index.images.values()} == {(128, 176)}
     assert all(image.mode == "RGB" for image in index.images.values())
+    assert bundle["sha256_rgb"] == EXPECTED_RGB_SHA256
+    actual_hashes = {
+        index.by_id[page_id].file_name: hashlib.sha256(image.tobytes()).hexdigest()
+        for page_id, image in index.images.items()
+    }
+    assert actual_hashes == EXPECTED_RGB_SHA256
     assert index.raster_source_bytes > 0
     assert index.raster_rgb_bytes == 6 * 128 * 176 * 3
 

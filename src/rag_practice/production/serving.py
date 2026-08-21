@@ -96,13 +96,26 @@ class MutableLexicalIndex:
             score += math.log(1.0 + (n_documents + 1.0) / (df + 1.0))
         return score
 
-    def rank(self, query: str, candidate_ids: Sequence[str], *, k: int = 1) -> list[str]:
-        scored = [
-            (document_id, self.score(query, document_id))
-            for document_id in candidate_ids
-            if document_id in self.documents
-        ]
-        scored = [item for item in scored if item[1] > 0]
+    def rank(
+        self,
+        query: str,
+        candidate_ids: Sequence[str],
+        *,
+        k: int = 1,
+        require_all_terms: bool = False,
+    ) -> list[str]:
+        query_terms = set(tokenize(query))
+        if not query_terms:
+            return []
+        scored = []
+        for document_id in candidate_ids:
+            if document_id not in self.documents:
+                continue
+            if require_all_terms and not query_terms.issubset(self.document_terms[document_id]):
+                continue
+            score = self.score(query, document_id)
+            if score > 0:
+                scored.append((document_id, score))
         scored.sort(key=lambda item: (-item[1], item[0]))
         return [document_id for document_id, _ in scored[:k]]
 
@@ -195,7 +208,7 @@ class GuardedServingIndex:
                 continue
             candidates.append(document_id)
 
-        ranked_ids = self.index.rank(query, candidates, k=k)
+        ranked_ids = self.index.rank(query, candidates, k=k, require_all_terms=True)
         returned = tuple(self.index.documents[document_id] for document_id in ranked_ids)
         self.cache[key] = returned
         self.cached_policy_counts[key] = (

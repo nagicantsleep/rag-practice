@@ -1,0 +1,809 @@
+{
+  "hypothesis": "repository code retrieval needs structure-aware units and dependency context: coarse file retrieval can hit the right file yet confuse implementations with call sites, while symbol-only retrieval can miss cross-file dependency evidence",
+  "benchmark": {
+    "files": 13,
+    "symbols": 17,
+    "queries": 10,
+    "call_edges": 5
+  },
+  "systems": {
+    "file_bm25": {
+      "metrics": {
+        "recall@4": 1.0,
+        "evidence_complete@4": 1.0,
+        "primary_hit@1": 0.5,
+        "single_evidence_answer_location_exact": 0.5714285714285714,
+        "dependency_complete@4": 1.0,
+        "callsite_confusion_rate": 1.0,
+        "duplicate_symbol_confusion_rate": 0.0,
+        "mean_context_chars@4": 1018.6,
+        "mean_query_ms": 0.02849999999341435,
+        "indexed_units": 13.0,
+        "exact_line_locators_available": 0.0
+      },
+      "per_query": [
+        {
+          "id": "c1",
+          "task": "implementation",
+          "query": "Where is bearer auth token validation implemented?",
+          "relevant": [
+            "auth/tokens.py"
+          ],
+          "ranking": [
+            "auth/tokens.py",
+            "billing/tokens.py"
+          ],
+          "primary": "auth/tokens.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [],
+          "context_chars": 846,
+          "latency_ms": 0.03442399997766188
+        },
+        {
+          "id": "c2",
+          "task": "duplicate_symbol",
+          "query": "Where is parse_token for invoice billing tokens defined?",
+          "relevant": [
+            "billing/tokens.py"
+          ],
+          "ranking": [
+            "billing/tokens.py",
+            "auth/tokens.py",
+            "billing/normalizers.py",
+            "pricing/tax.py"
+          ],
+          "primary": "billing/tokens.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [],
+          "context_chars": 1281,
+          "latency_ms": 0.03352199999540062
+        },
+        {
+          "id": "c3",
+          "task": "implementation_vs_callsite",
+          "query": "Find the implementation of compute_total, not the checkout call site.",
+          "relevant": [
+            "pricing/engine.py"
+          ],
+          "ranking": [
+            "services/checkout.py",
+            "pricing/engine.py",
+            "api/orders.py",
+            "payments/gateway.py"
+          ],
+          "primary": "pricing/engine.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [],
+          "context_chars": 1140,
+          "latency_ms": 0.02938499997640065
+        },
+        {
+          "id": "c4",
+          "task": "dependency",
+          "query": "Which functions compute the checkout total including discount and regional tax?",
+          "relevant": [
+            "pricing/discounts.py",
+            "pricing/engine.py",
+            "pricing/tax.py"
+          ],
+          "ranking": [
+            "pricing/engine.py",
+            "services/checkout.py",
+            "pricing/tax.py",
+            "pricing/discounts.py"
+          ],
+          "primary": "pricing/engine.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [],
+          "context_chars": 1216,
+          "latency_ms": 0.05705600000283084
+        },
+        {
+          "id": "c5",
+          "task": "method",
+          "query": "What implementation invalidates cached session entries?",
+          "relevant": [
+            "storage/cache.py"
+          ],
+          "ranking": [
+            "storage/cache.py",
+            "services/session.py",
+            "api/orders.py"
+          ],
+          "primary": "storage/cache.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [],
+          "context_chars": 749,
+          "latency_ms": 0.020227999982580513
+        },
+        {
+          "id": "c6",
+          "task": "change_locality",
+          "query": "If apply_discount is renamed, which caller must change?",
+          "relevant": [
+            "pricing/discounts.py",
+            "pricing/engine.py"
+          ],
+          "ranking": [
+            "pricing/discounts.py",
+            "pricing/engine.py"
+          ],
+          "primary": "pricing/engine.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [],
+          "context_chars": 635,
+          "latency_ms": 0.01953599999637845
+        },
+        {
+          "id": "c7",
+          "task": "implementation_vs_callsite",
+          "query": "Where is create_order implemented rather than the API submit_order wrapper?",
+          "relevant": [
+            "domain/orders.py"
+          ],
+          "ranking": [
+            "api/orders.py",
+            "domain/orders.py",
+            "payments/gateway.py",
+            "billing/tokens.py"
+          ],
+          "primary": "domain/orders.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [],
+          "context_chars": 980,
+          "latency_ms": 0.02531699999508419
+        },
+        {
+          "id": "c8",
+          "task": "duplicate_symbol",
+          "query": "Where is normalize for billing invoice references implemented?",
+          "relevant": [
+            "billing/normalizers.py"
+          ],
+          "ranking": [
+            "billing/normalizers.py",
+            "billing/tokens.py",
+            "helpers/normalizers.py",
+            "pricing/tax.py"
+          ],
+          "primary": "billing/normalizers.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [],
+          "context_chars": 994,
+          "latency_ms": 0.022462000003997673
+        },
+        {
+          "id": "c9",
+          "task": "dependency",
+          "query": "Which functions does finalize_checkout call before returning?",
+          "relevant": [
+            "payments/gateway.py",
+            "pricing/engine.py"
+          ],
+          "ranking": [
+            "services/checkout.py",
+            "pricing/discounts.py",
+            "payments/gateway.py",
+            "pricing/engine.py"
+          ],
+          "primary": "pricing/engine.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [],
+          "context_chars": 1129,
+          "latency_ms": 0.02028800000175579
+        },
+        {
+          "id": "c10",
+          "task": "dependency",
+          "query": "Which helper does compute_total call to calculate regional tax?",
+          "relevant": [
+            "pricing/tax.py"
+          ],
+          "ranking": [
+            "pricing/engine.py",
+            "pricing/tax.py",
+            "services/checkout.py",
+            "pricing/discounts.py"
+          ],
+          "primary": "pricing/tax.py",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [],
+          "context_chars": 1216,
+          "latency_ms": 0.022782000002052882
+        }
+      ]
+    },
+    "symbol_bm25": {
+      "metrics": {
+        "recall@4": 0.95,
+        "evidence_complete@4": 0.9,
+        "primary_hit@1": 0.5,
+        "single_evidence_answer_location_exact": 0.5714285714285714,
+        "dependency_complete@4": 0.75,
+        "callsite_confusion_rate": 1.0,
+        "duplicate_symbol_confusion_rate": 0.0,
+        "mean_context_chars@4": 740.5,
+        "mean_query_ms": 0.02371010000103979,
+        "indexed_units": 17.0,
+        "exact_line_locators_available": 1.0
+      },
+      "per_query": [
+        {
+          "id": "c1",
+          "task": "implementation",
+          "query": "Where is bearer auth token validation implemented?",
+          "relevant": [
+            "auth/tokens.py::validate_token"
+          ],
+          "ranking": [
+            "auth/tokens.py::validate_token",
+            "auth/tokens.py::parse_token",
+            "billing/tokens.py::token_amount",
+            "billing/tokens.py::parse_token"
+          ],
+          "primary": "auth/tokens.py::validate_token",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/auth/tokens.py#L10-L13",
+            "code://repo/auth/tokens.py#L4-L7",
+            "code://repo/billing/tokens.py#L10-L12",
+            "code://repo/billing/tokens.py#L4-L7"
+          ],
+          "context_chars": 769,
+          "latency_ms": 0.026880000007167837
+        },
+        {
+          "id": "c2",
+          "task": "duplicate_symbol",
+          "query": "Where is parse_token for invoice billing tokens defined?",
+          "relevant": [
+            "billing/tokens.py::parse_token"
+          ],
+          "ranking": [
+            "billing/tokens.py::parse_token",
+            "billing/tokens.py::token_amount",
+            "auth/tokens.py::parse_token",
+            "billing/normalizers.py::normalize"
+          ],
+          "primary": "billing/tokens.py::parse_token",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/billing/tokens.py#L4-L7",
+            "code://repo/billing/tokens.py#L10-L12",
+            "code://repo/auth/tokens.py#L4-L7",
+            "code://repo/billing/normalizers.py#L4-L6"
+          ],
+          "context_chars": 726,
+          "latency_ms": 0.030014999992999947
+        },
+        {
+          "id": "c3",
+          "task": "implementation_vs_callsite",
+          "query": "Find the implementation of compute_total, not the checkout call site.",
+          "relevant": [
+            "pricing/engine.py::compute_total"
+          ],
+          "ranking": [
+            "services/checkout.py::finalize_checkout",
+            "pricing/engine.py::compute_total",
+            "api/orders.py::submit_order",
+            "payments/gateway.py::charge"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/services/checkout.py#L6-L9",
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/api/orders.py#L5-L7",
+            "code://repo/payments/gateway.py#L4-L6"
+          ],
+          "context_chars": 811,
+          "latency_ms": 0.02765199999998913
+        },
+        {
+          "id": "c4",
+          "task": "dependency",
+          "query": "Which functions compute the checkout total including discount and regional tax?",
+          "relevant": [
+            "pricing/engine.py::compute_total",
+            "pricing/discounts.py::apply_discount",
+            "pricing/tax.py::tax_for_region"
+          ],
+          "ranking": [
+            "pricing/engine.py::compute_total",
+            "services/checkout.py::finalize_checkout",
+            "pricing/tax.py::tax_for_region",
+            "pricing/discounts.py::apply_discount"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/services/checkout.py#L6-L9",
+            "code://repo/pricing/tax.py#L4-L7",
+            "code://repo/pricing/discounts.py#L4-L8"
+          ],
+          "context_chars": 917,
+          "latency_ms": 0.031749000015679485
+        },
+        {
+          "id": "c5",
+          "task": "method",
+          "query": "What implementation invalidates cached session entries?",
+          "relevant": [
+            "storage/cache.py::Cache.invalidate"
+          ],
+          "ranking": [
+            "storage/cache.py::Cache.invalidate",
+            "api/orders.py::submit_order",
+            "storage/cache.py::Cache",
+            "services/session.py::clear_session"
+          ],
+          "primary": "storage/cache.py::Cache.invalidate",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/storage/cache.py#L11-L13",
+            "code://repo/api/orders.py#L5-L7",
+            "code://repo/storage/cache.py#L4-L13",
+            "code://repo/services/session.py#L5-L7"
+          ],
+          "context_chars": 704,
+          "latency_ms": 0.016850999998041516
+        },
+        {
+          "id": "c6",
+          "task": "change_locality",
+          "query": "If apply_discount is renamed, which caller must change?",
+          "relevant": [
+            "pricing/discounts.py::apply_discount",
+            "pricing/engine.py::compute_total"
+          ],
+          "ranking": [
+            "pricing/discounts.py::apply_discount",
+            "pricing/engine.py::compute_total"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/pricing/discounts.py#L4-L8",
+            "code://repo/pricing/engine.py#L6-L10"
+          ],
+          "context_chars": 483,
+          "latency_ms": 0.017683000010038086
+        },
+        {
+          "id": "c7",
+          "task": "implementation_vs_callsite",
+          "query": "Where is create_order implemented rather than the API submit_order wrapper?",
+          "relevant": [
+            "domain/orders.py::create_order"
+          ],
+          "ranking": [
+            "api/orders.py::submit_order",
+            "domain/orders.py::create_order",
+            "payments/gateway.py::charge",
+            "billing/tokens.py::token_amount"
+          ],
+          "primary": "domain/orders.py::create_order",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/api/orders.py#L5-L7",
+            "code://repo/domain/orders.py#L4-L6",
+            "code://repo/payments/gateway.py#L4-L6",
+            "code://repo/billing/tokens.py#L10-L12"
+          ],
+          "context_chars": 610,
+          "latency_ms": 0.02359399999818379
+        },
+        {
+          "id": "c8",
+          "task": "duplicate_symbol",
+          "query": "Where is normalize for billing invoice references implemented?",
+          "relevant": [
+            "billing/normalizers.py::normalize"
+          ],
+          "ranking": [
+            "billing/normalizers.py::normalize",
+            "billing/tokens.py::parse_token",
+            "helpers/normalizers.py::normalize",
+            "pricing/tax.py::tax_for_region"
+          ],
+          "primary": "billing/normalizers.py::normalize",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/billing/normalizers.py#L4-L6",
+            "code://repo/billing/tokens.py#L4-L7",
+            "code://repo/helpers/normalizers.py#L4-L6",
+            "code://repo/pricing/tax.py#L4-L7"
+          ],
+          "context_chars": 710,
+          "latency_ms": 0.022332000014557707
+        },
+        {
+          "id": "c9",
+          "task": "dependency",
+          "query": "Which functions does finalize_checkout call before returning?",
+          "relevant": [
+            "pricing/engine.py::compute_total",
+            "payments/gateway.py::charge"
+          ],
+          "ranking": [
+            "services/checkout.py::finalize_checkout",
+            "payments/gateway.py::charge",
+            "pricing/discounts.py::apply_discount",
+            "pricing/tax.py::tax_for_region"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 0.5,
+          "complete": false,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/services/checkout.py#L6-L9",
+            "code://repo/payments/gateway.py#L4-L6",
+            "code://repo/pricing/discounts.py#L4-L8",
+            "code://repo/pricing/tax.py#L4-L7"
+          ],
+          "context_chars": 758,
+          "latency_ms": 0.018854999979112108
+        },
+        {
+          "id": "c10",
+          "task": "dependency",
+          "query": "Which helper does compute_total call to calculate regional tax?",
+          "relevant": [
+            "pricing/tax.py::tax_for_region"
+          ],
+          "ranking": [
+            "pricing/engine.py::compute_total",
+            "pricing/tax.py::tax_for_region",
+            "services/checkout.py::finalize_checkout",
+            "pricing/discounts.py::apply_discount"
+          ],
+          "primary": "pricing/tax.py::tax_for_region",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/pricing/tax.py#L4-L7",
+            "code://repo/services/checkout.py#L6-L9",
+            "code://repo/pricing/discounts.py#L4-L8"
+          ],
+          "context_chars": 917,
+          "latency_ms": 0.021489999994628306
+        }
+      ]
+    },
+    "symbol_graph": {
+      "metrics": {
+        "recall@4": 1.0,
+        "evidence_complete@4": 1.0,
+        "primary_hit@1": 0.8,
+        "single_evidence_answer_location_exact": 1.0,
+        "dependency_complete@4": 1.0,
+        "callsite_confusion_rate": 0.0,
+        "duplicate_symbol_confusion_rate": 0.0,
+        "mean_context_chars@4": 748.0,
+        "mean_query_ms": 0.13891630000557598,
+        "indexed_units": 17.0,
+        "exact_line_locators_available": 1.0
+      },
+      "per_query": [
+        {
+          "id": "c1",
+          "task": "implementation",
+          "query": "Where is bearer auth token validation implemented?",
+          "relevant": [
+            "auth/tokens.py::validate_token"
+          ],
+          "ranking": [
+            "auth/tokens.py::validate_token",
+            "auth/tokens.py::parse_token",
+            "billing/tokens.py::token_amount",
+            "billing/tokens.py::parse_token"
+          ],
+          "primary": "auth/tokens.py::validate_token",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/auth/tokens.py#L10-L13",
+            "code://repo/auth/tokens.py#L4-L7",
+            "code://repo/billing/tokens.py#L10-L12",
+            "code://repo/billing/tokens.py#L4-L7"
+          ],
+          "context_chars": 769,
+          "latency_ms": 0.5705210000144234
+        },
+        {
+          "id": "c2",
+          "task": "duplicate_symbol",
+          "query": "Where is parse_token for invoice billing tokens defined?",
+          "relevant": [
+            "billing/tokens.py::parse_token"
+          ],
+          "ranking": [
+            "billing/tokens.py::parse_token",
+            "auth/tokens.py::parse_token",
+            "billing/tokens.py::token_amount",
+            "billing/normalizers.py::normalize"
+          ],
+          "primary": "billing/tokens.py::parse_token",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/billing/tokens.py#L4-L7",
+            "code://repo/auth/tokens.py#L4-L7",
+            "code://repo/billing/tokens.py#L10-L12",
+            "code://repo/billing/normalizers.py#L4-L6"
+          ],
+          "context_chars": 726,
+          "latency_ms": 0.058067999987088115
+        },
+        {
+          "id": "c3",
+          "task": "implementation_vs_callsite",
+          "query": "Find the implementation of compute_total, not the checkout call site.",
+          "relevant": [
+            "pricing/engine.py::compute_total"
+          ],
+          "ranking": [
+            "pricing/engine.py::compute_total",
+            "pricing/discounts.py::apply_discount",
+            "pricing/tax.py::tax_for_region",
+            "services/checkout.py::finalize_checkout"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/pricing/discounts.py#L4-L8",
+            "code://repo/pricing/tax.py#L4-L7",
+            "code://repo/services/checkout.py#L6-L9"
+          ],
+          "context_chars": 917,
+          "latency_ms": 0.05336899999974776
+        },
+        {
+          "id": "c4",
+          "task": "dependency",
+          "query": "Which functions compute the checkout total including discount and regional tax?",
+          "relevant": [
+            "pricing/engine.py::compute_total",
+            "pricing/discounts.py::apply_discount",
+            "pricing/tax.py::tax_for_region"
+          ],
+          "ranking": [
+            "pricing/tax.py::tax_for_region",
+            "pricing/discounts.py::apply_discount",
+            "pricing/engine.py::compute_total",
+            "payments/gateway.py::charge"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/pricing/tax.py#L4-L7",
+            "code://repo/pricing/discounts.py#L4-L8",
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/payments/gateway.py#L4-L6"
+          ],
+          "context_chars": 811,
+          "latency_ms": 0.4245690000175273
+        },
+        {
+          "id": "c5",
+          "task": "method",
+          "query": "What implementation invalidates cached session entries?",
+          "relevant": [
+            "storage/cache.py::Cache.invalidate"
+          ],
+          "ranking": [
+            "storage/cache.py::Cache.invalidate",
+            "api/orders.py::submit_order",
+            "storage/cache.py::Cache",
+            "services/session.py::clear_session"
+          ],
+          "primary": "storage/cache.py::Cache.invalidate",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/storage/cache.py#L11-L13",
+            "code://repo/api/orders.py#L5-L7",
+            "code://repo/storage/cache.py#L4-L13",
+            "code://repo/services/session.py#L5-L7"
+          ],
+          "context_chars": 704,
+          "latency_ms": 0.05068400000141082
+        },
+        {
+          "id": "c6",
+          "task": "change_locality",
+          "query": "If apply_discount is renamed, which caller must change?",
+          "relevant": [
+            "pricing/discounts.py::apply_discount",
+            "pricing/engine.py::compute_total"
+          ],
+          "ranking": [
+            "pricing/engine.py::compute_total",
+            "pricing/discounts.py::apply_discount"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/pricing/discounts.py#L4-L8"
+          ],
+          "context_chars": 483,
+          "latency_ms": 0.049392000022407956
+        },
+        {
+          "id": "c7",
+          "task": "implementation_vs_callsite",
+          "query": "Where is create_order implemented rather than the API submit_order wrapper?",
+          "relevant": [
+            "domain/orders.py::create_order"
+          ],
+          "ranking": [
+            "domain/orders.py::create_order",
+            "api/orders.py::submit_order",
+            "payments/gateway.py::charge",
+            "billing/tokens.py::token_amount"
+          ],
+          "primary": "domain/orders.py::create_order",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/domain/orders.py#L4-L6",
+            "code://repo/api/orders.py#L5-L7",
+            "code://repo/payments/gateway.py#L4-L6",
+            "code://repo/billing/tokens.py#L10-L12"
+          ],
+          "context_chars": 610,
+          "latency_ms": 0.03898299999605115
+        },
+        {
+          "id": "c8",
+          "task": "duplicate_symbol",
+          "query": "Where is normalize for billing invoice references implemented?",
+          "relevant": [
+            "billing/normalizers.py::normalize"
+          ],
+          "ranking": [
+            "billing/normalizers.py::normalize",
+            "helpers/normalizers.py::normalize",
+            "billing/tokens.py::parse_token",
+            "pricing/tax.py::tax_for_region"
+          ],
+          "primary": "billing/normalizers.py::normalize",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/billing/normalizers.py#L4-L6",
+            "code://repo/helpers/normalizers.py#L4-L6",
+            "code://repo/billing/tokens.py#L4-L7",
+            "code://repo/pricing/tax.py#L4-L7"
+          ],
+          "context_chars": 710,
+          "latency_ms": 0.036558000005015856
+        },
+        {
+          "id": "c9",
+          "task": "dependency",
+          "query": "Which functions does finalize_checkout call before returning?",
+          "relevant": [
+            "pricing/engine.py::compute_total",
+            "payments/gateway.py::charge"
+          ],
+          "ranking": [
+            "payments/gateway.py::charge",
+            "pricing/engine.py::compute_total",
+            "services/checkout.py::finalize_checkout",
+            "pricing/discounts.py::apply_discount"
+          ],
+          "primary": "pricing/engine.py::compute_total",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": false,
+          "locators": [
+            "code://repo/payments/gateway.py#L4-L6",
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/services/checkout.py#L6-L9",
+            "code://repo/pricing/discounts.py#L4-L8"
+          ],
+          "context_chars": 833,
+          "latency_ms": 0.05263799999966068
+        },
+        {
+          "id": "c10",
+          "task": "dependency",
+          "query": "Which helper does compute_total call to calculate regional tax?",
+          "relevant": [
+            "pricing/tax.py::tax_for_region"
+          ],
+          "ranking": [
+            "pricing/tax.py::tax_for_region",
+            "pricing/discounts.py::apply_discount",
+            "pricing/engine.py::compute_total",
+            "services/checkout.py::finalize_checkout"
+          ],
+          "primary": "pricing/tax.py::tax_for_region",
+          "recall": 1.0,
+          "complete": true,
+          "primary_hit@1": true,
+          "locators": [
+            "code://repo/pricing/tax.py#L4-L7",
+            "code://repo/pricing/discounts.py#L4-L8",
+            "code://repo/pricing/engine.py#L6-L10",
+            "code://repo/services/checkout.py#L6-L9"
+          ],
+          "context_chars": 917,
+          "latency_ms": 0.05438100001242674
+        }
+      ]
+    }
+  },
+  "system": {
+    "index_build_ms": 3.678911000008611,
+    "file_units": 13,
+    "symbol_units": 17
+  },
+  "graph": {
+    "api/orders.py::submit_order": [
+      "domain/orders.py::create_order"
+    ],
+    "pricing/engine.py::compute_total": [
+      "pricing/discounts.py::apply_discount",
+      "pricing/tax.py::tax_for_region"
+    ],
+    "services/checkout.py::finalize_checkout": [
+      "pricing/engine.py::compute_total",
+      "payments/gateway.py::charge"
+    ]
+  }
+}

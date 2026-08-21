@@ -1,0 +1,296 @@
+{
+  "hypothesis": "a real pretrained aligned text-image representation may recover visual semantics but cannot rely on hidden captions or metadata and may still fail identity/abstention on the frozen toy benchmark",
+  "model": {
+    "name": "openai/clip-vit-base-patch32",
+    "revision": "b97b0100e55e367c057773c2a614676470b0d575",
+    "device": "cpu",
+    "embedding_dimensions": 512,
+    "model_load_ms": 8064.025541000006,
+    "index_build_ms": 525.3530589999968,
+    "logical_index_bytes": 18432
+  },
+  "benchmark": {
+    "images": 9,
+    "queries": 10
+  },
+  "metrics": {
+    "recall@3": 0.625,
+    "hit_rate@1": 0.375,
+    "visual_required_hit@1": 0.3333333333333333,
+    "cross_modal_hit@1": 0.0,
+    "text_sufficient_hit@1": 0.5,
+    "no_evidence_accuracy": 0.0,
+    "answer_correct_rate": 0.2,
+    "visual_evidence_grounded_rate": 0.3333333333333333,
+    "mean_visual_candidates_scored": 9.0,
+    "mean_query_ms": 27.819968499999998
+  },
+  "per_query": [
+    {
+      "id": "m1",
+      "task": "visual_only",
+      "query": "Which control panel has a red indicator in the upper-left?",
+      "relevant": [
+        "p4"
+      ],
+      "ranking": [
+        "p4",
+        "p5",
+        "p3"
+      ],
+      "scores": [
+        0.26632770895957947,
+        0.26263880729675293,
+        0.25952890515327454
+      ],
+      "top_locator": "image://benchmark/p4.ppm",
+      "answer": "Unassigned control panel",
+      "expected_answer": "Unassigned control panel",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 31.632776
+    },
+    {
+      "id": "m2",
+      "task": "visual_only",
+      "query": "Which control panel has a green indicator in the lower-right?",
+      "relevant": [
+        "p2"
+      ],
+      "ranking": [
+        "p2",
+        "p3",
+        "p1"
+      ],
+      "scores": [
+        0.2702912986278534,
+        0.26995065808296204,
+        0.26975664496421814
+      ],
+      "top_locator": "image://benchmark/p2.ppm",
+      "answer": "Alpha pump panel B",
+      "expected_answer": "Alpha pump panel B",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 30.487554
+    },
+    {
+      "id": "m3",
+      "task": "visual_only",
+      "query": "Which capacity chart has the blue bar taller than the red bar?",
+      "relevant": [
+        "c1"
+      ],
+      "ranking": [
+        "p4",
+        "p5",
+        "p2"
+      ],
+      "scores": [
+        0.2635909914970398,
+        0.261618435382843,
+        0.25068873167037964
+      ],
+      "top_locator": "image://benchmark/p4.ppm",
+      "answer": "Unassigned control panel",
+      "expected_answer": "Quarterly capacity chart Q1",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 29.820786
+    },
+    {
+      "id": "m4",
+      "task": "visual_only",
+      "query": "Which evacuation diagram places the yellow marker in the lower-left?",
+      "relevant": [
+        "d2"
+      ],
+      "ranking": [
+        "c1",
+        "d2",
+        "c2"
+      ],
+      "scores": [
+        0.23076963424682617,
+        0.2306494414806366,
+        0.23002928495407104
+      ],
+      "top_locator": "image://benchmark/c1.ppm",
+      "answer": "Quarterly capacity chart Q1",
+      "expected_answer": "South warehouse evacuation diagram",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 29.169269
+    },
+    {
+      "id": "m5",
+      "task": "text_sufficient",
+      "query": "Find the north warehouse evacuation diagram.",
+      "relevant": [
+        "d1"
+      ],
+      "ranking": [
+        "c1",
+        "c2",
+        "p4"
+      ],
+      "scores": [
+        0.21168038249015808,
+        0.20829111337661743,
+        0.20273247361183167
+      ],
+      "top_locator": "image://benchmark/c1.ppm",
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "north",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 27.233439
+    },
+    {
+      "id": "m6",
+      "task": "text_sufficient",
+      "query": "Find the Q2 capacity comparison chart.",
+      "relevant": [
+        "c2"
+      ],
+      "ranking": [
+        "c2",
+        "p2",
+        "p3"
+      ],
+      "scores": [
+        0.23652976751327515,
+        0.22984984517097473,
+        0.22894510626792908
+      ],
+      "top_locator": "image://benchmark/c2.ppm",
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "q2",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 25.210355
+    },
+    {
+      "id": "m7",
+      "task": "cross_modal",
+      "query": "For the beta pump panel, where is the red indicator?",
+      "relevant": [
+        "p5"
+      ],
+      "ranking": [
+        "p3",
+        "p2",
+        "p4"
+      ],
+      "scores": [
+        0.24314385652542114,
+        0.24071764945983887,
+        0.2406119704246521
+      ],
+      "top_locator": "image://benchmark/p3.ppm",
+      "answer": "UNKNOWN",
+      "expected_answer": "lower-right",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 25.754523
+    },
+    {
+      "id": "m8",
+      "task": "cross_modal",
+      "query": "For alpha pump panel B, where is the green indicator?",
+      "relevant": [
+        "p2"
+      ],
+      "ranking": [
+        "p3",
+        "p2",
+        "p1"
+      ],
+      "scores": [
+        0.24146190285682678,
+        0.2412891983985901,
+        0.2389344722032547
+      ],
+      "top_locator": "image://benchmark/p3.ppm",
+      "answer": "upper-left",
+      "expected_answer": "lower-right",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 26.273273
+    },
+    {
+      "id": "m9",
+      "task": "no_evidence",
+      "query": "For the beta pump panel, where is the yellow indicator?",
+      "relevant": [],
+      "ranking": [
+        "d2",
+        "p3",
+        "p2"
+      ],
+      "scores": [
+        0.23777008056640625,
+        0.23650294542312622,
+        0.23531749844551086
+      ],
+      "top_locator": "image://benchmark/d2.ppm",
+      "answer": "lower-left",
+      "expected_answer": "NO_EVIDENCE",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 25.538259
+    },
+    {
+      "id": "m10",
+      "task": "no_evidence",
+      "query": "Which capacity chart has a green bar taller than the blue bar?",
+      "relevant": [],
+      "ranking": [
+        "p2",
+        "p3",
+        "p1"
+      ],
+      "scores": [
+        0.2709096670150757,
+        0.27040934562683105,
+        0.27040690183639526
+      ],
+      "top_locator": "image://benchmark/p2.ppm",
+      "answer": "Alpha pump panel B",
+      "expected_answer": "NO_EVIDENCE",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "image"
+      ],
+      "visual_candidates_scored": 9,
+      "latency_ms": 27.079451
+    }
+  ]
+}

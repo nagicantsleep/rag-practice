@@ -1,0 +1,10 @@
+{"id":"m1","task":"visual_only","query":"Which control panel has a red indicator in the upper-left?","relevant":["p4"],"answer":"Unassigned control panel"}
+{"id":"m2","task":"visual_only","query":"Which control panel has a green indicator in the lower-right?","relevant":["p2"],"answer":"Alpha pump panel B"}
+{"id":"m3","task":"visual_only","query":"Which capacity chart has the blue bar taller than the red bar?","relevant":["c1"],"answer":"Quarterly capacity chart Q1"}
+{"id":"m4","task":"visual_only","query":"Which evacuation diagram places the yellow marker in the lower-left?","relevant":["d2"],"answer":"South warehouse evacuation diagram"}
+{"id":"m5","task":"text_sufficient","query":"Find the north warehouse evacuation diagram.","relevant":["d1"],"answer":"north"}
+{"id":"m6","task":"text_sufficient","query":"Find the Q2 capacity comparison chart.","relevant":["c2"],"answer":"q2"}
+{"id":"m7","task":"cross_modal","query":"For the beta pump panel, where is the red indicator?","relevant":["p5"],"answer":"lower-right"}
+{"id":"m8","task":"cross_modal","query":"For alpha pump panel B, where is the green indicator?","relevant":["p2"],"answer":"lower-right"}
+{"id":"m9","task":"no_evidence","query":"For the beta pump panel, where is the yellow indicator?","relevant":[],"answer":"NO_EVIDENCE"}
+{"id":"m10","task":"no_evidence","query":"Which capacity chart has a green bar taller than the blue bar?","relevant":[],"answer":"NO_EVIDENCE"}

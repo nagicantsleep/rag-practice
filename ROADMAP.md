@@ -394,7 +394,7 @@ Evaluation evidence:
 - Generation/groundedness evaluation is **not applicable by design** because M07 intentionally isolates structured retrieval and temporal-memory quality from generation.
 
 Artifacts: `benchmarks/m07_structured/`, `src/rag_practice/structured/`, `src/rag_practice/evaluation/structured.py`, `labs/07_hierarchical_graph_memory/`, and `.github/workflows/m07-structured.yml`.
-### M08 — Specialized Sources and Modalities — `IN PROGRESS`
+### M08 — Specialized Sources and Modalities — `DONE`
 
 M08 keeps source boundaries explicit so source-specific retrieval failures are evaluated before they are hidden behind a common orchestrator.
 
@@ -406,7 +406,7 @@ Sub-labs:
 - **Code RAG — `DONE`**
 - **multimodal RAG — `DONE`**
 - **visual-document / page-image RAG — `DONE`**
-- long-context vs retrieval routing — `TODO`
+- **long-context vs retrieval routing — `DONE`**
 
 ### Web RAG summary
 
@@ -553,6 +553,36 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m08_visual_document/`, `src/rag_practice/visual_document/`, `src/rag_practice/evaluation/visual_document.py`, `labs/08_specialized_sources/visual_document/`, and `.github/workflows/m08-visual-document.yml`.
 
+### Long-context vs retrieval routing summary
+
+M08.7 freezes one 4-bundle/12-query benchmark before pretrained inspection and compares direct full-context reading, fixed-budget BM25 retrieval, and an explicit qrel-blind router while separating route quality, evidence completeness, reader correctness, grounding, abstention, context footprint, retrieval calls, and latency.
+
+| System | Route acc | Evidence complete | Answer acc | Grounded | Abstention | Context words | Retrieval calls |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| deterministic always direct | 0.583 | **1.000** | **1.000** | **1.000** | **1.000** | 490.5 | **0.00** |
+| deterministic always retrieve | 0.417 | 0.700 | 0.750 | **1.000** | **1.000** | **100.2** | 1.00 |
+| deterministic explicit router | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | 275.5 | 0.42 |
+| SmolLM2 explicit router | **1.000** | **1.000** | 0.000 | 0.083 | 0.000 | 275.5 | 0.42 |
+
+Important long-context findings:
+
+- **Full-context reading is a quality ceiling with a context cost.** It preserves complete evidence on this frozen benchmark but wastes full-context budget on retrieval-preferred sparse-fact queries.
+- **Retrieval can save context while destroying global evidence completeness.** Frozen BM25 top-2 reduces selected context sharply but misses sections needed by Atlas/Orion global count/list tasks.
+- **The explicit router is a mechanism control, not learned generalization.** Frozen bundle-size and global-language rules recover the declared route boundary without looking at qrels or reader outputs.
+- **Correct routing does not imply reader competence.** Pinned `HuggingFaceTB/SmolLM2-135M-Instruct@12fd25f77366fa6b3b4b768ec3050bf629380bac` gets complete evidence under the explicit router but strict raw answer accuracy remains `0.0`.
+- **Reader failures include both formatting and semantics.** The frozen strict metric retains verbose fact answers, wrong comparison/list/count answers, and hallucinated answers on both no-evidence cases rather than adding expected-answer-aware cleanup.
+- **Routing changes cost independently from quality.** The pretrained explicit route sits between always-direct and always-retrieve in prompt size and CPU generation time while preserving deterministic evidence completeness.
+- **This remains controlled evidence.** The benchmark is tiny/synthetic and the pretrained reader is one small pinned model; neither result is a general long-context leaderboard claim.
+
+Evaluation evidence:
+
+- Benchmark frozen before pretrained inspection in commit `b018a52b112f113ad18447bfc8ab862b5ccded98`.
+- Repaired deterministic gate `32481131658` / job `96767529712`: **121 tests passed** and deterministic evaluation passed.
+- Full pinned pretrained gate `32481464647` / job `96768559380`: **124 tests passed**, deterministic evaluation passed, and pinned SmolLM2 evaluation passed.
+- Final source-of-truth push gate run `32483779972` passed on head `4d79e69ee7eee22ba243e4706c03ed7477112455` before this automated `[skip ci]` completion update; the finalizer executes only after full tests, deterministic evaluation, and pinned SmolLM2 evaluation succeed.
+
+Artifacts: `benchmarks/m08_long_context/`, `src/rag_practice/long_context/`, `src/rag_practice/evaluation/long_context.py`, `src/rag_practice/evaluation/long_context_pretrained.py`, `labs/08_specialized_sources/long_context/`, and `.github/workflows/m08-long-context.yml`.
+
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -563,4 +593,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.7 — Long-context vs retrieval routing**. Freeze a benchmark with short, long, and mixed-context tasks before tuning; compare direct long-context reading, retrieval-first RAG, and an explicit routing policy on the same evidence. Evaluate route correctness, retrieval/evidence completeness, answer correctness and grounding, unnecessary retrieval/context use, latency, token/context footprint, abstention, and the failure boundary where full-context reading should replace or defer to retrieval.
+Continue **M09 — Agentic RAG**. Implement planner/search strategy, source and tool routing, retrieval loops, evidence evaluation, retry/stop policy, and explicit state before comparing multi-agent variants. Evaluate task success, tool precision, unnecessary actions, recovery, grounding, latency, and cost independently.

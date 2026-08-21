@@ -17,7 +17,7 @@
         "callsite_confusion_rate": 1.0,
         "duplicate_symbol_confusion_rate": 0.0,
         "mean_context_chars@4": 1018.6,
-        "mean_query_ms": 0.02849999999341435,
+        "mean_query_ms": 0.02565000000629425,
         "indexed_units": 13.0,
         "exact_line_locators_available": 0.0
       },
@@ -39,7 +39,7 @@
           "primary_hit@1": true,
           "locators": [],
           "context_chars": 846,
-          "latency_ms": 0.03442399997766188
+          "latency_ms": 0.03388300001461175
         },
         {
           "id": "c2",
@@ -60,7 +60,7 @@
           "primary_hit@1": true,
           "locators": [],
           "context_chars": 1281,
-          "latency_ms": 0.03352199999540062
+          "latency_ms": 0.032411000006504764
         },
         {
           "id": "c3",
@@ -81,7 +81,7 @@
           "primary_hit@1": false,
           "locators": [],
           "context_chars": 1140,
-          "latency_ms": 0.02938499997640065
+          "latency_ms": 0.029183999998849686
         },
         {
           "id": "c4",
@@ -104,7 +104,7 @@
           "primary_hit@1": true,
           "locators": [],
           "context_chars": 1216,
-          "latency_ms": 0.05705600000283084
+          "latency_ms": 0.03782099997806654
         },
         {
           "id": "c5",
@@ -124,7 +124,7 @@
           "primary_hit@1": true,
           "locators": [],
           "context_chars": 749,
-          "latency_ms": 0.020227999982580513
+          "latency_ms": 0.016600999998672705
         },
         {
           "id": "c6",
@@ -144,7 +144,7 @@
           "primary_hit@1": false,
           "locators": [],
           "context_chars": 635,
-          "latency_ms": 0.01953599999637845
+          "latency_ms": 0.018745000005537804
         },
         {
           "id": "c7",
@@ -165,7 +165,7 @@
           "primary_hit@1": false,
           "locators": [],
           "context_chars": 980,
-          "latency_ms": 0.02531699999508419
+          "latency_ms": 0.023815000020022126
         },
         {
           "id": "c8",
@@ -186,7 +186,7 @@
           "primary_hit@1": true,
           "locators": [],
           "context_chars": 994,
-          "latency_ms": 0.022462000003997673
+          "latency_ms": 0.02228200000331526
         },
         {
           "id": "c9",
@@ -208,7 +208,7 @@
           "primary_hit@1": false,
           "locators": [],
           "context_chars": 1129,
-          "latency_ms": 0.02028800000175579
+          "latency_ms": 0.019727000022840002
         },
         {
           "id": "c10",
@@ -229,7 +229,7 @@
           "primary_hit@1": false,
           "locators": [],
           "context_chars": 1216,
-          "latency_ms": 0.022782000002052882
+          "latency_ms": 0.02203100001452185
         }
       ]
     },
@@ -243,7 +243,7 @@
         "callsite_confusion_rate": 1.0,
         "duplicate_symbol_confusion_rate": 0.0,
         "mean_context_chars@4": 740.5,
-        "mean_query_ms": 0.02371010000103979,
+        "mean_query_ms": 0.023436899996909233,
         "indexed_units": 17.0,
         "exact_line_locators_available": 1.0
       },
@@ -272,7 +272,7 @@
             "code://repo/billing/tokens.py#L4-L7"
           ],
           "context_chars": 769,
-          "latency_ms": 0.026880000007167837
+          "latency_ms": 0.02733099998408761
         },
         {
           "id": "c2",
@@ -298,7 +298,7 @@
             "code://repo/billing/normalizers.py#L4-L6"
           ],
           "context_chars": 726,
-          "latency_ms": 0.030014999992999947
+          "latency_ms": 0.030247000012195713
         },
         {
           "id": "c3",
@@ -324,7 +324,7 @@
             "code://repo/payments/gateway.py#L4-L6"
           ],
           "context_chars": 811,
-          "latency_ms": 0.02765199999998913
+          "latency_ms": 0.027009999996607803
         },
         {
           "id": "c4",
@@ -352,7 +352,7 @@
             "code://repo/pricing/discounts.py#L4-L8"
           ],
           "context_chars": 917,
-          "latency_ms": 0.031749000015679485
+          "latency_ms": 0.03194999999323045
         },
         {
           "id": "c5",
@@ -378,7 +378,7 @@
             "code://repo/services/session.py#L5-L7"
           ],
           "context_chars": 704,
-          "latency_ms": 0.016850999998041516
+          "latency_ms": 0.016510999984120645
         },
         {
           "id": "c6",
@@ -401,7 +401,7 @@
             "code://repo/pricing/engine.py#L6-L10"
           ],
           "context_chars": 483,
-          "latency_ms": 0.017683000010038086
+          "latency_ms": 0.018094000012069955
         },
         {
           "id": "c7",
@@ -427,7 +427,7 @@
             "code://repo/billing/tokens.py#L10-L12"
           ],
           "context_chars": 610,
-          "latency_ms": 0.02359399999818379
+          "latency_ms": 0.022371999989445612
         },
         {
           "id": "c8",
@@ -453,7 +453,7 @@
             "code://repo/pricing/tax.py#L4-L7"
           ],
           "context_chars": 710,
-          "latency_ms": 0.022332000014557707
+          "latency_ms": 0.021470999996608953
         },
         {
           "id": "c9",
@@ -480,7 +480,7 @@
             "code://repo/pricing/tax.py#L4-L7"
           ],
           "context_chars": 758,
-          "latency_ms": 0.018854999979112108
+          "latency_ms": 0.018433999997569117
         },
         {
           "id": "c10",
@@ -506,7 +506,7 @@
             "code://repo/pricing/discounts.py#L4-L8"
           ],
           "context_chars": 917,
-          "latency_ms": 0.021489999994628306
+          "latency_ms": 0.02094900000315647
         }
       ]
     },
@@ -520,7 +520,7 @@
         "callsite_confusion_rate": 0.0,
         "duplicate_symbol_confusion_rate": 0.0,
         "mean_context_chars@4": 748.0,
-        "mean_query_ms": 0.13891630000557598,
+        "mean_query_ms": 0.14069660000188833,
         "indexed_units": 17.0,
         "exact_line_locators_available": 1.0
       },
@@ -549,7 +549,7 @@
             "code://repo/billing/tokens.py#L4-L7"
           ],
           "context_chars": 769,
-          "latency_ms": 0.5705210000144234
+          "latency_ms": 0.54708199999709
         },
         {
           "id": "c2",
@@ -575,7 +575,7 @@
             "code://repo/billing/normalizers.py#L4-L6"
           ],
           "context_chars": 726,
-          "latency_ms": 0.058067999987088115
+          "latency_ms": 0.06468099999779042
         },
         {
           "id": "c3",
@@ -601,7 +601,7 @@
             "code://repo/services/checkout.py#L6-L9"
           ],
           "context_chars": 917,
-          "latency_ms": 0.05336899999974776
+          "latency_ms": 0.08024000001682907
         },
         {
           "id": "c4",
@@ -629,7 +629,7 @@
             "code://repo/payments/gateway.py#L4-L6"
           ],
           "context_chars": 811,
-          "latency_ms": 0.4245690000175273
+          "latency_ms": 0.43834800001718577
         },
         {
           "id": "c5",
@@ -655,7 +655,7 @@
             "code://repo/services/session.py#L5-L7"
           ],
           "context_chars": 704,
-          "latency_ms": 0.05068400000141082
+          "latency_ms": 0.04894100001706647
         },
         {
           "id": "c6",
@@ -678,7 +678,7 @@
             "code://repo/pricing/discounts.py#L4-L8"
           ],
           "context_chars": 483,
-          "latency_ms": 0.049392000022407956
+          "latency_ms": 0.048730999992585566
         },
         {
           "id": "c7",
@@ -704,7 +704,7 @@
             "code://repo/billing/tokens.py#L10-L12"
           ],
           "context_chars": 610,
-          "latency_ms": 0.03898299999605115
+          "latency_ms": 0.0389319999953841
         },
         {
           "id": "c8",
@@ -730,7 +730,7 @@
             "code://repo/pricing/tax.py#L4-L7"
           ],
           "context_chars": 710,
-          "latency_ms": 0.036558000005015856
+          "latency_ms": 0.0358369999844399
         },
         {
           "id": "c9",
@@ -757,7 +757,7 @@
             "code://repo/pricing/discounts.py#L4-L8"
           ],
           "context_chars": 833,
-          "latency_ms": 0.05263799999966068
+          "latency_ms": 0.05221699998969598
         },
         {
           "id": "c10",
@@ -783,13 +783,13 @@
             "code://repo/services/checkout.py#L6-L9"
           ],
           "context_chars": 917,
-          "latency_ms": 0.05438100001242674
+          "latency_ms": 0.051957000010816046
         }
       ]
     }
   },
   "system": {
-    "index_build_ms": 3.678911000008611,
+    "index_build_ms": 3.7139490000015485,
     "file_units": 13,
     "symbol_units": 17
   },

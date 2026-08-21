@@ -1,6 +1,6 @@
 # M08.4 — Code RAG
 
-Status: **COMPLETION CANDIDATE** — final source-of-truth gate pending.
+Status: **DONE** — final full-suite + Code RAG gate passed in GitHub Actions run `32455642731`.
 
 ## Hypothesis
 
@@ -61,6 +61,8 @@ File and symbol retrieval units are reported separately. A file-level hit is not
 
 Initial successful PR gate `32452536862` passed the full repository suite (**102 tests**) and the Code RAG evaluator.
 
+Final source-of-truth gate `32455642731` passed the same full-suite/evaluator sequence before this completion update.
+
 An earlier gate `32452392799` failed with **101 passed, 1 failed** because the test expected the prototype line span `L10-L12` after the frozen benchmark had been formatted to `L11-L13`. The AST index returned the frozen source span correctly; only the assertion was corrected. Retrieval code, graph scoring, benchmark queries, and qrels were unchanged.
 
 | System | Recall@4 | Complete@4 | Primary Hit@1 | Single-answer location | Dependency complete | Call-site confusion | Context chars@4 | Exact line locators |
@@ -93,6 +95,6 @@ Machine-readable evidence: `results/results.json`. Human-readable aggregate tabl
 - [x] full repository CI + Code RAG evaluator passes
 - [x] persisted JSON/Markdown results reviewed
 - [x] representative implementation/call-site/dependency failures written down
-- [ ] ROADMAP marks Code RAG DONE only after the final gate passes
+- [x] ROADMAP marks Code RAG DONE only after the final gate passes
 
-Code RAG is not merged until the final unchecked gate passes. This remains a Python-only deterministic mechanism lab.
+Code RAG satisfies the sub-lab evaluation contract and is eligible to merge; M08 overall remains IN PROGRESS. This remains a Python-only deterministic mechanism lab.

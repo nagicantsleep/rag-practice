@@ -1,0 +1,735 @@
+{
+  "hypothesis": "web retrieval needs explicit freshness, authority, and duplicate handling; a grounded answer can still be wrong when it cites a stale or low-authority page",
+  "as_of": "2026-08-20",
+  "benchmark": {
+    "pages": 14,
+    "queries": 8,
+    "live_web_used": false,
+    "reason": "frozen snapshots keep CI deterministic while preserving web-specific metadata/failures"
+  },
+  "systems": {
+    "body_bm25": {
+      "metrics": {
+        "mrr": 0.6875,
+        "map": 0.6875,
+        "hit_rate@1": 0.5,
+        "precision@1": 0.5,
+        "recall@1": 0.5,
+        "ndcg@1": 0.5,
+        "hit_rate@3": 0.875,
+        "precision@3": 0.29166666666666663,
+        "recall@3": 0.875,
+        "ndcg@3": 0.7365986575892965,
+        "stale_top1_rate": 0.4,
+        "low_authority_top1_rate": 0.375,
+        "duplicate_rate@3": 0.16666666666666666,
+        "answer_contains_reference": 0.5,
+        "grounded_answer_rate": 1.0,
+        "mean_source_calls": 1.0,
+        "mean_search_ms": 0.061457125003272495,
+        "mean_rerank_ms": 0.004053749997012801,
+        "mean_end_to_end_ms": 0.06797562500082677
+      },
+      "per_query": [
+        {
+          "query_id": "w1",
+          "task": "current_fact",
+          "query": "What is the current stable NimbusDB version?",
+          "ranking": [
+            "p3",
+            "p2",
+            "p4"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p3",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-18",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/nimbus-current"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.09802299999250863,
+            "rerank_ms": 0.004939999996622646,
+            "end_to_end_ms": 0.1065589999882377,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w2",
+          "task": "current_fact",
+          "query": "Who is the current lead of Aurora Lab?",
+          "ranking": [
+            "p8",
+            "p6",
+            "p7"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p8",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-19",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/aurora-lead"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.07443900000225767,
+            "rerank_ms": 0.00479899998140354,
+            "end_to_end_ms": 0.08378600000469305,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w3",
+          "task": "authority_conflict",
+          "query": "Does NimbusDB currently support Python 3.13?",
+          "ranking": [
+            "p10",
+            "p9",
+            "p13"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p10",
+          "top_domain": "blog.example.com",
+          "top_authority": 0.3,
+          "top_updated_at": "2026-08-18",
+          "stale_top1": false,
+          "citations": [
+            "https://blog.example.com/nimbus-python"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05870900000104484,
+            "rerank_ms": 0.004316999991260673,
+            "end_to_end_ms": 0.06525199998463904,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w4",
+          "task": "authority_duplicate",
+          "query": "Which NimbusDB release fixes CVE-2026-4242?",
+          "ranking": [
+            "p11",
+            "p12",
+            "p1"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p11",
+          "top_domain": "security.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-17",
+          "stale_top1": false,
+          "citations": [
+            "https://security.nimbusdb.dev/CVE-2026-4242"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.056744999994862155,
+            "rerank_ms": 0.0035460000162856886,
+            "end_to_end_ms": 0.0621060000014495,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w5",
+          "task": "historical",
+          "query": "What was the previous stable NimbusDB release before version 4?",
+          "ranking": [
+            "p13",
+            "p3",
+            "p2"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p13",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/history"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.06347900000491791,
+            "rerank_ms": 0.003446999983225396,
+            "end_to_end_ms": 0.06858800000486553,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w6",
+          "task": "static",
+          "query": "Where is Aurora Lab located?",
+          "ranking": [
+            "p14",
+            "p8",
+            "p5"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p14",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2025-10-01",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/about"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.0472990000162099,
+            "rerank_ms": 0.0040170000090711255,
+            "end_to_end_ms": 0.05299900001887181,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w7",
+          "task": "current_fact",
+          "query": "What is the latest stable NimbusDB release?",
+          "ranking": [
+            "p2",
+            "p4",
+            "p13"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p2",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/releases/4"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05944100001897823,
+            "rerank_ms": 0.003536999997777457,
+            "end_to_end_ms": 0.06486099999847283,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w8",
+          "task": "current_fact",
+          "query": "Who currently leads Aurora Lab?",
+          "ranking": [
+            "p14",
+            "p8",
+            "p5"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p14",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2025-10-01",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/about"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 5,
+            "search_ms": 0.03352199999540062,
+            "rerank_ms": 0.0038270000004558824,
+            "end_to_end_ms": 0.03965400000538466,
+            "policy_applied": false
+          }
+        }
+      ]
+    },
+    "metadata_bm25": {
+      "metrics": {
+        "mrr": 0.6666666666666666,
+        "map": 0.6666666666666666,
+        "hit_rate@1": 0.375,
+        "precision@1": 0.375,
+        "recall@1": 0.375,
+        "ndcg@1": 0.375,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 0.7529648767857288,
+        "stale_top1_rate": 0.8,
+        "low_authority_top1_rate": 0.625,
+        "duplicate_rate@3": 0.16666666666666666,
+        "answer_contains_reference": 0.375,
+        "grounded_answer_rate": 1.0,
+        "mean_source_calls": 1.0,
+        "mean_search_ms": 0.05636024999944311,
+        "mean_rerank_ms": 0.003507625002896475,
+        "mean_end_to_end_ms": 0.06127800000754746
+      },
+      "per_query": [
+        {
+          "query_id": "w1",
+          "task": "current_fact",
+          "query": "What is the current stable NimbusDB version?",
+          "ranking": [
+            "p3",
+            "p2",
+            "p4"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p3",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-18",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/nimbus-current"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.07057199999849217,
+            "rerank_ms": 0.0038470000163215445,
+            "end_to_end_ms": 0.07629199998859804,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w2",
+          "task": "current_fact",
+          "query": "Who is the current lead of Aurora Lab?",
+          "ranking": [
+            "p8",
+            "p6",
+            "p7"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p8",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-19",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/aurora-lead"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.061453999990135344,
+            "rerank_ms": 0.0034359999858679657,
+            "end_to_end_ms": 0.06619399999863163,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w3",
+          "task": "authority_conflict",
+          "query": "Does NimbusDB currently support Python 3.13?",
+          "ranking": [
+            "p10",
+            "p9",
+            "p1"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p10",
+          "top_domain": "blog.example.com",
+          "top_authority": 0.3,
+          "top_updated_at": "2026-08-18",
+          "stale_top1": false,
+          "citations": [
+            "https://blog.example.com/nimbus-python"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.049291999999923064,
+            "rerank_ms": 0.0034060000189128914,
+            "end_to_end_ms": 0.054101000017681145,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w4",
+          "task": "authority_duplicate",
+          "query": "Which NimbusDB release fixes CVE-2026-4242?",
+          "ranking": [
+            "p11",
+            "p12",
+            "p1"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p11",
+          "top_domain": "security.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-17",
+          "stale_top1": false,
+          "citations": [
+            "https://security.nimbusdb.dev/CVE-2026-4242"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05209799999761344,
+            "rerank_ms": 0.0038170000209447608,
+            "end_to_end_ms": 0.05730700002004596,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w5",
+          "task": "historical",
+          "query": "What was the previous stable NimbusDB release before version 4?",
+          "ranking": [
+            "p13",
+            "p3",
+            "p2"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p13",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/history"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.078846999997495,
+            "rerank_ms": 0.0036069999964638555,
+            "end_to_end_ms": 0.08405700000935212,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w6",
+          "task": "static",
+          "query": "Where is Aurora Lab located?",
+          "ranking": [
+            "p14",
+            "p6",
+            "p5"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p14",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2025-10-01",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/about"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.04945300000258612,
+            "rerank_ms": 0.003276000001051216,
+            "end_to_end_ms": 0.053951000012375516,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w7",
+          "task": "current_fact",
+          "query": "What is the latest stable NimbusDB release?",
+          "ranking": [
+            "p3",
+            "p2",
+            "p4"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p3",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-18",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/nimbus-current"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05704599999489801,
+            "rerank_ms": 0.0033359999918047833,
+            "end_to_end_ms": 0.06158400000799702,
+            "policy_applied": false
+          }
+        },
+        {
+          "query_id": "w8",
+          "task": "current_fact",
+          "query": "Who currently leads Aurora Lab?",
+          "ranking": [
+            "p8",
+            "p14",
+            "p6"
+          ],
+          "answer_contains_reference": false,
+          "top_id": "p8",
+          "top_domain": "forum.example.net",
+          "top_authority": 0.2,
+          "top_updated_at": "2026-08-19",
+          "stale_top1": true,
+          "citations": [
+            "https://forum.example.net/aurora-lead"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 5,
+            "search_ms": 0.03212000001440174,
+            "rerank_ms": 0.0033359999918047833,
+            "end_to_end_ms": 0.03673800000569827,
+            "policy_applied": false
+          }
+        }
+      ]
+    },
+    "web_policy": {
+      "metrics": {
+        "mrr": 1.0,
+        "map": 1.0,
+        "hit_rate@1": 1.0,
+        "precision@1": 1.0,
+        "recall@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@3": 1.0,
+        "precision@3": 0.3333333333333333,
+        "recall@3": 1.0,
+        "ndcg@3": 1.0,
+        "stale_top1_rate": 0.0,
+        "low_authority_top1_rate": 0.0,
+        "duplicate_rate@3": 0.0,
+        "answer_contains_reference": 1.0,
+        "grounded_answer_rate": 1.0,
+        "mean_source_calls": 1.0,
+        "mean_search_ms": 0.05807575000460474,
+        "mean_rerank_ms": 0.03732462499783651,
+        "mean_end_to_end_ms": 0.09699099999593841
+      },
+      "per_query": [
+        {
+          "query_id": "w1",
+          "task": "current_fact",
+          "query": "What is the current stable NimbusDB version?",
+          "ranking": [
+            "p2",
+            "p13",
+            "p9"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p2",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/releases/4"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.06587300001115182,
+            "rerank_ms": 0.058478999989119984,
+            "end_to_end_ms": 0.1260449999733737,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w2",
+          "task": "current_fact",
+          "query": "Who is the current lead of Aurora Lab?",
+          "ranking": [
+            "p6",
+            "p5",
+            "p2"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p6",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-12",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/team"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.06313699998372613,
+            "rerank_ms": 0.03602800001090145,
+            "end_to_end_ms": 0.10063799999215917,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w3",
+          "task": "authority_conflict",
+          "query": "Does NimbusDB currently support Python 3.13?",
+          "ranking": [
+            "p9",
+            "p10",
+            "p13"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p9",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-10",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/python"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05115499999419626,
+            "rerank_ms": 0.036308000005647045,
+            "end_to_end_ms": 0.08919699999410113,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w4",
+          "task": "authority_duplicate",
+          "query": "Which NimbusDB release fixes CVE-2026-4242?",
+          "ranking": [
+            "p11",
+            "p1",
+            "p2"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p11",
+          "top_domain": "security.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-17",
+          "stale_top1": false,
+          "citations": [
+            "https://security.nimbusdb.dev/CVE-2026-4242"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.05456200000253375,
+            "rerank_ms": 0.0351660000035281,
+            "end_to_end_ms": 0.09120000001416884,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w5",
+          "task": "historical",
+          "query": "What was the previous stable NimbusDB release before version 4?",
+          "ranking": [
+            "p13",
+            "p2",
+            "p1"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p13",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/history"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.06345900001747395,
+            "rerank_ms": 0.03561599999102327,
+            "end_to_end_ms": 0.10053799999809598,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w6",
+          "task": "static",
+          "query": "Where is Aurora Lab located?",
+          "ranking": [
+            "p14",
+            "p6",
+            "p5"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p14",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2025-10-01",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/about"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.04878100000382801,
+            "rerank_ms": 0.030746999982511625,
+            "end_to_end_ms": 0.08101099999180406,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w7",
+          "task": "current_fact",
+          "query": "What is the latest stable NimbusDB release?",
+          "ranking": [
+            "p2",
+            "p13",
+            "p1"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p2",
+          "top_domain": "docs.nimbusdb.dev",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-15",
+          "stale_top1": false,
+          "citations": [
+            "https://docs.nimbusdb.dev/releases/4"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 8,
+            "search_ms": 0.08139199999845914,
+            "rerank_ms": 0.04041500000084852,
+            "end_to_end_ms": 0.1237209999942479,
+            "policy_applied": true
+          }
+        },
+        {
+          "query_id": "w8",
+          "task": "current_fact",
+          "query": "Who currently leads Aurora Lab?",
+          "ranking": [
+            "p6",
+            "p8",
+            "p14"
+          ],
+          "answer_contains_reference": true,
+          "top_id": "p6",
+          "top_domain": "aurora.example.org",
+          "top_authority": 1.0,
+          "top_updated_at": "2026-08-12",
+          "stale_top1": false,
+          "citations": [
+            "https://aurora.example.org/team"
+          ],
+          "trace": {
+            "source_calls": 1,
+            "candidate_count": 5,
+            "search_ms": 0.03624700002546888,
+            "rerank_ms": 0.02583799999911207,
+            "end_to_end_ms": 0.06357800000955649,
+            "policy_applied": true
+          }
+        }
+      ]
+    }
+  }
+}

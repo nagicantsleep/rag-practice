@@ -4,8 +4,8 @@ This benchmark is frozen before any pretrained visual-document retrieval result 
 
 ## Corpus
 
-Six synthetic document pages are stored as exact PNG byte payloads encoded in `images.json`.
-The encoding is only repository-friendly transport; evaluators decode the bytes and inspect the rendered page image.
+Six synthetic document pages are stored as exact XPM raster payloads in `images.json`, compressed with gzip and base64-encoded only for repository-friendly text transport. Evaluators decode those bytes and inspect the rendered page image; the encoded payload is not OCR or semantic metadata.
+
 Each record also contains a frozen `ocr_text` surrogate. OCR text is deliberately separate from the raster and is never produced from the image at evaluation time.
 
 The pages cover:

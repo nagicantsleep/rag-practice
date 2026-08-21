@@ -1,12 +1,12 @@
 # M09 — Agentic RAG
 
-Status: **IN PROGRESS — PHASE 1 RECORDED / MODEL CONTROL NEXT**
+Status: **IN PROGRESS — SINGLE-AGENT MODEL RECORDED / MULTI-AGENT CONTROL NEXT**
 
 ## Goal
 
-Make agentic control observable before introducing framework or model-driven planners. Phase 1 compares a docs-only one-shot baseline, a one-tool static router, and a bounded single-agent loop with explicit state, source/tool routing, evidence checks, recovery, stop policy, and cost accounting.
+Make agentic control observable before introducing framework abstractions. Phase 1 compares a docs-only one-shot baseline, a one-tool static router, and a bounded deterministic single-agent loop with explicit state, source/tool routing, evidence checks, recovery, stop policy, and cost accounting. Phase 2 holds that benchmark fixed and tests a pinned pretrained model as the tool planner only.
 
-The benchmark was frozen in commit `de6f978ab7f14ea1a792a591aa468795b13f92d9` before the agent implementation and before any pretrained agent-policy result is inspected.
+The benchmark was frozen in commit `de6f978ab7f14ea1a792a591aa468795b13f92d9` before the agent implementation and before any pretrained agent-policy result was inspected.
 
 ## Frozen phase-1 systems
 
@@ -35,12 +35,33 @@ Latency is persisted in JSON as a GitHub Actions CPU sanity measurement; the tab
 - **Perfect deterministic scores are not a learned-agent result.** The policy is rule-based and the 12-task corpus is tiny/synthetic. It is a mechanism control establishing what planner/tool/evidence/recovery wiring can do when the routing boundary is hand-coded.
 - **Task success alone would hide policy quality.** The benchmark therefore persists exact actions, evidence ids, failed calls, grounding, abstention, steps, latency, and cost separately.
 
+## Pinned single-agent model planner
+
+`HuggingFaceTB/SmolLM2-135M-Instruct` is pinned to revision `12fd25f77366fa6b3b4b768ec3050bf629380bac` and used only for next-tool selection. It must emit exactly one strict line: `tool|argument` or `STOP`. Final answers still use the same qrel-blind deterministic evidence reader, so this control isolates planner/tool-selection behavior rather than mixing it with free-form answer generation.
+
+| Task success | Grounded | Plan exact | Tool precision | Evidence complete | Abstention | Recovery | Steps | Tool cost | Planner calls | Valid decisions | Prompt tokens | Planner generation ms |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0.167 | 0.167 | 0.000 | 0.000 | 0.167 | **1.000** | 0.000 | 0.00 | 0.00 | 1.00 | 0.000 | 153.2 | ~571.7 |
+
+### Single-agent model findings
+
+- **The pinned planner is a retained negative result.** It produces no valid DSL action on any frozen task, so zero tools execute and the deterministic evidence reader abstains on every query.
+- **The apparent `0.167` task success is not agent success.** It comes only from the two frozen no-evidence tasks (`a8`, `a10`) where zero evidence correctly maps to `ABSTAIN`; plan-sequence accuracy remains `0.0` and recovery remains `0.0`.
+- **Most failures are format/control failures, not tool-runtime failures.** Ten tasks emit `"(none)"` or similarly invalid output instead of a legal action. The direct calculator task emits prose (`The next action is to output the result...`) rather than `calculator|17 + 25`. Recovery task `a9` emits `Answer: STOP` plus an explanation instead of a legal first action.
+- **No expected-answer-aware parser or post-hoc action repair is added.** The strict parser, prompt, model revision, benchmark, action budget, and source data remain unchanged after first pretrained inspection.
+- **A small instruction model can know task semantics yet fail an agent protocol.** Tool-use reliability therefore needs its own evaluation; treating any fluent text as an action would hide exactly this failure.
+- **Planner latency is measurable even when no tools run.** The first decision averages roughly `572 ms` CPU generation and `153` prompt tokens/query, while tool cost stays `0` because every emitted action is invalid.
+
 ## Evidence
 
 - Benchmark freeze: `de6f978ab7f14ea1a792a591aa468795b13f92d9`.
 - Phase-1 implementation: `f7ce3c4fbd41a6e9d71b56af1a6167b30543d1d8`.
 - PR mechanism gate `32485342984` / job `96780479396`: full repository test suite and deterministic M09 evaluator both passed.
 - Deterministic JSON/Markdown evidence was persisted by `github-actions[bot]` in commit `b9c1373428322675f23e8f2b7291031fb100670b`.
+- Phase-1 findings were recorded in `46fe55ce00cf17767f821e9599acb9351dff7a6e`; subsequent bot evidence refreshes changed timings only.
+- Pinned single-agent planner implementation: `55bd2fa6ce1234f75ca9b505c62cde71a30d91ed`.
+- Full pinned-planner PR gate `32485883446` / job `96782153068`: full repository tests, deterministic evaluation, and pinned SmolLM2 tool-planner evaluation all passed.
+- Deterministic + pretrained JSON/Markdown evidence was persisted in bot commit `f0ddfee3cad69d4493651a1b30add35147e79b35`.
 
 ## Definition of Done
 
@@ -50,10 +71,10 @@ Latency is persisted in JSON as a GitHub Actions CPU sanity measurement; the tab
 - [x] Persist per-action traces and separate quality/action/cost metrics.
 - [x] Pass full repository regression + deterministic M09 evaluator gate.
 - [x] Record phase-1 findings and representative baseline/recovery failures.
-- [ ] Add a pinned model-driven single-agent planner/control on the unchanged benchmark.
+- [x] Add a pinned model-driven single-agent planner/control on the unchanged benchmark and retain its failures.
 - [ ] Compare a multi-agent variant only after the single-agent model control is recorded.
 - [ ] Pass final source-of-truth gate and mark M09 `DONE`.
 
 ## Guardrails
 
-Expected answers, expected action sequences, expected evidence, recovery labels, and no-evidence labels are evaluator-only. Runtime code must not use them. Failed calls in recovery tasks remain in traces. Agentic quality is not inferred from task success alone: unnecessary actions, tool precision, grounding, recovery, latency, and cost remain independent contracts.
+Expected answers, expected action sequences, expected evidence, recovery labels, and no-evidence labels are evaluator-only. Runtime code must not use them. Failed calls in recovery tasks remain in traces. Agentic quality is not inferred from task success alone: unnecessary actions, tool precision, grounding, recovery, latency, and cost remain independent contracts. The multi-agent experiment that follows is necessarily post-single-agent and therefore must be treated as exploratory on this same frozen test benchmark rather than fresh held-out generalization.

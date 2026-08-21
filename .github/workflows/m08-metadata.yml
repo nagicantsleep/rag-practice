@@ -42,13 +42,14 @@ jobs:
         run: pytest -q
       - name: Evaluate metadata / filter-aware RAG
         run: python labs/08_specialized_sources/metadata/run.py
-      - name: Persist metadata/filter evaluation evidence on feature branch
+      - name: Persist metadata/filter evidence and finalize source of truth
         if: github.event_name == 'push'
         run: |
+          python labs/08_specialized_sources/metadata/finalize.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add labs/08_specialized_sources/metadata/results/results.json labs/08_specialized_sources/metadata/results/results.md
+          git add ROADMAP.md labs/08_specialized_sources/metadata/README.md labs/08_specialized_sources/metadata/results/results.json labs/08_specialized_sources/metadata/results/results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M08 metadata filter evaluation [skip ci]"
+            git commit -m "test: record M08 metadata filter completion evidence [skip ci]"
             git push origin HEAD:feat/m08-metadata-filter
           fi

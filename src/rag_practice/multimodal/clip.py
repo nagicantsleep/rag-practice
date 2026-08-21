@@ -73,6 +73,12 @@ class CLIPTextToImageRetriever:
         vision_config = getattr(getattr(self.model, "config", None), "vision_config", None)
         return int(getattr(vision_config, "image_size", 224))
 
+    @staticmethod
+    def _feature_tensor(output):
+        """Accept both legacy tensor returns and Transformers 5.x ModelOutput."""
+        pooled = getattr(output, "pooler_output", None)
+        return pooled if pooled is not None else output
+
     def _preprocess_image(self, image: RasterImage):
         torch = self.torch
         values = torch.tensor(image.pixels, dtype=torch.float32, device=self.device)
@@ -94,7 +100,8 @@ class CLIPTextToImageRetriever:
         started = perf_counter()
         batch = torch.stack([self._preprocess_image(self.images[image_id]) for image_id in self.image_ids])
         with torch.no_grad():
-            vectors = self.model.get_image_features(pixel_values=batch)
+            output = self.model.get_image_features(pixel_values=batch)
+            vectors = self._feature_tensor(output)
             vectors = torch.nn.functional.normalize(vectors, dim=-1)
         self.index_build_ms = (perf_counter() - started) * 1000
         return vectors
@@ -106,7 +113,8 @@ class CLIPTextToImageRetriever:
         encoded = self.tokenizer([query], padding=True, truncation=True, return_tensors="pt")
         encoded = {key: value.to(self.device) if hasattr(value, "to") else value for key, value in encoded.items()}
         with torch.no_grad():
-            vector = self.model.get_text_features(**encoded)
+            output = self.model.get_text_features(**encoded)
+            vector = self._feature_tensor(output)
             vector = torch.nn.functional.normalize(vector, dim=-1)[0]
             scores = self.image_vectors @ vector
         ranked = [(image_id, float(scores[index].item())) for index, image_id in enumerate(self.image_ids)]

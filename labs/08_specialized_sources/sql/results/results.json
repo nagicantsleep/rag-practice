@@ -27,8 +27,8 @@
         "unsupported_handling_rate": 1.0,
         "empty_result_accuracy": 1.0,
         "nonempty_answer_exact_match": 1.0,
-        "mean_execution_ms": 0.05105357142554112,
-        "mean_end_to_end_ms": 0.5307460000033694
+        "mean_execution_ms": 0.03902714285735393,
+        "mean_end_to_end_ms": 0.3740638888905955
       }
     }
   },
@@ -66,10 +66,10 @@
         "customers:4"
       ],
       "error": "",
-      "planning_ms": 0.006511999998792817,
-      "execution_ms": 0.019987000001719935,
-      "evidence_ms": 0.02168000000324355,
-      "end_to_end_ms": 0.3679640000058271
+      "planning_ms": 0.00552800000264142,
+      "execution_ms": 0.014632000002734458,
+      "evidence_ms": 0.0094940000110455,
+      "end_to_end_ms": 0.24555000000248128
     },
     {
       "id": "s2",
@@ -110,10 +110,10 @@
         "orders:1002"
       ],
       "error": "",
-      "planning_ms": 0.005639999997697487,
-      "execution_ms": 0.038080999999579035,
-      "evidence_ms": 0.022942999990505086,
-      "end_to_end_ms": 0.5286230000081105
+      "planning_ms": 0.004337000007126335,
+      "execution_ms": 0.028892999992535806,
+      "evidence_ms": 0.0152629999945475,
+      "end_to_end_ms": 0.3647890000024745
     },
     {
       "id": "s3",
@@ -163,10 +163,10 @@
         "orders:1005"
       ],
       "error": "",
-      "planning_ms": 0.0061020000003964014,
-      "execution_ms": 0.04303000000049906,
-      "evidence_ms": 0.03950299999644358,
-      "end_to_end_ms": 1.0226020000061453
+      "planning_ms": 0.004898000000252978,
+      "execution_ms": 0.03336000000331296,
+      "evidence_ms": 0.02821199998948032,
+      "end_to_end_ms": 0.7327619999983881
     },
     {
       "id": "s4",
@@ -215,10 +215,10 @@
         "customers:3"
       ],
       "error": "",
-      "planning_ms": 0.006100999996760947,
-      "execution_ms": 0.12529299999641808,
-      "evidence_ms": 0.05423000000348566,
-      "end_to_end_ms": 0.9837289999978793
+      "planning_ms": 0.004617000001871929,
+      "execution_ms": 0.10516800000459625,
+      "evidence_ms": 0.039259000004676636,
+      "end_to_end_ms": 0.7099379999999655
     },
     {
       "id": "s5",
@@ -262,10 +262,10 @@
         "orders:1005"
       ],
       "error": "",
-      "planning_ms": 0.0056310000076109645,
-      "execution_ms": 0.049492000002260284,
-      "evidence_ms": 0.02793200000894558,
-      "end_to_end_ms": 0.7013140000111662
+      "planning_ms": 0.004656999990970689,
+      "execution_ms": 0.0363440000086257,
+      "evidence_ms": 0.01852800001245214,
+      "end_to_end_ms": 0.48380900000211113
     },
     {
       "id": "s6",
@@ -291,10 +291,10 @@
       "citations": [],
       "flat_row_bm25": [],
       "error": "",
-      "planning_ms": 0.005530000009912328,
-      "execution_ms": 0.03431399998987672,
-      "evidence_ms": 0.02650999999787018,
-      "end_to_end_ms": 0.15580000000170457
+      "planning_ms": 0.0037960000014436446,
+      "execution_ms": 0.021091999997224775,
+      "evidence_ms": 0.016585000011559714,
+      "end_to_end_ms": 0.10273399999505273
     },
     {
       "id": "s7",
@@ -343,10 +343,10 @@
         "orders:1004"
       ],
       "error": "",
-      "planning_ms": 0.006120999998415755,
-      "execution_ms": 0.04717799998843475,
-      "evidence_ms": 0.045124000010332566,
-      "end_to_end_ms": 0.8693270000037501
+      "planning_ms": 0.004586999992284291,
+      "execution_ms": 0.03370099999244758,
+      "evidence_ms": 0.03229899999723784,
+      "end_to_end_ms": 0.6248500000083368
     },
     {
       "id": "s8",
@@ -370,10 +370,10 @@
       "citations": [],
       "flat_row_bm25": [],
       "error": "only SELECT/WITH statements are allowed",
-      "planning_ms": 0.007554000006848582,
+      "planning_ms": 0.007680999999593041,
       "execution_ms": 0.0,
       "evidence_ms": 0.0,
-      "end_to_end_ms": 0.07672299999228471
+      "end_to_end_ms": 0.05733599999757644
     },
     {
       "id": "s9",
@@ -393,10 +393,10 @@
       "citations": [],
       "flat_row_bm25": [],
       "error": "unsupported question pattern",
-      "planning_ms": 0.0038370000083887135,
+      "planning_ms": 0.002834999989431708,
       "execution_ms": 0.0,
       "evidence_ms": 0.0,
-      "end_to_end_ms": 0.0706320000034566
+      "end_to_end_ms": 0.044807000008972864
     }
   ],
   "guardrails": [

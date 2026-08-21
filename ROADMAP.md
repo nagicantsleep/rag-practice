@@ -401,16 +401,16 @@ M08 keeps source boundaries explicit so source-specific retrieval failures are e
 Sub-labs:
 
 - **Web RAG — `DONE`**
-- SQL / structured RAG — `TODO`
+- **SQL / structured RAG — `DONE`**
 - metadata / filter-aware RAG — `TODO`
 - Code RAG — `TODO`
 - multimodal RAG — `TODO`
 - visual-document / page-image RAG — `TODO`
 - long-context vs retrieval routing — `TODO`
 
-Web RAG implements a minimal shared `Source` contract, deterministic web snapshots, body-only and metadata BM25 controls, query-aware authority/freshness reranking, canonical deduplication, and an extractive URL-citing pipeline.
+### Web RAG summary
 
-Web RAG held-out summary:
+Web RAG implements a minimal shared `Source` contract, deterministic web snapshots, body-only and metadata BM25 controls, query-aware authority/freshness reranking, canonical deduplication, and an extractive URL-citing pipeline.
 
 | System | Hit@1 | Recall@3 | MRR | Stale top1 | Low-authority top1 | Duplicate@3 | Answer contains ref | Grounded |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -418,24 +418,36 @@ Web RAG held-out summary:
 | metadata BM25 | 0.375 | **1.000** | 0.667 | 0.800 | 0.625 | 0.167 | 0.375 | **1.000** |
 | Web policy | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **0.000** | **1.000** | **1.000** |
 
-Important Web RAG findings:
+Web findings remain unchanged: grounded citations can still be stale/wrong, metadata can worsen lexical top-1, recency is not authority, and canonical duplicates consume evidence budget. Web policy perfection is controlled tiny-snapshot evidence, not a live-web claim.
 
-- **Grounded does not mean current or correct.** Both lexical baselines copy their selected page exactly and therefore score groundedness `1.0`, while answer correctness is only `0.500` / `0.375`.
-- **More metadata can make lexical ranking worse.** Query-shaped forum/blog titles reduce metadata-BM25 Hit@1 even while Recall@3 improves.
-- **Recency alone is not trust.** Recently updated low-authority pages can still conflict with official sources; the controlled policy needs both freshness and authority.
-- **Canonical duplicates consume evidence budget.** Deduplication reduces mean duplicate rate@3 from `0.167` to `0.0`.
-- **Temporal intent matters.** Historical queries must not be reranked as if newest evidence were always preferred.
-- **The perfect policy result is controlled-mechanism evidence only.** The benchmark is tiny, frozen, and intentionally shaped around stale/authority/duplicate failures; weights were not tuned after test results.
-- **Live-web coverage is intentionally not claimed.** Frozen snapshots make CI reproducible; later adapters can implement the same `Source` contract against real providers.
+Artifacts: `benchmarks/m08_web/`, `src/rag_practice/sources/`, `src/rag_practice/web/`, `src/rag_practice/evaluation/web.py`, `labs/08_specialized_sources/web/`, and `.github/workflows/m08-web.yml`.
+
+### SQL / Structured RAG summary
+
+SQL / Structured RAG reuses the shared `Source` contract for a flat-row BM25 control and extends it with explicit schema discovery, transparent planning, read-only validation, relational execution, and row-level `sqlite://` provenance.
+
+| System | Evidence recall | Evidence complete | Answer exact | Execution success | Unsafe reject | Empty correct | Unsupported handled |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| flat row BM25@5 | 0.500 | 0.500 | n/a | n/a | n/a | n/a | n/a |
+| schema-aware validated SQL | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** |
+
+Important SQL / structured findings:
+
+- **Flat row retrieval is not relational execution.** Aggregate queries can retrieve lexically plausible order/customer rows while missing the contributing `order_items`.
+- **Answer correctness and row provenance are separate contracts.** Aggregate results persist contributing row IDs/citations rather than treating the scalar alone as sufficient evidence.
+- **Empty is a first-class answer state.** The empty benchmark returns `NO_ROWS` without fabricated evidence.
+- **Unsafe and unsupported requests fail closed.** Mutation is rejected before execution, and an absent loyalty-tier concept produces a planning error rather than invented schema.
+- **Perfect scores are controlled-mechanism evidence only.** The planner is rule-based for a frozen four-table benchmark and does not claim Spider/BIRD-style text-to-SQL generalization.
+- **SQLite safety/latency are teaching controls.** Production needs database permissions, query budgets, tenant filters, robust parsing/policy, and real workload measurements.
 
 Evaluation evidence:
 
-- Initial PR gate `32447107848`: **82 tests passed** plus successful Web RAG evaluation.
-- Final source-of-truth gate `32447405977` passed before this ROADMAP update on head `19adb1ce36638bdc91c257e048f90a0fcf80b80d`.
-- Retrieval/source metrics are evaluated independently from answer text.
-- Machine-readable and human-readable artifacts persist rankings, source metadata, citations, latency, and per-query failure traces.
+- Initial PR gate `32449251416`: **89 tests passed** plus successful SQL / Structured RAG evaluation.
+- Final source-of-truth gate `32449677217` passed before this ROADMAP update on head `9cbd96ad4b6bfeb20655a22a8099a9f09a182dfa`.
+- SQL execution quality is evaluated independently from row-level provenance and final answer formatting.
+- Persisted JSON/Markdown includes SQL, planned tables, answers, row evidence, citations, failure status, and latency.
 
-Artifacts: `benchmarks/m08_web/`, `src/rag_practice/sources/`, `src/rag_practice/web/`, `src/rag_practice/evaluation/web.py`, `labs/08_specialized_sources/web/`, and `.github/workflows/m08-web.yml`.
+Artifacts: `benchmarks/m08_sql/`, `src/rag_practice/structured_sql/`, `src/rag_practice/evaluation/sql_structured.py`, `labs/08_specialized_sources/sql/`, and `.github/workflows/m08-sql.yml`.
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -446,4 +458,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.2 — SQL / Structured RAG**. Reuse the shared `Source` boundary, but evaluate structured-source behavior separately: schema discovery, query construction/validation, execution correctness, row-level evidence/citations, empty/error handling, latency, and unnecessary scans. Keep SQL execution quality separate from final answer generation.
+Continue **M08.3 — Metadata / Filter-aware RAG**. Keep filtering semantics separate from relevance ranking: define a corpus with tenant, product, region, time, and access-control metadata; compare post-filter vs pre-filter retrieval; measure constraint satisfaction, relevant recall under filters, empty-filter handling, unnecessary candidates, latency, and any security/permission leakage. Keep filter correctness separate from answer quality.

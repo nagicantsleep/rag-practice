@@ -1,6 +1,6 @@
 # M08.2 — SQL / Structured RAG
 
-Status: **COMPLETION CANDIDATE** — final source-of-truth gate pending.
+Status: **DONE** — final full-suite + SQL RAG gate passed in GitHub Actions run `32449677217`.
 
 ## Hypothesis
 
@@ -65,6 +65,8 @@ Answer correctness and evidence completeness are separate: an aggregate may prod
 
 Initial PR gate `32449251416` passed the full repository suite (**89 tests**) and the SQL / Structured RAG evaluator.
 
+Final source-of-truth gate `32449677217` passed the same full-suite/evaluator sequence before this completion update.
+
 | System | Evidence recall | Evidence complete | Answer exact | Execution success | Unsafe reject | Empty correct | Unsupported handled |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | flat row BM25@5 | 0.500 | 0.500 | n/a | n/a | n/a | n/a | n/a |
@@ -99,8 +101,8 @@ Machine-readable evidence: `results/results.json`. Human-readable aggregate tabl
 - [x] full repository CI + SQL evaluator passes
 - [x] persisted JSON/Markdown results reviewed
 - [x] representative failure cases written down
-- [ ] ROADMAP marks SQL / Structured RAG DONE only after the final gate passes
+- [x] ROADMAP marks SQL / Structured RAG DONE only after the final gate passes
 
 Research context: Spider (arXiv:1809.08887) popularized cross-domain text-to-SQL evaluation, while BIRD (arXiv:2305.03111) emphasizes larger databases and realistic schema/value reasoning. This lab is intentionally much smaller and mechanism-focused; it does not claim general text-to-SQL ability.
 
-SQL / Structured RAG is not merged until the final unchecked gate passes.
+SQL / Structured RAG satisfies the sub-lab evaluation contract and is eligible to merge; M08 overall remains IN PROGRESS.

@@ -1,0 +1,58 @@
+name: M11 O2C logistics capstone evaluation
+
+on:
+  push:
+    branches:
+      - feat/m11-otc-logistics-capstone
+    paths:
+      - "src/rag_practice/otc/**"
+      - "src/rag_practice/evaluation/otc.py"
+      - "benchmarks/m11_otc_logistics/**"
+      - "labs/11_otc_logistics/**"
+      - "tests/test_m11_otc.py"
+      - ".github/workflows/m11-otc.yml"
+      - "pyproject.toml"
+      - "ROADMAP.md"
+  pull_request:
+    paths:
+      - "src/rag_practice/otc/**"
+      - "src/rag_practice/evaluation/otc.py"
+      - "benchmarks/m11_otc_logistics/**"
+      - "labs/11_otc_logistics/**"
+      - "tests/test_m11_otc.py"
+      - ".github/workflows/m11-otc.yml"
+      - "pyproject.toml"
+      - "ROADMAP.md"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression dependencies
+        run: python -m pip install -e ".[dev,pretrained,visual_document]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate frozen M11.1 baselines
+        run: python labs/11_otc_logistics/run_baselines.py
+      - name: Persist M11 baseline evidence
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            labs/11_otc_logistics/results/baseline_results.json \
+            labs/11_otc_logistics/results/baseline_results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M11 baseline evidence [skip ci]"
+            git push origin HEAD:feat/m11-otc-logistics-capstone
+          fi

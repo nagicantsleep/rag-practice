@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "frozen_contract": {
+    "docs_top_k": 2,
+    "max_actions": 4,
+    "max_recoveries": 1,
+    "abstain_token": "ABSTAIN",
+    "tool_costs": {
+      "docs_search": 2.0,
+      "inventory_lookup": 1.0,
+      "status_lookup": 1.0,
+      "calculator": 0.5
+    },
+    "note": "Freeze tools, corpora, costs, tasks, expected actions/evidence/answers, and budgets before agent implementation or pretrained inspection."
+  },
+  "docs": {
+    "d1": "Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.",
+    "d2": "Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
+    "d3": "Cedar deployment guide: emergency rollback phrase is quiet harbor.",
+    "d4": "Lumen west service uses incident alias lumen-west for status lookup.",
+    "d5": "Routine training note: teams review timestamps and owner names during handoff; this document contains no inventory key, service id, rollback phrase, or menu code."
+  },
+  "inventory": {
+    "SKU-A17": 14,
+    "SKU-B22": 9,
+    "SKU-C05": 31
+  },
+  "status": {
+    "svc-orion-backup": "degraded",
+    "lumen-west": "healthy",
+    "atlas-api": "investigating"
+  },
+  "tasks": [
+    {
+      "id": "a1",
+      "question": "What is the Cedar emergency rollback phrase?",
+      "task_class": "docs_fact",
+      "expected_answer": "quiet harbor",
+      "expected_actions": ["docs_search"],
+      "expected_evidence": ["d3"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a2",
+      "question": "How many Atlas field kits are in stock?",
+      "task_class": "docs_to_inventory",
+      "expected_answer": "14",
+      "expected_actions": ["docs_search", "inventory_lookup"],
+      "expected_evidence": ["d1", "inventory:SKU-A17"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a3",
+      "question": "What is the current Orion backup service status?",
+      "task_class": "docs_to_status",
+      "expected_answer": "degraded",
+      "expected_actions": ["docs_search", "status_lookup"],
+      "expected_evidence": ["d2", "status:svc-orion-backup"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a4",
+      "question": "How many total Atlas field kits and SKU-B22 spares are in stock?",
+      "task_class": "join_and_calculate",
+      "expected_answer": "23",
+      "expected_actions": ["docs_search", "inventory_lookup", "inventory_lookup", "calculator"],
+      "expected_evidence": ["d1", "inventory:SKU-A17", "inventory:SKU-B22", "calculator:14 + 9"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a5",
+      "question": "What is the current Lumen west service status?",
+      "task_class": "docs_to_status",
+      "expected_answer": "healthy",
+      "expected_actions": ["docs_search", "status_lookup"],
+      "expected_evidence": ["d4", "status:lumen-west"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a6",
+      "question": "What is the stock count for SKU-C05?",
+      "task_class": "inventory_direct",
+      "expected_answer": "31",
+      "expected_actions": ["inventory_lookup"],
+      "expected_evidence": ["inventory:SKU-C05"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a7",
+      "question": "What is 17 + 25?",
+      "task_class": "calculator_direct",
+      "expected_answer": "42",
+      "expected_actions": ["calculator"],
+      "expected_evidence": ["calculator:17 + 25"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a8",
+      "question": "What is the Atlas cafeteria menu code?",
+      "task_class": "docs_no_evidence",
+      "expected_answer": "ABSTAIN",
+      "expected_actions": ["docs_search"],
+      "expected_evidence": [],
+      "requires_recovery": false,
+      "no_evidence": true
+    },
+    {
+      "id": "a9",
+      "question": "Check stock for Atlas field kit.",
+      "task_class": "recover_inventory_alias",
+      "expected_answer": "14",
+      "expected_actions": ["inventory_lookup", "docs_search", "inventory_lookup"],
+      "expected_evidence": ["d1", "inventory:SKU-A17"],
+      "requires_recovery": true,
+      "no_evidence": false
+    },
+    {
+      "id": "a10",
+      "question": "What is the current Falcon backup service status?",
+      "task_class": "recover_then_abstain",
+      "expected_answer": "ABSTAIN",
+      "expected_actions": ["status_lookup", "docs_search"],
+      "expected_evidence": [],
+      "requires_recovery": true,
+      "no_evidence": true
+    },
+    {
+      "id": "a11",
+      "question": "Which has more stock, SKU-B22 or SKU-C05?",
+      "task_class": "inventory_compare",
+      "expected_answer": "SKU-C05",
+      "expected_actions": ["inventory_lookup", "inventory_lookup"],
+      "expected_evidence": ["inventory:SKU-B22", "inventory:SKU-C05"],
+      "requires_recovery": false,
+      "no_evidence": false
+    },
+    {
+      "id": "a12",
+      "question": "Report the Orion backup status and the Cedar rollback phrase.",
+      "task_class": "multi_source",
+      "expected_answer": "degraded; quiet harbor",
+      "expected_actions": ["docs_search", "status_lookup"],
+      "expected_evidence": ["d2", "d3", "status:svc-orion-backup"],
+      "requires_recovery": false,
+      "no_evidence": false
+    }
+  ]
+}

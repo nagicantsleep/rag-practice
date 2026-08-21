@@ -5,8 +5,8 @@
     "revision": "b97b0100e55e367c057773c2a614676470b0d575",
     "device": "cpu",
     "embedding_dimensions": 512,
-    "model_load_ms": 6164.6531719999875,
-    "index_build_ms": 516.3730650000105,
+    "model_load_ms": 8064.025541000006,
+    "index_build_ms": 525.3530589999968,
     "logical_index_bytes": 18432
   },
   "benchmark": {
@@ -23,7 +23,7 @@
     "answer_correct_rate": 0.2,
     "visual_evidence_grounded_rate": 0.3333333333333333,
     "mean_visual_candidates_scored": 9.0,
-    "mean_query_ms": 26.073349200000003
+    "mean_query_ms": 27.819968499999998
   },
   "per_query": [
     {
@@ -51,7 +51,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 28.633693
+      "latency_ms": 31.632776
     },
     {
       "id": "m2",
@@ -78,7 +78,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 26.841405
+      "latency_ms": 30.487554
     },
     {
       "id": "m3",
@@ -105,7 +105,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 26.755074
+      "latency_ms": 29.820786
     },
     {
       "id": "m4",
@@ -132,7 +132,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 27.155921
+      "latency_ms": 29.169269
     },
     {
       "id": "m5",
@@ -159,7 +159,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 24.979366
+      "latency_ms": 27.233439
     },
     {
       "id": "m6",
@@ -186,7 +186,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 24.966683
+      "latency_ms": 25.210355
     },
     {
       "id": "m7",
@@ -213,7 +213,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 24.926257
+      "latency_ms": 25.754523
     },
     {
       "id": "m8",
@@ -240,7 +240,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 24.91154
+      "latency_ms": 26.273273
     },
     {
       "id": "m9",
@@ -265,7 +265,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 24.818287
+      "latency_ms": 25.538259
     },
     {
       "id": "m10",
@@ -290,7 +290,7 @@
         "image"
       ],
       "visual_candidates_scored": 9,
-      "latency_ms": 26.745266
+      "latency_ms": 27.079451
     }
   ]
 }

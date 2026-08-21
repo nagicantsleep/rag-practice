@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "frozen_contract": {
+    "retrieval_top_k": 2,
+    "direct_word_threshold": 100,
+    "global_route_markers": [
+      "across the entire",
+      "list every"
+    ],
+    "abstain_token": "ABSTAIN",
+    "templates": {
+      "long": "The section records routine operational notes for the training corpus and deliberately includes ordinary terminology that is not itself an answer. Teams verify timestamps, owner names, and change tickets during normal review, while unrelated maintenance details remain available as distractors. {special} This synthetic handbook uses repeated process language so lexical overlap alone does not guarantee that a retrieved section contains the requested evidence.",
+      "medium": "The section records routine operational notes for the training corpus and deliberately includes ordinary terminology that is not itself an answer. {special} Teams verify timestamps, owner names, and change tickets during normal review, while unrelated maintenance details remain available as distractors."
+    },
+    "note": "Freeze templates, bundle sections/special evidence, queries, qrels, expected answers, preferred routes, and thresholds before pretrained reader inspection."
+  },
+  "bundles": {
+    "cedar_brief": {
+      "title": "Cedar service brief",
+      "sections": [
+        {
+          "id": "cedar_s1",
+          "text": "Cedar service desk hotline: 555-0142. The desk handles routine support handoffs for this synthetic exercise."
+        },
+        {
+          "id": "cedar_s2",
+          "text": "Cedar shipping window closes at 17:30 UTC. Dispatch notes are reviewed before the daily cutoff."
+        },
+        {
+          "id": "cedar_s3",
+          "text": "Cedar escalation owner: Nia Cole. This short brief contains no cafeteria or menu information."
+        }
+      ],
+      "word_count": 46
+    },
+    "atlas_handbook": {
+      "title": "Atlas operations handbook",
+      "template": "long",
+      "sections": [
+        {"id": "atlas_s1", "special": ""},
+        {"id": "atlas_s2", "special": "Atlas emergency beacon frequency: 433.7 MHz."},
+        {"id": "atlas_s3", "special": "Mandatory check — seal integrity."},
+        {"id": "atlas_s4", "special": ""},
+        {"id": "atlas_s5", "special": "Mandatory check — coolant pressure."},
+        {"id": "atlas_s6", "special": "Escalation contact — Mira Chen."},
+        {"id": "atlas_s7", "special": ""},
+        {"id": "atlas_s8", "special": "Mandatory check — battery isolation."},
+        {"id": "atlas_s9", "special": "Escalation contact — Owen Price."},
+        {"id": "atlas_s10", "special": ""},
+        {"id": "atlas_s11", "special": "Mandatory check — telemetry handshake."},
+        {"id": "atlas_s12", "special": "Escalation contact — Leila Hart."}
+      ],
+      "word_count": 779
+    },
+    "orion_report": {
+      "title": "Orion readiness report",
+      "template": "long",
+      "sections": [
+        {"id": "orion_s1", "special": "Orion North reserve: 41 units."},
+        {"id": "orion_s2", "special": ""},
+        {"id": "orion_s3", "special": "Orion South reserve: 57 units."},
+        {"id": "orion_s4", "special": "Orion rollback phrase: \"quiet harbor\"."},
+        {"id": "orion_s5", "special": "Orion release code: KITE-7."},
+        {"id": "orion_s6", "special": ""},
+        {"id": "orion_s7", "special": "Orion release code: EMBER-2."},
+        {"id": "orion_s8", "special": ""},
+        {"id": "orion_s9", "special": "Orion release code: NOVA-4."},
+        {"id": "orion_s10", "special": ""}
+      ],
+      "word_count": 650
+    },
+    "lumen_notes": {
+      "title": "Lumen deployment notes",
+      "template": "medium",
+      "sections": [
+        {"id": "lumen_s1", "special": "Lumen primary region: west."},
+        {"id": "lumen_s2", "special": "Lumen archival region: east."},
+        {"id": "lumen_s3", "special": ""},
+        {"id": "lumen_s4", "special": "Lumen audit phrase: silver pine."},
+        {"id": "lumen_s5", "special": ""},
+        {"id": "lumen_s6", "special": "Mandatory checkpoint — checksum verification."},
+        {"id": "lumen_s7", "special": ""},
+        {"id": "lumen_s8", "special": "Mandatory checkpoint — signer confirmation."}
+      ],
+      "word_count": 341
+    }
+  },
+  "queries": [
+    {"id": "r1", "bundle_id": "cedar_brief", "question": "What is the Cedar service desk hotline?", "task_class": "short_fact", "preferred_route": "direct", "relevant": ["cedar_s1"], "expected_answer": "555-0142", "answer_kind": "scalar"},
+    {"id": "r2", "bundle_id": "cedar_brief", "question": "When does the Cedar shipping window close?", "task_class": "short_fact", "preferred_route": "direct", "relevant": ["cedar_s2"], "expected_answer": "17:30 UTC", "answer_kind": "scalar"},
+    {"id": "r3", "bundle_id": "cedar_brief", "question": "What is the Cedar cafeteria menu code?", "task_class": "short_no_evidence", "preferred_route": "direct", "relevant": [], "expected_answer": "ABSTAIN", "answer_kind": "abstain"},
+    {"id": "r4", "bundle_id": "atlas_handbook", "question": "What is the Atlas emergency beacon frequency?", "task_class": "long_sparse_fact", "preferred_route": "retrieve", "relevant": ["atlas_s2"], "expected_answer": "433.7 MHz", "answer_kind": "scalar"},
+    {"id": "r5", "bundle_id": "atlas_handbook", "question": "How many mandatory checks are listed across the entire Atlas handbook?", "task_class": "long_global_count", "preferred_route": "direct", "relevant": ["atlas_s3", "atlas_s5", "atlas_s8", "atlas_s11"], "expected_answer": "4", "answer_kind": "scalar"},
+    {"id": "r6", "bundle_id": "atlas_handbook", "question": "List every escalation contact across the entire Atlas handbook.", "task_class": "long_global_list", "preferred_route": "direct", "relevant": ["atlas_s6", "atlas_s9", "atlas_s12"], "expected_answer": "Mira Chen; Owen Price; Leila Hart", "answer_kind": "list"},
+    {"id": "r7", "bundle_id": "atlas_handbook", "question": "What is the Atlas launch paint color?", "task_class": "long_no_evidence", "preferred_route": "retrieve", "relevant": [], "expected_answer": "ABSTAIN", "answer_kind": "abstain"},
+    {"id": "r8", "bundle_id": "orion_report", "question": "Which Orion site has the higher reserve, North or South?", "task_class": "long_two_fact_compare", "preferred_route": "retrieve", "relevant": ["orion_s1", "orion_s3"], "expected_answer": "South", "answer_kind": "scalar"},
+    {"id": "r9", "bundle_id": "orion_report", "question": "What is the Orion rollback phrase?", "task_class": "long_sparse_fact", "preferred_route": "retrieve", "relevant": ["orion_s4"], "expected_answer": "quiet harbor", "answer_kind": "scalar"},
+    {"id": "r10", "bundle_id": "orion_report", "question": "List every Orion release code across the entire report.", "task_class": "long_global_list", "preferred_route": "direct", "relevant": ["orion_s5", "orion_s7", "orion_s9"], "expected_answer": "KITE-7; EMBER-2; NOVA-4", "answer_kind": "list"},
+    {"id": "r11", "bundle_id": "lumen_notes", "question": "What is the Lumen audit phrase?", "task_class": "medium_sparse_fact", "preferred_route": "retrieve", "relevant": ["lumen_s4"], "expected_answer": "silver pine", "answer_kind": "scalar"},
+    {"id": "r12", "bundle_id": "lumen_notes", "question": "How many mandatory checkpoints are listed across the entire Lumen notes?", "task_class": "medium_global_count", "preferred_route": "direct", "relevant": ["lumen_s6", "lumen_s8"], "expected_answer": "2", "answer_kind": "scalar"}
+  ]
+}

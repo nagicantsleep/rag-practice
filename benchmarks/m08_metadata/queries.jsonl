@@ -1,0 +1,9 @@
+{"id":"m1","task":"tenant_collision","query":"NimbusDB encryption key rotation procedure","filters":{"tenant":"alpha","role":"admin"},"relevant":["a1"],"reference":"Rotate keys every 90 days"}
+{"id":"m2","task":"acl_collision","query":"Aurora incident response escalation contacts","filters":{"tenant":"alpha","role":"viewer"},"relevant":["a2"],"reference":"Viewers contact on-call operations"}
+{"id":"m3","task":"region_filter","query":"NimbusDB backup retention","filters":{"tenant":"alpha","role":"analyst","product":"nimbusdb","region":"eu"},"relevant":["a4"],"reference":"30 days"}
+{"id":"m4","task":"time_filter","query":"NimbusDB migration guide current","filters":{"tenant":"alpha","role":"developer","product":"nimbusdb","updated_after":"2026-01-01"},"relevant":["a5"],"reference":"version 5"}
+{"id":"m5","task":"region_filter","query":"Aurora deployment endpoint","filters":{"tenant":"alpha","role":"developer","product":"aurora","region":"apac"},"relevant":["a7"],"reference":"apac.aurora.internal"}
+{"id":"m6","task":"empty_filter","query":"NimbusDB compliance controls","filters":{"tenant":"alpha","role":"viewer","product":"nimbusdb","region":"latam"},"relevant":[],"reference":"","expect_empty":true}
+{"id":"m7","task":"tenant_beta","query":"QueryGuard audit API EU","filters":{"tenant":"beta","role":"security","product":"queryguard","region":"eu"},"relevant":["b7"],"reference":"audit.beta.internal"}
+{"id":"m8","task":"tenant_alpha","query":"QueryGuard audit API EU","filters":{"tenant":"alpha","role":"security","product":"queryguard","region":"eu"},"relevant":["a8"],"reference":"audit.alpha.internal"}
+{"id":"m9","task":"role_admin","query":"Aurora confidential emergency escalation contacts","filters":{"tenant":"alpha","role":"admin","product":"aurora"},"relevant":["a3"],"reference":"admin-only security escalation"}

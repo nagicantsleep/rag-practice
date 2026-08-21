@@ -1,6 +1,6 @@
 # M09 — Agentic RAG
 
-Status: **IN PROGRESS — PHASE 1 MECHANISM GATE PENDING**
+Status: **IN PROGRESS — PHASE 1 RECORDED / MODEL CONTROL NEXT**
 
 ## Goal
 
@@ -16,16 +16,31 @@ The benchmark was frozen in commit `de6f978ab7f14ea1a792a591aa468795b13f92d9` be
 
 All policies use the same deterministic tool implementations and frozen source data. The planner/reader receive only question + recorded tool state; evaluation labels are loaded separately.
 
-## Metrics
+## Phase-1 deterministic results
 
-Task success, grounded answer rate, exact action-sequence accuracy, tool precision/recall, unnecessary-action rate, evidence recall/completeness, abstention accuracy, recovery success, steps, synthetic tool cost, and latency are persisted separately.
+| System | Task success | Grounded | Plan exact | Tool precision | Evidence complete | Abstention | Recovery | Steps | Cost units |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| docs-only | 0.250 | 0.250 | 0.167 | 0.750 | 0.250 | **1.000** | 0.000 | **1.00** | 2.00 |
+| static router | 0.417 | 0.417 | 0.333 | **1.000** | 0.417 | **1.000** | 0.000 | **1.00** | **1.54** |
+| deterministic agent loop | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | 1.92 | 2.58 |
 
-## Frozen hypotheses
+Latency is persisted in JSON as a GitHub Actions CPU sanity measurement; the table uses the frozen synthetic tool-cost units.
 
-- One-shot document retrieval should work for direct document facts but fail when the answer lives behind a structured/status/calculator tool.
-- A static one-tool router should improve direct structured/calculation tasks but still fail cross-tool composition and recovery.
-- A bounded agent loop should recover the two declared miss cases and compose cross-source evidence without calling every tool.
-- Perfect deterministic behavior, if achieved, is a mechanism control on this tiny synthetic benchmark, not a learned-agent claim.
+## Phase-1 findings
+
+- **Source routing and agentic composition are different capabilities.** The static router improves direct structured/calculator tasks over docs-only, but one correct first tool cannot finish document → inventory/status joins, multi-tool arithmetic, or comparison tasks.
+- **A loop earns cost only when later observations matter.** The deterministic agent uses `1.92` tool steps and `2.58` cost units/query versus one step for both baselines, but that extra work raises frozen task/evidence completeness from `0.25/0.25` and `0.417/0.417` to `1.0/1.0`.
+- **Recovery must retain the failed action.** `a9` intentionally begins with `inventory_lookup("Atlas field kit") → NOT_FOUND`, then searches documents, discovers `SKU-A17`, and retries inventory. `a10` intentionally misses `falcon-backup`, searches documents, finds no Falcon mapping, and abstains. Both failed calls remain in the persisted trace.
+- **Stopping is part of agent quality.** The loop does not fan out to every tool; frozen action-sequence accuracy and tool precision are `1.0`, unnecessary-action rate is `0.0`, and both no-evidence tasks return `ABSTAIN`.
+- **Perfect deterministic scores are not a learned-agent result.** The policy is rule-based and the 12-task corpus is tiny/synthetic. It is a mechanism control establishing what planner/tool/evidence/recovery wiring can do when the routing boundary is hand-coded.
+- **Task success alone would hide policy quality.** The benchmark therefore persists exact actions, evidence ids, failed calls, grounding, abstention, steps, latency, and cost separately.
+
+## Evidence
+
+- Benchmark freeze: `de6f978ab7f14ea1a792a591aa468795b13f92d9`.
+- Phase-1 implementation: `f7ce3c4fbd41a6e9d71b56af1a6167b30543d1d8`.
+- PR mechanism gate `32485342984` / job `96780479396`: full repository test suite and deterministic M09 evaluator both passed.
+- Deterministic JSON/Markdown evidence was persisted by `github-actions[bot]` in commit `b9c1373428322675f23e8f2b7291031fb100670b`.
 
 ## Definition of Done
 
@@ -33,8 +48,8 @@ Task success, grounded answer rate, exact action-sequence accuracy, tool precisi
 - [x] Implement docs-only and one-tool routing baselines.
 - [x] Implement explicit planner/tool/evidence/recovery/stop state loop.
 - [x] Persist per-action traces and separate quality/action/cost metrics.
-- [ ] Pass full repository regression + deterministic M09 evaluator gate.
-- [ ] Record phase-1 findings and representative baseline/recovery failures.
+- [x] Pass full repository regression + deterministic M09 evaluator gate.
+- [x] Record phase-1 findings and representative baseline/recovery failures.
 - [ ] Add a pinned model-driven single-agent planner/control on the unchanged benchmark.
 - [ ] Compare a multi-agent variant only after the single-agent model control is recorded.
 - [ ] Pass final source-of-truth gate and mark M09 `DONE`.

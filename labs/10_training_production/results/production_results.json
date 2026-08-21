@@ -7,15 +7,15 @@
     "cache_invalidation_accuracy": 1.0,
     "final_index_generation": 3,
     "final_posting_entries": 36,
-    "mean_mutation_latency_ms": 0.0034669999990910583,
-    "mean_query_latency_ms": 0.006499454542563399,
+    "mean_mutation_latency_ms": 0.004250333328551885,
+    "mean_query_latency_ms": 0.008221818179973443,
     "mutation_accuracy": 1.0,
     "mutations": [
       {
         "document_id": "p1",
         "generation": 1,
         "id": "s5",
-        "latency_ms": 0.004826999997931125,
+        "latency_ms": 0.005852999976241335,
         "success": true,
         "type": "upsert"
       },
@@ -23,7 +23,7 @@
         "document_id": "p1",
         "generation": 2,
         "id": "s11",
-        "latency_ms": 0.0023009999949863413,
+        "latency_ms": 0.002902000005633454,
         "success": true,
         "type": "delete"
       },
@@ -31,7 +31,7 @@
         "document_id": "p6",
         "generation": 3,
         "id": "s13",
-        "latency_ms": 0.0032730000043557084,
+        "latency_ms": 0.003996000003780864,
         "success": true,
         "type": "upsert"
       }
@@ -63,7 +63,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 0,
-          "latency_ms": 0.012290999990227647,
+          "latency_ms": 0.01585599997611098,
           "returned_ids": [
             "p1"
           ],
@@ -97,7 +97,7 @@
           "cache_hit": true,
           "candidate_count": 2,
           "index_generation": 0,
-          "latency_ms": 0.002053999992313038,
+          "latency_ms": 0.00269000000230335,
           "returned_ids": [
             "p1"
           ],
@@ -125,7 +125,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 0,
-          "latency_ms": 0.008260000015525293,
+          "latency_ms": 0.01079399999071029,
           "returned_ids": [],
           "stale_filtered": 1,
           "untrusted_filtered": 1
@@ -157,7 +157,7 @@
           "cache_hit": false,
           "candidate_count": 1,
           "index_generation": 0,
-          "latency_ms": 0.007975999977816173,
+          "latency_ms": 0.010467000009839467,
           "returned_ids": [
             "p2"
           ],
@@ -191,7 +191,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 1,
-          "latency_ms": 0.00789899999631416,
+          "latency_ms": 0.010510000009844589,
           "returned_ids": [
             "p1"
           ],
@@ -225,7 +225,7 @@
           "cache_hit": true,
           "candidate_count": 2,
           "index_generation": 1,
-          "latency_ms": 0.001693999990948214,
+          "latency_ms": 0.0021029999857091752,
           "returned_ids": [
             "p1"
           ],
@@ -253,7 +253,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 1,
-          "latency_ms": 0.004907000004550355,
+          "latency_ms": 0.006130000002713132,
           "returned_ids": [],
           "stale_filtered": 1,
           "untrusted_filtered": 1
@@ -279,7 +279,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 1,
-          "latency_ms": 0.005478999980823573,
+          "latency_ms": 0.006794000000809319,
           "returned_ids": [],
           "stale_filtered": 1,
           "untrusted_filtered": 1
@@ -311,7 +311,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 1,
-          "latency_ms": 0.007151000005478636,
+          "latency_ms": 0.008989000008341463,
           "returned_ids": [
             "p5"
           ],
@@ -339,7 +339,7 @@
           "cache_hit": false,
           "candidate_count": 1,
           "index_generation": 2,
-          "latency_ms": 0.004706999988002281,
+          "latency_ms": 0.005224000005910057,
           "returned_ids": [],
           "stale_filtered": 1,
           "untrusted_filtered": 1
@@ -371,7 +371,7 @@
           "cache_hit": false,
           "candidate_count": 2,
           "index_generation": 3,
-          "latency_ms": 0.009076000026198017,
+          "latency_ms": 0.010882999987416042,
           "returned_ids": [
             "p6"
           ],
@@ -391,24 +391,24 @@
   "guardrail": "Production correctness/security metrics are independent from offline retrieval quality and latency.",
   "scale": [
     {
-      "build_ms": 0.28093400001694135,
-      "delete_ms": 0.002397000002929417,
+      "build_ms": 0.3245269999752054,
+      "delete_ms": 0.0024229999837643845,
       "posting_entries": 797,
-      "query_ms": 0.06130600002052233,
+      "query_ms": 0.07843899999215864,
       "size": 100,
       "target_hit@1": true,
       "update_deleted": true,
-      "upsert_ms": 0.002449000021442771
+      "upsert_ms": 0.00263300000824529
     },
     {
-      "build_ms": 2.7081190000046718,
-      "delete_ms": 0.00290699998117816,
+      "build_ms": 3.111082000003762,
+      "delete_ms": 0.003456999991158227,
       "posting_entries": 7996,
-      "query_ms": 0.5995020000000295,
+      "query_ms": 0.7020159999910902,
       "size": 1000,
       "target_hit@1": true,
       "update_deleted": true,
-      "upsert_ms": 0.0031040000010307267
+      "upsert_ms": 0.004181999997854291
     }
   ],
   "unsafe_baseline": {
@@ -417,15 +417,15 @@
     "cache_invalidation_accuracy": 0.0,
     "final_index_generation": 3,
     "final_posting_entries": 36,
-    "mean_mutation_latency_ms": 0.0046586666636964464,
-    "mean_query_latency_ms": 0.007084818179237118,
+    "mean_mutation_latency_ms": 0.005583666658518875,
+    "mean_query_latency_ms": 0.009125636368749341,
     "mutation_accuracy": 1.0,
     "mutations": [
       {
         "document_id": "p1",
         "generation": 1,
         "id": "s5",
-        "latency_ms": 0.0074069999982384616,
+        "latency_ms": 0.008586999996396116,
         "success": true,
         "type": "upsert"
       },
@@ -433,7 +433,7 @@
         "document_id": "p1",
         "generation": 2,
         "id": "s11",
-        "latency_ms": 0.0031190000129299733,
+        "latency_ms": 0.0037609999878895906,
         "success": true,
         "type": "delete"
       },
@@ -441,7 +441,7 @@
         "document_id": "p6",
         "generation": 3,
         "id": "s13",
-        "latency_ms": 0.0034499999799209036,
+        "latency_ms": 0.004402999991270917,
         "success": true,
         "type": "upsert"
       }
@@ -473,7 +473,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 0,
-          "latency_ms": 0.021626999995305596,
+          "latency_ms": 0.025786999998445026,
           "returned_ids": [
             "p1"
           ],
@@ -507,7 +507,7 @@
           "cache_hit": true,
           "candidate_count": 5,
           "index_generation": 0,
-          "latency_ms": 0.0010759999895526562,
+          "latency_ms": 0.0011550000067472865,
           "returned_ids": [
             "p1"
           ],
@@ -539,7 +539,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 0,
-          "latency_ms": 0.013321000011501383,
+          "latency_ms": 0.01687899998614739,
           "returned_ids": [
             "p2"
           ],
@@ -573,7 +573,7 @@
           "cache_hit": true,
           "candidate_count": 5,
           "index_generation": 0,
-          "latency_ms": 0.0007440000047154172,
+          "latency_ms": 0.0010170000166453974,
           "returned_ids": [
             "p2"
           ],
@@ -607,7 +607,7 @@
           "cache_hit": true,
           "candidate_count": 5,
           "index_generation": 1,
-          "latency_ms": 0.0007849999974496313,
+          "latency_ms": 0.001121000025250396,
           "returned_ids": [
             "p1"
           ],
@@ -641,7 +641,7 @@
           "cache_hit": true,
           "candidate_count": 5,
           "index_generation": 1,
-          "latency_ms": 0.0006729999881827098,
+          "latency_ms": 0.0007720000212430023,
           "returned_ids": [
             "p1"
           ],
@@ -673,7 +673,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 1,
-          "latency_ms": 0.010251999981392146,
+          "latency_ms": 0.014754999995147955,
           "returned_ids": [
             "p3"
           ],
@@ -705,7 +705,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 1,
-          "latency_ms": 0.012051000027213377,
+          "latency_ms": 0.015940999986696625,
           "returned_ids": [
             "p4"
           ],
@@ -739,7 +739,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 1,
-          "latency_ms": 0.007947999989710297,
+          "latency_ms": 0.010298999995939084,
           "returned_ids": [
             "p5"
           ],
@@ -771,7 +771,7 @@
           "cache_hit": true,
           "candidate_count": 4,
           "index_generation": 2,
-          "latency_ms": 0.0009819999888804887,
+          "latency_ms": 0.0013670000100773905,
           "returned_ids": [
             "p1"
           ],
@@ -805,7 +805,7 @@
           "cache_hit": false,
           "candidate_count": 5,
           "index_generation": 3,
-          "latency_ms": 0.008473999997704595,
+          "latency_ms": 0.011289000013903205,
           "returned_ids": [
             "p6"
           ],

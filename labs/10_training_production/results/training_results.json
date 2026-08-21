@@ -72,7 +72,7 @@
     "device": "cpu",
     "dimensions": 384,
     "dtype": "float32",
-    "model_load_ms": 7479.08219499999,
+    "model_load_ms": 7288.105771999994,
     "name": "sentence-transformers/all-MiniLM-L6-v2",
     "parameter_bytes": 90852864,
     "parameter_count": 22713216,
@@ -452,9 +452,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 23.050731999973095,
+          "index_build_ms": 22.788411999982827,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 5.34176599999725
+          "mean_query_ms": 5.456602749998041
         }
       },
       "test": {
@@ -829,9 +829,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 24.552126000003227,
+          "index_build_ms": 24.347902000016575,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 5.3380043749982065
+          "mean_query_ms": 5.412174499998201
         }
       }
     },
@@ -1208,9 +1208,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 25.94421300000249,
+          "index_build_ms": 28.696451000001844,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 6.040020874991114
+          "mean_query_ms": 6.3253815000017255
         }
       },
       "test": {
@@ -1585,9 +1585,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 23.77349200000367,
+          "index_build_ms": 25.302417000006017,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 5.680787000006404
+          "mean_query_ms": 6.511850250003448
         }
       },
       "test_delta_vs_baseline": {
@@ -1603,10 +1603,10 @@
           0.17358148097991943,
           0.26221609115600586
         ],
-        "model_load_ms": 484.188099000022,
+        "model_load_ms": 701.6565620000108,
         "parameter_bytes": 90852864,
         "parameter_count": 22713216,
-        "training_ms": 960.7267430000093
+        "training_ms": 1001.8059059999871
       }
     },
     "pair_only": {
@@ -1982,9 +1982,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 25.453971000018782,
+          "index_build_ms": 26.096075999987534,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 6.0091956249976874
+          "mean_query_ms": 6.37226937501012
         }
       },
       "test": {
@@ -2359,9 +2359,9 @@
           }
         ],
         "system": {
-          "index_build_ms": 23.85271200000716,
+          "index_build_ms": 26.001922999995486,
           "logical_index_bytes_float32": 12288,
-          "mean_query_ms": 6.035515749999831
+          "mean_query_ms": 6.484865124999573
         }
       },
       "test_delta_vs_baseline": {
@@ -2377,10 +2377,10 @@
           0.0029747935477644205,
           0.037544988095760345
         ],
-        "model_load_ms": 486.2863440000069,
+        "model_load_ms": 652.514334000017,
         "parameter_bytes": 90852864,
         "parameter_count": 22713216,
-        "training_ms": 751.0698979999972
+        "training_ms": 772.1988039999985
       }
     }
   },

@@ -11,13 +11,13 @@
   "contract": "benchmarks/m10_training/reranker_contract.json@v1",
   "dev": {
     "baseline_system": {
-      "index_build_ms": 25.891016000002764,
+      "index_build_ms": 25.78212700001359,
       "logical_index_bytes_float32": 12288,
-      "mean_query_ms": 5.346172750005707
+      "mean_query_ms": 6.448677000001624
     },
     "candidate_recall@3": 1.0,
     "mean_rerank_margin": 3.9366486072540283,
-    "mean_rerank_ms": 0.029672250004608713,
+    "mean_rerank_ms": 0.04212162500039085,
     "mrr": 0.9375,
     "per_query": [
       {
@@ -264,7 +264,7 @@
     "recall@1": 0.875
   },
   "experiment_id": "m10_linear_reranker_v1",
-  "model_load_ms": 3961.627271999987,
+  "model_load_ms": 4609.876396999994,
   "parameters": {
     "bias": 0.0,
     "parameter_bytes_float32": 20,
@@ -278,13 +278,13 @@
   },
   "test": {
     "baseline_system": {
-      "index_build_ms": 27.72132399999805,
+      "index_build_ms": 28.139898999995694,
       "logical_index_bytes_float32": 12288,
-      "mean_query_ms": 5.344344500006315
+      "mean_query_ms": 5.989150625001827
     },
     "candidate_recall@3": 1.0,
     "mean_rerank_margin": 5.5843775272369385,
-    "mean_rerank_ms": 0.027037874996693745,
+    "mean_rerank_ms": 0.031983999999596335,
     "mrr": 1.0,
     "per_query": [
       {
@@ -613,7 +613,7 @@
       0.038126807659864426,
       0.03783188387751579
     ],
-    "training_ms": 17.74688200001151,
+    "training_ms": 21.421467000010352,
     "training_pair_count": 16
   }
 }

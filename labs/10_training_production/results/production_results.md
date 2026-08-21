@@ -9,7 +9,7 @@
 
 | Documents | Hit@1 | Build ms | Query ms | Upsert ms | Delete ms | Posting entries |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 100 | 1 | 0.281 | 0.061 | 0.002 | 0.002 | 797 |
-| 1000 | 1 | 2.708 | 0.600 | 0.003 | 0.003 | 7996 |
+| 100 | 1 | 0.325 | 0.078 | 0.003 | 0.002 | 797 |
+| 1000 | 1 | 3.111 | 0.702 | 0.004 | 0.003 | 7996 |
 
 Timings are GitHub Actions CPU implementation sanity measurements, not production throughput claims.

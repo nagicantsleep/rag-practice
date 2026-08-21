@@ -9,8 +9,8 @@ The benchmark, split, model revision, mining policy, and optimization hyperparam
 | System | Recall@1 | Recall@3 | MRR | Mean relevant-minus-best-negative margin | Training ms |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Pinned pretrained baseline | 1.000 | 1.000 | 1.000 | 0.1334 | 0.0 |
-| Pair-only fine-tune | 1.000 | 1.000 | 1.000 | 0.1686 | 942.5 |
-| Hard-negative fine-tune | 1.000 | 1.000 | 1.000 | 0.1588 | 1287.5 |
+| Pair-only fine-tune | 1.000 | 1.000 | 1.000 | 0.1686 | 751.1 |
+| Hard-negative fine-tune | 1.000 | 1.000 | 1.000 | 0.1588 | 960.7 |
 
 ## Hard negatives
 

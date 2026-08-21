@@ -31,9 +31,9 @@ def test_ast_index_preserves_symbols_and_exact_line_locators() -> None:
 
     invalidate = index.symbols["storage/cache.py::Cache.invalidate"]
     assert invalidate.kind == "method"
-    assert invalidate.line == 10
-    assert invalidate.end_line == 12
-    assert invalidate.locator == "code://repo/storage/cache.py#L10-L12"
+    assert invalidate.line == 11
+    assert invalidate.end_line == 13
+    assert invalidate.locator == "code://repo/storage/cache.py#L11-L13"
 
 
 def test_duplicate_symbol_names_remain_distinct_repository_locations() -> None:

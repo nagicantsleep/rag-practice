@@ -1,8 +1,6 @@
 # Lab 07 — Hierarchical, Graph, and Memory-oriented RAG
 
-Status: **COMPLETION CANDIDATE** — final full-suite/evaluation gate pending.
-
-Final-gate trigger note: this documentation-only commit leaves implementation, benchmark, tests, evaluator, and the repaired finalizer unchanged; it exists only to run the final source-of-truth gate.
+Status: **DONE** — final full-suite + M07 evaluation gate passed in GitHub Actions run `32446068577`.
 
 M07 isolates structural retrieval before adding another generator. The question is not whether a graph, tree, or memory system sounds more advanced than BM25, but **which structure helps which information need, at what construction/update cost, and with what failure modes?**
 
@@ -125,6 +123,6 @@ Generation/groundedness evaluation is **not applicable to M07 by design**: no ge
 - [x] construction/update/query cost instrumentation implemented
 - [x] persisted CI benchmark results reviewed
 - [x] representative failures and trade-offs written down
-- [ ] final completion tree passes full repository CI + M07 evaluation and ROADMAP is updated on that successful run
+- [x] final completion tree passes full repository CI + M07 evaluation and ROADMAP is updated from that successful run
 
-M07 is not merged until the final unchecked gate passes.
+M07 satisfies the evaluation contract and is eligible to merge.

@@ -8,8 +8,8 @@
     "base_revision": "8a0cee6d479200dbce31dbfef88c66175d89cddc",
     "device": "cpu",
     "dtype": "float32",
-    "model_load_ms": 4508.887155,
-    "index_build_ms": 136884.187392,
+    "model_load_ms": 8406.136698,
+    "index_build_ms": 119798.50325,
     "embedding_shape": [
       6,
       875,
@@ -32,7 +32,7 @@
     "visual_evidence_grounded_rate": 1.0,
     "region_locator_accuracy": 0.0,
     "mean_visual_candidates_scored": 6.0,
-    "mean_query_ms": 100.7325432
+    "mean_query_ms": 85.3867239
   },
   "per_query": [
     {
@@ -48,9 +48,9 @@
         "gamma_p2"
       ],
       "scores": [
-        10.843835830688477,
-        10.804230690002441,
-        7.512065887451172
+        10.843832015991211,
+        10.804228782653809,
+        7.512063026428223
       ],
       "top_page_locator": "page://benchmark/alpha_operations_review/2",
       "top_region": null,
@@ -62,7 +62,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 107.750119
+      "latency_ms": 86.780457
     },
     {
       "id": "v2",
@@ -77,7 +77,7 @@
         "alpha_p1"
       ],
       "scores": [
-        16.28229522705078,
+        16.282297134399414,
         9.92289924621582,
         9.856511116027832
       ],
@@ -91,7 +91,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 104.25012
+      "latency_ms": 85.894913
     },
     {
       "id": "v3",
@@ -106,9 +106,9 @@
         "gamma_p1"
       ],
       "scores": [
-        14.868300437927246,
+        14.868303298950195,
         12.24091911315918,
-        11.889265060424805
+        11.889264106750488
       ],
       "top_page_locator": "page://benchmark/alpha_operations_review/2",
       "top_region": null,
@@ -120,7 +120,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 104.202831
+      "latency_ms": 88.426637
     },
     {
       "id": "v4",
@@ -135,9 +135,9 @@
         "beta_p1"
       ],
       "scores": [
-        12.892560958862305,
-        12.238604545593262,
-        12.051553726196289
+        12.892562866210938,
+        12.238606452941895,
+        12.051552772521973
       ],
       "top_page_locator": "page://benchmark/gamma_onboarding_guide/1",
       "top_region": null,
@@ -149,7 +149,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 96.657033
+      "latency_ms": 82.873021
     },
     {
       "id": "v5",
@@ -164,9 +164,9 @@
         "alpha_p2"
       ],
       "scores": [
-        13.832590103149414,
-        8.450460433959961,
-        8.320136070251465
+        13.83259105682373,
+        8.450462341308594,
+        8.320137977600098
       ],
       "top_page_locator": "page://benchmark/alpha_operations_review/1",
       "top_region": null,
@@ -178,7 +178,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 96.484009
+      "latency_ms": 82.523418
     },
     {
       "id": "v6",
@@ -193,9 +193,9 @@
         "alpha_p2"
       ],
       "scores": [
-        12.874098777770996,
-        11.261648178100586,
-        10.214432716369629
+        12.874100685119629,
+        11.26164722442627,
+        10.214433670043945
       ],
       "top_page_locator": "page://benchmark/beta_capacity_report/2",
       "top_region": null,
@@ -207,7 +207,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 96.085383
+      "latency_ms": 82.429752
     },
     {
       "id": "v7",
@@ -222,9 +222,9 @@
         "alpha_p1"
       ],
       "scores": [
-        19.385150909423828,
-        13.85969352722168,
-        13.26736068725586
+        19.385154724121094,
+        13.859694480895996,
+        13.267364501953125
       ],
       "top_page_locator": "page://benchmark/beta_capacity_report/2",
       "top_region": null,
@@ -236,7 +236,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 104.072788
+      "latency_ms": 89.60975
     },
     {
       "id": "v8",
@@ -251,9 +251,9 @@
         "beta_p1"
       ],
       "scores": [
-        16.154685974121094,
-        12.764093399047852,
-        9.934247970581055
+        16.154682159423828,
+        12.764091491699219,
+        9.934249877929688
       ],
       "top_page_locator": "page://benchmark/gamma_invoice/2",
       "top_region": null,
@@ -265,7 +265,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 106.552647
+      "latency_ms": 92.305
     },
     {
       "id": "v9",
@@ -278,9 +278,9 @@
         "beta_p2"
       ],
       "scores": [
-        7.863053321838379,
-        7.206888675689697,
-        6.538337707519531
+        7.863059997558594,
+        7.206890106201172,
+        6.538337230682373
       ],
       "top_page_locator": "page://benchmark/alpha_operations_review/2",
       "top_region": null,
@@ -292,7 +292,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 91.429101
+      "latency_ms": 77.155788
     },
     {
       "id": "v10",
@@ -305,8 +305,8 @@
         "gamma_p2"
       ],
       "scores": [
-        12.73223876953125,
-        12.459095001220703,
+        12.732242584228516,
+        12.459097862243652,
         11.975191116333008
       ],
       "top_page_locator": "page://benchmark/alpha_operations_review/2",
@@ -319,7 +319,7 @@
         "page_image"
       ],
       "visual_candidates_scored": 6,
-      "latency_ms": 99.841401
+      "latency_ms": 85.868503
     }
   ]
 }

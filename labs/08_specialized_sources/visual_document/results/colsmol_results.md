@@ -11,11 +11,11 @@ Ranking uses query text + rendered page pixels only. OCR text, page titles/docum
 
 ## Runtime / representation
 
-- model load: 4508.89 ms
-- page index build: 136884.19 ms
+- model load: 8406.14 ms
+- page index build: 119798.50 ms
 - embedding shape: `[6, 875, 128]`
 - embedding bytes: 2688000
-- mean query latency: 100.73 ms
+- mean query latency: 85.39 ms
 
 ## Guardrails
 

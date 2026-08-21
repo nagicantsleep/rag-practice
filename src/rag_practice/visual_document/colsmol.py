@@ -9,14 +9,21 @@ from rag_practice.visual_document.retrieval import PageRetrievalResult, VisualDo
 
 MODEL_NAME = "vidore/colSmol-256M"
 MODEL_REVISION = "a59110fdf114638b8018e6c9a018907e12f14855"
+BASE_MODEL_NAME = "vidore/ColSmolVLM-Instruct-256M-base"
+BASE_MODEL_REVISION = "8a0cee6d479200dbce31dbfef88c66175d89cddc"
 
 
 class ColSmolPageRetriever:
-    """Exhaustive text-to-page retrieval using a pinned ColSmol checkpoint.
+    """Exhaustive text-to-page retrieval using pinned ColSmol checkpoints.
 
     The retriever receives only the query text and rendered page pixels. Frozen
     OCR text, titles, document ids, qrels, expected answers, and deterministic
     visual features are not used for ranking.
+
+    The ColSmol adapter repository references an upstream base repository whose
+    current default revision no longer carries the full model weights. Loading
+    the verified historical full-weight base revision explicitly makes the
+    adapter composition reproducible rather than depending on mutable ``main``.
     """
 
     name = "pinned-colsmol-page-image"
@@ -24,15 +31,21 @@ class ColSmolPageRetriever:
     def __init__(self, index: VisualDocumentIndex) -> None:
         import torch
         from colpali_engine.models import ColIdefics3, ColIdefics3Processor
+        from peft import PeftModel
 
         self.index = index
         self.device = torch.device("cpu")
         load_started = perf_counter_ns()
-        self.model = ColIdefics3.from_pretrained(
-            MODEL_NAME,
-            revision=MODEL_REVISION,
+        base_model = ColIdefics3.from_pretrained(
+            BASE_MODEL_NAME,
+            revision=BASE_MODEL_REVISION,
             torch_dtype=torch.float32,
             attn_implementation="eager",
+        )
+        self.model = PeftModel.from_pretrained(
+            base_model,
+            MODEL_NAME,
+            revision=MODEL_REVISION,
         ).to(self.device).eval()
         self.processor = ColIdefics3Processor.from_pretrained(
             MODEL_NAME,

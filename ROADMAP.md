@@ -404,7 +404,7 @@ Sub-labs:
 - **SQL / structured RAG — `DONE`**
 - **metadata / filter-aware RAG — `DONE`**
 - **Code RAG — `DONE`**
-- multimodal RAG — `TODO`
+- **multimodal RAG — `DONE`**
 - visual-document / page-image RAG — `TODO`
 - long-context vs retrieval routing — `TODO`
 
@@ -489,6 +489,38 @@ Evaluation evidence:
 - File retrieval, exact symbol/location retrieval, dependency evidence, and context cost are evaluated separately.
 
 Artifacts: `benchmarks/m08_code/`, `src/rag_practice/code_rag/`, `src/rag_practice/evaluation/code_rag.py`, `labs/08_specialized_sources/code/`, and `.github/workflows/m08-code.yml`.
+
+### Multimodal RAG summary
+
+Multimodal RAG freezes one 9-image/10-query raster benchmark and evaluates text surrogate retrieval, pixel-native evidence, explicit text+pixel fusion, and a pinned pretrained CLIP text-to-image control without allowing retrieval metrics to be hidden by answer generation.
+
+| System | Recall@3 | Hit@1 | Visual Hit@1 | Cross-modal Hit@1 | Text Hit@1 | No-evidence | Answer correct | Visual grounded | Visual candidates |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| text surrogate BM25 | 0.875 | 0.500 | 0.333 | 0.500 | **1.000** | 0.000 | 0.200 | 0.000 | **0.0** |
+| pixel-native | 0.625 | 0.500 | 0.667 | 0.000 | 0.000 | 0.000 | 0.500 | 0.667 | 7.2 |
+| multimodal fusion | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | 2.2 |
+| pinned CLIP | 0.625 | 0.375 | 0.333 | 0.000 | 0.500 | 0.000 | 0.200 | 0.333 | 9.0 |
+
+Important multimodal findings:
+
+- **Captions are not visual evidence.** Text-surrogate retrieval can solve textual identity questions while visual grounding remains `0.0`.
+- **Pixels alone lose identity/context.** The pixel-native control recovers visual state but cross-modal Hit@1 is `0.0` when asset identity must be combined with pixels.
+- **Explicit fusion is a mechanism control, not a production vision claim.** Perfect controlled scores come from transparent metadata constraints plus exact deterministic color/layout features on a tiny synthetic corpus.
+- **The pinned pretrained negative result is retained.** `openai/clip-vit-base-patch32` recovers some primitive panel color/position semantics but reaches Hit@1 `0.375`, cross-modal Hit@1 `0.0`, and no-evidence accuracy `0.0` on the frozen toy benchmark.
+- **An embedding model is not an abstention policy.** Exhaustive CLIP always returns an image; production systems need explicit rejection/calibration, evidence verification, or fusion rather than assuming similarity implies evidence exists.
+- **Retrieval and answer quality stay separate.** A wrong image can accidentally yield the same short answer, so rankings, modality provenance, and answer correctness are persisted independently.
+- **Benchmark integrity was fixed before pretrained inspection.** Malformed P3 payloads were regenerated from already-declared visual semantics before the first CLIP result; queries, qrels, captions, task labels, and intended visual states were not tuned after seeing CLIP behavior.
+- **These are controlled mechanism results.** The raster corpus is tiny and synthetic, so neither the handcrafted fusion win nor the CLIP loss is a general multimodal leaderboard claim.
+
+Evaluation evidence:
+
+- The initial candidate gate exposed malformed raster payloads; no evaluator result from that failing gate was accepted.
+- Repaired-benchmark PR gate `32460722561`: **110 tests passed**, deterministic multimodal evaluation passed, and the pinned CLIP evaluation passed.
+- Deterministic and CLIP JSON/Markdown evidence was persisted in commit `9e299f6ba512022900de7273b388730f0ae51603`.
+- Final source-of-truth gate `32460985448` passed on findings head `42a7b6e114f437e05d1adb6f984527ce04ee1dd8` before this ROADMAP completion update.
+
+Artifacts: `benchmarks/m08_multimodal/`, `src/rag_practice/multimodal/`, `src/rag_practice/evaluation/multimodal.py`, `labs/08_specialized_sources/multimodal/`, and `.github/workflows/m08-multimodal.yml`.
+
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -499,4 +531,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.5 — Multimodal RAG**. Keep modality-specific evidence explicit: build a controlled corpus where some answers are recoverable from text/alt-text metadata while others require image-native evidence; compare text-only surrogate retrieval with multimodal retrieval; evaluate retrieval relevance, modality coverage, evidence provenance, answer correctness, and cost separately. Do not treat captions/OCR as equivalent to visual understanding.
+Continue **M08.6 — Visual-document / page-image RAG**. Freeze a document/page-image benchmark before model comparison; compare text extraction/OCR surrogate retrieval with page-image retrieval using a pinned visual-document control; evaluate page retrieval, page/region provenance, visual/table/layout evidence, answer correctness, abstention, latency, and representation footprint separately. Keep document-raster evidence and OCR/text evidence explicit rather than silently collapsing them.

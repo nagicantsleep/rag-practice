@@ -90,66 +90,55 @@ jobs:
           old_status = "Status: **IN PROGRESS — EVIDENCE RECORDED / FINAL GATE PENDING**"
           assert old_status in readme
           readme = readme.replace(old_status, "Status: **DONE**", 1)
-
           old_evidence = "- A final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate must pass on the findings/completion head before M09 is marked `DONE`."
           assert old_evidence in readme
-          readme = readme.replace(
-              old_evidence,
-              f"- Final source-of-truth push gate `{run_id}` passed on head `{gate_sha}` before this automated `[skip ci]` completion update; full tests, deterministic evaluation, pinned single-agent evaluation, and role-split evaluation all succeeded.",
-              1,
-          )
-          readme = readme.replace(
-              "- [ ] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate.",
-              "- [x] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate.",
-              1,
-          )
-          readme = readme.replace(
-              "- [ ] Mark M09 complete in ROADMAP and point the immediate next step to M10.",
-              "- [x] Mark M09 complete in ROADMAP and point the immediate next step to M10.",
-              1,
-          )
+          readme = readme.replace(old_evidence, f"- Final source-of-truth push gate `{run_id}` passed on head `{gate_sha}` before this automated `[skip ci]` completion update; full tests, deterministic evaluation, pinned single-agent evaluation, and role-split evaluation all succeeded.", 1)
+          old_gate_box = "- [ ] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate."
+          assert old_gate_box in readme
+          readme = readme.replace(old_gate_box, "- [x] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate.", 1)
+          old_done_box = "- [ ] Mark M09 complete in ROADMAP and point the immediate next step to M10."
+          assert old_done_box in readme
+          readme = readme.replace(old_done_box, "- [x] Mark M09 complete in ROADMAP and point the immediate next step to M10.", 1)
           readme_path.write_text(readme)
 
           roadmap_path = Path("ROADMAP.md")
           roadmap = roadmap_path.read_text()
-          old_m09 = """### M09 — Agentic RAG — `TODO`
-
-Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
-"""
+          old_m09 = "### M09 — Agentic RAG — `TODO`\n\nImplement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.\n"
           assert old_m09 in roadmap
-          new_m09 = f"""### M09 — Agentic RAG — `DONE`
-
-M09 freezes a 12-task benchmark over document search, structured inventory/status lookups, and calculation before agent implementation or pretrained inspection. It separates task success from action sequence quality, tool precision/recall, evidence completeness, grounding, abstention, recovery, steps, latency, model calls/tokens, and synthetic tool cost.
-
-| System | Task success | Evidence complete | Plan exact | Recovery | Steps | Tool cost | Model-role calls |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| docs-only | 0.250 | 0.250 | 0.167 | 0.000 | 1.00 | 2.00 | — |
-| static one-tool router | 0.417 | 0.417 | 0.333 | 0.000 | 1.00 | 1.54 | — |
-| deterministic agent loop | **1.000** | **1.000** | **1.000** | **1.000** | 1.92 | 2.58 | — |
-| pinned SmolLM2 planner | 0.167 | 0.167 | 0.000 | 0.000 | 0.00 | 0.00 | 1.00 |
-| shared-checkpoint proposer/critic | 0.167 | 0.167 | 0.000 | 0.000 | 0.00 | 0.00 | 2.00 |
-
-Important agentic findings:
-
-- **Agent loops must earn their extra actions.** The deterministic loop composes cross-source evidence and recovers from declared misses with perfect mechanism scores on this tiny synthetic benchmark, but uses more steps/cost than one-shot baselines.
-- **Tool routing is not the same as agentic composition.** A one-tool router improves direct structured tasks but cannot finish document-to-tool joins, comparison, arithmetic composition, or recovery.
-- **Protocol reliability is independently measurable.** Pinned `HuggingFaceTB/SmolLM2-135M-Instruct@12fd25f77366fa6b3b4b768ec3050bf629380bac` produces no valid strict tool DSL decisions; its apparent `0.167` task success comes only from the two no-evidence tasks where zero evidence maps to `ABSTAIN`.
-- **More roles are not automatically better.** The exploratory shared-checkpoint proposer/critic control also has zero valid decisions, leaves task/evidence quality unchanged, doubles model-role calls, and adds critic latency.
-- **The role-split result is post-hoc, not fresh generalization evidence.** It was introduced only after the single-agent failure was recorded and is retained as an efficiency/control result rather than a leaderboard claim.
-- **Task success alone hides policy failures.** Raw action arguments, observations, failed calls, evidence ids, grounding, recovery, model outputs, latency, and costs remain persisted independently.
-
-Evaluation evidence:
-
-- Benchmark frozen before implementation/pretrained inspection in commit `de6f978ab7f14ea1a792a591aa468795b13f92d9`.
-- Deterministic mechanism gate `32485342984` / job `96780479396` passed.
-- Pinned single-agent gate `32485883446` / job `96782153068` passed and retained the invalid-action negative result.
-- Exploratory role-split gate `32486359470` / job `96783661841` passed and retained the no-improvement result.
-- Final source-of-truth push gate `{run_id}` passed on head `{gate_sha}` before this automated `[skip ci]` completion update.
-
-Artifacts: `benchmarks/m09_agentic/`, `src/rag_practice/agentic/`, `src/rag_practice/evaluation/agentic.py`, `src/rag_practice/evaluation/agentic_pretrained.py`, `src/rag_practice/evaluation/agentic_multi.py`, `labs/09_agentic_rag/`, and `.github/workflows/m09-agentic.yml`.
-"""
+          new_lines = [
+              "### M09 — Agentic RAG — `DONE`",
+              "",
+              "M09 freezes a 12-task benchmark over document search, structured inventory/status lookups, and calculation before agent implementation or pretrained inspection. It separates task success from action sequence quality, tool precision/recall, evidence completeness, grounding, abstention, recovery, steps, latency, model calls/tokens, and synthetic tool cost.",
+              "",
+              "| System | Task success | Evidence complete | Plan exact | Recovery | Steps | Tool cost | Model-role calls |",
+              "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+              "| docs-only | 0.250 | 0.250 | 0.167 | 0.000 | 1.00 | 2.00 | — |",
+              "| static one-tool router | 0.417 | 0.417 | 0.333 | 0.000 | 1.00 | 1.54 | — |",
+              "| deterministic agent loop | **1.000** | **1.000** | **1.000** | **1.000** | 1.92 | 2.58 | — |",
+              "| pinned SmolLM2 planner | 0.167 | 0.167 | 0.000 | 0.000 | 0.00 | 0.00 | 1.00 |",
+              "| shared-checkpoint proposer/critic | 0.167 | 0.167 | 0.000 | 0.000 | 0.00 | 0.00 | 2.00 |",
+              "",
+              "Important agentic findings:",
+              "",
+              "- **Agent loops must earn their extra actions.** The deterministic loop composes cross-source evidence and recovers from declared misses with perfect mechanism scores on this tiny synthetic benchmark, but uses more steps/cost than one-shot baselines.",
+              "- **Tool routing is not the same as agentic composition.** A one-tool router improves direct structured tasks but cannot finish document-to-tool joins, comparison, arithmetic composition, or recovery.",
+              "- **Protocol reliability is independently measurable.** Pinned `HuggingFaceTB/SmolLM2-135M-Instruct@12fd25f77366fa6b3b4b768ec3050bf629380bac` produces no valid strict tool DSL decisions; its apparent `0.167` task success comes only from the two no-evidence tasks where zero evidence maps to `ABSTAIN`.",
+              "- **More roles are not automatically better.** The exploratory shared-checkpoint proposer/critic control also has zero valid decisions, leaves task/evidence quality unchanged, doubles model-role calls, and adds critic latency.",
+              "- **The role-split result is post-hoc, not fresh generalization evidence.** It was introduced only after the single-agent failure was recorded and is retained as an efficiency/control result rather than a leaderboard claim.",
+              "- **Task success alone hides policy failures.** Raw action arguments, observations, failed calls, evidence ids, grounding, recovery, model outputs, latency, and costs remain persisted independently.",
+              "",
+              "Evaluation evidence:",
+              "",
+              "- Benchmark frozen before implementation/pretrained inspection in commit `de6f978ab7f14ea1a792a591aa468795b13f92d9`.",
+              "- Deterministic mechanism gate `32485342984` / job `96780479396` passed.",
+              "- Pinned single-agent gate `32485883446` / job `96782153068` passed and retained the invalid-action negative result.",
+              "- Exploratory role-split gate `32486359470` / job `96783661841` passed and retained the no-improvement result.",
+              f"- Final source-of-truth push gate `{run_id}` passed on head `{gate_sha}` before this automated `[skip ci]` completion update.",
+              "",
+              "Artifacts: `benchmarks/m09_agentic/`, `src/rag_practice/agentic/`, `src/rag_practice/evaluation/agentic.py`, `src/rag_practice/evaluation/agentic_pretrained.py`, `src/rag_practice/evaluation/agentic_multi.py`, `labs/09_agentic_rag/`, and `.github/workflows/m09-agentic.yml`.",
+          ]
+          new_m09 = "\n".join(new_lines) + "\n"
           roadmap = roadmap.replace(old_m09, new_m09, 1)
-
           old_next = "Continue **M09 — Agentic RAG**. Implement planner/search strategy, source and tool routing, retrieval loops, evidence evaluation, retry/stop policy, and explicit state before comparing multi-agent variants. Evaluate task success, tool precision, unnecessary actions, recovery, grounding, latency, and cost independently."
           assert old_next in roadmap
           new_next = "Continue **M10 — Training and Production RAG**. Start with a frozen train/dev/test retrieval setup for retriever fine-tuning and hard-negative mining, compare against the existing pretrained retrieval baselines, and keep offline quality, serving cost, freshness, robustness, permissions, and observability as separate production contracts."

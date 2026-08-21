@@ -1,6 +1,6 @@
 # M10 — Training and Production RAG
 
-Status: **IN PROGRESS — M10.1 TRAINING EVIDENCE RECORDED**
+Status: **IN PROGRESS — TRAINING + PRODUCTION EVIDENCE COMPLETE / FINAL GATE PENDING**
 
 M10 intentionally separates model-training evidence from production-system evidence. Offline retrieval gains do not imply serving readiness, and serving mechanics do not imply retrieval quality.
 
@@ -66,16 +66,38 @@ Persisted evidence: `labs/10_training_production/results/reranker_results.json` 
 
 ## M10.2 — Production contracts
 
-With M10.1 evidence now recorded, the next phase freezes deterministic serving scenarios before production implementation. Production metrics remain independent from offline retrieval metrics: a fast cache hit that serves stale or unauthorized evidence is a failure.
+The deterministic serving workload was frozen before production implementation at commit `0495168691a0bc5f70f275a78978bcdc57879f90`. The same ordered operations compare an intentionally unsafe baseline against a guarded serving path with generation-aware/role-aware caching, incremental indexing, ACL → freshness → trust filtering, lexical evidence checks, and complete per-query traces.
+
+The first implementation gate `32509852290` / job `96858161124` is diagnostic only: **146 tests passed, 2 failed** before any production evaluator result was accepted. After ACL filtering, guarded lexical ranking could still return a public document matching only the generic word `code` for a Finance query. Commit `f5385d8829fc085d3ac1ce5323b3f7059700aecf` repaired only guarded lexical evidence semantics by requiring all distinct query terms before ranking; the frozen workload, expected outcomes, clock, cache policy, filter order, unsafe baseline, and scale contract did not change.
+
+The valid production gate `32510837455` / job `96861322550` passed **148 repository tests**, the unchanged M10.1 retriever evaluator, the frozen learned-reranker evaluator, and the frozen M10.2 production evaluator.
+
+| System | Scenario accuracy | Cache expectation | Invalidation | No-evidence | Unauthorized exposure | Stale exposure | Untrusted exposure | Observability |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| unsafe baseline | 0.455 | 0.727 | 0.000 | 0.000 | 0.091 | 0.091 | 0.091 | 1.000 |
+| guarded | **1.000** | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **0.000** | **1.000** |
+
+Scale sanity persisted by the push evaluator keeps target Hit@1 at `1` for both 100 and 1000 documents. On that GitHub Actions CPU run, build time was about `0.400 ms` and `4.084 ms`, query time about `0.101 ms` and `0.923 ms`, with `797` and `7996` posting entries respectively. These are implementation sanity measurements, not production throughput or ANN claims.
+
+### Production findings
+
+- **A fast cache is unsafe without identity and version boundaries.** The query-only unsafe cache reuses results across role and mutation boundaries, producing cache-invalidation accuracy `0.0` despite a higher cache-hit rate.
+- **Policy filtering must happen before evidence exposure.** The guarded path records zero unauthorized, stale, and untrusted exposure on the frozen scenarios; the unsafe baseline exposes each category on one of eleven query operations (`0.0909`).
+- **No-evidence behavior is a production correctness feature.** The unsafe lexical fallback never abstains correctly on the frozen negative cases (`0.0` no-evidence accuracy); guarded full-term evidence semantics plus policy filters reach `1.0`.
+- **Incremental mutations and cache correctness are coupled.** Guarded cache keys include index generation, so upsert/delete increments invalidate stale snapshots without flushing unrelated historical keys manually.
+- **Observability is necessary but not sufficient.** Both systems can emit complete traces (`1.0` observability completeness); the unsafe system remains wrong. Traces make policy/cache failures diagnosable but do not create correctness by themselves.
+- **The scale check is deliberately modest.** Linear lexical indexing/query behavior at 100/1000 documents validates the implementation path only; it is not evidence for large-scale vector serving capacity.
+
+Persisted evidence: `labs/10_training_production/results/production_results.json` and `production_results.md`.
 
 ### M10.2 Definition of Done
 
-- [ ] Freeze production scenarios before implementation tuning.
-- [ ] Implement cache, incremental-index, observability, ACL, freshness, and adversarial controls.
-- [ ] Measure quality, latency, invalidation correctness, stale exposure, unauthorized exposure, and regression behavior separately.
-- [ ] Add deterministic scale sanity checks.
-- [ ] Persist machine-readable and human-readable production results.
+- [x] Freeze production scenarios before implementation tuning.
+- [x] Implement cache, incremental-index, observability, ACL, freshness, and adversarial controls.
+- [x] Measure quality, latency, invalidation correctness, stale exposure, unauthorized exposure, and regression behavior separately.
+- [x] Add deterministic scale sanity checks.
+- [x] Persist machine-readable and human-readable production results.
 
 ## Completion guardrail
 
-M10 is not `DONE` until both training and production evidence are recorded, representative failures are retained, a final source-of-truth gate passes, and `ROADMAP.md` is updated only after that gate.
+Training and production evidence are complete. M10 becomes `DONE` only after the final source-of-truth gate passes; `ROADMAP.md` is updated only after that gate.

@@ -1,0 +1,325 @@
+{
+  "control": "pinned pretrained ColSmol text-to-page-image retrieval",
+  "guardrail": "ranking receives query text and rendered page pixels only; frozen OCR text, titles, document ids, qrels, expected answers, deterministic visual features, and region heuristics are excluded from pretrained ranking",
+  "model": {
+    "adapter_name": "vidore/colSmol-256M",
+    "adapter_revision": "a59110fdf114638b8018e6c9a018907e12f14855",
+    "base_name": "vidore/ColSmolVLM-Instruct-256M-base",
+    "base_revision": "8a0cee6d479200dbce31dbfef88c66175d89cddc",
+    "device": "cpu",
+    "dtype": "float32",
+    "model_load_ms": 4508.887155,
+    "index_build_ms": 136884.187392,
+    "embedding_shape": [
+      6,
+      875,
+      128
+    ],
+    "embedding_bytes": 2688000
+  },
+  "benchmark": {
+    "pages": 6,
+    "queries": 10
+  },
+  "metrics": {
+    "recall@3": 1.0,
+    "hit_rate@1": 0.875,
+    "visual_required_hit@1": 1.0,
+    "cross_modal_hit@1": 1.0,
+    "text_sufficient_hit@1": 0.5,
+    "no_evidence_accuracy": 0.0,
+    "answer_correct_rate": 0.4,
+    "visual_evidence_grounded_rate": 1.0,
+    "region_locator_accuracy": 0.0,
+    "mean_visual_candidates_scored": 6.0,
+    "mean_query_ms": 100.7325432
+  },
+  "per_query": [
+    {
+      "id": "v1",
+      "task": "text_sufficient",
+      "query": "What incident escalation hotline is listed in the Alpha Operations Review?",
+      "relevant": [
+        "alpha_p1"
+      ],
+      "ranking": [
+        "alpha_p2",
+        "alpha_p1",
+        "gamma_p2"
+      ],
+      "scores": [
+        10.843835830688477,
+        10.804230690002441,
+        7.512065887451172
+      ],
+      "top_page_locator": "page://benchmark/alpha_operations_review/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "771",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 107.750119
+    },
+    {
+      "id": "v2",
+      "task": "text_sufficient",
+      "query": "What standard shipping SLA is listed in the Beta Shipping Policy?",
+      "relevant": [
+        "beta_p1"
+      ],
+      "ranking": [
+        "beta_p1",
+        "alpha_p2",
+        "alpha_p1"
+      ],
+      "scores": [
+        16.28229522705078,
+        9.92289924621582,
+        9.856511116027832
+      ],
+      "top_page_locator": "page://benchmark/beta_shipping_policy/1",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "48 hours",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 104.25012
+    },
+    {
+      "id": "v3",
+      "task": "visual_layout",
+      "query": "Which page contains a red APPROVED stamp in the upper-right?",
+      "relevant": [
+        "alpha_p2"
+      ],
+      "ranking": [
+        "alpha_p2",
+        "beta_p2",
+        "gamma_p1"
+      ],
+      "scores": [
+        14.868300437927246,
+        12.24091911315918,
+        11.889265060424805
+      ],
+      "top_page_locator": "page://benchmark/alpha_operations_review/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "alpha_p2",
+      "expected_answer": "alpha_p2",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 104.202831
+    },
+    {
+      "id": "v4",
+      "task": "visual_layout",
+      "query": "Which page has a green sidebar on the left?",
+      "relevant": [
+        "gamma_p1"
+      ],
+      "ranking": [
+        "gamma_p1",
+        "alpha_p2",
+        "beta_p1"
+      ],
+      "scores": [
+        12.892560958862305,
+        12.238604545593262,
+        12.051553726196289
+      ],
+      "top_page_locator": "page://benchmark/gamma_onboarding_guide/1",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "gamma_p1",
+      "expected_answer": "gamma_p1",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 96.657033
+    },
+    {
+      "id": "v5",
+      "task": "table_layout",
+      "query": "What Q2 revenue value is inside the blue highlighted cell?",
+      "relevant": [
+        "alpha_p1"
+      ],
+      "ranking": [
+        "alpha_p1",
+        "beta_p2",
+        "alpha_p2"
+      ],
+      "scores": [
+        13.832590103149414,
+        8.450460433959961,
+        8.320136070251465
+      ],
+      "top_page_locator": "page://benchmark/alpha_operations_review/1",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "150",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 96.484009
+    },
+    {
+      "id": "v6",
+      "task": "chart_layout",
+      "query": "Which page shows a blue bar taller than an orange bar?",
+      "relevant": [
+        "beta_p2"
+      ],
+      "ranking": [
+        "beta_p2",
+        "gamma_p2",
+        "alpha_p2"
+      ],
+      "scores": [
+        12.874098777770996,
+        11.261648178100586,
+        10.214432716369629
+      ],
+      "top_page_locator": "page://benchmark/beta_capacity_report/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "beta_p2",
+      "expected_answer": "beta_p2",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 96.085383
+    },
+    {
+      "id": "v7",
+      "task": "cross_modal",
+      "query": "In the Beta Capacity Report, which page shows a blue bar taller than an orange bar?",
+      "relevant": [
+        "beta_p2"
+      ],
+      "ranking": [
+        "beta_p2",
+        "beta_p1",
+        "alpha_p1"
+      ],
+      "scores": [
+        19.385150909423828,
+        13.85969352722168,
+        13.26736068725586
+      ],
+      "top_page_locator": "page://benchmark/beta_capacity_report/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "beta_p2",
+      "expected_answer": "beta_p2",
+      "answer_correct": true,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 104.072788
+    },
+    {
+      "id": "v8",
+      "task": "region_layout",
+      "query": "Where is the yellow Total 420 box on the Gamma Invoice page?",
+      "relevant": [
+        "gamma_p2"
+      ],
+      "ranking": [
+        "gamma_p2",
+        "gamma_p1",
+        "beta_p1"
+      ],
+      "scores": [
+        16.154685974121094,
+        12.764093399047852,
+        9.934247970581055
+      ],
+      "top_page_locator": "page://benchmark/gamma_invoice/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "UNKNOWN",
+      "expected_answer": "lower-right",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 106.552647
+    },
+    {
+      "id": "v9",
+      "task": "no_evidence",
+      "query": "Emergency code 999 evidence?",
+      "relevant": [],
+      "ranking": [
+        "alpha_p2",
+        "alpha_p1",
+        "beta_p2"
+      ],
+      "scores": [
+        7.863053321838379,
+        7.206888675689697,
+        6.538337707519531
+      ],
+      "top_page_locator": "page://benchmark/alpha_operations_review/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "UNSUPPORTED_TEXT_EVIDENCE",
+      "expected_answer": "NO_EVIDENCE",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 91.429101
+    },
+    {
+      "id": "v10",
+      "task": "no_evidence",
+      "query": "Which page has a magenta stamp in the lower-left?",
+      "relevant": [],
+      "ranking": [
+        "alpha_p2",
+        "gamma_p1",
+        "gamma_p2"
+      ],
+      "scores": [
+        12.73223876953125,
+        12.459095001220703,
+        11.975191116333008
+      ],
+      "top_page_locator": "page://benchmark/alpha_operations_review/2",
+      "top_region": null,
+      "top_region_locator": null,
+      "answer": "alpha_p2",
+      "expected_answer": "NO_EVIDENCE",
+      "answer_correct": false,
+      "evidence_modalities": [
+        "page_image"
+      ],
+      "visual_candidates_scored": 6,
+      "latency_ms": 99.841401
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "hypothesis": "structured RAG should preserve schema/execution semantics and row provenance; flat lexical row retrieval cannot reliably answer joins/aggregates, while SQL must fail closed on unsafe or unsupported requests",
+  "benchmark": {
+    "tables": 4,
+    "rows": 20,
+    "queries": 9,
+    "safe_queries": 7,
+    "unsafe_queries": 1,
+    "unsupported_queries": 1
+  },
+  "systems": {
+    "flat_row_bm25": {
+      "metrics": {
+        "evidence_recall@5": 0.5,
+        "evidence_complete@5": 0.5
+      }
+    },
+    "schema_aware_validated_sql": {
+      "metrics": {
+        "execution_success_rate": 1.0,
+        "answer_exact_match": 1.0,
+        "evidence_recall": 1.0,
+        "evidence_complete_rate": 1.0,
+        "schema_table_recall": 1.0,
+        "schema_table_precision": 1.0,
+        "unsafe_rejection_rate": 1.0,
+        "unsupported_handling_rate": 1.0,
+        "empty_result_accuracy": 1.0,
+        "nonempty_answer_exact_match": 1.0,
+        "mean_execution_ms": 0.03902714285735393,
+        "mean_end_to_end_ms": 0.3740638888905955
+      }
+    }
+  },
+  "per_query": [
+    {
+      "id": "s1",
+      "task": "lookup",
+      "question": "Which region is Cora Labs in?",
+      "expected_answer": "North",
+      "status": "ok",
+      "answer": "North",
+      "answer_correct": true,
+      "expected_tables": [
+        "customers"
+      ],
+      "planned_tables": [
+        "customers"
+      ],
+      "sql": "SELECT region FROM customers WHERE name = ?",
+      "evidence_ids": [
+        "customers:3"
+      ],
+      "expected_evidence": [
+        "customers:3"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/customers/3"
+      ],
+      "flat_row_bm25": [
+        "customers:3",
+        "customers:1",
+        "customers:2",
+        "customers:4"
+      ],
+      "error": "",
+      "planning_ms": 0.00552800000264142,
+      "execution_ms": 0.014632000002734458,
+      "evidence_ms": 0.0094940000110455,
+      "end_to_end_ms": 0.24555000000248128
+    },
+    {
+      "id": "s2",
+      "task": "join",
+      "question": "What products were in Acme Corp's shipped order 1001?",
+      "expected_answer": "QueryGuard; VectorDB Pro",
+      "status": "ok",
+      "answer": "QueryGuard; VectorDB Pro",
+      "answer_correct": true,
+      "expected_tables": [
+        "order_items",
+        "products"
+      ],
+      "planned_tables": [
+        "order_items",
+        "products"
+      ],
+      "sql": "SELECT p.name\n                FROM order_items oi\n                JOIN products p ON p.id = oi.product_id\n                WHERE oi.order_id = ?\n                ORDER BY p.name",
+      "evidence_ids": [
+        "order_items:1001:101",
+        "order_items:1001:103"
+      ],
+      "expected_evidence": [
+        "order_items:1001:101",
+        "order_items:1001:103"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/order_items/1001/101",
+        "sqlite://commerce/order_items/1001/103"
+      ],
+      "flat_row_bm25": [
+        "customers:1",
+        "orders:1001",
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "orders:1002"
+      ],
+      "error": "",
+      "planning_ms": 0.004337000007126335,
+      "execution_ms": 0.028892999992535806,
+      "evidence_ms": 0.0152629999945475,
+      "end_to_end_ms": 0.3647890000024745
+    },
+    {
+      "id": "s3",
+      "task": "aggregate",
+      "question": "What was the total shipped revenue in 2026?",
+      "expected_answer": "730",
+      "status": "ok",
+      "answer": "730",
+      "answer_correct": true,
+      "expected_tables": [
+        "orders",
+        "order_items"
+      ],
+      "planned_tables": [
+        "orders",
+        "order_items"
+      ],
+      "sql": "SELECT SUM(oi.quantity * oi.unit_price)\n                FROM orders o\n                JOIN order_items oi ON oi.order_id = o.id\n                WHERE o.status = 'shipped'\n                  AND o.order_date >= '2026-01-01'\n                  AND o.order_date < '2027-01-01'",
+      "evidence_ids": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1002:102",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "expected_evidence": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1002:102",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/order_items/1001/101",
+        "sqlite://commerce/order_items/1001/103",
+        "sqlite://commerce/order_items/1002/102",
+        "sqlite://commerce/order_items/1004/101",
+        "sqlite://commerce/order_items/1004/102"
+      ],
+      "flat_row_bm25": [
+        "orders:1001",
+        "orders:1002",
+        "orders:1004",
+        "orders:1003",
+        "orders:1005"
+      ],
+      "error": "",
+      "planning_ms": 0.004898000000252978,
+      "execution_ms": 0.03336000000331296,
+      "evidence_ms": 0.02821199998948032,
+      "end_to_end_ms": 0.7327619999983881
+    },
+    {
+      "id": "s4",
+      "task": "aggregate_join",
+      "question": "Which active enterprise customer had the highest shipped revenue in 2026?",
+      "expected_answer": "Acme Corp",
+      "status": "ok",
+      "answer": "Acme Corp",
+      "answer_correct": true,
+      "expected_tables": [
+        "customers",
+        "orders",
+        "order_items"
+      ],
+      "planned_tables": [
+        "customers",
+        "orders",
+        "order_items"
+      ],
+      "sql": "SELECT c.name\n                FROM customers c\n                JOIN orders o ON o.customer_id = c.id\n                JOIN order_items oi ON oi.order_id = o.id\n                WHERE c.active = 1\n                  AND c.segment = 'enterprise'\n                  AND o.status = 'shipped'\n                  AND o.order_date >= '2026-01-01'\n                  AND o.order_date < '2027-01-01'\n                GROUP BY c.id, c.name\n                ORDER BY SUM(oi.quantity * oi.unit_price) DESC, c.name\n                LIMIT 1",
+      "evidence_ids": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "expected_evidence": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/order_items/1001/101",
+        "sqlite://commerce/order_items/1001/103",
+        "sqlite://commerce/order_items/1004/101",
+        "sqlite://commerce/order_items/1004/102"
+      ],
+      "flat_row_bm25": [
+        "orders:1001",
+        "orders:1002",
+        "orders:1004",
+        "customers:1",
+        "customers:3"
+      ],
+      "error": "",
+      "planning_ms": 0.004617000001871929,
+      "execution_ms": 0.10516800000459625,
+      "evidence_ms": 0.039259000004676636,
+      "end_to_end_ms": 0.7099379999999655
+    },
+    {
+      "id": "s5",
+      "task": "group_by",
+      "question": "How many shipped orders did each region have in 2026?",
+      "expected_answer": "North=2; South=1",
+      "status": "ok",
+      "answer": "North=2; South=1",
+      "answer_correct": true,
+      "expected_tables": [
+        "customers",
+        "orders"
+      ],
+      "planned_tables": [
+        "customers",
+        "orders"
+      ],
+      "sql": "SELECT c.region, COUNT(DISTINCT o.id)\n                FROM customers c\n                JOIN orders o ON o.customer_id = c.id\n                WHERE o.status = 'shipped'\n                  AND o.order_date >= '2026-01-01'\n                  AND o.order_date < '2027-01-01'\n                GROUP BY c.region\n                ORDER BY c.region",
+      "evidence_ids": [
+        "orders:1001",
+        "orders:1002",
+        "orders:1004"
+      ],
+      "expected_evidence": [
+        "orders:1001",
+        "orders:1002",
+        "orders:1004"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/orders/1001",
+        "sqlite://commerce/orders/1002",
+        "sqlite://commerce/orders/1004"
+      ],
+      "flat_row_bm25": [
+        "orders:1001",
+        "orders:1002",
+        "orders:1004",
+        "orders:1003",
+        "orders:1005"
+      ],
+      "error": "",
+      "planning_ms": 0.004656999990970689,
+      "execution_ms": 0.0363440000086257,
+      "evidence_ms": 0.01852800001245214,
+      "end_to_end_ms": 0.48380900000211113
+    },
+    {
+      "id": "s6",
+      "task": "empty",
+      "question": "Which shipped orders went to the Antarctica region in 2026?",
+      "expected_answer": "NO_ROWS",
+      "status": "ok",
+      "answer": "NO_ROWS",
+      "answer_correct": true,
+      "expected_tables": [
+        "customers",
+        "orders"
+      ],
+      "planned_tables": [
+        "customers",
+        "orders"
+      ],
+      "sql": "SELECT o.id\n                FROM customers c\n                JOIN orders o ON o.customer_id = c.id\n                WHERE c.region = 'Antarctica'\n                  AND o.status = 'shipped'\n                  AND o.order_date >= '2026-01-01'\n                  AND o.order_date < '2027-01-01'\n                ORDER BY o.id",
+      "evidence_ids": [],
+      "expected_evidence": [],
+      "evidence_recall": null,
+      "evidence_complete": null,
+      "citations": [],
+      "flat_row_bm25": [],
+      "error": "",
+      "planning_ms": 0.0037960000014436446,
+      "execution_ms": 0.021091999997224775,
+      "evidence_ms": 0.016585000011559714,
+      "end_to_end_ms": 0.10273399999505273
+    },
+    {
+      "id": "s7",
+      "task": "aggregate_filter",
+      "question": "What is the total shipped revenue for the North region in 2026?",
+      "expected_answer": "490",
+      "status": "ok",
+      "answer": "490",
+      "answer_correct": true,
+      "expected_tables": [
+        "customers",
+        "orders",
+        "order_items"
+      ],
+      "planned_tables": [
+        "customers",
+        "orders",
+        "order_items"
+      ],
+      "sql": "SELECT SUM(oi.quantity * oi.unit_price)\n                FROM customers c\n                JOIN orders o ON o.customer_id = c.id\n                JOIN order_items oi ON oi.order_id = o.id\n                WHERE c.region = 'North'\n                  AND o.status = 'shipped'\n                  AND o.order_date >= '2026-01-01'\n                  AND o.order_date < '2027-01-01'",
+      "evidence_ids": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "expected_evidence": [
+        "order_items:1001:101",
+        "order_items:1001:103",
+        "order_items:1004:101",
+        "order_items:1004:102"
+      ],
+      "evidence_recall": 1.0,
+      "evidence_complete": 1.0,
+      "citations": [
+        "sqlite://commerce/order_items/1001/101",
+        "sqlite://commerce/order_items/1001/103",
+        "sqlite://commerce/order_items/1004/101",
+        "sqlite://commerce/order_items/1004/102"
+      ],
+      "flat_row_bm25": [
+        "customers:1",
+        "customers:3",
+        "orders:1001",
+        "orders:1002",
+        "orders:1004"
+      ],
+      "error": "",
+      "planning_ms": 0.004586999992284291,
+      "execution_ms": 0.03370099999244758,
+      "evidence_ms": 0.03229899999723784,
+      "end_to_end_ms": 0.6248500000083368
+    },
+    {
+      "id": "s8",
+      "task": "unsafe",
+      "question": "Delete cancelled orders and tell me how many remain.",
+      "expected_answer": "",
+      "status": "rejected",
+      "answer": "",
+      "answer_correct": null,
+      "expected_tables": [
+        "orders"
+      ],
+      "planned_tables": [
+        "orders"
+      ],
+      "sql": "DELETE FROM orders WHERE status='cancelled'",
+      "evidence_ids": [],
+      "expected_evidence": [],
+      "evidence_recall": null,
+      "evidence_complete": null,
+      "citations": [],
+      "flat_row_bm25": [],
+      "error": "only SELECT/WITH statements are allowed",
+      "planning_ms": 0.007680999999593041,
+      "execution_ms": 0.0,
+      "evidence_ms": 0.0,
+      "end_to_end_ms": 0.05733599999757644
+    },
+    {
+      "id": "s9",
+      "task": "unsupported",
+      "question": "What loyalty tier is attached to every order?",
+      "expected_answer": "",
+      "status": "planning_error",
+      "answer": "",
+      "answer_correct": null,
+      "expected_tables": [],
+      "planned_tables": [],
+      "sql": "",
+      "evidence_ids": [],
+      "expected_evidence": [],
+      "evidence_recall": null,
+      "evidence_complete": null,
+      "citations": [],
+      "flat_row_bm25": [],
+      "error": "unsupported question pattern",
+      "planning_ms": 0.002834999989431708,
+      "execution_ms": 0.0,
+      "evidence_ms": 0.0,
+      "end_to_end_ms": 0.044807000008972864
+    }
+  ],
+  "guardrails": [
+    "qrels/reference answers are used only after planning/execution",
+    "SQL is parameterized where user entities become values",
+    "validator allows only SELECT/WITH and SQLite runs with PRAGMA query_only=ON",
+    "aggregate answers persist row-level evidence locators separately from result rows",
+    "rule-based planning is a controlled teaching mechanism, not a general text-to-SQL claim"
+  ]
+}

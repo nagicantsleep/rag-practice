@@ -1,0 +1,55 @@
+name: M08 SQL structured RAG evaluation
+
+on:
+  push:
+    branches:
+      - feat/m08-sql-structured
+    paths:
+      - "src/rag_practice/structured_sql/**"
+      - "src/rag_practice/evaluation/sql_structured.py"
+      - "benchmarks/m08_sql/**"
+      - "labs/08_specialized_sources/sql/**"
+      - "tests/test_m08_sql_structured.py"
+      - ".github/workflows/m08-sql.yml"
+      - "ROADMAP.md"
+  pull_request:
+    paths:
+      - "src/rag_practice/structured_sql/**"
+      - "src/rag_practice/evaluation/sql_structured.py"
+      - "benchmarks/m08_sql/**"
+      - "labs/08_specialized_sources/sql/**"
+      - "tests/test_m08_sql_structured.py"
+      - ".github/workflows/m08-sql.yml"
+      - "ROADMAP.md"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression-test dependencies
+        run: python -m pip install -e ".[dev,neural,pretrained]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate SQL / Structured RAG
+        run: python labs/08_specialized_sources/sql/run.py
+      - name: Persist SQL evidence and finalize source of truth
+        if: github.event_name == 'push'
+        run: |
+          python labs/08_specialized_sources/sql/finalize.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ROADMAP.md labs/08_specialized_sources/sql/README.md labs/08_specialized_sources/sql/results/results.json labs/08_specialized_sources/sql/results/results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M08 SQL completion evidence [skip ci]"
+            git push origin HEAD:feat/m08-sql-structured
+          fi

@@ -1,8 +1,8 @@
 # M11 benchmark construction contract
 
-Status: **CONSTRUCTION CONTRACT FROZEN — INSTANCES NOT YET FROZEN**
+Status: **FROZEN BEFORE M11 SYSTEM IMPLEMENTATION**
 
-This file governs how the M11 Order-to-Cash & Logistics Exception Resolution Copilot benchmark is built. The actual benchmark examples, qrels, expected answers, role permissions, source versions, and mutation timeline will be frozen in a later commit **before** any optimized M11 retrieval, prompt, routing, or agent implementation is inspected.
+This file records the construction contract and the now-frozen M11 Order-to-Cash & Logistics Exception Resolution Copilot benchmark. The instance set, qrels/evidence IDs, expected structured answers, role permissions, source versions, mutation timeline, benchmark clock, and evaluator normalization are frozen before optimized M11 retrieval, prompt, routing, or agent implementation.
 
 ## Data model requirements
 
@@ -102,6 +102,26 @@ Every evaluated system must persist enough per-query data to reconstruct why it 
 - latency and cost fields;
 - evaluator metrics.
 
-## Next freeze boundary
+## Freeze boundary
 
-The next evidence boundary is the commit that adds the complete benchmark instances and marks this directory **FROZEN BEFORE M11 SYSTEM IMPLEMENTATION**. No optimized M11 pipeline should be implemented before that commit.
+This directory is **FROZEN BEFORE M11 SYSTEM IMPLEMENTATION**. Any later semantic change to held-out queries, qrels/evidence IDs, expected answers, permissions, source versions, mutation sequence, benchmark clock, or evaluator normalization invalidates the original M11.0 evidence boundary.
+
+## Frozen instance summary
+
+Status: **FROZEN BEFORE M11 SYSTEM IMPLEMENTATION**
+
+The instance set is hand-authored deterministic synthetic operational data; there is no generation seed. The benchmark clock is `2026-08-15T12:00:00Z`.
+
+- 1 dev customer family and 11 held-out test customer families are disjoint by customer/order/shipment IDs.
+- 4 dev tasks and 18 test tasks are frozen.
+- All 15 required task classes are represented in held-out test evaluation; breach and non-breach SLA cases are separate.
+- Structured sources include customers, orders, shipments, tracking events, invoices, finance state, inventory state, and authorization policies.
+- Document sources include 13 versioned customer contracts, 6 trusted operational policies, and 1 explicitly untrusted prompt-injection document.
+- `CTR-EPS-v1` remains in the corpus as an expired 24-hour SLA while `CTR-EPS-v2` is the effective 72-hour SLA, enabling stale-evidence evaluation without deleting old evidence.
+- `NOTE-GAMMA-INJECTION` remains searchable but is marked untrusted and forbidden evidence for the adversarial task.
+- Snapshot `g0` is the base state. Snapshot `g1` applies a frozen Helios carrier `VEHICLE_BREAKDOWN` event and shipment version update so the correct answer changes after mutation.
+- Finance records are sensitive and readable only by `finance` or `manager`; the denied and authorized Cedar questions use identical wording to isolate authorization behavior.
+
+`benchmark.json` is evaluator-only and must never be available to runtime retrieval, routing, planning, prompting, or generation. `manifest.json` defines runtime source files and split membership.
+
+The next allowed phase is **M11.1 — Baseline system**. Benchmark semantics are now immutable except for documented objective serialization/compatibility repairs that preserve evidence and labels.

@@ -42,13 +42,19 @@ jobs:
         run: pytest -q
       - name: Evaluate deterministic multimodal RAG
         run: python labs/08_specialized_sources/multimodal/run.py
-      - name: Persist multimodal Phase 1 evidence
+      - name: Evaluate pinned pretrained CLIP retrieval control
+        run: python labs/08_specialized_sources/multimodal/run_clip.py
+      - name: Persist multimodal evaluation evidence
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add labs/08_specialized_sources/multimodal/results/results.json labs/08_specialized_sources/multimodal/results/results.md
+          git add \
+            labs/08_specialized_sources/multimodal/results/results.json \
+            labs/08_specialized_sources/multimodal/results/results.md \
+            labs/08_specialized_sources/multimodal/results/clip_results.json \
+            labs/08_specialized_sources/multimodal/results/clip_results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M08 multimodal Phase 1 evaluation [skip ci]"
+            git commit -m "test: record M08 multimodal evaluation [skip ci]"
             git push origin HEAD:feat/m08-multimodal-rag
           fi

@@ -42,13 +42,14 @@ jobs:
         run: pytest -q
       - name: Evaluate SQL / Structured RAG
         run: python labs/08_specialized_sources/sql/run.py
-      - name: Persist SQL evaluation evidence on feature branch
+      - name: Persist SQL evidence and finalize source of truth
         if: github.event_name == 'push'
         run: |
+          python labs/08_specialized_sources/sql/finalize.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add labs/08_specialized_sources/sql/results/results.json labs/08_specialized_sources/sql/results/results.md
+          git add ROADMAP.md labs/08_specialized_sources/sql/README.md labs/08_specialized_sources/sql/results/results.json labs/08_specialized_sources/sql/results/results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M08 SQL evaluation [skip ci]"
+            git commit -m "test: record M08 SQL completion evidence [skip ci]"
             git push origin HEAD:feat/m08-sql-structured
           fi

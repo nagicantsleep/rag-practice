@@ -10,6 +10,7 @@ on:
       - "benchmarks/m08_visual_document/**"
       - "labs/08_specialized_sources/visual_document/**"
       - "tests/test_m08_visual_document.py"
+      - "tests/test_m08_visual_document_colsmol.py"
       - ".github/workflows/m08-visual-document.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -20,6 +21,7 @@ on:
       - "benchmarks/m08_visual_document/**"
       - "labs/08_specialized_sources/visual_document/**"
       - "tests/test_m08_visual_document.py"
+      - "tests/test_m08_visual_document_colsmol.py"
       - ".github/workflows/m08-visual-document.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -38,21 +40,25 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - name: Install project with full regression-test dependencies
-        run: python -m pip install -e ".[dev,neural,pretrained]"
+      - name: Install project with full regression and visual-document dependencies
+        run: python -m pip install -e ".[dev,pretrained,visual_document]"
       - name: Run full test suite
         run: pytest -q
       - name: Evaluate deterministic visual-document RAG
         run: python labs/08_specialized_sources/visual_document/run.py
-      - name: Persist deterministic visual-document evidence
+      - name: Evaluate pinned pretrained ColSmol page retrieval
+        run: python labs/08_specialized_sources/visual_document/run_colsmol.py
+      - name: Persist visual-document evaluation evidence
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             labs/08_specialized_sources/visual_document/results/results.json \
-            labs/08_specialized_sources/visual_document/results/results.md
+            labs/08_specialized_sources/visual_document/results/results.md \
+            labs/08_specialized_sources/visual_document/results/colsmol_results.json \
+            labs/08_specialized_sources/visual_document/results/colsmol_results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M08.6 deterministic evaluation [skip ci]"
+            git commit -m "test: record M08.6 visual-document evaluation [skip ci]"
             git push origin HEAD:feat/m08-visual-document-rag
           fi

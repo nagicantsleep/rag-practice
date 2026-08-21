@@ -1,6 +1,6 @@
 # M08.6 — Visual-document / page-image RAG
 
-Status: **EVIDENCE RECORDED — FINAL GATE PENDING**
+Status: **DONE**
 
 ## Goal
 
@@ -46,6 +46,7 @@ The benchmark was frozen before successful pretrained inference. CI exposed repo
 - Phase-1 repaired-benchmark gate `32474824392` / job `96748883250`: **116 tests passed** and deterministic evaluation passed; the then-unpinned upstream base lookup failed before pretrained inference.
 - Full pinned pretrained PR gate `32475115855` / job `96749747685`: **116 tests passed**, deterministic evaluation passed, and pinned ColSmol evaluation passed.
 - Deterministic and pretrained JSON/Markdown evidence was persisted by the push workflow in commit `a263bc29c43bd2921c49aeb0958c9a582af2da61`.
+- Final source-of-truth gate `32475921261` / job `96752123353` passed on findings/ROADMAP head `16687ef78d40925661d848405d5be42ae0977701`: **116 tests passed**, deterministic evaluation passed, and pinned ColSmol evaluation passed before this docs-only completion update.
 
 ## Definition of Done
 
@@ -55,8 +56,8 @@ The benchmark was frozen before successful pretrained inference. CI exposed repo
 - [x] Evaluate page retrieval, visual grounding, region provenance, abstention, latency, and representation footprint separately.
 - [x] Add a pinned pretrained page-image / visual-document retrieval control on the same frozen benchmark.
 - [x] Persist pretrained results and retain negative/error cases without tuning the frozen benchmark around them.
-- [ ] Pass the final source-of-truth full-regression + deterministic + pretrained evaluation gate on the findings head.
-- [ ] Record final completion in ROADMAP and mark M08.6 complete.
+- [x] Pass the final source-of-truth full-regression + deterministic + pretrained evaluation gate on the findings head.
+- [x] Record final completion in ROADMAP and mark M08.6 complete.
 
 ## Guardrails
 

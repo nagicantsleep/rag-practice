@@ -26,9 +26,9 @@
         "answer_contains_reference": 0.5,
         "grounded_answer_rate": 1.0,
         "mean_source_calls": 1.0,
-        "mean_search_ms": 0.0686018750002404,
-        "mean_rerank_ms": 0.0053887500044425,
-        "mean_end_to_end_ms": 0.07617550000560414
+        "mean_search_ms": 0.061457125003272495,
+        "mean_rerank_ms": 0.004053749997012801,
+        "mean_end_to_end_ms": 0.06797562500082677
       },
       "per_query": [
         {
@@ -52,9 +52,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.11586700000520977,
-            "rerank_ms": 0.0049369999999271386,
-            "end_to_end_ms": 0.12395000001674816,
+            "search_ms": 0.09802299999250863,
+            "rerank_ms": 0.004939999996622646,
+            "end_to_end_ms": 0.1065589999882377,
             "policy_applied": false
           }
         },
@@ -79,9 +79,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.07155800000191448,
-            "rerank_ms": 0.004337000007126335,
-            "end_to_end_ms": 0.07827399997495377,
+            "search_ms": 0.07443900000225767,
+            "rerank_ms": 0.00479899998140354,
+            "end_to_end_ms": 0.08378600000469305,
             "policy_applied": false
           }
         },
@@ -106,9 +106,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.05811599999105965,
-            "rerank_ms": 0.016826000006631148,
-            "end_to_end_ms": 0.0773640000204523,
+            "search_ms": 0.05870900000104484,
+            "rerank_ms": 0.004316999991260673,
+            "end_to_end_ms": 0.06525199998463904,
             "policy_applied": false
           }
         },
@@ -133,9 +133,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.05189500001279157,
-            "rerank_ms": 0.0031639999917842943,
-            "end_to_end_ms": 0.056711000013365265,
+            "search_ms": 0.056744999994862155,
+            "rerank_ms": 0.0035460000162856886,
+            "end_to_end_ms": 0.0621060000014495,
             "policy_applied": false
           }
         },
@@ -160,9 +160,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.09792000000174994,
-            "rerank_ms": 0.0036250000050586095,
-            "end_to_end_ms": 0.10357600001498213,
+            "search_ms": 0.06347900000491791,
+            "rerank_ms": 0.003446999983225396,
+            "end_to_end_ms": 0.06858800000486553,
             "policy_applied": false
           }
         },
@@ -187,9 +187,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.0443839999775264,
-            "rerank_ms": 0.003415999998424013,
-            "end_to_end_ms": 0.049326000009841664,
+            "search_ms": 0.0472990000162099,
+            "rerank_ms": 0.0040170000090711255,
+            "end_to_end_ms": 0.05299900001887181,
             "policy_applied": false
           }
         },
@@ -214,9 +214,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.07575399999382171,
-            "rerank_ms": 0.0033900000175890455,
-            "end_to_end_ms": 0.08099900000502203,
+            "search_ms": 0.05944100001897823,
+            "rerank_ms": 0.003536999997777457,
+            "end_to_end_ms": 0.06486099999847283,
             "policy_applied": false
           }
         },
@@ -241,9 +241,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 5,
-            "search_ms": 0.033321000017849656,
-            "rerank_ms": 0.0034150000089994137,
-            "end_to_end_ms": 0.039203999989467775,
+            "search_ms": 0.03352199999540062,
+            "rerank_ms": 0.0038270000004558824,
+            "end_to_end_ms": 0.03965400000538466,
             "policy_applied": false
           }
         }
@@ -267,9 +267,9 @@
         "answer_contains_reference": 0.375,
         "grounded_answer_rate": 1.0,
         "mean_source_calls": 1.0,
-        "mean_search_ms": 0.06226900000427804,
-        "mean_rerank_ms": 0.0032527499982393238,
-        "mean_end_to_end_ms": 0.06700175000773356
+        "mean_search_ms": 0.05636024999944311,
+        "mean_rerank_ms": 0.003507625002896475,
+        "mean_end_to_end_ms": 0.06127800000754746
       },
       "per_query": [
         {
@@ -293,9 +293,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.09042100001011022,
-            "rerank_ms": 0.003504999995129765,
-            "end_to_end_ms": 0.09608700000285353,
+            "search_ms": 0.07057199999849217,
+            "rerank_ms": 0.0038470000163215445,
+            "end_to_end_ms": 0.07629199998859804,
             "policy_applied": false
           }
         },
@@ -320,9 +320,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.057906999984425056,
-            "rerank_ms": 0.0031540000122731726,
-            "end_to_end_ms": 0.06242699998892931,
+            "search_ms": 0.061453999990135344,
+            "rerank_ms": 0.0034359999858679657,
+            "end_to_end_ms": 0.06619399999863163,
             "policy_applied": false
           }
         },
@@ -347,9 +347,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.06022399998073524,
-            "rerank_ms": 0.0033240000050227536,
-            "end_to_end_ms": 0.06514900002230206,
+            "search_ms": 0.049291999999923064,
+            "rerank_ms": 0.0034060000189128914,
+            "end_to_end_ms": 0.054101000017681145,
             "policy_applied": false
           }
         },
@@ -374,9 +374,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.04839800001832373,
-            "rerank_ms": 0.0036059999786175467,
-            "end_to_end_ms": 0.05324099998915699,
+            "search_ms": 0.05209799999761344,
+            "rerank_ms": 0.0038170000209447608,
+            "end_to_end_ms": 0.05730700002004596,
             "policy_applied": false
           }
         },
@@ -401,9 +401,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.07039900000904709,
-            "rerank_ms": 0.0031040000010307267,
-            "end_to_end_ms": 0.07489200001487006,
+            "search_ms": 0.078846999997495,
+            "rerank_ms": 0.0036069999964638555,
+            "end_to_end_ms": 0.08405700000935212,
             "policy_applied": false
           }
         },
@@ -428,9 +428,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.04292700000974037,
-            "rerank_ms": 0.0029259999791975133,
-            "end_to_end_ms": 0.04700800002410688,
+            "search_ms": 0.04945300000258612,
+            "rerank_ms": 0.003276000001051216,
+            "end_to_end_ms": 0.053951000012375516,
             "policy_applied": false
           }
         },
@@ -455,9 +455,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.09495500000866741,
-            "rerank_ms": 0.0034200000129658292,
-            "end_to_end_ms": 0.09994700002380341,
+            "search_ms": 0.05704599999489801,
+            "rerank_ms": 0.0033359999918047833,
+            "end_to_end_ms": 0.06158400000799702,
             "policy_applied": false
           }
         },
@@ -482,9 +482,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 5,
-            "search_ms": 0.03292100001317522,
-            "rerank_ms": 0.002983000001677283,
-            "end_to_end_ms": 0.03726299999584626,
+            "search_ms": 0.03212000001440174,
+            "rerank_ms": 0.0033359999918047833,
+            "end_to_end_ms": 0.03673800000569827,
             "policy_applied": false
           }
         }
@@ -508,9 +508,9 @@
         "answer_contains_reference": 1.0,
         "grounded_answer_rate": 1.0,
         "mean_source_calls": 1.0,
-        "mean_search_ms": 0.06095525000304747,
-        "mean_rerank_ms": 0.03719300000071257,
-        "mean_end_to_end_ms": 0.09990374999446772
+        "mean_search_ms": 0.05807575000460474,
+        "mean_rerank_ms": 0.03732462499783651,
+        "mean_end_to_end_ms": 0.09699099999593841
       },
       "per_query": [
         {
@@ -534,9 +534,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.08377300000006471,
-            "rerank_ms": 0.05182999998964988,
-            "end_to_end_ms": 0.1374379999958819,
+            "search_ms": 0.06587300001115182,
+            "rerank_ms": 0.058478999989119984,
+            "end_to_end_ms": 0.1260449999733737,
             "policy_applied": true
           }
         },
@@ -561,9 +561,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.0775089999933698,
-            "rerank_ms": 0.032080000011092125,
-            "end_to_end_ms": 0.11111300000266056,
+            "search_ms": 0.06313699998372613,
+            "rerank_ms": 0.03602800001090145,
+            "end_to_end_ms": 0.10063799999215917,
             "policy_applied": true
           }
         },
@@ -588,9 +588,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.05679400001668,
-            "rerank_ms": 0.03556100000423612,
-            "end_to_end_ms": 0.09416899999337147,
+            "search_ms": 0.05115499999419626,
+            "rerank_ms": 0.036308000005647045,
+            "end_to_end_ms": 0.08919699999410113,
             "policy_applied": true
           }
         },
@@ -615,9 +615,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.04783800000041083,
-            "rerank_ms": 0.03544500000884909,
-            "end_to_end_ms": 0.08522099997776422,
+            "search_ms": 0.05456200000253375,
+            "rerank_ms": 0.0351660000035281,
+            "end_to_end_ms": 0.09120000001416884,
             "policy_applied": true
           }
         },
@@ -642,9 +642,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.05661500000542219,
-            "rerank_ms": 0.031130999985862218,
-            "end_to_end_ms": 0.0890449999815246,
+            "search_ms": 0.06345900001747395,
+            "rerank_ms": 0.03561599999102327,
+            "end_to_end_ms": 0.10053799999809598,
             "policy_applied": true
           }
         },
@@ -669,9 +669,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.062353000004122805,
-            "rerank_ms": 0.027932000023156434,
-            "end_to_end_ms": 0.09212899999511137,
+            "search_ms": 0.04878100000382801,
+            "rerank_ms": 0.030746999982511625,
+            "end_to_end_ms": 0.08101099999180406,
             "policy_applied": true
           }
         },
@@ -696,9 +696,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 8,
-            "search_ms": 0.05317500000501241,
-            "rerank_ms": 0.0610159999894222,
-            "end_to_end_ms": 0.1162300000032701,
+            "search_ms": 0.08139199999845914,
+            "rerank_ms": 0.04041500000084852,
+            "end_to_end_ms": 0.1237209999942479,
             "policy_applied": true
           }
         },
@@ -723,9 +723,9 @@
           "trace": {
             "source_calls": 1,
             "candidate_count": 5,
-            "search_ms": 0.049584999999297,
-            "rerank_ms": 0.022548999993432517,
-            "end_to_end_ms": 0.0738850000061575,
+            "search_ms": 0.03624700002546888,
+            "rerank_ms": 0.02583799999911207,
+            "end_to_end_ms": 0.06357800000955649,
             "policy_applied": true
           }
         }

@@ -1,6 +1,6 @@
 # M08.1 — Web RAG
 
-Status: **COMPLETION CANDIDATE** — final source-of-truth gate pending.
+Status: **DONE** — final full-suite + Web RAG gate passed in GitHub Actions run `32447405977`.
 
 ## Hypothesis
 
@@ -77,6 +77,8 @@ The extractive answerer returns the top page verbatim. This is deliberate: groun
 
 Initial CI run `32447107848` passed the full repository suite (**82 tests**) and the Web RAG evaluator.
 
+Final source-of-truth gate `32447405977` passed the same full-suite/evaluator sequence before this completion update.
+
 | System | Hit@1 | Recall@3 | MRR | Stale top1 | Low-authority top1 | Duplicate@3 | Answer contains ref | Grounded |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | body BM25 | 0.500 | 0.875 | 0.688 | 0.400 | 0.375 | 0.167 | 0.500 | **1.000** |
@@ -109,6 +111,6 @@ Machine-readable evidence: `results/results.json`. Human-readable aggregate tabl
 - [x] CI full-suite + Web RAG evaluator passes
 - [x] machine-readable and human-readable results reviewed
 - [x] representative stale/authority/duplicate failures written down
-- [ ] ROADMAP marks Web RAG sub-lab DONE only after the final gate passes
+- [x] ROADMAP marks Web RAG sub-lab DONE only after the final gate passes
 
-Web RAG is not merged until the final unchecked gate passes.
+Web RAG satisfies the sub-lab evaluation contract and is eligible to merge; M08 overall remains IN PROGRESS.

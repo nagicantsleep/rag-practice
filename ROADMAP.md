@@ -394,10 +394,48 @@ Evaluation evidence:
 - Generation/groundedness evaluation is **not applicable by design** because M07 intentionally isolates structured retrieval and temporal-memory quality from generation.
 
 Artifacts: `benchmarks/m07_structured/`, `src/rag_practice/structured/`, `src/rag_practice/evaluation/structured.py`, `labs/07_hierarchical_graph_memory/`, and `.github/workflows/m07-structured.yml`.
-### M08 — Specialized Sources and Modalities — `TODO`
+### M08 — Specialized Sources and Modalities — `IN PROGRESS`
 
-Sub-labs: Web RAG, SQL/structured RAG, metadata/filter-aware RAG, Code RAG, multimodal RAG, visual-document/page-image RAG, and long-context vs retrieval routing, each with source-appropriate evaluation.
+M08 keeps source boundaries explicit so source-specific retrieval failures are evaluated before they are hidden behind a common orchestrator.
 
+Sub-labs:
+
+- **Web RAG — `DONE`**
+- SQL / structured RAG — `TODO`
+- metadata / filter-aware RAG — `TODO`
+- Code RAG — `TODO`
+- multimodal RAG — `TODO`
+- visual-document / page-image RAG — `TODO`
+- long-context vs retrieval routing — `TODO`
+
+Web RAG implements a minimal shared `Source` contract, deterministic web snapshots, body-only and metadata BM25 controls, query-aware authority/freshness reranking, canonical deduplication, and an extractive URL-citing pipeline.
+
+Web RAG held-out summary:
+
+| System | Hit@1 | Recall@3 | MRR | Stale top1 | Low-authority top1 | Duplicate@3 | Answer contains ref | Grounded |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| body BM25 | 0.500 | 0.875 | 0.688 | 0.400 | 0.375 | 0.167 | 0.500 | **1.000** |
+| metadata BM25 | 0.375 | **1.000** | 0.667 | 0.800 | 0.625 | 0.167 | 0.375 | **1.000** |
+| Web policy | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **0.000** | **1.000** | **1.000** |
+
+Important Web RAG findings:
+
+- **Grounded does not mean current or correct.** Both lexical baselines copy their selected page exactly and therefore score groundedness `1.0`, while answer correctness is only `0.500` / `0.375`.
+- **More metadata can make lexical ranking worse.** Query-shaped forum/blog titles reduce metadata-BM25 Hit@1 even while Recall@3 improves.
+- **Recency alone is not trust.** Recently updated low-authority pages can still conflict with official sources; the controlled policy needs both freshness and authority.
+- **Canonical duplicates consume evidence budget.** Deduplication reduces mean duplicate rate@3 from `0.167` to `0.0`.
+- **Temporal intent matters.** Historical queries must not be reranked as if newest evidence were always preferred.
+- **The perfect policy result is controlled-mechanism evidence only.** The benchmark is tiny, frozen, and intentionally shaped around stale/authority/duplicate failures; weights were not tuned after test results.
+- **Live-web coverage is intentionally not claimed.** Frozen snapshots make CI reproducible; later adapters can implement the same `Source` contract against real providers.
+
+Evaluation evidence:
+
+- Initial PR gate `32447107848`: **82 tests passed** plus successful Web RAG evaluation.
+- Final source-of-truth gate `32447405977` passed before this ROADMAP update on head `19adb1ce36638bdc91c257e048f90a0fcf80b80d`.
+- Retrieval/source metrics are evaluated independently from answer text.
+- Machine-readable and human-readable artifacts persist rankings, source metadata, citations, latency, and per-query failure traces.
+
+Artifacts: `benchmarks/m08_web/`, `src/rag_practice/sources/`, `src/rag_practice/web/`, `src/rag_practice/evaluation/web.py`, `labs/08_specialized_sources/web/`, and `.github/workflows/m08-web.yml`.
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -408,4 +446,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Start **M08 — Specialized Sources and Modalities**. Keep source boundaries visible instead of hiding them behind one orchestration framework: begin with source/tool contracts and source-appropriate benchmarks for Web RAG, SQL/structured retrieval, metadata/filter-aware retrieval, and Code RAG; then add multimodal/visual-document and long-context-vs-retrieval routing. For every sub-lab, evaluate source/retrieval success independently from final answer quality, and record freshness, latency, token/tool cost, and source-specific failure modes.
+Continue **M08.2 — SQL / Structured RAG**. Reuse the shared `Source` boundary, but evaluate structured-source behavior separately: schema discovery, query construction/validation, execution correctness, row-level evidence/citations, empty/error handling, latency, and unnecessary scans. Keep SQL execution quality separate from final answer generation.

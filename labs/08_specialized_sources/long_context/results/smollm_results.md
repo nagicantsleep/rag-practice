@@ -6,13 +6,13 @@ The reader receives only the question plus context chosen by each route policy. 
 
 | System | Route acc | Evidence complete | Answer acc | Grounded | Abstention | Context words | Prompt tokens | Retrieval calls | Generation ms |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| smollm_always_direct | 0.583 | 1.000 | 0.000 | 0.167 | 0.000 | 490.5 | 725.4 | 0.00 | 2828.77 |
-| smollm_always_retrieve | 0.417 | 0.700 | 0.000 | 0.000 | 0.000 | 100.2 | 216.1 | 1.00 | 1443.86 |
-| smollm_explicit_router | 1.000 | 1.000 | 0.000 | 0.083 | 0.000 | 275.5 | 446.2 | 0.42 | 1950.71 |
+| smollm_always_direct | 0.583 | 1.000 | 0.000 | 0.167 | 0.000 | 490.5 | 725.4 | 0.00 | 2596.11 |
+| smollm_always_retrieve | 0.417 | 0.700 | 0.000 | 0.000 | 0.000 | 100.2 | 216.1 | 1.00 | 1333.15 |
+| smollm_explicit_router | 1.000 | 1.000 | 0.000 | 0.083 | 0.000 | 275.5 | 446.2 | 0.42 | 1812.92 |
 
 ## Runtime / representation
 
-- model load: 3292.83 ms
+- model load: 2782.50 ms
 - parameters: 134515008 / 538060032 logical bytes
 - tokenizer model max length: 8192
 - torch: `2.11.0+cu130`; transformers: `5.15.1`

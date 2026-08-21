@@ -1,6 +1,6 @@
 # M08.7 — Long-context vs retrieval routing
 
-Status: **EVIDENCE RECORDED — FINAL GATE PENDING**
+Status: **DONE**
 
 ## Goal
 
@@ -56,7 +56,7 @@ Latest persisted runtime metadata records `134,515,008` parameters / `538,060,03
 - Deterministic JSON/Markdown evidence was persisted in bot commit `184a86e2bc844feb06a5611ec29fd7aa2115e9ad`.
 - Full pinned pretrained gate `32481464647` / job `96768559380`: **124 tests passed**, deterministic evaluation passed, and pinned SmolLM2 evaluation passed.
 - Deterministic and pretrained JSON/Markdown evidence was persisted in bot commit `51ac1e9a8b29d0c9bae7dacd02e13c34d32ac87c`.
-- A final source-of-truth full-regression + deterministic + pretrained gate must pass on the findings/ROADMAP head before M08.7 or M08 is marked `DONE`.
+- Final source-of-truth push gate run `32483779972` passed on head `4d79e69ee7eee22ba243e4706c03ed7477112455`: full tests, deterministic evaluation, and pinned SmolLM2 evaluation all succeeded before this automated `[skip ci]` completion update.
 
 ## Definition of Done
 
@@ -67,8 +67,8 @@ Latest persisted runtime metadata records `134,515,008` parameters / `538,060,03
 - [x] Add a pinned pretrained reader on the unchanged frozen benchmark and retain failures.
 - [x] Persist deterministic + pretrained JSON/Markdown results.
 - [x] Record representative error analysis without tuning the frozen benchmark or adding post-hoc answer parsing.
-- [ ] Pass the final source-of-truth full-regression + deterministic + pretrained evaluation gate on the findings head.
-- [ ] Mark M08.7 and M08 complete in ROADMAP.
+- [x] Pass the final source-of-truth full-regression + deterministic + pretrained evaluation gate on the findings head.
+- [x] Mark M08.7 and M08 complete in ROADMAP.
 
 ## Guardrails
 

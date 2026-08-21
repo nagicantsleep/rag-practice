@@ -14,7 +14,7 @@
     "dtype": "float32",
     "max_new_tokens": 32,
     "model_id": "HuggingFaceTB/SmolLM2-135M-Instruct",
-    "model_load_ms": 3292.8341180000302,
+    "model_load_ms": 2782.497954000007,
     "model_max_length": 8192,
     "parameter_bytes": 538060032,
     "parameter_count": 134515008,
@@ -106,8 +106,8 @@
         "grounded_answer_rate": 0.16666666666666666,
         "mean_context_fraction": 1.0,
         "mean_context_words": 490.5,
-        "mean_generation_ms": 2828.7736724166543,
-        "mean_latency_ms": 2828.7751773333175,
+        "mean_generation_ms": 2596.113076083341,
+        "mean_latency_ms": 2596.1147569166696,
         "mean_output_tokens": 26.0,
         "mean_prompt_tokens": 725.4166666666666,
         "mean_retrieval_calls": 0.0,
@@ -128,9 +128,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "555-0142",
           "full_context_words": 46,
-          "generation_ms": 1248.3155339999712,
+          "generation_ms": 1149.6687500000035,
           "id": "r1",
-          "latency_ms": 1248.317166999982,
+          "latency_ms": 1149.6702220000116,
           "no_evidence": false,
           "output_tokens": 18,
           "preferred_route": "direct",
@@ -149,7 +149,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.001633000010770047,
+          "selection_latency_ms": 0.0014720000081069884,
           "task_class": "short_fact"
         },
         {
@@ -164,9 +164,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
-          "generation_ms": 1090.3361599999926,
+          "generation_ms": 988.1527560000052,
           "id": "r2",
-          "latency_ms": 1090.3379330000007,
+          "latency_ms": 988.1540389999941,
           "no_evidence": false,
           "output_tokens": 15,
           "preferred_route": "direct",
@@ -185,7 +185,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0017730000081428443,
+          "selection_latency_ms": 0.0012829999889163446,
           "task_class": "short_fact"
         },
         {
@@ -200,9 +200,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
-          "generation_ms": 854.1361910000091,
+          "generation_ms": 831.0499690000057,
           "id": "r3",
-          "latency_ms": 854.137723000008,
+          "latency_ms": 831.0516420000056,
           "no_evidence": true,
           "output_tokens": 11,
           "preferred_route": "direct",
@@ -221,7 +221,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.001531999998860556,
+          "selection_latency_ms": 0.0016729999998688072,
           "task_class": "short_no_evidence"
         },
         {
@@ -236,9 +236,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
-          "generation_ms": 3986.0911089999718,
+          "generation_ms": 3745.024123999997,
           "id": "r4",
-          "latency_ms": 3986.0927619999416,
+          "latency_ms": 3745.02674899999,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -275,7 +275,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0016529999697922904,
+          "selection_latency_ms": 0.002624999993372512,
           "task_class": "long_sparse_fact"
         },
         {
@@ -290,9 +290,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "4",
           "full_context_words": 779,
-          "generation_ms": 3970.6842730000176,
+          "generation_ms": 3663.1419020000067,
           "id": "r5",
-          "latency_ms": 3970.6860759999927,
+          "latency_ms": 3663.1438759999924,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -329,7 +329,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0018029999750979187,
+          "selection_latency_ms": 0.0019739999856938084,
           "task_class": "long_global_count"
         },
         {
@@ -344,9 +344,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
-          "generation_ms": 3933.998059999965,
+          "generation_ms": 3604.314565999999,
           "id": "r6",
-          "latency_ms": 3933.9996219999307,
+          "latency_ms": 3604.31668999999,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -383,7 +383,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0015619999658156303,
+          "selection_latency_ms": 0.0021239999909994367,
           "task_class": "long_global_list"
         },
         {
@@ -398,9 +398,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
-          "generation_ms": 3956.9435049999697,
+          "generation_ms": 3606.125466999998,
           "id": "r7",
-          "latency_ms": 3956.9450469999197,
+          "latency_ms": 3606.127160999989,
           "no_evidence": true,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -437,7 +437,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0015419999499499681,
+          "selection_latency_ms": 0.001693999990948214,
           "task_class": "long_no_evidence"
         },
         {
@@ -452,9 +452,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "South",
           "full_context_words": 650,
-          "generation_ms": 3572.3332449999816,
+          "generation_ms": 3260.2870690000145,
           "id": "r8",
-          "latency_ms": 3572.335437999982,
+          "latency_ms": 3260.2896740000347,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -487,7 +487,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.002193000000261236,
+          "selection_latency_ms": 0.002605000020139414,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -502,9 +502,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
-          "generation_ms": 3519.6741429999747,
+          "generation_ms": 3233.198647000023,
           "id": "r9",
-          "latency_ms": 3519.6750249999695,
+          "latency_ms": 3233.1997290000345,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -537,7 +537,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0008819999948173063,
+          "selection_latency_ms": 0.0010820000113653805,
           "task_class": "long_sparse_fact"
         },
         {
@@ -552,9 +552,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
-          "generation_ms": 3577.2634699999912,
+          "generation_ms": 3217.8101100000163,
           "id": "r10",
-          "latency_ms": 3577.264602000014,
+          "latency_ms": 3217.8111519999957,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -587,7 +587,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0011320000226078264,
+          "selection_latency_ms": 0.0010419999796340562,
           "task_class": "long_global_list"
         },
         {
@@ -602,9 +602,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "silver pine",
           "full_context_words": 341,
-          "generation_ms": 1591.8665830000123,
+          "generation_ms": 1444.7465260000172,
           "id": "r11",
-          "latency_ms": 1591.8676450000362,
+          "latency_ms": 1444.7478790000048,
           "no_evidence": false,
           "output_tokens": 12,
           "preferred_route": "retrieve",
@@ -633,7 +633,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0010620000239214278,
+          "selection_latency_ms": 0.0013529999876027432,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -648,9 +648,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "2",
           "full_context_words": 341,
-          "generation_ms": 2643.641795999997,
+          "generation_ms": 2409.8370270000087,
           "id": "r12",
-          "latency_ms": 2643.643088000033,
+          "latency_ms": 2409.8382699999943,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -679,7 +679,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0012920000358462858,
+          "selection_latency_ms": 0.0012429999856067298,
           "task_class": "medium_global_count"
         }
       ],
@@ -768,8 +768,8 @@
         "grounded_answer_rate": 0.0,
         "mean_context_fraction": 0.3216730934195515,
         "mean_context_words": 100.16666666666667,
-        "mean_generation_ms": 1443.8608747500155,
-        "mean_latency_ms": 1444.3653380000114,
+        "mean_generation_ms": 1333.1538861666654,
+        "mean_latency_ms": 1333.6670909999975,
         "mean_output_tokens": 21.25,
         "mean_prompt_tokens": 216.08333333333334,
         "mean_retrieval_calls": 1.0,
@@ -790,9 +790,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "555-0142",
           "full_context_words": 46,
-          "generation_ms": 1158.9265780000346,
+          "generation_ms": 1038.7626840000053,
           "id": "r1",
-          "latency_ms": 1159.0710849999937,
+          "latency_ms": 1038.9082660000213,
           "no_evidence": false,
           "output_tokens": 18,
           "preferred_route": "direct",
@@ -809,7 +809,7 @@
             "cedar_s1",
             "cedar_s2"
           ],
-          "selection_latency_ms": 0.1445069999590487,
+          "selection_latency_ms": 0.14558200001602017,
           "task_class": "short_fact"
         },
         {
@@ -824,9 +824,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
-          "generation_ms": 1008.5522680000167,
+          "generation_ms": 907.2708449999993,
           "id": "r2",
-          "latency_ms": 1008.681753000019,
+          "latency_ms": 907.4014679999891,
           "no_evidence": false,
           "output_tokens": 15,
           "preferred_route": "direct",
@@ -843,7 +843,7 @@
             "cedar_s2",
             "cedar_s1"
           ],
-          "selection_latency_ms": 0.1294850000022052,
+          "selection_latency_ms": 0.13062299998978233,
           "task_class": "short_fact"
         },
         {
@@ -858,9 +858,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
-          "generation_ms": 788.5313479999922,
+          "generation_ms": 709.2181129999915,
           "id": "r3",
-          "latency_ms": 788.6530010000001,
+          "latency_ms": 709.336062999995,
           "no_evidence": true,
           "output_tokens": 11,
           "preferred_route": "direct",
@@ -877,7 +877,7 @@
             "cedar_s3",
             "cedar_s1"
           ],
-          "selection_latency_ms": 0.12165300000788193,
+          "selection_latency_ms": 0.117950000003475,
           "task_class": "short_no_evidence"
         },
         {
@@ -892,9 +892,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
-          "generation_ms": 2096.023193999997,
+          "generation_ms": 1861.2554880000118,
           "id": "r4",
-          "latency_ms": 2096.7845100000204,
+          "latency_ms": 1862.0176680000213,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -911,7 +911,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.761316000023271,
+          "selection_latency_ms": 0.7621800000094936,
           "task_class": "long_sparse_fact"
         },
         {
@@ -926,9 +926,9 @@
           "evidence_recall": 0.25,
           "expected_answer": "4",
           "full_context_words": 779,
-          "generation_ms": 2057.0108300000243,
+          "generation_ms": 1885.1423860000125,
           "id": "r5",
-          "latency_ms": 2057.774670000015,
+          "latency_ms": 1885.9223580000162,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -945,7 +945,7 @@
             "atlas_s2",
             "atlas_s11"
           ],
-          "selection_latency_ms": 0.7638399999905232,
+          "selection_latency_ms": 0.7799720000036814,
           "task_class": "long_global_count"
         },
         {
@@ -960,9 +960,9 @@
           "evidence_recall": 0.6666666666666666,
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
-          "generation_ms": 2045.73775099999,
+          "generation_ms": 1886.122969000013,
           "id": "r6",
-          "latency_ms": 2046.522342000003,
+          "latency_ms": 1886.9207240000208,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -979,7 +979,7 @@
             "atlas_s12",
             "atlas_s6"
           ],
-          "selection_latency_ms": 0.7845910000128242,
+          "selection_latency_ms": 0.7977550000077827,
           "task_class": "long_global_list"
         },
         {
@@ -994,9 +994,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
-          "generation_ms": 1479.1031530000396,
+          "generation_ms": 1379.6233449999988,
           "id": "r7",
-          "latency_ms": 1479.8592110000754,
+          "latency_ms": 1380.4117229999804,
           "no_evidence": true,
           "output_tokens": 21,
           "preferred_route": "retrieve",
@@ -1013,7 +1013,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.7560580000358641,
+          "selection_latency_ms": 0.7883779999815488,
           "task_class": "long_no_evidence"
         },
         {
@@ -1028,9 +1028,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "South",
           "full_context_words": 650,
-          "generation_ms": 766.2072360000138,
+          "generation_ms": 707.2278139999923,
           "id": "r8",
-          "latency_ms": 766.8156909999766,
+          "latency_ms": 707.8589489999842,
           "no_evidence": false,
           "output_tokens": 7,
           "preferred_route": "retrieve",
@@ -1047,7 +1047,7 @@
             "orion_s1",
             "orion_s3"
           ],
-          "selection_latency_ms": 0.6084549999627598,
+          "selection_latency_ms": 0.6311349999919003,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -1062,9 +1062,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
-          "generation_ms": 961.1766180000245,
+          "generation_ms": 895.6801719999987,
           "id": "r9",
-          "latency_ms": 961.8108020000022,
+          "latency_ms": 896.2902579999934,
           "no_evidence": false,
           "output_tokens": 11,
           "preferred_route": "retrieve",
@@ -1081,7 +1081,7 @@
             "orion_s4",
             "orion_s1"
           ],
-          "selection_latency_ms": 0.6341839999777221,
+          "selection_latency_ms": 0.6100859999946806,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1096,9 +1096,9 @@
           "evidence_recall": 0.6666666666666666,
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
-          "generation_ms": 2072.4093630000198,
+          "generation_ms": 1957.5102189999996,
           "id": "r10",
-          "latency_ms": 2072.9843080000023,
+          "latency_ms": 1958.155220000009,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1115,7 +1115,7 @@
             "orion_s5",
             "orion_s7"
           ],
-          "selection_latency_ms": 0.5749449999825629,
+          "selection_latency_ms": 0.6450010000094153,
           "task_class": "long_global_list"
         },
         {
@@ -1130,9 +1130,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "silver pine",
           "full_context_words": 341,
-          "generation_ms": 930.5111740000029,
+          "generation_ms": 891.4449459999787,
           "id": "r11",
-          "latency_ms": 930.9093830000279,
+          "latency_ms": 891.8093949999673,
           "no_evidence": false,
           "output_tokens": 12,
           "preferred_route": "retrieve",
@@ -1149,7 +1149,7 @@
             "lumen_s4",
             "lumen_s1"
           ],
-          "selection_latency_ms": 0.39820900002496273,
+          "selection_latency_ms": 0.3644489999885536,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -1164,9 +1164,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "2",
           "full_context_words": 341,
-          "generation_ms": 1962.1409840000297,
+          "generation_ms": 1878.5876529999825,
           "id": "r12",
-          "latency_ms": 1962.5173000000018,
+          "latency_ms": 1878.9729999999736,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1183,7 +1183,7 @@
             "lumen_s6",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.37631599997212106,
+          "selection_latency_ms": 0.38534699999104305,
           "task_class": "medium_global_count"
         }
       ],
@@ -1272,8 +1272,8 @@
         "grounded_answer_rate": 0.08333333333333333,
         "mean_context_fraction": 0.6674694488500443,
         "mean_context_words": 275.5,
-        "mean_generation_ms": 1950.7101633333264,
-        "mean_latency_ms": 1950.9739029166676,
+        "mean_generation_ms": 1812.916214499997,
+        "mean_latency_ms": 1813.1947857499972,
         "mean_output_tokens": 21.25,
         "mean_prompt_tokens": 446.25,
         "mean_retrieval_calls": 0.4166666666666667,
@@ -1294,9 +1294,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "555-0142",
           "full_context_words": 46,
-          "generation_ms": 1175.3667250000035,
+          "generation_ms": 1145.4311790000133,
           "id": "r1",
-          "latency_ms": 1175.368337000009,
+          "latency_ms": 1145.4323819999956,
           "no_evidence": false,
           "output_tokens": 18,
           "preferred_route": "direct",
@@ -1315,7 +1315,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0016120000054797856,
+          "selection_latency_ms": 0.001202999982297115,
           "task_class": "short_fact"
         },
         {
@@ -1330,9 +1330,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
-          "generation_ms": 1027.6537610000105,
+          "generation_ms": 982.114112000005,
           "id": "r2",
-          "latency_ms": 1027.654673000029,
+          "latency_ms": 982.1151940000163,
           "no_evidence": false,
           "output_tokens": 15,
           "preferred_route": "direct",
@@ -1351,7 +1351,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0009120000186157995,
+          "selection_latency_ms": 0.0010820000113653805,
           "task_class": "short_fact"
         },
         {
@@ -1366,9 +1366,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
-          "generation_ms": 819.2687149999642,
+          "generation_ms": 792.0486900000014,
           "id": "r3",
-          "latency_ms": 819.2697759999419,
+          "latency_ms": 792.0498320000036,
           "no_evidence": true,
           "output_tokens": 11,
           "preferred_route": "direct",
@@ -1387,7 +1387,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0010609999776534096,
+          "selection_latency_ms": 0.001142000002118948,
           "task_class": "short_no_evidence"
         },
         {
@@ -1402,9 +1402,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
-          "generation_ms": 1995.4928180000024,
+          "generation_ms": 1962.5996609999845,
           "id": "r4",
-          "latency_ms": 1996.2985310000363,
+          "latency_ms": 1963.4725669999966,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "retrieve",
@@ -1421,7 +1421,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.8057130000338475,
+          "selection_latency_ms": 0.872906000012108,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1436,9 +1436,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "4",
           "full_context_words": 779,
-          "generation_ms": 4000.6481749999807,
+          "generation_ms": 3719.1858259999717,
           "id": "r5",
-          "latency_ms": 4000.649426999985,
+          "latency_ms": 3719.187669999968,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1475,7 +1475,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0012520000041149615,
+          "selection_latency_ms": 0.0018439999962538423,
           "task_class": "long_global_count"
         },
         {
@@ -1490,9 +1490,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
-          "generation_ms": 3974.233460999983,
+          "generation_ms": 3642.110709999997,
           "id": "r6",
-          "latency_ms": 3974.2345729999897,
+          "latency_ms": 3642.111811999996,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1529,7 +1529,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0011120000067421643,
+          "selection_latency_ms": 0.0011019999988093332,
           "task_class": "long_global_list"
         },
         {
@@ -1544,9 +1544,9 @@
           "evidence_recall": null,
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
-          "generation_ms": 1491.676649999988,
+          "generation_ms": 1356.1261079999838,
           "id": "r7",
-          "latency_ms": 1492.4002590000214,
+          "latency_ms": 1356.8451159999881,
           "no_evidence": true,
           "output_tokens": 21,
           "preferred_route": "retrieve",
@@ -1563,7 +1563,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.7236090000333206,
+          "selection_latency_ms": 0.7190080000043508,
           "task_class": "long_no_evidence"
         },
         {
@@ -1578,9 +1578,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "South",
           "full_context_words": 650,
-          "generation_ms": 772.3256570000103,
+          "generation_ms": 700.825645000009,
           "id": "r8",
-          "latency_ms": 772.9022350000037,
+          "latency_ms": 701.4759660000038,
           "no_evidence": false,
           "output_tokens": 7,
           "preferred_route": "retrieve",
@@ -1597,7 +1597,7 @@
             "orion_s1",
             "orion_s3"
           ],
-          "selection_latency_ms": 0.5765779999933329,
+          "selection_latency_ms": 0.6503209999948467,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -1612,9 +1612,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
-          "generation_ms": 961.7683039999747,
+          "generation_ms": 887.8464580000127,
           "id": "r9",
-          "latency_ms": 962.4637009999901,
+          "latency_ms": 888.5417430000189,
           "no_evidence": false,
           "output_tokens": 11,
           "preferred_route": "retrieve",
@@ -1631,7 +1631,7 @@
             "orion_s4",
             "orion_s1"
           ],
-          "selection_latency_ms": 0.6953970000154186,
+          "selection_latency_ms": 0.6952850000061517,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1646,9 +1646,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
-          "generation_ms": 3550.390622000009,
+          "generation_ms": 3281.486448999999,
           "id": "r10",
-          "latency_ms": 3550.391904000037,
+          "latency_ms": 3281.487681000016,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1681,7 +1681,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0012820000279134547,
+          "selection_latency_ms": 0.0012320000166710088,
           "task_class": "long_global_list"
         },
         {
@@ -1696,9 +1696,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "silver pine",
           "full_context_words": 341,
-          "generation_ms": 943.8164069999857,
+          "generation_ms": 855.6069079999986,
           "id": "r11",
-          "latency_ms": 944.171611999991,
+          "latency_ms": 856.0032659999877,
           "no_evidence": false,
           "output_tokens": 12,
           "preferred_route": "retrieve",
@@ -1715,7 +1715,7 @@
             "lumen_s4",
             "lumen_s1"
           ],
-          "selection_latency_ms": 0.35520500000529864,
+          "selection_latency_ms": 0.39635799998904986,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -1730,9 +1730,9 @@
           "evidence_recall": 1.0,
           "expected_answer": "2",
           "full_context_words": 341,
-          "generation_ms": 2695.8806650000042,
+          "generation_ms": 2429.6128279999893,
           "id": "r12",
-          "latency_ms": 2695.881806999978,
+          "latency_ms": 2429.614199999975,
           "no_evidence": false,
           "output_tokens": 32,
           "preferred_route": "direct",
@@ -1761,7 +1761,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0011419999736972386,
+          "selection_latency_ms": 0.0013719999856220966,
           "task_class": "medium_global_count"
         }
       ],

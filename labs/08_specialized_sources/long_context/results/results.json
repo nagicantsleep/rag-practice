@@ -84,7 +84,7 @@
         "grounded_answer_rate": 1.0,
         "mean_context_fraction": 1.0,
         "mean_context_words": 490.5,
-        "mean_latency_ms": 0.12740424999435618,
+        "mean_latency_ms": 0.1377194166659971,
         "mean_retrieval_calls": 0.0,
         "route_accuracy": 0.5833333333333334,
         "unnecessary_full_context_rate": 1.0,
@@ -104,11 +104,11 @@
           "expected_answer": "555-0142",
           "full_context_words": 46,
           "id": "r1",
-          "latency_ms": 0.13018599992165036,
+          "latency_ms": 0.14771499999710613,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "What is the Cedar service desk hotline?",
-          "reader_latency_ms": 0.1285439999492155,
+          "reader_latency_ms": 0.14593099999160586,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -122,7 +122,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.00164199997243486,
+          "selection_latency_ms": 0.0017840000055002747,
           "task_class": "short_fact"
         },
         {
@@ -138,11 +138,11 @@
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
           "id": "r2",
-          "latency_ms": 0.10242299998708404,
+          "latency_ms": 0.11353099999666938,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "When does the Cedar shipping window close?",
-          "reader_latency_ms": 0.10150200000680343,
+          "reader_latency_ms": 0.11268999999458629,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -156,7 +156,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0009209999802806124,
+          "selection_latency_ms": 0.0008410000020830921,
           "task_class": "short_fact"
         },
         {
@@ -172,11 +172,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
           "id": "r3",
-          "latency_ms": 0.005087999966235657,
+          "latency_ms": 0.005389000008904077,
           "no_evidence": true,
           "preferred_route": "direct",
           "question": "What is the Cedar cafeteria menu code?",
-          "reader_latency_ms": 0.00437699998201424,
+          "reader_latency_ms": 0.0045780000021977685,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -190,7 +190,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0007109999842214165,
+          "selection_latency_ms": 0.0008110000067063083,
           "task_class": "short_no_evidence"
         },
         {
@@ -206,11 +206,11 @@
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
           "id": "r4",
-          "latency_ms": 0.10410699997009942,
+          "latency_ms": 0.12008399998819641,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Atlas emergency beacon frequency?",
-          "reader_latency_ms": 0.10319500000832704,
+          "reader_latency_ms": 0.11899199999731991,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -242,7 +242,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0009119999617723806,
+          "selection_latency_ms": 0.0010919999908765021,
           "task_class": "long_sparse_fact"
         },
         {
@@ -258,11 +258,11 @@
           "expected_answer": "4",
           "full_context_words": 779,
           "id": "r5",
-          "latency_ms": 0.2028050000149051,
+          "latency_ms": 0.22404700000322464,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checks are listed across the entire Atlas handbook?",
-          "reader_latency_ms": 0.20206400000688518,
+          "reader_latency_ms": 0.2230650000001333,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -294,7 +294,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0007410000080199097,
+          "selection_latency_ms": 0.0009820000030913434,
           "task_class": "long_global_count"
         },
         {
@@ -310,11 +310,11 @@
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
           "id": "r6",
-          "latency_ms": 0.15172800004847886,
+          "latency_ms": 0.1703360000107068,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every escalation contact across the entire Atlas handbook.",
-          "reader_latency_ms": 0.1508970000259069,
+          "reader_latency_ms": 0.1693850000066277,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -346,7 +346,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0008310000225719705,
+          "selection_latency_ms": 0.0009510000040791056,
           "task_class": "long_global_list"
         },
         {
@@ -362,11 +362,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
           "id": "r7",
-          "latency_ms": 0.003706000029524148,
+          "latency_ms": 0.004106999995201477,
           "no_evidence": true,
           "preferred_route": "retrieve",
           "question": "What is the Atlas launch paint color?",
-          "reader_latency_ms": 0.0028040000188411796,
+          "reader_latency_ms": 0.0033059999964279996,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -398,7 +398,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0009020000106829684,
+          "selection_latency_ms": 0.0008009999987734773,
           "task_class": "long_no_evidence"
         },
         {
@@ -414,11 +414,11 @@
           "expected_answer": "South",
           "full_context_words": 650,
           "id": "r8",
-          "latency_ms": 0.24839299999257491,
+          "latency_ms": 0.2514779999955863,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "Which Orion site has the higher reserve, North or South?",
-          "reader_latency_ms": 0.24716199999375021,
+          "reader_latency_ms": 0.2501449999954275,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -446,7 +446,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0012309999988247,
+          "selection_latency_ms": 0.0013330000001587905,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -462,11 +462,11 @@
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
           "id": "r9",
-          "latency_ms": 0.09030700005041581,
+          "latency_ms": 0.09712099999603652,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Orion rollback phrase?",
-          "reader_latency_ms": 0.08932500003311361,
+          "reader_latency_ms": 0.09634900000321522,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -494,7 +494,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.000982000017302198,
+          "selection_latency_ms": 0.0007719999928212928,
           "task_class": "long_sparse_fact"
         },
         {
@@ -510,11 +510,11 @@
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
           "id": "r10",
-          "latency_ms": 0.08495800000218878,
+          "latency_ms": 0.08966700001167283,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every Orion release code across the entire report.",
-          "reader_latency_ms": 0.0841570000034153,
+          "reader_latency_ms": 0.08897600000068451,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -542,7 +542,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0008009999987734773,
+          "selection_latency_ms": 0.0006910000109883185,
           "task_class": "long_global_list"
         },
         {
@@ -558,11 +558,11 @@
           "expected_answer": "silver pine",
           "full_context_words": 341,
           "id": "r11",
-          "latency_ms": 0.37603599997737547,
+          "latency_ms": 0.40104599999324364,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Lumen audit phrase?",
-          "reader_latency_ms": 0.3753450000090197,
+          "reader_latency_ms": 0.4003250000010894,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -586,7 +586,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0006909999683557544,
+          "selection_latency_ms": 0.0007209999921542476,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -602,11 +602,11 @@
           "expected_answer": "2",
           "full_context_words": 341,
           "id": "r12",
-          "latency_ms": 0.029113999971741578,
+          "latency_ms": 0.028111999995417136,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checkpoints are listed across the entire Lumen notes?",
-          "reader_latency_ms": 0.02839299997958733,
+          "reader_latency_ms": 0.027461000001949287,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -630,7 +630,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0007209999921542476,
+          "selection_latency_ms": 0.000650999993467849,
           "task_class": "medium_global_count"
         }
       ],
@@ -710,7 +710,7 @@
         "grounded_answer_rate": 1.0,
         "mean_context_fraction": 0.3216730934195515,
         "mean_context_words": 100.16666666666667,
-        "mean_latency_ms": 0.37922766665587915,
+        "mean_latency_ms": 0.40037133333115094,
         "mean_retrieval_calls": 1.0,
         "route_accuracy": 0.4166666666666667,
         "unnecessary_full_context_rate": 0.0,
@@ -730,11 +730,11 @@
           "expected_answer": "555-0142",
           "full_context_words": 46,
           "id": "r1",
-          "latency_ms": 0.13580400002410897,
+          "latency_ms": 0.14592200000151934,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "What is the Cedar service desk hotline?",
-          "reader_latency_ms": 0.005428000008578238,
+          "reader_latency_ms": 0.004868999994300793,
           "retrieval_calls": 1,
           "retrieval_scores": [
             3.897840826489558,
@@ -746,7 +746,7 @@
             "cedar_s1",
             "cedar_s2"
           ],
-          "selection_latency_ms": 0.13037600001553074,
+          "selection_latency_ms": 0.14105300000721854,
           "task_class": "short_fact"
         },
         {
@@ -762,11 +762,11 @@
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
           "id": "r2",
-          "latency_ms": 0.08005999995930324,
+          "latency_ms": 0.08492699998896569,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "When does the Cedar shipping window close?",
-          "reader_latency_ms": 0.003634999984569731,
+          "reader_latency_ms": 0.004016999994860271,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.515968065737968,
@@ -778,7 +778,7 @@
             "cedar_s2",
             "cedar_s1"
           ],
-          "selection_latency_ms": 0.07642499997473351,
+          "selection_latency_ms": 0.08090999999410542,
           "task_class": "short_fact"
         },
         {
@@ -794,11 +794,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
           "id": "r3",
-          "latency_ms": 0.06747199995515984,
+          "latency_ms": 0.10183899999560708,
           "no_evidence": true,
           "preferred_route": "direct",
           "question": "What is the Cedar cafeteria menu code?",
-          "reader_latency_ms": 0.0019329999645378848,
+          "reader_latency_ms": 0.0020840000019006766,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.1805143741585264,
@@ -810,7 +810,7 @@
             "cedar_s3",
             "cedar_s1"
           ],
-          "selection_latency_ms": 0.06553899999062196,
+          "selection_latency_ms": 0.0997549999937064,
           "task_class": "short_no_evidence"
         },
         {
@@ -826,11 +826,11 @@
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
           "id": "r4",
-          "latency_ms": 0.639001999957145,
+          "latency_ms": 0.6782530000037923,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Atlas emergency beacon frequency?",
-          "reader_latency_ms": 0.00834299999041832,
+          "reader_latency_ms": 0.04018500000313452,
           "retrieval_calls": 1,
           "retrieval_scores": [
             8.502662883737568,
@@ -842,7 +842,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.6306589999667267,
+          "selection_latency_ms": 0.6380680000006578,
           "task_class": "long_sparse_fact"
         },
         {
@@ -858,11 +858,11 @@
           "expected_answer": "4",
           "full_context_words": 779,
           "id": "r5",
-          "latency_ms": 0.6155970000349953,
+          "latency_ms": 0.6456219999932955,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checks are listed across the entire Atlas handbook?",
-          "reader_latency_ms": 0.014221000014913443,
+          "reader_latency_ms": 0.015007999991212273,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.202538433654762,
@@ -874,7 +874,7 @@
             "atlas_s2",
             "atlas_s11"
           ],
-          "selection_latency_ms": 0.6013760000200818,
+          "selection_latency_ms": 0.6306140000020832,
           "task_class": "long_global_count"
         },
         {
@@ -890,11 +890,11 @@
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
           "id": "r6",
-          "latency_ms": 0.5734429999506574,
+          "latency_ms": 0.6126209999877119,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every escalation contact across the entire Atlas handbook.",
-          "reader_latency_ms": 0.006609999957163382,
+          "reader_latency_ms": 0.007463999992296522,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.708836260570142,
@@ -906,7 +906,7 @@
             "atlas_s12",
             "atlas_s6"
           ],
-          "selection_latency_ms": 0.566832999993494,
+          "selection_latency_ms": 0.6051569999954154,
           "task_class": "long_global_list"
         },
         {
@@ -922,11 +922,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
           "id": "r7",
-          "latency_ms": 0.5733329999770831,
+          "latency_ms": 0.6083030000070266,
           "no_evidence": true,
           "preferred_route": "retrieve",
           "question": "What is the Atlas launch paint color?",
-          "reader_latency_ms": 0.002182999992328405,
+          "reader_latency_ms": 0.0025750000105517756,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.202538433654762,
@@ -938,7 +938,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.5711499999847547,
+          "selection_latency_ms": 0.6057279999964749,
           "task_class": "long_no_evidence"
         },
         {
@@ -954,11 +954,11 @@
           "expected_answer": "South",
           "full_context_words": 650,
           "id": "r8",
-          "latency_ms": 0.45434399999066954,
+          "latency_ms": 0.452232000000663,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "Which Orion site has the higher reserve, North or South?",
-          "reader_latency_ms": 0.020371000005070528,
+          "reader_latency_ms": 0.018695000008506213,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.022439333222295,
@@ -970,7 +970,7 @@
             "orion_s1",
             "orion_s3"
           ],
-          "selection_latency_ms": 0.433972999985599,
+          "selection_latency_ms": 0.4335369999921568,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -986,11 +986,11 @@
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
           "id": "r9",
-          "latency_ms": 0.41886100001420346,
+          "latency_ms": 0.43981000000314907,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Orion rollback phrase?",
-          "reader_latency_ms": 0.006890000008752395,
+          "reader_latency_ms": 0.007775000000265209,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.572173271933334,
@@ -1002,7 +1002,7 @@
             "orion_s4",
             "orion_s1"
           ],
-          "selection_latency_ms": 0.41197100000545106,
+          "selection_latency_ms": 0.43203500000288386,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1018,11 +1018,11 @@
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
           "id": "r10",
-          "latency_ms": 0.4598730000111573,
+          "latency_ms": 0.48782700000060686,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every Orion release code across the entire report.",
-          "reader_latency_ms": 0.004977999992661353,
+          "reader_latency_ms": 0.005920000006653936,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.8548360508922945,
@@ -1034,7 +1034,7 @@
             "orion_s5",
             "orion_s7"
           ],
-          "selection_latency_ms": 0.4548950000184959,
+          "selection_latency_ms": 0.4819069999939529,
           "task_class": "long_global_list"
         },
         {
@@ -1050,11 +1050,11 @@
           "expected_answer": "silver pine",
           "full_context_words": 341,
           "id": "r11",
-          "latency_ms": 0.27098800001112977,
+          "latency_ms": 0.2687109999897075,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Lumen audit phrase?",
-          "reader_latency_ms": 0.006059000043023843,
+          "reader_latency_ms": 0.006020999990141718,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.553204578452698,
@@ -1066,7 +1066,7 @@
             "lumen_s4",
             "lumen_s1"
           ],
-          "selection_latency_ms": 0.2649289999681059,
+          "selection_latency_ms": 0.26268999999956577,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -1082,11 +1082,11 @@
           "expected_answer": "2",
           "full_context_words": 341,
           "id": "r12",
-          "latency_ms": 0.2619549999849369,
+          "latency_ms": 0.27838900000176636,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checkpoints are listed across the entire Lumen notes?",
-          "reader_latency_ms": 0.010867000014513906,
+          "reader_latency_ms": 0.011491999998725078,
           "retrieval_calls": 1,
           "retrieval_scores": [
             1.3997631786558868,
@@ -1098,7 +1098,7 @@
             "lumen_s6",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.25108799997042297,
+          "selection_latency_ms": 0.2668970000030413,
           "task_class": "medium_global_count"
         }
       ],
@@ -1178,7 +1178,7 @@
         "grounded_answer_rate": 1.0,
         "mean_context_fraction": 0.6674694488500443,
         "mean_context_words": 275.5,
-        "mean_latency_ms": 0.19889441667449623,
+        "mean_latency_ms": 0.20708716666580548,
         "mean_retrieval_calls": 0.4166666666666667,
         "route_accuracy": 1.0,
         "unnecessary_full_context_rate": 0.0,
@@ -1198,11 +1198,11 @@
           "expected_answer": "555-0142",
           "full_context_words": 46,
           "id": "r1",
-          "latency_ms": 0.0046960000759099785,
+          "latency_ms": 0.005389999998328676,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "What is the Cedar service desk hotline?",
-          "reader_latency_ms": 0.0037050000400995486,
+          "reader_latency_ms": 0.0044880000018565624,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1216,7 +1216,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0009910000358104298,
+          "selection_latency_ms": 0.0009019999964721137,
           "task_class": "short_fact"
         },
         {
@@ -1232,11 +1232,11 @@
           "expected_answer": "17:30 UTC",
           "full_context_words": 46,
           "id": "r2",
-          "latency_ms": 0.00462700000980476,
+          "latency_ms": 0.004900000007523886,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "When does the Cedar shipping window close?",
-          "reader_latency_ms": 0.004076000038821803,
+          "reader_latency_ms": 0.004348000004483765,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1250,7 +1250,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.0005509999709829572,
+          "selection_latency_ms": 0.0005520000030401206,
           "task_class": "short_fact"
         },
         {
@@ -1266,11 +1266,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 46,
           "id": "r3",
-          "latency_ms": 0.0018029999750979187,
+          "latency_ms": 0.002374000004579102,
           "no_evidence": true,
           "preferred_route": "direct",
           "question": "What is the Cedar cafeteria menu code?",
-          "reader_latency_ms": 0.0014319999763756641,
+          "reader_latency_ms": 0.0017330000048332295,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1284,7 +1284,7 @@
             "cedar_s2",
             "cedar_s3"
           ],
-          "selection_latency_ms": 0.00037099999872225453,
+          "selection_latency_ms": 0.0006409999997458726,
           "task_class": "short_no_evidence"
         },
         {
@@ -1300,11 +1300,11 @@
           "expected_answer": "433.7 MHz",
           "full_context_words": 779,
           "id": "r4",
-          "latency_ms": 0.5909300000439544,
+          "latency_ms": 0.6034430000028124,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Atlas emergency beacon frequency?",
-          "reader_latency_ms": 0.007101000051079609,
+          "reader_latency_ms": 0.008245000003626046,
           "retrieval_calls": 1,
           "retrieval_scores": [
             8.502662883737568,
@@ -1316,7 +1316,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.5838289999928747,
+          "selection_latency_ms": 0.5951979999991863,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1332,11 +1332,11 @@
           "expected_answer": "4",
           "full_context_words": 779,
           "id": "r5",
-          "latency_ms": 0.056415000017295824,
+          "latency_ms": 0.052517999989731834,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checks are listed across the entire Atlas handbook?",
-          "reader_latency_ms": 0.055674000009275915,
+          "reader_latency_ms": 0.051725999995255734,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1368,7 +1368,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0007410000080199097,
+          "selection_latency_ms": 0.0007919999944761003,
           "task_class": "long_global_count"
         },
         {
@@ -1384,11 +1384,11 @@
           "expected_answer": "Mira Chen; Owen Price; Leila Hart",
           "full_context_words": 779,
           "id": "r6",
-          "latency_ms": 0.01262900002529932,
+          "latency_ms": 0.02942400000449652,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every escalation contact across the entire Atlas handbook.",
-          "reader_latency_ms": 0.011878000009346579,
+          "reader_latency_ms": 0.02883300000178224,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1420,7 +1420,7 @@
             "atlas_s11",
             "atlas_s12"
           ],
-          "selection_latency_ms": 0.0007510000159527408,
+          "selection_latency_ms": 0.0005910000027142814,
           "task_class": "long_global_list"
         },
         {
@@ -1436,11 +1436,11 @@
           "expected_answer": "ABSTAIN",
           "full_context_words": 779,
           "id": "r7",
-          "latency_ms": 0.5836290000047484,
+          "latency_ms": 0.5990260000032777,
           "no_evidence": true,
           "preferred_route": "retrieve",
           "question": "What is the Atlas launch paint color?",
-          "reader_latency_ms": 0.0019029999975828105,
+          "reader_latency_ms": 0.0022939999979598724,
           "retrieval_calls": 1,
           "retrieval_scores": [
             2.202538433654762,
@@ -1452,7 +1452,7 @@
             "atlas_s2",
             "atlas_s1"
           ],
-          "selection_latency_ms": 0.5817260000071656,
+          "selection_latency_ms": 0.5967320000053178,
           "task_class": "long_no_evidence"
         },
         {
@@ -1468,11 +1468,11 @@
           "expected_answer": "South",
           "full_context_words": 650,
           "id": "r8",
-          "latency_ms": 0.43578699995805437,
+          "latency_ms": 0.46002699998837215,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "Which Orion site has the higher reserve, North or South?",
-          "reader_latency_ms": 0.018417999967823562,
+          "reader_latency_ms": 0.01801399999123987,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.022439333222295,
@@ -1484,7 +1484,7 @@
             "orion_s1",
             "orion_s3"
           ],
-          "selection_latency_ms": 0.4173689999902308,
+          "selection_latency_ms": 0.4420129999971323,
           "task_class": "long_two_fact_compare"
         },
         {
@@ -1500,11 +1500,11 @@
           "expected_answer": "quiet harbor",
           "full_context_words": 650,
           "id": "r9",
-          "latency_ms": 0.4062809999823003,
+          "latency_ms": 0.42758600000070146,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Orion rollback phrase?",
-          "reader_latency_ms": 0.006149000000732485,
+          "reader_latency_ms": 0.007263000000534703,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.572173271933334,
@@ -1516,7 +1516,7 @@
             "orion_s4",
             "orion_s1"
           ],
-          "selection_latency_ms": 0.4001319999815678,
+          "selection_latency_ms": 0.42032300000016676,
           "task_class": "long_sparse_fact"
         },
         {
@@ -1532,11 +1532,11 @@
           "expected_answer": "KITE-7; EMBER-2; NOVA-4",
           "full_context_words": 650,
           "id": "r10",
-          "latency_ms": 0.008882999964043847,
+          "latency_ms": 0.008685999986823845,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "List every Orion release code across the entire report.",
-          "reader_latency_ms": 0.008031999982449634,
+          "reader_latency_ms": 0.00773399999332014,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1564,7 +1564,7 @@
             "orion_s9",
             "orion_s10"
           ],
-          "selection_latency_ms": 0.0008509999815942138,
+          "selection_latency_ms": 0.0009519999935037049,
           "task_class": "long_global_list"
         },
         {
@@ -1580,11 +1580,11 @@
           "expected_answer": "silver pine",
           "full_context_words": 341,
           "id": "r11",
-          "latency_ms": 0.2533120000407507,
+          "latency_ms": 0.2648629999981722,
           "no_evidence": false,
           "preferred_route": "retrieve",
           "question": "What is the Lumen audit phrase?",
-          "reader_latency_ms": 0.005589000011241296,
+          "reader_latency_ms": 0.006392000003074827,
           "retrieval_calls": 1,
           "retrieval_scores": [
             4.553204578452698,
@@ -1596,7 +1596,7 @@
             "lumen_s4",
             "lumen_s1"
           ],
-          "selection_latency_ms": 0.24772300002950942,
+          "selection_latency_ms": 0.2584709999950974,
           "task_class": "medium_sparse_fact"
         },
         {
@@ -1612,11 +1612,11 @@
           "expected_answer": "2",
           "full_context_words": 341,
           "id": "r12",
-          "latency_ms": 0.02774099999669488,
+          "latency_ms": 0.026809000004845984,
           "no_evidence": false,
           "preferred_route": "direct",
           "question": "How many mandatory checkpoints are listed across the entire Lumen notes?",
-          "reader_latency_ms": 0.026939999997921404,
+          "reader_latency_ms": 0.026058000003104098,
           "retrieval_calls": 0,
           "retrieval_scores": [
             0.0,
@@ -1640,7 +1640,7 @@
             "lumen_s7",
             "lumen_s8"
           ],
-          "selection_latency_ms": 0.0008009999987734773,
+          "selection_latency_ms": 0.0007510000017418861,
           "task_class": "medium_global_count"
         }
       ],

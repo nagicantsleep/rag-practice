@@ -405,7 +405,7 @@ Sub-labs:
 - **metadata / filter-aware RAG — `DONE`**
 - **Code RAG — `DONE`**
 - **multimodal RAG — `DONE`**
-- visual-document / page-image RAG — `TODO`
+- **visual-document / page-image RAG — `DONE`**
 - long-context vs retrieval routing — `TODO`
 
 ### Web RAG summary
@@ -549,7 +549,7 @@ Evaluation evidence:
 - Repaired-benchmark gate `32474824392` / job `96748883250`: **116 tests passed** and deterministic evaluation passed; the then-mutable upstream base lookup failed before pretrained inference.
 - Full pinned pretrained gate `32475115855` / job `96749747685`: **116 tests passed**, deterministic visual-document evaluation passed, and pinned ColSmol evaluation passed.
 - Deterministic and ColSmol JSON/Markdown evidence was persisted in commit `a263bc29c43bd2921c49aeb0958c9a582af2da61`.
-- Final source-of-truth gate on the findings/ROADMAP tree is required before changing the sub-lab status to `DONE`.
+- Final source-of-truth gate `32475921261` / job `96752123353` passed on findings/ROADMAP head `16687ef78d40925661d848405d5be42ae0977701`: **116 tests passed**, deterministic visual-document evaluation passed, and pinned ColSmol evaluation passed before this docs-only completion update.
 
 Artifacts: `benchmarks/m08_visual_document/`, `src/rag_practice/visual_document/`, `src/rag_practice/evaluation/visual_document.py`, `labs/08_specialized_sources/visual_document/`, and `.github/workflows/m08-visual-document.yml`.
 
@@ -563,4 +563,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.6 — Visual-document / page-image RAG**. Freeze a document/page-image benchmark before model comparison; compare text extraction/OCR surrogate retrieval with page-image retrieval using a pinned visual-document control; evaluate page retrieval, page/region provenance, visual/table/layout evidence, answer correctness, abstention, latency, and representation footprint separately. Keep document-raster evidence and OCR/text evidence explicit rather than silently collapsing them.
+Continue **M08.7 — Long-context vs retrieval routing**. Freeze a benchmark with short, long, and mixed-context tasks before tuning; compare direct long-context reading, retrieval-first RAG, and an explicit routing policy on the same evidence. Evaluate route correctness, retrieval/evidence completeness, answer correctness and grounding, unnecessary retrieval/context use, latency, token/context footprint, abstention, and the failure boundary where full-context reading should replace or defer to retrieval.

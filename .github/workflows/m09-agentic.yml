@@ -7,9 +7,11 @@ on:
     paths:
       - "src/rag_practice/agentic/**"
       - "src/rag_practice/evaluation/agentic.py"
+      - "src/rag_practice/evaluation/agentic_pretrained.py"
       - "benchmarks/m09_agentic/**"
       - "labs/09_agentic_rag/**"
       - "tests/test_m09_agentic.py"
+      - "tests/test_m09_agentic_smollm.py"
       - ".github/workflows/m09-agentic.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -17,9 +19,11 @@ on:
     paths:
       - "src/rag_practice/agentic/**"
       - "src/rag_practice/evaluation/agentic.py"
+      - "src/rag_practice/evaluation/agentic_pretrained.py"
       - "benchmarks/m09_agentic/**"
       - "labs/09_agentic_rag/**"
       - "tests/test_m09_agentic.py"
+      - "tests/test_m09_agentic_smollm.py"
       - ".github/workflows/m09-agentic.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -44,14 +48,18 @@ jobs:
         run: pytest -q
       - name: Evaluate deterministic M09 agentic controls
         run: python labs/09_agentic_rag/run.py
-      - name: Persist M09 deterministic evidence
+      - name: Evaluate pinned SmolLM2 tool planner
+        run: python labs/09_agentic_rag/run_smollm.py
+      - name: Persist M09 deterministic and pretrained evidence
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             labs/09_agentic_rag/results/results.json \
-            labs/09_agentic_rag/results/results.md
+            labs/09_agentic_rag/results/results.md \
+            labs/09_agentic_rag/results/smollm_results.json \
+            labs/09_agentic_rag/results/smollm_results.md
           if ! git diff --cached --quiet; then
             git commit -m "test: record M09 agentic evaluation [skip ci]"
             git push origin HEAD:feat/m09-agentic-rag

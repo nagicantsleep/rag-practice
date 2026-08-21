@@ -15,6 +15,7 @@ dev = ["pytest>=8.0", "pillow>=10.0"]
 neural = ["torch>=2.0"]
 pretrained = ["sentence-transformers==5.6.1"]
 colbert = ["pylate==1.6.0"]
+visual_document = ["colpali-engine==0.3.17"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

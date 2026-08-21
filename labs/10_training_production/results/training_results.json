@@ -1,0 +1,2395 @@
+{
+  "benchmark": "benchmarks/m10_training@v1",
+  "experiment_id": "m10_retriever_finetune_v1",
+  "freeze_rule": "dataset/model/mining/optimizer contract frozen before fine-tuned inspection",
+  "mined_hard_negatives": [
+    {
+      "negative_document_id": "tr5",
+      "negative_rank": 2,
+      "negative_score": 0.43601539731025696,
+      "positive_document_id": "tr1",
+      "positive_rank": 1,
+      "query_id": "tq1"
+    },
+    {
+      "negative_document_id": "tr1",
+      "negative_rank": 2,
+      "negative_score": 0.4034038782119751,
+      "positive_document_id": "tr2",
+      "positive_rank": 1,
+      "query_id": "tq2"
+    },
+    {
+      "negative_document_id": "tr4",
+      "negative_rank": 2,
+      "negative_score": 0.4501895308494568,
+      "positive_document_id": "tr3",
+      "positive_rank": 1,
+      "query_id": "tq3"
+    },
+    {
+      "negative_document_id": "tr8",
+      "negative_rank": 2,
+      "negative_score": 0.355024129152298,
+      "positive_document_id": "tr4",
+      "positive_rank": 1,
+      "query_id": "tq4"
+    },
+    {
+      "negative_document_id": "tr6",
+      "negative_rank": 2,
+      "negative_score": 0.5137243866920471,
+      "positive_document_id": "tr5",
+      "positive_rank": 1,
+      "query_id": "tq5"
+    },
+    {
+      "negative_document_id": "tr5",
+      "negative_rank": 2,
+      "negative_score": 0.46190449595451355,
+      "positive_document_id": "tr6",
+      "positive_rank": 1,
+      "query_id": "tq6"
+    },
+    {
+      "negative_document_id": "tr8",
+      "negative_rank": 2,
+      "negative_score": 0.47204357385635376,
+      "positive_document_id": "tr7",
+      "positive_rank": 1,
+      "query_id": "tq7"
+    },
+    {
+      "negative_document_id": "tr4",
+      "negative_rank": 2,
+      "negative_score": 0.4184449017047882,
+      "positive_document_id": "tr8",
+      "positive_rank": 1,
+      "query_id": "tq8"
+    }
+  ],
+  "model": {
+    "device": "cpu",
+    "dimensions": 384,
+    "dtype": "float32",
+    "model_load_ms": 7893.654607000002,
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "parameter_bytes": 90852864,
+    "parameter_count": 22713216,
+    "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be"
+  },
+  "systems": {
+    "baseline": {
+      "dev": {
+        "all": {
+          "mean_score_margin": 0.13301924243569374,
+          "mrr": 0.9375,
+          "recall@1": 0.875,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.27698276937007904,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.18175554275512695,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.00619053840637207,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.0671481192111969,
+            "mrr": 0.75,
+            "recall@1": 0.5,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "dq1",
+            "query": "Which Eon North document gives the restore lane for a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv1",
+                "score": 0.6987119317054749
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.46917569637298584
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.4048269987106323
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.2532021105289459
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.23156094551086426
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.2101903259754181
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.2008676379919052
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.19279873371124268
+              }
+            ],
+            "relevant": "dv1",
+            "score_margin": 0.229536235332489
+          },
+          {
+            "class": "status_alias",
+            "id": "dq2",
+            "query": "Where can operators find the Eon North health-state reference?",
+            "rank": 2,
+            "ranking": [
+              {
+                "document_id": "dv1",
+                "score": 0.5145533084869385
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.48616835474967957
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.2956092953681946
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.26509973406791687
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.257437139749527
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.25306734442710876
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.11683879047632217
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.06923788785934448
+              }
+            ],
+            "relevant": "dv2",
+            "score_margin": -0.02838495373725891
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq3",
+            "query": "Which Fjord East policy defines the dispatch window after intake?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv3",
+                "score": 0.48354560136795044
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.47476524114608765
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.272743821144104
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.26612183451652527
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.26492002606391907
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.1130497008562088
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.0721166580915451
+              },
+              {
+                "document_id": "dv8",
+                "score": -0.011949010193347931
+              }
+            ],
+            "relevant": "dv3",
+            "score_margin": 0.008780360221862793
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq4",
+            "query": "Which Fjord East guide provides the supply key for stock checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv4",
+                "score": 0.7550294399261475
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.4585312604904175
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.3892214298248291
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.3610057830810547
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.34385940432548523
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2847980260848999
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.2196897566318512
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.216186061501503
+              }
+            ],
+            "relevant": "dv4",
+            "score_margin": 0.29649817943573
+          },
+          {
+            "class": "rollback_alias",
+            "id": "dq5",
+            "query": "Which Gaia Primary document records the restore lane for release reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv5",
+                "score": 0.6350936889648438
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.5011188387870789
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.3780844807624817
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2259904444217682
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.20556865632534027
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.19425766170024872
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.11656638979911804
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.11282254010438919
+              }
+            ],
+            "relevant": "dv5",
+            "score_margin": 0.1339748501777649
+          },
+          {
+            "class": "status_alias",
+            "id": "dq6",
+            "query": "Where is the Gaia Primary health-state reference kept?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv6",
+                "score": 0.632494330406189
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.46981313824653625
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2242790162563324
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.15893784165382385
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.15215519070625305
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.13892468810081482
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.11589553952217102
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.061846986413002014
+              }
+            ],
+            "relevant": "dv6",
+            "score_margin": 0.1626811921596527
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq7",
+            "query": "Which Helix Field policy contains the dispatch window for parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv7",
+                "score": 0.5267149209976196
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.5231142044067383
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.2660009264945984
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.24542023241519928
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.23092886805534363
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.20830422639846802
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.1102282851934433
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.09512459486722946
+              }
+            ],
+            "relevant": "dv7",
+            "score_margin": 0.0036007165908813477
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq8",
+            "query": "Which Helix Field guide lists the supply key for warehouse lookup?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv8",
+                "score": 0.6778702139854431
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.420402854681015
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.40785056352615356
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.27282828092575073
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.2635279893875122
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.15789271891117096
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.14920999109745026
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.13278207182884216
+              }
+            ],
+            "relevant": "dv8",
+            "score_margin": 0.2574673593044281
+          }
+        ],
+        "system": {
+          "index_build_ms": 43.35776100000999,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 10.746168749996343
+        }
+      },
+      "test": {
+        "all": {
+          "mean_score_margin": 0.133431825786829,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.23333404958248138,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.1678427904844284,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.04007826745510101,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.09247219562530518,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "eq1",
+            "query": "Which Iris North document specifies the restore lane for reversing a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te1",
+                "score": 0.7336699962615967
+              },
+              {
+                "document_id": "te2",
+                "score": 0.5579211115837097
+              },
+              {
+                "document_id": "te5",
+                "score": 0.5006287097930908
+              },
+              {
+                "document_id": "te6",
+                "score": 0.3379528522491455
+              },
+              {
+                "document_id": "te7",
+                "score": 0.18118485808372498
+              },
+              {
+                "document_id": "te8",
+                "score": 0.16161379218101501
+              },
+              {
+                "document_id": "te3",
+                "score": 0.1407238245010376
+              },
+              {
+                "document_id": "te4",
+                "score": 0.09611767530441284
+              }
+            ],
+            "relevant": "te1",
+            "score_margin": 0.17574888467788696
+          },
+          {
+            "class": "status_alias",
+            "id": "eq2",
+            "query": "Where is the Iris North health-state reference maintained?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te2",
+                "score": 0.6302211284637451
+              },
+              {
+                "document_id": "te1",
+                "score": 0.5282756090164185
+              },
+              {
+                "document_id": "te6",
+                "score": 0.3075296878814697
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2895670533180237
+              },
+              {
+                "document_id": "te4",
+                "score": 0.1488146036863327
+              },
+              {
+                "document_id": "te8",
+                "score": 0.13202396035194397
+              },
+              {
+                "document_id": "te3",
+                "score": 0.048306919634342194
+              },
+              {
+                "document_id": "te7",
+                "score": 0.020832322537899017
+              }
+            ],
+            "relevant": "te2",
+            "score_margin": 0.10194551944732666
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq3",
+            "query": "Which Jade East policy gives the dispatch window after intake confirmation?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te3",
+                "score": 0.4929350018501282
+              },
+              {
+                "document_id": "te4",
+                "score": 0.4183649718761444
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2569112777709961
+              },
+              {
+                "document_id": "te1",
+                "score": 0.2171795517206192
+              },
+              {
+                "document_id": "te2",
+                "score": 0.20368285477161407
+              },
+              {
+                "document_id": "te6",
+                "score": 0.1849757730960846
+              },
+              {
+                "document_id": "te7",
+                "score": 0.11945227533578873
+              },
+              {
+                "document_id": "te8",
+                "score": 0.07567553222179413
+              }
+            ],
+            "relevant": "te3",
+            "score_margin": 0.07457002997398376
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq4",
+            "query": "Which Jade East guide contains the supply key required for warehouse checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te4",
+                "score": 0.724404513835907
+              },
+              {
+                "document_id": "te3",
+                "score": 0.445867657661438
+              },
+              {
+                "document_id": "te8",
+                "score": 0.35650134086608887
+              },
+              {
+                "document_id": "te5",
+                "score": 0.3121868073940277
+              },
+              {
+                "document_id": "te1",
+                "score": 0.2917293310165405
+              },
+              {
+                "document_id": "te6",
+                "score": 0.1864263117313385
+              },
+              {
+                "document_id": "te2",
+                "score": 0.18573743104934692
+              },
+              {
+                "document_id": "te7",
+                "score": 0.17857135832309723
+              }
+            ],
+            "relevant": "te4",
+            "score_margin": 0.278536856174469
+          },
+          {
+            "class": "rollback_alias",
+            "id": "eq5",
+            "query": "Which Kestrel Primary document defines the restore lane for emergency reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te5",
+                "score": 0.6142468452453613
+              },
+              {
+                "document_id": "te6",
+                "score": 0.4543101489543915
+              },
+              {
+                "document_id": "te1",
+                "score": 0.4199982285499573
+              },
+              {
+                "document_id": "te2",
+                "score": 0.28797274827957153
+              },
+              {
+                "document_id": "te7",
+                "score": 0.15522000193595886
+              },
+              {
+                "document_id": "te8",
+                "score": 0.15514466166496277
+              },
+              {
+                "document_id": "te3",
+                "score": 0.12611833214759827
+              },
+              {
+                "document_id": "te4",
+                "score": 0.09709213674068451
+              }
+            ],
+            "relevant": "te5",
+            "score_margin": 0.15993669629096985
+          },
+          {
+            "class": "status_alias",
+            "id": "eq6",
+            "query": "Where is the Kestrel Primary health-state reference recorded?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te6",
+                "score": 0.520430862903595
+              },
+              {
+                "document_id": "te5",
+                "score": 0.4374319911003113
+              },
+              {
+                "document_id": "te2",
+                "score": 0.2072853147983551
+              },
+              {
+                "document_id": "te1",
+                "score": 0.1962433159351349
+              },
+              {
+                "document_id": "te4",
+                "score": 0.13064342737197876
+              },
+              {
+                "document_id": "te8",
+                "score": 0.08626272529363632
+              },
+              {
+                "document_id": "te3",
+                "score": 0.026885759085416794
+              },
+              {
+                "document_id": "te7",
+                "score": -0.033482469618320465
+              }
+            ],
+            "relevant": "te6",
+            "score_margin": 0.08299887180328369
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq7",
+            "query": "Which Lumen Field policy contains the dispatch window for replacement parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te7",
+                "score": 0.6086081266403198
+              },
+              {
+                "document_id": "te8",
+                "score": 0.6030216217041016
+              },
+              {
+                "document_id": "te5",
+                "score": 0.28833141922950745
+              },
+              {
+                "document_id": "te1",
+                "score": 0.20290599763393402
+              },
+              {
+                "document_id": "te6",
+                "score": 0.19871662557125092
+              },
+              {
+                "document_id": "te4",
+                "score": 0.16942277550697327
+              },
+              {
+                "document_id": "te2",
+                "score": 0.16447564959526062
+              },
+              {
+                "document_id": "te3",
+                "score": 0.14914874732494354
+              }
+            ],
+            "relevant": "te7",
+            "score_margin": 0.005586504936218262
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq8",
+            "query": "Which Lumen Field guide lists the supply key used by warehouse stock systems?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te8",
+                "score": 0.6397287845611572
+              },
+              {
+                "document_id": "te4",
+                "score": 0.45159754157066345
+              },
+              {
+                "document_id": "te7",
+                "score": 0.3763388395309448
+              },
+              {
+                "document_id": "te5",
+                "score": 0.33680403232574463
+              },
+              {
+                "document_id": "te1",
+                "score": 0.2608160972595215
+              },
+              {
+                "document_id": "te3",
+                "score": 0.1894134283065796
+              },
+              {
+                "document_id": "te6",
+                "score": 0.18720734119415283
+              },
+              {
+                "document_id": "te2",
+                "score": 0.15284201502799988
+              }
+            ],
+            "relevant": "te8",
+            "score_margin": 0.18813124299049377
+          }
+        ],
+        "system": {
+          "index_build_ms": 44.490435999989586,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 10.981991000001301
+        }
+      }
+    },
+    "hard_negative": {
+      "dev": {
+        "all": {
+          "mean_score_margin": 0.15480683743953705,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.25258588790893555,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.17780070006847382,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.07777413725852966,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.11106662452220917,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "dq1",
+            "query": "Which Eon North document gives the restore lane for a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv1",
+                "score": 0.7048580646514893
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.4844995439052582
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.3954799473285675
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.2473752200603485
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.23110239207744598
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.22029200196266174
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.21926572918891907
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.16803443431854248
+              }
+            ],
+            "relevant": "dv1",
+            "score_margin": 0.22035852074623108
+          },
+          {
+            "class": "status_alias",
+            "id": "dq2",
+            "query": "Where can operators find the Eon North health-state reference?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv2",
+                "score": 0.5127087831497192
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.4876096248626709
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.28662753105163574
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.2718115448951721
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.22816601395606995
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.2220936119556427
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.1348835825920105
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.08137074112892151
+              }
+            ],
+            "relevant": "dv2",
+            "score_margin": 0.02509915828704834
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq3",
+            "query": "Which Fjord East policy defines the dispatch window after intake?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv3",
+                "score": 0.5308499336242676
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.4538295269012451
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2731282114982605
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.2503299117088318
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.24050574004650116
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.10607083886861801
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.09693749248981476
+              },
+              {
+                "document_id": "dv8",
+                "score": -0.05412222817540169
+              }
+            ],
+            "relevant": "dv3",
+            "score_margin": 0.07702040672302246
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq4",
+            "query": "Which Fjord East guide provides the supply key for stock checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv4",
+                "score": 0.7450680136680603
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.4793150722980499
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.3696310818195343
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.33927983045578003
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.33113864064216614
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.284808486700058
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.22956332564353943
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.21314483880996704
+              }
+            ],
+            "relevant": "dv4",
+            "score_margin": 0.2657529413700104
+          },
+          {
+            "class": "rollback_alias",
+            "id": "dq5",
+            "query": "Which Gaia Primary document records the restore lane for release reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv5",
+                "score": 0.6384719014167786
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.503229022026062
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.37134578824043274
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.22605139017105103
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.2165098786354065
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.2092406302690506
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.10363687574863434
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.101775623857975
+              }
+            ],
+            "relevant": "dv5",
+            "score_margin": 0.13524287939071655
+          },
+          {
+            "class": "status_alias",
+            "id": "dq6",
+            "query": "Where is the Gaia Primary health-state reference kept?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv6",
+                "score": 0.6461909413337708
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.44915685057640076
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2422187626361847
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.14053039252758026
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.133304625749588
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.12513892352581024
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.12005041539669037
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.06731010973453522
+              }
+            ],
+            "relevant": "dv6",
+            "score_margin": 0.19703409075737
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq7",
+            "query": "Which Helix Field policy contains the dispatch window for parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv7",
+                "score": 0.5699439644813538
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.4914160966873169
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.24362321197986603
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.22489841282367706
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.20452028512954712
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.20076528191566467
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.13893333077430725
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.0869273990392685
+              }
+            ],
+            "relevant": "dv7",
+            "score_margin": 0.07852786779403687
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq8",
+            "query": "Which Helix Field guide lists the supply key for warehouse lookup?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv8",
+                "score": 0.6800582408905029
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.4406394064426422
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.40475353598594666
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.24886760115623474
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.2447751760482788
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.15414273738861084
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.1450026035308838
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.13970255851745605
+              }
+            ],
+            "relevant": "dv8",
+            "score_margin": 0.23941883444786072
+          }
+        ],
+        "system": {
+          "index_build_ms": 44.60930000000474,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 11.576481125002758
+        }
+      },
+      "test": {
+        "all": {
+          "mean_score_margin": 0.1587732397019863,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.21983441710472107,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.16383565962314606,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.11700361967086792,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.1344192624092102,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "eq1",
+            "query": "Which Iris North document specifies the restore lane for reversing a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te1",
+                "score": 0.7414739727973938
+              },
+              {
+                "document_id": "te2",
+                "score": 0.5619670152664185
+              },
+              {
+                "document_id": "te5",
+                "score": 0.5022060871124268
+              },
+              {
+                "document_id": "te6",
+                "score": 0.3393687903881073
+              },
+              {
+                "document_id": "te7",
+                "score": 0.2025175392627716
+              },
+              {
+                "document_id": "te3",
+                "score": 0.16428765654563904
+              },
+              {
+                "document_id": "te8",
+                "score": 0.1410996913909912
+              },
+              {
+                "document_id": "te4",
+                "score": 0.07956723868846893
+              }
+            ],
+            "relevant": "te1",
+            "score_margin": 0.17950695753097534
+          },
+          {
+            "class": "status_alias",
+            "id": "eq2",
+            "query": "Where is the Iris North health-state reference maintained?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te2",
+                "score": 0.6470863819122314
+              },
+              {
+                "document_id": "te1",
+                "score": 0.5058841705322266
+              },
+              {
+                "document_id": "te6",
+                "score": 0.32351720333099365
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2575533390045166
+              },
+              {
+                "document_id": "te4",
+                "score": 0.13069604337215424
+              },
+              {
+                "document_id": "te8",
+                "score": 0.1175304427742958
+              },
+              {
+                "document_id": "te3",
+                "score": 0.06187902390956879
+              },
+              {
+                "document_id": "te7",
+                "score": 0.035771358758211136
+              }
+            ],
+            "relevant": "te2",
+            "score_margin": 0.14120221138000488
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq3",
+            "query": "Which Jade East policy gives the dispatch window after intake confirmation?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te3",
+                "score": 0.5307214260101318
+              },
+              {
+                "document_id": "te4",
+                "score": 0.38534629344940186
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2357644885778427
+              },
+              {
+                "document_id": "te2",
+                "score": 0.19397270679473877
+              },
+              {
+                "document_id": "te1",
+                "score": 0.1895868331193924
+              },
+              {
+                "document_id": "te6",
+                "score": 0.1822698712348938
+              },
+              {
+                "document_id": "te7",
+                "score": 0.14762908220291138
+              },
+              {
+                "document_id": "te8",
+                "score": 0.04795986786484718
+              }
+            ],
+            "relevant": "te3",
+            "score_margin": 0.14537513256072998
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq4",
+            "query": "Which Jade East guide contains the supply key required for warehouse checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te4",
+                "score": 0.7130139470100403
+              },
+              {
+                "document_id": "te3",
+                "score": 0.4681917428970337
+              },
+              {
+                "document_id": "te8",
+                "score": 0.3687858581542969
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2972545027732849
+              },
+              {
+                "document_id": "te1",
+                "score": 0.2751287817955017
+              },
+              {
+                "document_id": "te7",
+                "score": 0.20617341995239258
+              },
+              {
+                "document_id": "te6",
+                "score": 0.19259324669837952
+              },
+              {
+                "document_id": "te2",
+                "score": 0.18001212179660797
+              }
+            ],
+            "relevant": "te4",
+            "score_margin": 0.2448222041130066
+          },
+          {
+            "class": "rollback_alias",
+            "id": "eq5",
+            "query": "Which Kestrel Primary document defines the restore lane for emergency reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te5",
+                "score": 0.6060662269592285
+              },
+              {
+                "document_id": "te6",
+                "score": 0.45790186524391174
+              },
+              {
+                "document_id": "te1",
+                "score": 0.40004056692123413
+              },
+              {
+                "document_id": "te2",
+                "score": 0.28455162048339844
+              },
+              {
+                "document_id": "te7",
+                "score": 0.17573818564414978
+              },
+              {
+                "document_id": "te3",
+                "score": 0.1455332338809967
+              },
+              {
+                "document_id": "te8",
+                "score": 0.1344982534646988
+              },
+              {
+                "document_id": "te4",
+                "score": 0.07867047190666199
+              }
+            ],
+            "relevant": "te5",
+            "score_margin": 0.14816436171531677
+          },
+          {
+            "class": "status_alias",
+            "id": "eq6",
+            "query": "Where is the Kestrel Primary health-state reference recorded?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te6",
+                "score": 0.540000319480896
+              },
+              {
+                "document_id": "te5",
+                "score": 0.41236400604248047
+              },
+              {
+                "document_id": "te2",
+                "score": 0.22104552388191223
+              },
+              {
+                "document_id": "te1",
+                "score": 0.16840948164463043
+              },
+              {
+                "document_id": "te4",
+                "score": 0.11140473186969757
+              },
+              {
+                "document_id": "te8",
+                "score": 0.07531028985977173
+              },
+              {
+                "document_id": "te3",
+                "score": 0.035301629453897476
+              },
+              {
+                "document_id": "te7",
+                "score": -0.0235917866230011
+              }
+            ],
+            "relevant": "te6",
+            "score_margin": 0.12763631343841553
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq7",
+            "query": "Which Lumen Field policy contains the dispatch window for replacement parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te7",
+                "score": 0.653609037399292
+              },
+              {
+                "document_id": "te8",
+                "score": 0.5649769306182861
+              },
+              {
+                "document_id": "te5",
+                "score": 0.26270735263824463
+              },
+              {
+                "document_id": "te6",
+                "score": 0.19447198510169983
+              },
+              {
+                "document_id": "te3",
+                "score": 0.17717863619327545
+              },
+              {
+                "document_id": "te1",
+                "score": 0.1713365763425827
+              },
+              {
+                "document_id": "te2",
+                "score": 0.15112300217151642
+              },
+              {
+                "document_id": "te4",
+                "score": 0.13199284672737122
+              }
+            ],
+            "relevant": "te7",
+            "score_margin": 0.08863210678100586
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq8",
+            "query": "Which Lumen Field guide lists the supply key used by warehouse stock systems?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te8",
+                "score": 0.6402814388275146
+              },
+              {
+                "document_id": "te4",
+                "score": 0.4454348087310791
+              },
+              {
+                "document_id": "te7",
+                "score": 0.39495736360549927
+              },
+              {
+                "document_id": "te5",
+                "score": 0.315673291683197
+              },
+              {
+                "document_id": "te1",
+                "score": 0.23350903391838074
+              },
+              {
+                "document_id": "te3",
+                "score": 0.19793424010276794
+              },
+              {
+                "document_id": "te6",
+                "score": 0.19034337997436523
+              },
+              {
+                "document_id": "te2",
+                "score": 0.14024676382541656
+              }
+            ],
+            "relevant": "te8",
+            "score_margin": 0.19484663009643555
+          }
+        ],
+        "system": {
+          "index_build_ms": 45.21446000001106,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 11.898326000004289
+        }
+      },
+      "test_delta_vs_baseline": {
+        "mean_score_margin": 0.025341413915157318,
+        "mrr": 0.0,
+        "recall@1": 0.0,
+        "recall@3": 0.0
+      },
+      "training": {
+        "loss_history": [
+          0.6690333485603333,
+          0.7540199160575867,
+          0.17358212172985077,
+          0.262216180562973
+        ],
+        "model_load_ms": 429.1340190000028,
+        "parameter_bytes": 90852864,
+        "parameter_count": 22713216,
+        "training_ms": 1277.616557999991
+      }
+    },
+    "pair_only": {
+      "dev": {
+        "all": {
+          "mean_score_margin": 0.15845976024866104,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.2578131705522537,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.17590467631816864,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.06420856714248657,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.13591262698173523,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "dq1",
+            "query": "Which Eon North document gives the restore lane for a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv1",
+                "score": 0.709591269493103
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.49163076281547546
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.36410048604011536
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.2260337769985199
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.2125551849603653
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.202112078666687
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.19961173832416534
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.14193964004516602
+              }
+            ],
+            "relevant": "dv1",
+            "score_margin": 0.21796050667762756
+          },
+          {
+            "class": "status_alias",
+            "id": "dq2",
+            "query": "Where can operators find the Eon North health-state reference?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv2",
+                "score": 0.518578290939331
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.4738680124282837
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.26548847556114197
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.24980655312538147
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.2137550413608551
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.1821669191122055
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.1273626983165741
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.06284698098897934
+              }
+            ],
+            "relevant": "dv2",
+            "score_margin": 0.04471027851104736
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq3",
+            "query": "Which Fjord East policy defines the dispatch window after intake?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv3",
+                "score": 0.5431990623474121
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.4656837582588196
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2491304874420166
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.2323649376630783
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.2205030620098114
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.08440954238176346
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.0788998007774353
+              },
+              {
+                "document_id": "dv8",
+                "score": -0.06085294112563133
+              }
+            ],
+            "relevant": "dv3",
+            "score_margin": 0.07751530408859253
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq4",
+            "query": "Which Fjord East guide provides the supply key for stock checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv4",
+                "score": 0.758945107460022
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.5007346868515015
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.34485411643981934
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.3099961280822754
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.304599404335022
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.2544978857040405
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.21115708351135254
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.18224966526031494
+              }
+            ],
+            "relevant": "dv4",
+            "score_margin": 0.2582104206085205
+          },
+          {
+            "class": "rollback_alias",
+            "id": "dq5",
+            "query": "Which Gaia Primary document records the restore lane for release reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv5",
+                "score": 0.6393232345581055
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.5054743885993958
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.3415512442588806
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.2065785676240921
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.19574381411075592
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.19478747248649597
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.07769112288951874
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.07690973579883575
+              }
+            ],
+            "relevant": "dv5",
+            "score_margin": 0.13384884595870972
+          },
+          {
+            "class": "status_alias",
+            "id": "dq6",
+            "query": "Where is the Gaia Primary health-state reference kept?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv6",
+                "score": 0.6570291519165039
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.4299141764640808
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.20691341161727905
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.11143428087234497
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.10630766302347183
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.09870763123035431
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.08304374665021896
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.04653674364089966
+              }
+            ],
+            "relevant": "dv6",
+            "score_margin": 0.2271149754524231
+          },
+          {
+            "class": "shipping_alias",
+            "id": "dq7",
+            "query": "Which Helix Field policy contains the dispatch window for parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv7",
+                "score": 0.5722935199737549
+              },
+              {
+                "document_id": "dv8",
+                "score": 0.5213916897773743
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.22435703873634338
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.20450150966644287
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.19582894444465637
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.18049907684326172
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.12615466117858887
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.06810708343982697
+              }
+            ],
+            "relevant": "dv7",
+            "score_margin": 0.050901830196380615
+          },
+          {
+            "class": "inventory_alias",
+            "id": "dq8",
+            "query": "Which Helix Field guide lists the supply key for warehouse lookup?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "dv8",
+                "score": 0.7055313587188721
+              },
+              {
+                "document_id": "dv7",
+                "score": 0.44811543822288513
+              },
+              {
+                "document_id": "dv4",
+                "score": 0.37157902121543884
+              },
+              {
+                "document_id": "dv1",
+                "score": 0.2166120409965515
+              },
+              {
+                "document_id": "dv5",
+                "score": 0.20692208409309387
+              },
+              {
+                "document_id": "dv6",
+                "score": 0.1337796300649643
+              },
+              {
+                "document_id": "dv3",
+                "score": 0.12882813811302185
+              },
+              {
+                "document_id": "dv2",
+                "score": 0.11442792415618896
+              }
+            ],
+            "relevant": "dv8",
+            "score_margin": 0.25741592049598694
+          }
+        ],
+        "system": {
+          "index_build_ms": 43.49292300000229,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 11.196152874999754
+        }
+      },
+      "test": {
+        "all": {
+          "mean_score_margin": 0.16858737543225288,
+          "mrr": 1.0,
+          "recall@1": 1.0,
+          "recall@3": 1.0
+        },
+        "by_class": {
+          "inventory_alias": {
+            "mean_score_margin": 0.24413412809371948,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "rollback_alias": {
+            "mean_score_margin": 0.16215044260025024,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "shipping_alias": {
+            "mean_score_margin": 0.10586197674274445,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          },
+          "status_alias": {
+            "mean_score_margin": 0.16220295429229736,
+            "mrr": 1.0,
+            "recall@1": 1.0,
+            "recall@3": 1.0
+          }
+        },
+        "per_query": [
+          {
+            "class": "rollback_alias",
+            "id": "eq1",
+            "query": "Which Iris North document specifies the restore lane for reversing a failed rollout?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te1",
+                "score": 0.7486430406570435
+              },
+              {
+                "document_id": "te2",
+                "score": 0.5683921575546265
+              },
+              {
+                "document_id": "te5",
+                "score": 0.47587448358535767
+              },
+              {
+                "document_id": "te6",
+                "score": 0.3047407865524292
+              },
+              {
+                "document_id": "te7",
+                "score": 0.1768036037683487
+              },
+              {
+                "document_id": "te3",
+                "score": 0.13903304934501648
+              },
+              {
+                "document_id": "te8",
+                "score": 0.10487958788871765
+              },
+              {
+                "document_id": "te4",
+                "score": 0.04065198451280594
+              }
+            ],
+            "relevant": "te1",
+            "score_margin": 0.180250883102417
+          },
+          {
+            "class": "status_alias",
+            "id": "eq2",
+            "query": "Where is the Iris North health-state reference maintained?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te2",
+                "score": 0.6518217921257019
+              },
+              {
+                "document_id": "te1",
+                "score": 0.48773282766342163
+              },
+              {
+                "document_id": "te6",
+                "score": 0.29268842935562134
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2208676040172577
+              },
+              {
+                "document_id": "te4",
+                "score": 0.09709613025188446
+              },
+              {
+                "document_id": "te8",
+                "score": 0.08610693365335464
+              },
+              {
+                "document_id": "te3",
+                "score": 0.041134633123874664
+              },
+              {
+                "document_id": "te7",
+                "score": 0.006077995523810387
+              }
+            ],
+            "relevant": "te2",
+            "score_margin": 0.16408896446228027
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq3",
+            "query": "Which Jade East policy gives the dispatch window after intake confirmation?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te3",
+                "score": 0.5398555397987366
+              },
+              {
+                "document_id": "te4",
+                "score": 0.3867610991001129
+              },
+              {
+                "document_id": "te5",
+                "score": 0.214351624250412
+              },
+              {
+                "document_id": "te2",
+                "score": 0.17501413822174072
+              },
+              {
+                "document_id": "te1",
+                "score": 0.17480069398880005
+              },
+              {
+                "document_id": "te6",
+                "score": 0.15136361122131348
+              },
+              {
+                "document_id": "te7",
+                "score": 0.12892559170722961
+              },
+              {
+                "document_id": "te8",
+                "score": 0.02412370964884758
+              }
+            ],
+            "relevant": "te3",
+            "score_margin": 0.15309444069862366
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq4",
+            "query": "Which Jade East guide contains the supply key required for warehouse checks?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te4",
+                "score": 0.7129555344581604
+              },
+              {
+                "document_id": "te3",
+                "score": 0.47552818059921265
+              },
+              {
+                "document_id": "te8",
+                "score": 0.33707666397094727
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2548072934150696
+              },
+              {
+                "document_id": "te1",
+                "score": 0.24248041212558746
+              },
+              {
+                "document_id": "te7",
+                "score": 0.17952871322631836
+              },
+              {
+                "document_id": "te2",
+                "score": 0.15905189514160156
+              },
+              {
+                "document_id": "te6",
+                "score": 0.15880854427814484
+              }
+            ],
+            "relevant": "te4",
+            "score_margin": 0.23742735385894775
+          },
+          {
+            "class": "rollback_alias",
+            "id": "eq5",
+            "query": "Which Kestrel Primary document defines the restore lane for emergency reversal?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te5",
+                "score": 0.6021270751953125
+              },
+              {
+                "document_id": "te6",
+                "score": 0.458077073097229
+              },
+              {
+                "document_id": "te1",
+                "score": 0.3864070177078247
+              },
+              {
+                "document_id": "te2",
+                "score": 0.2651060223579407
+              },
+              {
+                "document_id": "te7",
+                "score": 0.14912720024585724
+              },
+              {
+                "document_id": "te3",
+                "score": 0.11886198073625565
+              },
+              {
+                "document_id": "te8",
+                "score": 0.09838110208511353
+              },
+              {
+                "document_id": "te4",
+                "score": 0.03430388122797012
+              }
+            ],
+            "relevant": "te5",
+            "score_margin": 0.1440500020980835
+          },
+          {
+            "class": "status_alias",
+            "id": "eq6",
+            "query": "Where is the Kestrel Primary health-state reference recorded?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te6",
+                "score": 0.5504432916641235
+              },
+              {
+                "document_id": "te5",
+                "score": 0.3901263475418091
+              },
+              {
+                "document_id": "te2",
+                "score": 0.199931800365448
+              },
+              {
+                "document_id": "te1",
+                "score": 0.12382210791110992
+              },
+              {
+                "document_id": "te4",
+                "score": 0.0877189114689827
+              },
+              {
+                "document_id": "te8",
+                "score": 0.04033384472131729
+              },
+              {
+                "document_id": "te3",
+                "score": 0.009479278698563576
+              },
+              {
+                "document_id": "te7",
+                "score": -0.05361790210008621
+              }
+            ],
+            "relevant": "te6",
+            "score_margin": 0.16031694412231445
+          },
+          {
+            "class": "shipping_alias",
+            "id": "eq7",
+            "query": "Which Lumen Field policy contains the dispatch window for replacement parts?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te7",
+                "score": 0.646888256072998
+              },
+              {
+                "document_id": "te8",
+                "score": 0.5882587432861328
+              },
+              {
+                "document_id": "te5",
+                "score": 0.24512243270874023
+              },
+              {
+                "document_id": "te6",
+                "score": 0.1697992980480194
+              },
+              {
+                "document_id": "te1",
+                "score": 0.16104358434677124
+              },
+              {
+                "document_id": "te3",
+                "score": 0.15204092860221863
+              },
+              {
+                "document_id": "te2",
+                "score": 0.13493172824382782
+              },
+              {
+                "document_id": "te4",
+                "score": 0.1113099455833435
+              }
+            ],
+            "relevant": "te7",
+            "score_margin": 0.058629512786865234
+          },
+          {
+            "class": "inventory_alias",
+            "id": "eq8",
+            "query": "Which Lumen Field guide lists the supply key used by warehouse stock systems?",
+            "rank": 1,
+            "ranking": [
+              {
+                "document_id": "te8",
+                "score": 0.6594200730323792
+              },
+              {
+                "document_id": "te4",
+                "score": 0.40857917070388794
+              },
+              {
+                "document_id": "te7",
+                "score": 0.39902058243751526
+              },
+              {
+                "document_id": "te5",
+                "score": 0.2659534811973572
+              },
+              {
+                "document_id": "te1",
+                "score": 0.1935153752565384
+              },
+              {
+                "document_id": "te3",
+                "score": 0.17803150415420532
+              },
+              {
+                "document_id": "te6",
+                "score": 0.15124255418777466
+              },
+              {
+                "document_id": "te2",
+                "score": 0.1105986163020134
+              }
+            ],
+            "relevant": "te8",
+            "score_margin": 0.2508409023284912
+          }
+        ],
+        "system": {
+          "index_build_ms": 44.52514799999108,
+          "logical_index_bytes_float32": 12288,
+          "mean_query_ms": 11.076949499997824
+        }
+      },
+      "test_delta_vs_baseline": {
+        "mean_score_margin": 0.03515554964542389,
+        "mrr": 0.0,
+        "recall@1": 0.0,
+        "recall@3": 0.0
+      },
+      "training": {
+        "loss_history": [
+          0.01758231222629547,
+          0.0982787162065506,
+          0.0029747935477644205,
+          0.037545014172792435
+        ],
+        "model_load_ms": 452.8475010000079,
+        "parameter_bytes": 90852864,
+        "parameter_count": 22713216,
+        "training_ms": 943.2311420000019
+      }
+    }
+  },
+  "training_config": {
+    "batch_size": 4,
+    "epochs": 2,
+    "learning_rate": 2e-05,
+    "max_sequence_length": 128,
+    "seed": 23,
+    "temperature": 0.05
+  }
+}

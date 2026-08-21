@@ -1,6 +1,6 @@
 # M09 — Agentic RAG
 
-Status: **IN PROGRESS — EVIDENCE RECORDED / FINAL GATE PENDING**
+Status: **DONE**
 
 ## Goal
 
@@ -82,7 +82,7 @@ Only after the single-agent result was recorded, the unchanged proposer was pair
 - Exploratory role-split implementation: `1e74eea55ec0fbcd71edd947dc125c90f361f5f7`.
 - Role-split PR gate `32486359470` / job `96783661841`: full tests, deterministic evaluation, pinned single-agent evaluation, and exploratory role-split evaluation all passed.
 - Deterministic + single-agent + role-split evidence was persisted by `github-actions[bot]` in commit `bc8b184bc38b6ed22f7589ae0273be376ecfc40c`.
-- A final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate must pass on the findings/completion head before M09 is marked `DONE`.
+- Final source-of-truth push gate `32503903022` passed on head `258a5def4ea8fcc76e07eb876d9567402a63f5db` before this automated `[skip ci]` completion update; full tests, deterministic evaluation, pinned single-agent evaluation, and role-split evaluation all succeeded.
 
 ## Definition of Done
 
@@ -94,8 +94,8 @@ Only after the single-agent result was recorded, the unchanged proposer was pair
 - [x] Record phase-1 findings and representative baseline/recovery failures.
 - [x] Add a pinned model-driven single-agent planner/control on the unchanged benchmark and retain its failures.
 - [x] Compare a shared-checkpoint role-split multi-agent variant only after the single-agent model control was recorded, with post-hoc caveat.
-- [ ] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate.
-- [ ] Mark M09 complete in ROADMAP and point the immediate next step to M10.
+- [x] Pass final source-of-truth full-regression + deterministic + pinned single-agent + role-split gate.
+- [x] Mark M09 complete in ROADMAP and point the immediate next step to M10.
 
 ## Guardrails
 

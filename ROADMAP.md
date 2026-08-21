@@ -403,7 +403,7 @@ Sub-labs:
 - **Web RAG — `DONE`**
 - **SQL / structured RAG — `DONE`**
 - **metadata / filter-aware RAG — `DONE`**
-- Code RAG — `TODO`
+- **Code RAG — `DONE`**
 - multimodal RAG — `TODO`
 - visual-document / page-image RAG — `TODO`
 - long-context vs retrieval routing — `TODO`
@@ -463,6 +463,32 @@ Evaluation evidence:
 - Persisted JSON/Markdown includes rankings, filter context, metadata, eligibility, rejection counts, answers, and latency.
 
 Artifacts: `benchmarks/m08_metadata/`, `src/rag_practice/metadata_filter/`, `src/rag_practice/evaluation/metadata_filter.py`, `labs/08_specialized_sources/metadata/`, and `.github/workflows/m08-metadata.yml`.
+### Code RAG summary
+
+Code RAG compares whole-file BM25, AST-symbol BM25, and symbol retrieval with explicit forward/reverse call-graph expansion over a frozen 13-file Python repository.
+
+| System | Recall@4 | Complete@4 | Primary Hit@1 | Single-answer location | Dependency complete | Call-site confusion | Context chars@4 | Exact line locators |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| file BM25 | **1.000** | **1.000** | 0.500 | 0.571 | **1.000** | 1.000 | 1018.6 | 0.000 |
+| symbol BM25 | 0.950 | 0.900 | 0.500 | 0.571 | 0.750 | 1.000 | **740.5** | **1.000** |
+| symbol + graph | **1.000** | **1.000** | **0.800** | **1.000** | **1.000** | **0.000** | 748.0 | **1.000** |
+
+Important Code RAG findings:
+
+- **File recall is not exact code evidence.** Coarse files can cover the qrels while failing to identify the implementation or exact source span.
+- **Symbol chunking alone can regress repository evidence.** Smaller AST units reduce context size and provide line locators, but isolated ranking loses cross-file dependency completeness.
+- **Graph expansion repairs controlled repository relationships.** Forward edges recover callees and reverse edges recover change-locality callers while preserving exact AST locators.
+- **Conservative resolution avoids false evidence.** Local-variable attribute calls such as `rates.get(...)` are not guessed into unrelated repository methods.
+- **This is not semantic program analysis.** Results are for a tiny deterministic Python repository with direct import/call resolution only.
+
+Evaluation evidence:
+
+- First candidate gate `32452392799`: 101 tests passed and one stale line-span assertion failed; no evaluator result was accepted from that run.
+- Initial successful PR gate `32452536862`: **102 tests passed** plus successful Code RAG evaluation.
+- Final source-of-truth gate `32455642731` passed before this ROADMAP update on head `faef89f16df94fe1675a523d0aba7b358befca0d`.
+- File retrieval, exact symbol/location retrieval, dependency evidence, and context cost are evaluated separately.
+
+Artifacts: `benchmarks/m08_code/`, `src/rag_practice/code_rag/`, `src/rag_practice/evaluation/code_rag.py`, `labs/08_specialized_sources/code/`, and `.github/workflows/m08-code.yml`.
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -473,4 +499,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.4 — Code RAG**. Treat code structure as first-class retrieval metadata instead of flattening a repository into anonymous text: benchmark file/function/class/symbol lookup, implementation-vs-call-site retrieval, cross-file dependency context, duplicate identifiers, and change-locality. Compare plain text retrieval with symbol-aware/chunk-aware retrieval, evaluate exact source locations and dependency evidence separately from answer quality, and measure indexing/query cost.
+Continue **M08.5 — Multimodal RAG**. Keep modality-specific evidence explicit: build a controlled corpus where some answers are recoverable from text/alt-text metadata while others require image-native evidence; compare text-only surrogate retrieval with multimodal retrieval; evaluate retrieval relevance, modality coverage, evidence provenance, answer correctness, and cost separately. Do not treat captions/OCR as equivalent to visual understanding.

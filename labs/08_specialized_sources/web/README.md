@@ -1,6 +1,6 @@
 # M08.1 — Web RAG
 
-Status: **IN PROGRESS** — implementation/evaluation candidate pending CI evidence.
+Status: **COMPLETION CANDIDATE** — final source-of-truth gate pending.
 
 ## Hypothesis
 
@@ -71,7 +71,31 @@ System behavior:
 - source calls;
 - search, rerank, and end-to-end latency.
 
-The extractive answerer returns the top page verbatim. This is deliberate: groundedness should be `1.0` even when the wrong/stale page wins, making the separation between **grounded** and **correct/current** visible.
+The extractive answerer returns the top page verbatim. This is deliberate: groundedness can be `1.0` even when the wrong/stale page wins, making the separation between **grounded** and **correct/current** visible.
+
+## Persisted evaluation
+
+Initial CI run `32447107848` passed the full repository suite (**82 tests**) and the Web RAG evaluator.
+
+| System | Hit@1 | Recall@3 | MRR | Stale top1 | Low-authority top1 | Duplicate@3 | Answer contains ref | Grounded |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| body BM25 | 0.500 | 0.875 | 0.688 | 0.400 | 0.375 | 0.167 | 0.500 | **1.000** |
+| metadata BM25 | 0.375 | **1.000** | 0.667 | 0.800 | 0.625 | 0.167 | 0.375 | **1.000** |
+| Web policy | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **0.000** | **1.000** | **1.000** |
+
+The policy weights were not tuned after seeing these test results.
+
+## Error analysis / findings
+
+- **Metadata can hurt ranking.** Adding domain/title text increases Recall@3 to `1.0`, but Hit@1 drops from `0.500` to `0.375`. Query-shaped forum/blog titles strengthen the wrong pages more than the official answer pages.
+- **Freshness alone is not enough.** `w1`, `w2`, and `w3` expose pages that were updated very recently but are stale or low-authority. A recency-only policy would still be vulnerable.
+- **Groundedness is not freshness or correctness.** Both BM25 baselines have grounded-answer rate `1.0` because the answer is copied verbatim from the selected page, while answer correctness is only `0.500`/`0.375`.
+- **Canonical duplicates waste evidence budget.** On `w4`, the official security advisory and its mirror occupy two of three lexical slots. Mean duplicate rate@3 is `0.167` for both baselines and `0.0` after canonical collapse.
+- **Historical questions need different temporal semantics.** `w5` asks for the previous release; the policy deliberately disables the freshness term for that intent and keeps the historical page at rank 1.
+- **A single authority scalar is only a teaching control.** Production trust should depend on provenance, publisher type, corroboration, claim type, and possibly domain-specific policy; this lab only isolates the mechanism.
+- **Perfect policy scores are a benchmark limitation, not a general Web RAG claim.** The snapshot is tiny and deliberately constructed around known failure modes. The next step should not add more tuning to this same test set.
+
+Machine-readable evidence: `results/results.json`. Human-readable aggregate table: `results/results.md`.
 
 ## Definition of Done
 
@@ -82,7 +106,9 @@ The extractive answerer returns the top page verbatim. This is deliberate: groun
 - [x] canonical deduplication implemented
 - [x] retrieval/source and answer metrics separated
 - [x] regression tests added
-- [ ] CI full-suite + Web RAG evaluator passes
-- [ ] machine-readable and human-readable results reviewed
-- [ ] representative stale/authority/duplicate failures written down
-- [ ] ROADMAP marks Web RAG sub-lab DONE only after evidence passes
+- [x] CI full-suite + Web RAG evaluator passes
+- [x] machine-readable and human-readable results reviewed
+- [x] representative stale/authority/duplicate failures written down
+- [ ] ROADMAP marks Web RAG sub-lab DONE only after the final gate passes
+
+Web RAG is not merged until the final unchecked gate passes.

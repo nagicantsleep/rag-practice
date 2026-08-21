@@ -1,6 +1,6 @@
 # M10 — Training and Production RAG
 
-Status: **IN PROGRESS — M10.1 RETRIEVER EVIDENCE RECORDED**
+Status: **IN PROGRESS — M10.1 TRAINING EVIDENCE RECORDED**
 
 M10 intentionally separates model-training evidence from production-system evidence. Offline retrieval gains do not imply serving readiness, and serving mechanics do not imply retrieval quality.
 
@@ -13,8 +13,6 @@ Systems:
 1. pinned pretrained MiniLM baseline;
 2. pair-only fine-tune from the same pinned checkpoint;
 3. hard-negative fine-tune from the same checkpoint, optimizer, seed, epochs, and batch size, adding exactly one baseline-mined TRAIN negative per query.
-
-Evaluation keeps held-out Recall@1/3, MRR, score margin, class-level errors, mined-negative identity/rank, training loss, model/index footprint, and CPU timing separate. Dev is diagnostic only. A negative or zero fine-tuning delta is retained rather than tuned away.
 
 ### Retriever evidence
 
@@ -33,9 +31,29 @@ The first valid fine-tuned run was PR gate `32508731504` / job `96854692711`: **
 - **Hard negatives are not automatically better.** Every mined TRAIN negative is baseline rank 2, yet the explicit-negative variant reaches margin `0.1588`, below pair-only `0.1686`, and takes more CPU training time under the frozen contract.
 - **Dev exposed a real confuser before any training selection.** The untouched baseline has dev Recall@1 `0.875`; the status-alias class is the weak class (`0.5` Recall@1), including Eon North where its deployment manual outranks the service-status card. Dev remains diagnostic and is not used to select a new test-facing configuration.
 - **Rank and margin answer different questions.** A larger cosine margin is useful evidence that training changed separation, but it is not counted as a retrieval win when held-out ranking is unchanged.
-- **This is a tiny synthetic domain-adaptation control.** The result does not imply that two epochs, pair-only training, or these hard negatives generalize to production corpora.
 
 Persisted evidence: `labs/10_training_production/results/training_results.json` and `training_results.md`. All eight hard negatives are recorded with baseline rank/score; no dev/test document participates in mining.
+
+## M10.1b — Learned reranker
+
+The transparent reranker contract was frozen at commit `888b20306a3ac416e78c7b5cc3d5465604c648f5` before its first result. It reorders only MiniLM baseline top-3 candidates using four fixed features — dense cosine, BM25 score, query-token overlap fraction, and reciprocal first-stage rank — with a five-parameter linear scorer trained only on TRAIN candidate pairs.
+
+PR gate `32509314025` / job `96856483683` passed **144 repository tests**, the unchanged retriever evaluator, and the learned-reranker evaluator.
+
+| Split | Candidate Recall@3 | Rerank Recall@1 | MRR | Mean learned margin | Mean rerank ms |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| dev | **1.000** | 0.875 | 0.9375 | 3.9366 | ~0.054 |
+| test | **1.000** | **1.000** | **1.000** | 5.5844 | ~0.051 |
+
+### Learned-reranker findings
+
+- **Candidate recall remains the ceiling.** The relevant document is present in top-3 for every dev/test query; the learned scorer is never credited for evidence the first stage did not retrieve.
+- **The learned reranker does not improve held-out rank quality here.** Dev Recall@1/MRR remain `0.875/0.9375`, and test remains `1.0/1.0` because the first-stage baseline was already rank-perfect on test.
+- **A larger learned-score margin is not a retrieval win by itself.** The linear scorer separates candidates strongly, but rank metrics do not change; the margin lives in an arbitrary learned-score scale and is reported only as model behavior.
+- **The tiny learned scorer is cheap but not magically useful.** It adds only five float32 parameters and roughly `0.05 ms/query` rerank computation, yet adds no quality on this frozen test.
+- **This reranker is post-hoc on the same benchmark.** Its contract was created only after retriever evidence was recorded, so it is a mechanism/training control rather than fresh held-out generalization evidence.
+
+Persisted evidence: `labs/10_training_production/results/reranker_results.json` and `reranker_results.md`.
 
 ### M10.1 Definition of Done
 
@@ -44,25 +62,11 @@ Persisted evidence: `labs/10_training_production/results/training_results.json` 
 - [x] Add rank/margin/class-level evaluation and unit tests.
 - [x] Pass full repository regression + pinned M10.1 retriever training evaluator.
 - [x] Persist results and inspect representative errors before changing scope.
-- [ ] Freeze and evaluate an explicit learned-reranker training control without changing the retrieval split.
-
-## M10.1b — Learned reranker
-
-This is a post-retriever-evidence training control on the **unchanged** M10.1 split, not fresh held-out benchmark design. Its architecture/hyperparameters must be frozen before its first result is inspected. Candidate recall is measured before reranking so a reranker cannot receive credit for a missing positive.
+- [x] Freeze and evaluate an explicit learned-reranker training control without changing the retrieval split.
 
 ## M10.2 — Production contracts
 
-After M10.1 evidence is recorded, freeze deterministic serving scenarios covering:
-
-- query/result caching and version-aware invalidation;
-- incremental upsert/delete indexing;
-- traceable latency/cache/index-generation observability;
-- ACL filtering before evidence exposure;
-- source freshness/staleness policy;
-- adversarial/prompt-injection retrieval exposure;
-- scaling and regression checks.
-
-Production metrics will be reported independently from offline retrieval quality. A cache hit that returns stale or unauthorized evidence is a failure even if latency improves.
+With M10.1 evidence now recorded, the next phase freezes deterministic serving scenarios before production implementation. Production metrics remain independent from offline retrieval metrics: a fast cache hit that serves stale or unauthorized evidence is a failure.
 
 ### M10.2 Definition of Done
 

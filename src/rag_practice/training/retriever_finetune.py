@@ -210,7 +210,10 @@ def _differentiable_embeddings(model: Any, texts: Sequence[str]) -> Any:
 
     features = model.tokenize(list(texts))
     device = next(model.parameters()).device
-    features = {name: value.to(device) for name, value in features.items()}
+    features = {
+        name: value.to(device) if hasattr(value, "to") else value
+        for name, value in features.items()
+    }
     embeddings = model(features)["sentence_embedding"]
     return F.normalize(embeddings, p=2, dim=-1)
 
@@ -312,7 +315,7 @@ def evaluate_model_on_split(model: Any, split: BenchmarkSplit) -> dict[str, obje
 
 
 def describe_model(model: Any, *, model_load_ms: float) -> dict[str, object]:
-    dimension = int(model.get_sentence_embedding_dimension())
+    dimension = int(model.get_embedding_dimension())
     return {
         "name": MODEL_NAME,
         "revision": MODEL_REVISION,

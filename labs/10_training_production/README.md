@@ -1,6 +1,6 @@
 # M10 — Training and Production RAG
 
-Status: **IN PROGRESS — TRAINING + PRODUCTION EVIDENCE COMPLETE / FINAL GATE PENDING**
+Status: **DONE**
 
 M10 intentionally separates model-training evidence from production-system evidence. Offline retrieval gains do not imply serving readiness, and serving mechanics do not imply retrieval quality.
 

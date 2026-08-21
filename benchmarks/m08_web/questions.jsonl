@@ -1,0 +1,8 @@
+{"id":"w1","task":"current_fact","query":"What is the current stable NimbusDB version?","relevant":["p2"],"answer":"NimbusDB 4.0","requires_freshness":true,"stale_ids":["p1","p3"],"min_authority":0.8}
+{"id":"w2","task":"current_fact","query":"Who is the current lead of Aurora Lab?","relevant":["p6"],"answer":"Leo Chen","requires_freshness":true,"stale_ids":["p5","p8"],"min_authority":0.8}
+{"id":"w3","task":"authority_conflict","query":"Does NimbusDB currently support Python 3.13?","relevant":["p9"],"answer":"supports Python 3.13","requires_freshness":true,"stale_ids":[],"min_authority":0.8}
+{"id":"w4","task":"authority_duplicate","query":"Which NimbusDB release fixes CVE-2026-4242?","relevant":["p11"],"answer":"NimbusDB 4.0.2","requires_freshness":false,"stale_ids":[],"min_authority":0.8}
+{"id":"w5","task":"historical","query":"What was the previous stable NimbusDB release before version 4?","relevant":["p13"],"answer":"NimbusDB 3.0","requires_freshness":false,"stale_ids":[],"min_authority":0.8}
+{"id":"w6","task":"static","query":"Where is Aurora Lab located?","relevant":["p14"],"answer":"Tromso","requires_freshness":false,"stale_ids":[],"min_authority":0.8}
+{"id":"w7","task":"current_fact","query":"What is the latest stable NimbusDB release?","relevant":["p2"],"answer":"NimbusDB 4.0","requires_freshness":true,"stale_ids":["p1","p3"],"min_authority":0.8}
+{"id":"w8","task":"current_fact","query":"Who currently leads Aurora Lab?","relevant":["p6"],"answer":"Leo Chen","requires_freshness":true,"stale_ids":["p5","p8"],"min_authority":0.8}

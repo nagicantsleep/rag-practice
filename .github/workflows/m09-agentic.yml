@@ -8,10 +8,12 @@ on:
       - "src/rag_practice/agentic/**"
       - "src/rag_practice/evaluation/agentic.py"
       - "src/rag_practice/evaluation/agentic_pretrained.py"
+      - "src/rag_practice/evaluation/agentic_multi.py"
       - "benchmarks/m09_agentic/**"
       - "labs/09_agentic_rag/**"
       - "tests/test_m09_agentic.py"
       - "tests/test_m09_agentic_smollm.py"
+      - "tests/test_m09_agentic_multi.py"
       - ".github/workflows/m09-agentic.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -20,10 +22,12 @@ on:
       - "src/rag_practice/agentic/**"
       - "src/rag_practice/evaluation/agentic.py"
       - "src/rag_practice/evaluation/agentic_pretrained.py"
+      - "src/rag_practice/evaluation/agentic_multi.py"
       - "benchmarks/m09_agentic/**"
       - "labs/09_agentic_rag/**"
       - "tests/test_m09_agentic.py"
       - "tests/test_m09_agentic_smollm.py"
+      - "tests/test_m09_agentic_multi.py"
       - ".github/workflows/m09-agentic.yml"
       - "pyproject.toml"
       - "ROADMAP.md"
@@ -50,7 +54,9 @@ jobs:
         run: python labs/09_agentic_rag/run.py
       - name: Evaluate pinned SmolLM2 tool planner
         run: python labs/09_agentic_rag/run_smollm.py
-      - name: Persist M09 deterministic and pretrained evidence
+      - name: Evaluate exploratory role-split multi-agent control
+        run: python labs/09_agentic_rag/run_multi_agent.py
+      - name: Persist M09 evidence
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
@@ -59,7 +65,9 @@ jobs:
             labs/09_agentic_rag/results/results.json \
             labs/09_agentic_rag/results/results.md \
             labs/09_agentic_rag/results/smollm_results.json \
-            labs/09_agentic_rag/results/smollm_results.md
+            labs/09_agentic_rag/results/smollm_results.md \
+            labs/09_agentic_rag/results/multi_agent_results.json \
+            labs/09_agentic_rag/results/multi_agent_results.md
           if ! git diff --cached --quiet; then
             git commit -m "test: record M09 agentic evaluation [skip ci]"
             git push origin HEAD:feat/m09-agentic-rag

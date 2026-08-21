@@ -1,6 +1,6 @@
 # M08.5 — Multimodal RAG
 
-Status: **FINDINGS COMPLETE** — final source-of-truth CI gate pending before ROADMAP completion.
+Status: **DONE** — final source-of-truth CI gate passed; ROADMAP completion follows this evidence.
 
 ## Hypothesis
 
@@ -88,7 +88,7 @@ CLIP learns aligned image/text representations through contrastive image-text tr
 - Initial candidate gate exposed malformed PPM fixtures; no evaluator result from that failing gate was accepted.
 - Successful repaired-benchmark PR gate `32460722561`: **110 tests passed**, deterministic multimodal evaluation passed, and the pinned CLIP evaluation passed.
 - Push automation persisted deterministic and CLIP JSON/Markdown evidence in commit `9e299f6ba512022900de7273b388730f0ae51603`.
-- A final source-of-truth gate is still required on this findings commit before ROADMAP marks the sub-lab DONE.
+- Final source-of-truth gate `32460985448` passed on findings head `42a7b6e114f437e05d1adb6f984527ce04ee1dd8` with the full test suite, deterministic evaluator, and pinned CLIP evaluator all successful.
 
 ## Definition of Done
 
@@ -105,7 +105,7 @@ CLIP learns aligned image/text representations through contrastive image-text tr
 - [x] pinned pretrained CLIP control completes successfully on the same benchmark
 - [x] CLIP result retained even though it underperforms the handcrafted control
 - [x] final findings/error analysis written down
-- [ ] final source-of-truth gate passes on the findings commit
-- [ ] ROADMAP marks Multimodal RAG DONE only after that gate
+- [x] final source-of-truth gate passes on the findings commit
+- [x] ROADMAP marks Multimodal RAG DONE only after that gate
 
 This phase is a controlled mechanism study, not a claim that handcrafted color/layout features or a tiny synthetic CLIP benchmark generalize to production multimodal RAG.

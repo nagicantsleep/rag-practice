@@ -1,0 +1,9 @@
+{"id":"p1","title":"Alpha pump panel A","caption":"Alpha pump control panel inspection; indicator state omitted.","site":"alpha","kind":"panel","file":"p1.ppm"}
+{"id":"p2","title":"Alpha pump panel B","caption":"Alpha pump control panel inspection; indicator state omitted.","site":"alpha","kind":"panel","file":"p2.ppm"}
+{"id":"p3","title":"Beta pump panel A","caption":"Beta pump control panel inspection; indicator state omitted.","site":"beta","kind":"panel","file":"p3.ppm"}
+{"id":"p4","title":"Unassigned control panel","caption":"Control panel inspection; indicator state omitted.","site":"unassigned","kind":"panel","file":"p4.ppm"}
+{"id":"p5","title":"Beta pump panel B","caption":"Beta pump control panel inspection; indicator state omitted.","site":"beta","kind":"panel","file":"p5.ppm"}
+{"id":"c1","title":"Quarterly capacity chart Q1","caption":"Capacity comparison chart for Q1; bar heights omitted.","site":"finance","kind":"chart","quarter":"q1","file":"c1.ppm"}
+{"id":"c2","title":"Quarterly capacity chart Q2","caption":"Capacity comparison chart for Q2; bar heights omitted.","site":"finance","kind":"chart","quarter":"q2","file":"c2.ppm"}
+{"id":"d1","title":"North warehouse evacuation diagram","caption":"Evacuation layout for the north warehouse; marker position omitted.","site":"north","kind":"diagram","file":"d1.ppm"}
+{"id":"d2","title":"South warehouse evacuation diagram","caption":"Evacuation layout for the south warehouse; marker position omitted.","site":"south","kind":"diagram","file":"d2.ppm"}

@@ -1,0 +1,10 @@
+{"id": "v1", "task": "text_sufficient", "query": "What incident escalation hotline is listed in the Alpha Operations Review?", "relevant": ["alpha_p1"], "answer": "771"}
+{"id": "v2", "task": "text_sufficient", "query": "What standard shipping SLA is listed in the Beta Shipping Policy?", "relevant": ["beta_p1"], "answer": "48 hours"}
+{"id": "v3", "task": "visual_layout", "query": "Which page contains a red APPROVED stamp in the upper-right?", "relevant": ["alpha_p2"], "answer": "alpha_p2", "region": "upper-right"}
+{"id": "v4", "task": "visual_layout", "query": "Which page has a green sidebar on the left?", "relevant": ["gamma_p1"], "answer": "gamma_p1", "region": "left"}
+{"id": "v5", "task": "table_layout", "query": "What Q2 revenue value is inside the blue highlighted cell?", "relevant": ["alpha_p1"], "answer": "150", "region": "center"}
+{"id": "v6", "task": "chart_layout", "query": "Which page shows a blue bar taller than an orange bar?", "relevant": ["beta_p2"], "answer": "beta_p2"}
+{"id": "v7", "task": "cross_modal", "query": "In the Beta Capacity Report, which page shows a blue bar taller than an orange bar?", "relevant": ["beta_p2"], "answer": "beta_p2"}
+{"id": "v8", "task": "region_layout", "query": "Where is the yellow Total 420 box on the Gamma Invoice page?", "relevant": ["gamma_p2"], "answer": "lower-right", "region": "lower-right"}
+{"id": "v9", "task": "no_evidence", "query": "Emergency code 999 evidence?", "relevant": [], "answer": "NO_EVIDENCE"}
+{"id": "v10", "task": "no_evidence", "query": "Which page has a magenta stamp in the lower-left?", "relevant": [], "answer": "NO_EVIDENCE"}

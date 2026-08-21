@@ -24,7 +24,7 @@ The frozen benchmark contains 6 synthetic page rasters and 10 queries covering t
 | OCR + page fusion | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | 3.2 |
 | pinned ColSmol | **1.000** | 0.875 | **1.000** | **1.000** | 0.500 | 0.000 | 0.400 | **1.000** | 0.000 | 6.0 |
 
-Pinned ColSmol CPU/float32 evidence records model load `4508.89 ms`, six-page index build `136884.19 ms`, embedding shape `[6, 875, 128]` / `2,688,000` logical bytes, and mean query latency `100.73 ms`. These are GitHub Actions CPU sanity measurements, not serving benchmarks.
+The latest persisted ColSmol CPU/float32 snapshot records model load `8406.14 ms`, six-page index build `119798.50 ms`, embedding shape `[6, 875, 128]` / `2,688,000` logical bytes, and mean query latency `85.39 ms`. These are GitHub Actions CPU sanity measurements and vary across runs; they are not serving benchmarks.
 
 ## Findings
 
@@ -45,8 +45,9 @@ The benchmark was frozen before successful pretrained inference. CI exposed repo
 
 - Phase-1 repaired-benchmark gate `32474824392` / job `96748883250`: **116 tests passed** and deterministic evaluation passed; the then-unpinned upstream base lookup failed before pretrained inference.
 - Full pinned pretrained PR gate `32475115855` / job `96749747685`: **116 tests passed**, deterministic evaluation passed, and pinned ColSmol evaluation passed.
-- Deterministic and pretrained JSON/Markdown evidence was persisted by the push workflow in commit `a263bc29c43bd2921c49aeb0958c9a582af2da61`.
-- Final source-of-truth gate `32475921261` / job `96752123353` passed on findings/ROADMAP head `16687ef78d40925661d848405d5be42ae0977701`: **116 tests passed**, deterministic evaluation passed, and pinned ColSmol evaluation passed before this docs-only completion update.
+- Deterministic and pretrained JSON/Markdown evidence was first persisted by the push workflow in commit `a263bc29c43bd2921c49aeb0958c9a582af2da61`.
+- Final source-of-truth gate `32475921261` / job `96752123353` passed on findings/ROADMAP head `16687ef78d40925661d848405d5be42ae0977701`: **116 tests passed**, deterministic evaluation passed, and pinned ColSmol evaluation passed before the docs-only completion updates.
+- The corresponding final push workflow refreshed the same result artifacts in bot commit `9b07ec8871d3cdda488b3da08b3f131db4ef20f3`; aggregate quality metrics and rankings stayed unchanged while runtime values and tiny floating-point score differences were refreshed.
 
 ## Definition of Done
 

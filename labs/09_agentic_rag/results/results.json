@@ -8,7 +8,7 @@
         "grounded_answer_rate": 1,
         "mean_cost_units": 2.5833333333333335,
         "mean_evidence_recall": 1.0,
-        "mean_latency_ms": 0.04118108332325695,
+        "mean_latency_ms": 0.032149499998486895,
         "mean_steps": 1.9166666666666667,
         "mean_tool_precision": 1.0,
         "mean_tool_recall": 1.0,
@@ -42,7 +42,7 @@
           ],
           "grounded": true,
           "id": "a1",
-          "latency_ms": 0.046269999984360766,
+          "latency_ms": 0.034712000001491106,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the Cedar emergency rollback phrase?",
@@ -61,7 +61,7 @@
                 "d3",
                 "d2"
               ],
-              "latency_ms": 0.02716099999133803,
+              "latency_ms": 0.02048100000706654,
               "observation": "d3: Cedar deployment guide: emergency rollback phrase is quiet harbor.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -96,7 +96,7 @@
           ],
           "grounded": true,
           "id": "a2",
-          "latency_ms": 0.05078600003116662,
+          "latency_ms": 0.03922899998087814,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "How many Atlas field kits are in stock?",
@@ -115,7 +115,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.019458999986454728,
+              "latency_ms": 0.015003000015667567,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -126,7 +126,7 @@
               "evidence_ids": [
                 "inventory:SKU-A17"
               ],
-              "latency_ms": 0.0008809999485492881,
+              "latency_ms": 0.0007310000000870787,
               "observation": "14",
               "success": true,
               "tool": "inventory_lookup"
@@ -161,7 +161,7 @@
           ],
           "grounded": true,
           "id": "a3",
-          "latency_ms": 0.05388099998526741,
+          "latency_ms": 0.042463999989195145,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the current Orion backup service status?",
@@ -180,7 +180,7 @@
                 "d2",
                 "d4"
               ],
-              "latency_ms": 0.02400599998964026,
+              "latency_ms": 0.018707999998923697,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -191,7 +191,7 @@
               "evidence_ids": [
                 "status:svc-orion-backup"
               ],
-              "latency_ms": 0.000841999963085982,
+              "latency_ms": 0.0006310000060238963,
               "observation": "degraded",
               "success": true,
               "tool": "status_lookup"
@@ -234,7 +234,7 @@
           ],
           "grounded": true,
           "id": "a4",
-          "latency_ms": 0.08553899999697023,
+          "latency_ms": 0.06709100000534818,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "How many total Atlas field kits and SKU-B22 spares are in stock?",
@@ -253,7 +253,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.0250079999659647,
+              "latency_ms": 0.019509999987121773,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -264,7 +264,7 @@
               "evidence_ids": [
                 "inventory:SKU-A17"
               ],
-              "latency_ms": 0.00066100000140068,
+              "latency_ms": 0.0004909999802293896,
               "observation": "14",
               "success": true,
               "tool": "inventory_lookup"
@@ -275,7 +275,7 @@
               "evidence_ids": [
                 "inventory:SKU-B22"
               ],
-              "latency_ms": 0.0005100000066704524,
+              "latency_ms": 0.0003510000112783018,
               "observation": "9",
               "success": true,
               "tool": "inventory_lookup"
@@ -286,7 +286,7 @@
               "evidence_ids": [
                 "calculator:14 + 9"
               ],
-              "latency_ms": 0.003405000029488292,
+              "latency_ms": 0.002694000016845166,
               "observation": "23",
               "success": true,
               "tool": "calculator"
@@ -321,7 +321,7 @@
           ],
           "grounded": true,
           "id": "a5",
-          "latency_ms": 0.04491699996833631,
+          "latency_ms": 0.0374870000143801,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the current Lumen west service status?",
@@ -340,7 +340,7 @@
                 "d4",
                 "d2"
               ],
-              "latency_ms": 0.024065999980393826,
+              "latency_ms": 0.021152000016400052,
               "observation": "d4: Lumen west service uses incident alias lumen-west for status lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -351,7 +351,7 @@
               "evidence_ids": [
                 "status:lumen-west"
               ],
-              "latency_ms": 0.0006209999696693558,
+              "latency_ms": 0.0005710000152703287,
               "observation": "healthy",
               "success": true,
               "tool": "status_lookup"
@@ -381,7 +381,7 @@
           ],
           "grounded": true,
           "id": "a6",
-          "latency_ms": 0.013879999983146263,
+          "latency_ms": 0.010836999990715412,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the stock count for SKU-C05?",
@@ -399,7 +399,7 @@
               "evidence_ids": [
                 "inventory:SKU-C05"
               ],
-              "latency_ms": 0.0005409999630501261,
+              "latency_ms": 0.0005409999914718355,
               "observation": "31",
               "success": true,
               "tool": "inventory_lookup"
@@ -429,7 +429,7 @@
           ],
           "grounded": true,
           "id": "a7",
-          "latency_ms": 0.011336999989453034,
+          "latency_ms": 0.008773000018891253,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is 17 + 25?",
@@ -447,7 +447,7 @@
               "evidence_ids": [
                 "calculator:17 + 25"
               ],
-              "latency_ms": 0.0026739999725577945,
+              "latency_ms": 0.002033000015444486,
               "observation": "42",
               "success": true,
               "tool": "calculator"
@@ -476,7 +476,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a8",
-          "latency_ms": 0.03225899996550652,
+          "latency_ms": 0.023496000011391516,
           "no_evidence": true,
           "plan_sequence_exact": true,
           "question": "What is the Atlas cafeteria menu code?",
@@ -495,7 +495,7 @@
                 "d5",
                 "d1"
               ],
-              "latency_ms": 0.021562000029007322,
+              "latency_ms": 0.015383000004476344,
               "observation": "d5: Routine training note: teams review timestamps and owner names during handoff; this document contains no inventory key, service id, rollback phrase, or menu code.\nd1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.",
               "success": true,
               "tool": "docs_search"
@@ -532,7 +532,7 @@
           ],
           "grounded": true,
           "id": "a9",
-          "latency_ms": 0.04570900000544498,
+          "latency_ms": 0.03558399998837558,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "Check stock for Atlas field kit.",
@@ -548,7 +548,7 @@
               "argument": "Atlas field kit",
               "cost": 1.0,
               "evidence_ids": [],
-              "latency_ms": 0.0005010000450056395,
+              "latency_ms": 0.00034100000334547076,
               "observation": "NOT_FOUND",
               "success": false,
               "tool": "inventory_lookup"
@@ -560,7 +560,7 @@
                 "d1",
                 "d4"
               ],
-              "latency_ms": 0.01939899999570116,
+              "latency_ms": 0.015243000007103547,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -571,7 +571,7 @@
               "evidence_ids": [
                 "inventory:SKU-A17"
               ],
-              "latency_ms": 0.0004810000291399774,
+              "latency_ms": 0.00039099998616620724,
               "observation": "14",
               "success": true,
               "tool": "inventory_lookup"
@@ -602,7 +602,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a10",
-          "latency_ms": 0.03623399999241883,
+          "latency_ms": 0.02790199999935794,
           "no_evidence": true,
           "plan_sequence_exact": true,
           "question": "What is the current Falcon backup service status?",
@@ -618,7 +618,7 @@
               "argument": "falcon-backup",
               "cost": 1.0,
               "evidence_ids": [],
-              "latency_ms": 0.00042000004896181053,
+              "latency_ms": 0.00029999998218954715,
               "observation": "NOT_FOUND",
               "success": false,
               "tool": "status_lookup"
@@ -630,7 +630,7 @@
                 "d2",
                 "d4"
               ],
-              "latency_ms": 0.022182999998676678,
+              "latency_ms": 0.016905999984828668,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -664,7 +664,7 @@
           ],
           "grounded": true,
           "id": "a11",
-          "latency_ms": 0.02178299996558053,
+          "latency_ms": 0.016975999983515067,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "Which has more stock, SKU-B22 or SKU-C05?",
@@ -682,7 +682,7 @@
               "evidence_ids": [
                 "inventory:SKU-B22"
               ],
-              "latency_ms": 0.0006209999696693558,
+              "latency_ms": 0.0004709999927854369,
               "observation": "9",
               "success": true,
               "tool": "inventory_lookup"
@@ -693,7 +693,7 @@
               "evidence_ids": [
                 "inventory:SKU-C05"
               ],
-              "latency_ms": 0.00039100001458791667,
+              "latency_ms": 0.00043000000005122274,
               "observation": "31",
               "success": true,
               "tool": "inventory_lookup"
@@ -729,7 +729,7 @@
           ],
           "grounded": true,
           "id": "a12",
-          "latency_ms": 0.05157800001143187,
+          "latency_ms": 0.041242999998303276,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "Report the Orion backup status and the Cedar rollback phrase.",
@@ -748,7 +748,7 @@
                 "d2",
                 "d3"
               ],
-              "latency_ms": 0.02385599998433463,
+              "latency_ms": 0.019549999990431388,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd3: Cedar deployment guide: emergency rollback phrase is quiet harbor.",
               "success": true,
               "tool": "docs_search"
@@ -759,7 +759,7 @@
               "evidence_ids": [
                 "status:svc-orion-backup"
               ],
-              "latency_ms": 0.000470000031782547,
+              "latency_ms": 0.0003810000066550856,
               "observation": "degraded",
               "success": true,
               "tool": "status_lookup"
@@ -776,7 +776,7 @@
         "grounded_answer_rate": 0.25,
         "mean_cost_units": 2.0,
         "mean_evidence_recall": 0.4930555555555556,
-        "mean_latency_ms": 0.03347874999803935,
+        "mean_latency_ms": 0.02520583333165405,
         "mean_steps": 1,
         "mean_tool_precision": 0.75,
         "mean_tool_recall": 0.4236111111111111,
@@ -810,7 +810,7 @@
           ],
           "grounded": true,
           "id": "a1",
-          "latency_ms": 0.06527800002231743,
+          "latency_ms": 0.04746199999772216,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the Cedar emergency rollback phrase?",
@@ -829,7 +829,7 @@
                 "d3",
                 "d2"
               ],
-              "latency_ms": 0.046249999968495104,
+              "latency_ms": 0.03417199999944387,
               "observation": "d3: Cedar deployment guide: emergency rollback phrase is quiet harbor.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -862,7 +862,7 @@
           ],
           "grounded": false,
           "id": "a2",
-          "latency_ms": 0.03698599999779617,
+          "latency_ms": 0.02905400000940972,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "How many Atlas field kits are in stock?",
@@ -881,7 +881,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.028452999970340898,
+              "latency_ms": 0.02262399999608533,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -914,7 +914,7 @@
           ],
           "grounded": false,
           "id": "a3",
-          "latency_ms": 0.03621500002282119,
+          "latency_ms": 0.027020999993965233,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is the current Orion backup service status?",
@@ -933,7 +933,7 @@
                 "d2",
                 "d4"
               ],
-              "latency_ms": 0.028874000008727307,
+              "latency_ms": 0.02121200000715362,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -970,7 +970,7 @@
           ],
           "grounded": false,
           "id": "a4",
-          "latency_ms": 0.03646499999376829,
+          "latency_ms": 0.02790199999935794,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "How many total Atlas field kits and SKU-B22 spares are in stock?",
@@ -989,7 +989,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.027622000004612346,
+              "latency_ms": 0.021091000007800176,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1022,7 +1022,7 @@
           ],
           "grounded": false,
           "id": "a5",
-          "latency_ms": 0.0327799999695344,
+          "latency_ms": 0.02417700000023615,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is the current Lumen west service status?",
@@ -1041,7 +1041,7 @@
                 "d4",
                 "d2"
               ],
-              "latency_ms": 0.025037000000338594,
+              "latency_ms": 0.018428000004178102,
               "observation": "d4: Lumen west service uses incident alias lumen-west for status lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1072,7 +1072,7 @@
           ],
           "grounded": false,
           "id": "a6",
-          "latency_ms": 0.027692000003298745,
+          "latency_ms": 0.021562999990010212,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is the stock count for SKU-C05?",
@@ -1091,7 +1091,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.02105099997606885,
+              "latency_ms": 0.01675500001852015,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1122,7 +1122,7 @@
           ],
           "grounded": false,
           "id": "a7",
-          "latency_ms": 0.018997999973180413,
+          "latency_ms": 0.014922999980626628,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is 17 + 25?",
@@ -1141,7 +1141,7 @@
                 "d3",
                 "d1"
               ],
-              "latency_ms": 0.01347100004522872,
+              "latency_ms": 0.010606000017787665,
               "observation": "d3: Cedar deployment guide: emergency rollback phrase is quiet harbor.\nd1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1170,7 +1170,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a8",
-          "latency_ms": 0.033960999985538365,
+          "latency_ms": 0.027622000004612346,
           "no_evidence": true,
           "plan_sequence_exact": true,
           "question": "What is the Atlas cafeteria menu code?",
@@ -1189,7 +1189,7 @@
                 "d5",
                 "d1"
               ],
-              "latency_ms": 0.02163200002769372,
+              "latency_ms": 0.018388000000868487,
               "observation": "d5: Routine training note: teams review timestamps and owner names during handoff; this document contains no inventory key, service id, rollback phrase, or menu code.\nd1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1223,7 +1223,7 @@
           ],
           "grounded": false,
           "id": "a9",
-          "latency_ms": 0.02741200000855315,
+          "latency_ms": 0.018428000004178102,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Check stock for Atlas field kit.",
@@ -1242,7 +1242,7 @@
                 "d1",
                 "d4"
               ],
-              "latency_ms": 0.020900999970763223,
+              "latency_ms": 0.01345000001151675,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1272,7 +1272,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a10",
-          "latency_ms": 0.031326999987868476,
+          "latency_ms": 0.023475999995525854,
           "no_evidence": true,
           "plan_sequence_exact": false,
           "question": "What is the current Falcon backup service status?",
@@ -1291,7 +1291,7 @@
                 "d2",
                 "d4"
               ],
-              "latency_ms": 0.023145000000113214,
+              "latency_ms": 0.017135999996753526,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1324,7 +1324,7 @@
           ],
           "grounded": false,
           "id": "a11",
-          "latency_ms": 0.022924000006696588,
+          "latency_ms": 0.017345999992812722,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Which has more stock, SKU-B22 or SKU-C05?",
@@ -1343,7 +1343,7 @@
                 "d1",
                 "d5"
               ],
-              "latency_ms": 0.017716999991534976,
+              "latency_ms": 0.013280000018767169,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd5: Routine training note: teams review timestamps and owner names during handoff; this document contains no inventory key, service id, rollback phrase, or menu code.",
               "success": true,
               "tool": "docs_search"
@@ -1377,7 +1377,7 @@
           ],
           "grounded": false,
           "id": "a12",
-          "latency_ms": 0.03170700000509896,
+          "latency_ms": 0.023496000011391516,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Report the Orion backup status and the Cedar rollback phrase.",
@@ -1396,7 +1396,7 @@
                 "d2",
                 "d3"
               ],
-              "latency_ms": 0.023505000001478038,
+              "latency_ms": 0.017126000017242404,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd3: Cedar deployment guide: emergency rollback phrase is quiet harbor.",
               "success": true,
               "tool": "docs_search"
@@ -1413,7 +1413,7 @@
         "grounded_answer_rate": 0.4166666666666667,
         "mean_cost_units": 1.5416666666666667,
         "mean_evidence_recall": 0.6597222222222222,
-        "mean_latency_ms": 0.02220775000694175,
+        "mean_latency_ms": 0.017291083331372192,
         "mean_steps": 1,
         "mean_tool_precision": 1.0,
         "mean_tool_recall": 0.6319444444444444,
@@ -1447,7 +1447,7 @@
           ],
           "grounded": true,
           "id": "a1",
-          "latency_ms": 0.04236399996671025,
+          "latency_ms": 0.032318999984681795,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the Cedar emergency rollback phrase?",
@@ -1466,7 +1466,7 @@
                 "d3",
                 "d2"
               ],
-              "latency_ms": 0.030895999998392654,
+              "latency_ms": 0.023375000012038072,
               "observation": "d3: Cedar deployment guide: emergency rollback phrase is quiet harbor.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1499,7 +1499,7 @@
           ],
           "grounded": false,
           "id": "a2",
-          "latency_ms": 0.029283999992912868,
+          "latency_ms": 0.023956000006819522,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "How many Atlas field kits are in stock?",
@@ -1518,7 +1518,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.02310499996838189,
+              "latency_ms": 0.018918999984407492,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1551,7 +1551,7 @@
           ],
           "grounded": false,
           "id": "a3",
-          "latency_ms": 0.03087699997195159,
+          "latency_ms": 0.023095000017292477,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is the current Orion backup service status?",
@@ -1570,7 +1570,7 @@
                 "d2",
                 "d4"
               ],
-              "latency_ms": 0.025147999963337497,
+              "latency_ms": 0.018527999998241285,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd4: Lumen west service uses incident alias lumen-west for status lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1607,7 +1607,7 @@
           ],
           "grounded": false,
           "id": "a4",
-          "latency_ms": 0.030225999978483742,
+          "latency_ms": 0.025738999994473488,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "How many total Atlas field kits and SKU-B22 spares are in stock?",
@@ -1626,7 +1626,7 @@
                 "d1",
                 "d2"
               ],
-              "latency_ms": 0.02508699998315933,
+              "latency_ms": 0.02146299999594703,
               "observation": "d1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1659,7 +1659,7 @@
           ],
           "grounded": false,
           "id": "a5",
-          "latency_ms": 0.03046600005518485,
+          "latency_ms": 0.023075000001426815,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "What is the current Lumen west service status?",
@@ -1678,7 +1678,7 @@
                 "d4",
                 "d2"
               ],
-              "latency_ms": 0.02526800000168805,
+              "latency_ms": 0.019119000000955566,
               "observation": "d4: Lumen west service uses incident alias lumen-west for status lookup.\nd2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.",
               "success": true,
               "tool": "docs_search"
@@ -1708,7 +1708,7 @@
           ],
           "grounded": true,
           "id": "a6",
-          "latency_ms": 0.009635000026264606,
+          "latency_ms": 0.007300999982362555,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is the stock count for SKU-C05?",
@@ -1726,7 +1726,7 @@
               "evidence_ids": [
                 "inventory:SKU-C05"
               ],
-              "latency_ms": 0.0014720000081069884,
+              "latency_ms": 0.0012120000008053466,
               "observation": "31",
               "success": true,
               "tool": "inventory_lookup"
@@ -1756,7 +1756,7 @@
           ],
           "grounded": true,
           "id": "a7",
-          "latency_ms": 0.00965399999586225,
+          "latency_ms": 0.007611999990331242,
           "no_evidence": false,
           "plan_sequence_exact": true,
           "question": "What is 17 + 25?",
@@ -1774,7 +1774,7 @@
               "evidence_ids": [
                 "calculator:17 + 25"
               ],
-              "latency_ms": 0.004375999992589641,
+              "latency_ms": 0.0031849999970745557,
               "observation": "42",
               "success": true,
               "tool": "calculator"
@@ -1803,7 +1803,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a8",
-          "latency_ms": 0.02891400004045863,
+          "latency_ms": 0.019778999984509937,
           "no_evidence": true,
           "plan_sequence_exact": true,
           "question": "What is the Atlas cafeteria menu code?",
@@ -1822,7 +1822,7 @@
                 "d5",
                 "d1"
               ],
-              "latency_ms": 0.02386599999226746,
+              "latency_ms": 0.015743000005841168,
               "observation": "d5: Routine training note: teams review timestamps and owner names during handoff; this document contains no inventory key, service id, rollback phrase, or menu code.\nd1: Atlas field kit inventory key is SKU-A17. Use that exact key for structured stock lookup.",
               "success": true,
               "tool": "docs_search"
@@ -1853,7 +1853,7 @@
           ],
           "grounded": false,
           "id": "a9",
-          "latency_ms": 0.0052980000191382715,
+          "latency_ms": 0.004527000015741578,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Check stock for Atlas field kit.",
@@ -1869,7 +1869,7 @@
               "argument": "Atlas field kit",
               "cost": 1.0,
               "evidence_ids": [],
-              "latency_ms": 0.0005009999881622207,
+              "latency_ms": 0.0004399999795623444,
               "observation": "NOT_FOUND",
               "success": false,
               "tool": "inventory_lookup"
@@ -1896,7 +1896,7 @@
           "expected_evidence": [],
           "grounded": true,
           "id": "a10",
-          "latency_ms": 0.005508000015197467,
+          "latency_ms": 0.004286999995883889,
           "no_evidence": true,
           "plan_sequence_exact": false,
           "question": "What is the current Falcon backup service status?",
@@ -1912,7 +1912,7 @@
               "argument": "falcon-backup",
               "cost": 1.0,
               "evidence_ids": [],
-              "latency_ms": 0.0006710000093335111,
+              "latency_ms": 0.0004610000132743153,
               "observation": "NOT_FOUND",
               "success": false,
               "tool": "status_lookup"
@@ -1944,7 +1944,7 @@
           ],
           "grounded": false,
           "id": "a11",
-          "latency_ms": 0.007390999996914616,
+          "latency_ms": 0.006059000014602134,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Which has more stock, SKU-B22 or SKU-C05?",
@@ -1962,7 +1962,7 @@
               "evidence_ids": [
                 "inventory:SKU-B22"
               ],
-              "latency_ms": 0.000891000013325538,
+              "latency_ms": 0.000711000012643126,
               "observation": "9",
               "success": true,
               "tool": "inventory_lookup"
@@ -1996,7 +1996,7 @@
           ],
           "grounded": false,
           "id": "a12",
-          "latency_ms": 0.03687600002422187,
+          "latency_ms": 0.029743999988340875,
           "no_evidence": false,
           "plan_sequence_exact": false,
           "question": "Report the Orion backup status and the Cedar rollback phrase.",
@@ -2015,7 +2015,7 @@
                 "d2",
                 "d3"
               ],
-              "latency_ms": 0.026008999952864542,
+              "latency_ms": 0.020501000022932203,
               "observation": "d2: Orion backup service canonical id is svc-orion-backup. Operational status lives in the status source.\nd3: Cedar deployment guide: emergency rollback phrase is quiet harbor.",
               "success": true,
               "tool": "docs_search"

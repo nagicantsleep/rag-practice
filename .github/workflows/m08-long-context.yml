@@ -7,6 +7,7 @@ on:
     paths:
       - "src/rag_practice/long_context/**"
       - "src/rag_practice/evaluation/long_context.py"
+      - "src/rag_practice/evaluation/long_context_pretrained.py"
       - "benchmarks/m08_long_context/**"
       - "labs/08_specialized_sources/long_context/**"
       - "tests/test_m08_long_context.py"
@@ -18,6 +19,7 @@ on:
     paths:
       - "src/rag_practice/long_context/**"
       - "src/rag_practice/evaluation/long_context.py"
+      - "src/rag_practice/evaluation/long_context_pretrained.py"
       - "benchmarks/m08_long_context/**"
       - "labs/08_specialized_sources/long_context/**"
       - "tests/test_m08_long_context.py"
@@ -46,6 +48,8 @@ jobs:
         run: pytest -q
       - name: Evaluate deterministic long-context routing
         run: python labs/08_specialized_sources/long_context/run.py
+      - name: Evaluate pinned SmolLM2 long-context reader
+        run: python labs/08_specialized_sources/long_context/run_smollm.py
       - name: Persist long-context evaluation evidence
         if: github.event_name == 'push'
         run: |
@@ -53,7 +57,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             labs/08_specialized_sources/long_context/results/results.json \
-            labs/08_specialized_sources/long_context/results/results.md
+            labs/08_specialized_sources/long_context/results/results.md \
+            labs/08_specialized_sources/long_context/results/smollm_results.json \
+            labs/08_specialized_sources/long_context/results/smollm_results.md
           if ! git diff --cached --quiet; then
             git commit -m "test: record M08.7 long-context evaluation [skip ci]"
             git push origin HEAD:feat/m08-long-context-routing

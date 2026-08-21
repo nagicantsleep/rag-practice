@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "baseline_model": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1c82ace116a2629de82404c4be48c0e5d4cf08be"
+  },
+  "training_contract": {
+    "seed": 23,
+    "epochs": 2,
+    "batch_size": 4,
+    "learning_rate": 0.00002,
+    "temperature": 0.05,
+    "max_sequence_length": 128,
+    "pair_only_loss": "in_batch_softmax",
+    "hard_negative_loss": "in_batch_softmax_plus_explicit_mined_negative",
+    "hard_negative_policy": "For each train query, rank TRAIN documents only with the pinned unfine-tuned baseline and select the highest-ranked non-positive document. Dev/test documents and qrels are never visible to mining or training.",
+    "selection_policy": "Hyperparameters are frozen before any fine-tuned dev/test result. Dev is diagnostic only; do not select a test-facing configuration after inspecting test metrics.",
+    "test_integrity": "Do not change documents, queries, qrels, split membership, model revision, optimizer hyperparameters, or mining policy after the first fine-tuned result is inspected."
+  },
+  "terminology": {
+    "restore lane": "rollback channel",
+    "health-state reference": "service status",
+    "dispatch window": "shipping SLA",
+    "supply key": "inventory code"
+  },
+  "splits": {
+    "train": {
+      "documents": {
+        "tr1": "Aster North deployment manual. The rollback channel for Aster North is cobalt bridge. Use this channel after a failed deployment.",
+        "tr2": "Aster North service card. The current service status for Aster North is published by the operations desk every fifteen minutes.",
+        "tr3": "Beryl East shipping policy. The standard shipping SLA for Beryl East is 36 hours from acceptance to dispatch.",
+        "tr4": "Beryl East inventory guide. The inventory code for the Beryl East field kit is SKU-BE17 and is required for stock lookup.",
+        "tr5": "Cygnus Primary deployment manual. The rollback channel for Cygnus Primary is silver harbor. Use it when a release must be reversed.",
+        "tr6": "Cygnus Primary service card. The service status for Cygnus Primary is maintained in the regional operations registry.",
+        "tr7": "Delta Field shipping policy. The standard shipping SLA for Delta Field replacements is 48 hours after approval.",
+        "tr8": "Delta Field inventory guide. The inventory code for the Delta Field repair kit is SKU-DF09 and is used by warehouse systems."
+      },
+      "queries": [
+        {"id": "tq1", "query": "Which Aster North document defines the restore lane used after a failed deployment?", "relevant": "tr1", "class": "rollback_alias"},
+        {"id": "tq2", "query": "Where is the Aster North health-state reference maintained?", "relevant": "tr2", "class": "status_alias"},
+        {"id": "tq3", "query": "What Beryl East policy contains the dispatch window for accepted shipments?", "relevant": "tr3", "class": "shipping_alias"},
+        {"id": "tq4", "query": "Which Beryl East guide gives the supply key needed for stock lookup?", "relevant": "tr4", "class": "inventory_alias"},
+        {"id": "tq5", "query": "Which Cygnus Primary document specifies the restore lane for reversing a release?", "relevant": "tr5", "class": "rollback_alias"},
+        {"id": "tq6", "query": "Where is the Cygnus Primary health-state reference recorded?", "relevant": "tr6", "class": "status_alias"},
+        {"id": "tq7", "query": "Which Delta Field policy defines the dispatch window for replacements?", "relevant": "tr7", "class": "shipping_alias"},
+        {"id": "tq8", "query": "Which Delta Field guide contains the supply key used by warehouse systems?", "relevant": "tr8", "class": "inventory_alias"}
+      ]
+    },
+    "dev": {
+      "documents": {
+        "dv1": "Eon North deployment manual. The rollback channel for Eon North is violet quay. Operators use it after a failed rollout.",
+        "dv2": "Eon North service card. The service status for Eon North is maintained by the control room and refreshed every ten minutes.",
+        "dv3": "Fjord East shipping policy. The standard shipping SLA for Fjord East parcels is 30 hours after intake.",
+        "dv4": "Fjord East inventory guide. The inventory code for the Fjord East service kit is SKU-FE31 and is required for stock checks.",
+        "dv5": "Gaia Primary deployment manual. The rollback channel for Gaia Primary is quiet pier. Use it for emergency release reversal.",
+        "dv6": "Gaia Primary service card. The service status for Gaia Primary is stored in the central reliability registry.",
+        "dv7": "Helix Field shipping policy. The standard shipping SLA for Helix Field parts is 54 hours after approval.",
+        "dv8": "Helix Field inventory guide. The inventory code for the Helix Field repair kit is SKU-HF22 and is used for warehouse lookup."
+      },
+      "queries": [
+        {"id": "dq1", "query": "Which Eon North document gives the restore lane for a failed rollout?", "relevant": "dv1", "class": "rollback_alias"},
+        {"id": "dq2", "query": "Where can operators find the Eon North health-state reference?", "relevant": "dv2", "class": "status_alias"},
+        {"id": "dq3", "query": "Which Fjord East policy defines the dispatch window after intake?", "relevant": "dv3", "class": "shipping_alias"},
+        {"id": "dq4", "query": "Which Fjord East guide provides the supply key for stock checks?", "relevant": "dv4", "class": "inventory_alias"},
+        {"id": "dq5", "query": "Which Gaia Primary document records the restore lane for release reversal?", "relevant": "dv5", "class": "rollback_alias"},
+        {"id": "dq6", "query": "Where is the Gaia Primary health-state reference kept?", "relevant": "dv6", "class": "status_alias"},
+        {"id": "dq7", "query": "Which Helix Field policy contains the dispatch window for parts?", "relevant": "dv7", "class": "shipping_alias"},
+        {"id": "dq8", "query": "Which Helix Field guide lists the supply key for warehouse lookup?", "relevant": "dv8", "class": "inventory_alias"}
+      ]
+    },
+    "test": {
+      "documents": {
+        "te1": "Iris North deployment manual. The rollback channel for Iris North is copper inlet. Use it to reverse a failed rollout safely.",
+        "te2": "Iris North service card. The service status for Iris North is maintained by the reliability desk and refreshed on a fixed cadence.",
+        "te3": "Jade East shipping policy. The standard shipping SLA for Jade East orders is 42 hours after intake confirmation.",
+        "te4": "Jade East inventory guide. The inventory code for the Jade East field kit is SKU-JE14 and is required for warehouse stock checks.",
+        "te5": "Kestrel Primary deployment manual. The rollback channel for Kestrel Primary is blue anchorage. Use it for emergency release reversal.",
+        "te6": "Kestrel Primary service card. The service status for Kestrel Primary is recorded in the reliability registry and updated by operations.",
+        "te7": "Lumen Field shipping policy. The standard shipping SLA for Lumen Field replacement parts is 60 hours after approval.",
+        "te8": "Lumen Field inventory guide. The inventory code for the Lumen Field repair kit is SKU-LF27 and is used by warehouse stock systems."
+      },
+      "queries": [
+        {"id": "eq1", "query": "Which Iris North document specifies the restore lane for reversing a failed rollout?", "relevant": "te1", "class": "rollback_alias"},
+        {"id": "eq2", "query": "Where is the Iris North health-state reference maintained?", "relevant": "te2", "class": "status_alias"},
+        {"id": "eq3", "query": "Which Jade East policy gives the dispatch window after intake confirmation?", "relevant": "te3", "class": "shipping_alias"},
+        {"id": "eq4", "query": "Which Jade East guide contains the supply key required for warehouse checks?", "relevant": "te4", "class": "inventory_alias"},
+        {"id": "eq5", "query": "Which Kestrel Primary document defines the restore lane for emergency reversal?", "relevant": "te5", "class": "rollback_alias"},
+        {"id": "eq6", "query": "Where is the Kestrel Primary health-state reference recorded?", "relevant": "te6", "class": "status_alias"},
+        {"id": "eq7", "query": "Which Lumen Field policy contains the dispatch window for replacement parts?", "relevant": "te7", "class": "shipping_alias"},
+        {"id": "eq8", "query": "Which Lumen Field guide lists the supply key used by warehouse stock systems?", "relevant": "te8", "class": "inventory_alias"}
+      ]
+    }
+  }
+}

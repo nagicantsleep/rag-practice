@@ -1,0 +1,10 @@
+{"id":"l1","task":"local","query":"Where is Aurora Lab located?","relevant":["d1"],"answer":"Tromso"}
+{"id":"l2","task":"local","query":"What does Reef Lab studies?","relevant":["d17"],"answer":"coral restoration"}
+{"id":"m1","task":"multi_hop","query":"Which currency is used in the country containing Aurora Lab?","relevant":["d1","d3","d4"],"answer":"krone"}
+{"id":"m2","task":"multi_hop","query":"Which currency is used in the country containing Vega Lab?","relevant":["d5","d7","d8"],"answer":"euro"}
+{"id":"m3","task":"multi_hop","query":"Which currency is used in the country containing Cedar Lab?","relevant":["d9","d11","d12"],"answer":"krona"}
+{"id":"a1","task":"associative","query":"Which Atlas Network lab is connected to euro?","relevant":["d5","d7","d8"],"answer":"Vega Lab"}
+{"id":"g1","task":"global_relation","query":"Which network has labs in the most distinct countries?","relevant":["d1","d3","d5","d7","d9","d11","d13","d15","d16","d18"],"answer":"Atlas Network"}
+{"id":"g2","task":"global_relation","query":"Which countries host Atlas Network labs?","relevant":["d1","d3","d5","d7","d9","d11"],"answer":"Norway, Finland, Sweden"}
+{"id":"h1","task":"hierarchical","query":"What does Atlas Network labs studies across the collection?","relevant":["d2","d6","d10"],"answer":"aurora storms, distributed databases, climate modeling"}
+{"id":"h2","task":"hierarchical","query":"What does Pelagic Network sites studies across the collection?","relevant":["d14","d17"],"answer":"plankton blooms, coral restoration"}

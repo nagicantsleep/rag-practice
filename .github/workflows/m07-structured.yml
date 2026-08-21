@@ -1,0 +1,46 @@
+name: M07 hierarchical graph and memory evaluation
+
+on:
+  push:
+    branches:
+      - feat/m07-hierarchical-graph-memory
+    paths-ignore:
+      - labs/07_hierarchical_graph_memory/results/results.json
+      - labs/07_hierarchical_graph_memory/results/results.md
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression-test dependencies
+        run: python -m pip install -e ".[dev,neural,pretrained]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate hierarchy, graph, and temporal memory
+        run: python labs/07_hierarchical_graph_memory/run.py
+      - name: Persist M07 evaluation evidence and finalize source of truth
+        if: github.event_name == 'push'
+        run: |
+          python labs/07_hierarchical_graph_memory/finalize.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ROADMAP.md
+          git add labs/07_hierarchical_graph_memory/README.md
+          git add labs/07_hierarchical_graph_memory/results/results.json
+          git add labs/07_hierarchical_graph_memory/results/results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M07 completion evidence [skip ci]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi

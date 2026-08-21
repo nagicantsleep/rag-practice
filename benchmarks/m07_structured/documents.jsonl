@@ -1,0 +1,19 @@
+{"id":"d1","collection":"atlas","text":"Atlas Network includes Aurora Lab in Tromso.","triples":[["Atlas Network","includes","Aurora Lab"],["Aurora Lab","located_in","Tromso"]]}
+{"id":"d2","collection":"atlas","text":"Aurora Lab studies aurora storms and ionosphere activity.","triples":[["Aurora Lab","studies","aurora storms"]]}
+{"id":"d3","collection":"atlas","text":"Tromso is in Norway.","triples":[["Tromso","country","Norway"]]}
+{"id":"d4","collection":"reference","text":"Norway uses the krone currency.","triples":[["Norway","currency","krone"]]}
+{"id":"d5","collection":"atlas","text":"Atlas Network includes Vega Lab in Helsinki.","triples":[["Atlas Network","includes","Vega Lab"],["Vega Lab","located_in","Helsinki"]]}
+{"id":"d6","collection":"atlas","text":"Vega Lab studies distributed databases and consensus systems.","triples":[["Vega Lab","studies","distributed databases"]]}
+{"id":"d7","collection":"atlas","text":"Helsinki is in Finland.","triples":[["Helsinki","country","Finland"]]}
+{"id":"d8","collection":"reference","text":"Finland uses the euro currency.","triples":[["Finland","currency","euro"]]}
+{"id":"d9","collection":"atlas","text":"Atlas Network includes Cedar Lab in Stockholm.","triples":[["Atlas Network","includes","Cedar Lab"],["Cedar Lab","located_in","Stockholm"]]}
+{"id":"d10","collection":"atlas","text":"Cedar Lab studies climate modeling and sea ice.","triples":[["Cedar Lab","studies","climate modeling"]]}
+{"id":"d11","collection":"atlas","text":"Stockholm is in Sweden.","triples":[["Stockholm","country","Sweden"]]}
+{"id":"d12","collection":"reference","text":"Sweden uses the krona currency.","triples":[["Sweden","currency","krona"]]}
+{"id":"d13","collection":"pelagic","text":"Pelagic Network includes Fjord Station in Bergen.","triples":[["Pelagic Network","includes","Fjord Station"],["Fjord Station","located_in","Bergen"]]}
+{"id":"d14","collection":"pelagic","text":"Fjord Station studies plankton blooms and coastal nutrients.","triples":[["Fjord Station","studies","plankton blooms"]]}
+{"id":"d15","collection":"pelagic","text":"Bergen is in Norway.","triples":[["Bergen","country","Norway"]]}
+{"id":"d16","collection":"pelagic","text":"Pelagic Network includes Reef Lab in Lisbon.","triples":[["Pelagic Network","includes","Reef Lab"],["Reef Lab","located_in","Lisbon"]]}
+{"id":"d17","collection":"pelagic","text":"Reef Lab studies coral restoration and reef resilience.","triples":[["Reef Lab","studies","coral restoration"]]}
+{"id":"d18","collection":"pelagic","text":"Lisbon is in Portugal.","triples":[["Lisbon","country","Portugal"]]}
+{"id":"d19","collection":"reference","text":"Portugal uses the euro currency.","triples":[["Portugal","currency","euro"]]}

@@ -1,0 +1,4 @@
+{"id":"t1","task":"memory_current","query":"What database version does Vega Lab currently use?","relevant":["mem4"],"answer":"NimbusDB version 3"}
+{"id":"t2","task":"memory_previous","query":"What database version did Vega Lab use before the current version?","relevant":["mem1"],"answer":"NimbusDB version 2"}
+{"id":"t3","task":"memory_current","query":"Who is the current lead of Aurora Lab?","relevant":["mem5"],"answer":"Leo Chen"}
+{"id":"t4","task":"memory_current","query":"Who is the current lead of Reef Lab?","relevant":["mem6"],"answer":"Beatriz Silva"}

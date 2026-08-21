@@ -56,6 +56,8 @@ jobs:
         run: python labs/10_training_production/run_training.py
       - name: Evaluate frozen M10.1b learned reranker
         run: python labs/10_training_production/run_reranker.py
+      - name: Evaluate frozen M10.2 production serving controls
+        run: python labs/10_training_production/run_production.py
       - name: Persist M10 evidence
         if: github.event_name == 'push'
         run: |
@@ -65,8 +67,10 @@ jobs:
             labs/10_training_production/results/training_results.json \
             labs/10_training_production/results/training_results.md \
             labs/10_training_production/results/reranker_results.json \
-            labs/10_training_production/results/reranker_results.md
+            labs/10_training_production/results/reranker_results.md \
+            labs/10_training_production/results/production_results.json \
+            labs/10_training_production/results/production_results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M10 training evaluation [skip ci]"
+            git commit -m "test: record M10 evaluation evidence [skip ci]"
             git push origin HEAD:feat/m10-training-production-rag
           fi

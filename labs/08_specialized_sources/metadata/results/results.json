@@ -35,7 +35,7 @@
         "mean_ranked_candidates_examined": 3.0,
         "mean_rejected_after_ranking": 0.0,
         "mean_eligible_records": 2.6666666666666665,
-        "mean_latency_ms": 0.21631588888876901
+        "mean_latency_ms": 0.2731527777781493
       }
     },
     "postfilter_k2": {
@@ -53,7 +53,7 @@
         "mean_ranked_candidates_examined": 2.0,
         "mean_rejected_after_ranking": 1.6666666666666667,
         "mean_eligible_records": 2.6666666666666665,
-        "mean_latency_ms": 0.18729677777666134
+        "mean_latency_ms": 0.22895400000935398
       }
     },
     "postfilter_oversample_k5": {
@@ -71,7 +71,7 @@
         "mean_ranked_candidates_examined": 5.0,
         "mean_rejected_after_ranking": 3.5555555555555554,
         "mean_eligible_records": 2.6666666666666665,
-        "mean_latency_ms": 0.18778100000184217
+        "mean_latency_ms": 0.2364067777686311
       }
     },
     "prefilter_bm25": {
@@ -89,7 +89,7 @@
         "mean_ranked_candidates_examined": 1.4444444444444444,
         "mean_rejected_after_ranking": 0.0,
         "mean_eligible_records": 2.6666666666666665,
-        "mean_latency_ms": 0.04442366666365968
+        "mean_latency_ms": 0.05671911110817342
       }
     }
   },
@@ -127,7 +127,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 12,
-        "latency_ms": 0.3931619999946179
+        "latency_ms": 0.47181799999407303
       },
       {
         "id": "m2",
@@ -162,7 +162,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 3,
-        "latency_ms": 0.2182989999965912
+        "latency_ms": 0.28716099996017874
       },
       {
         "id": "m3",
@@ -198,7 +198,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.2055389999924273
+        "latency_ms": 0.24938400002838534
       },
       {
         "id": "m4",
@@ -234,7 +234,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.194914000005042
+        "latency_ms": 0.26018800002702847
       },
       {
         "id": "m5",
@@ -270,7 +270,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.18645100000469483
+        "latency_ms": 0.25184800000488394
       },
       {
         "id": "m6",
@@ -307,7 +307,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 0,
-        "latency_ms": 0.1950040000053832
+        "latency_ms": 0.2298889999678977
       },
       {
         "id": "m7",
@@ -343,7 +343,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.18310599999438182
+        "latency_ms": 0.22853100000475024
       },
       {
         "id": "m8",
@@ -379,7 +379,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.1846979999982068
+        "latency_ms": 0.24847700001373596
       },
       {
         "id": "m9",
@@ -414,7 +414,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 4,
-        "latency_ms": 0.18567000000757616
+        "latency_ms": 0.23107900000240988
       }
     ],
     "postfilter_k2": [
@@ -437,7 +437,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 12,
-        "latency_ms": 0.2024449999993294
+        "latency_ms": 0.24197600004072228
       },
       {
         "id": "m2",
@@ -458,7 +458,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 3,
-        "latency_ms": 0.19117800000856278
+        "latency_ms": 0.22480100000166203
       },
       {
         "id": "m3",
@@ -481,7 +481,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 1,
-        "latency_ms": 0.18891399999176883
+        "latency_ms": 0.23943700000472745
       },
       {
         "id": "m4",
@@ -504,7 +504,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 1,
-        "latency_ms": 0.18767299999922216
+        "latency_ms": 0.2275379999900906
       },
       {
         "id": "m5",
@@ -527,7 +527,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 1,
-        "latency_ms": 0.18319699999835848
+        "latency_ms": 0.21981499997991705
       },
       {
         "id": "m6",
@@ -548,7 +548,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 2,
         "eligible_records": 0,
-        "latency_ms": 0.1791600000018434
+        "latency_ms": 0.21743100001003768
       },
       {
         "id": "m7",
@@ -582,7 +582,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 1,
         "eligible_records": 1,
-        "latency_ms": 0.1924700000017765
+        "latency_ms": 0.23269000001846507
       },
       {
         "id": "m8",
@@ -616,7 +616,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 1,
         "eligible_records": 1,
-        "latency_ms": 0.17967099999793845
+        "latency_ms": 0.22606499999255902
       },
       {
         "id": "m9",
@@ -649,7 +649,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 1,
         "eligible_records": 4,
-        "latency_ms": 0.18096299999115217
+        "latency_ms": 0.2308330000460046
       }
     ],
     "postfilter_oversample_k5": [
@@ -685,7 +685,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 2,
         "eligible_records": 12,
-        "latency_ms": 0.1964970000045696
+        "latency_ms": 0.23937499997828127
       },
       {
         "id": "m2",
@@ -719,7 +719,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 3,
         "eligible_records": 3,
-        "latency_ms": 0.18781299999659495
+        "latency_ms": 0.26226299996778835
       },
       {
         "id": "m3",
@@ -753,7 +753,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 4,
         "eligible_records": 1,
-        "latency_ms": 0.1997509999966951
+        "latency_ms": 0.2355510000029426
       },
       {
         "id": "m4",
@@ -787,7 +787,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 4,
         "eligible_records": 1,
-        "latency_ms": 0.19176900001127706
+        "latency_ms": 0.23738100003356521
       },
       {
         "id": "m5",
@@ -821,7 +821,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 4,
         "eligible_records": 1,
-        "latency_ms": 0.18503900000155227
+        "latency_ms": 0.22803399997428642
       },
       {
         "id": "m6",
@@ -842,7 +842,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 5,
         "eligible_records": 0,
-        "latency_ms": 0.1785489999974743
+        "latency_ms": 0.23664400004008712
       },
       {
         "id": "m7",
@@ -876,7 +876,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 4,
         "eligible_records": 1,
-        "latency_ms": 0.17947099999560123
+        "latency_ms": 0.23303099999338883
       },
       {
         "id": "m8",
@@ -910,7 +910,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 4,
         "eligible_records": 1,
-        "latency_ms": 0.18678200000010747
+        "latency_ms": 0.22604199995157614
       },
       {
         "id": "m9",
@@ -945,7 +945,7 @@
         "ranked_candidates_examined": 5,
         "rejected_after_ranking": 2,
         "eligible_records": 4,
-        "latency_ms": 0.18435800001270763
+        "latency_ms": 0.22933999997576393
       }
     ],
     "prefilter_bm25": [
@@ -981,7 +981,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 12,
-        "latency_ms": 0.13645599999279057
+        "latency_ms": 0.17298000000209868
       },
       {
         "id": "m2",
@@ -1015,7 +1015,7 @@
         "ranked_candidates_examined": 2,
         "rejected_after_ranking": 0,
         "eligible_records": 3,
-        "latency_ms": 0.051057000007403985
+        "latency_ms": 0.06764699998029755
       },
       {
         "id": "m3",
@@ -1049,7 +1049,7 @@
         "ranked_candidates_examined": 1,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.030304999995678372
+        "latency_ms": 0.038565000011203665
       },
       {
         "id": "m4",
@@ -1083,7 +1083,7 @@
         "ranked_candidates_examined": 1,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.029153999989262047
+        "latency_ms": 0.03646400000434369
       },
       {
         "id": "m5",
@@ -1117,7 +1117,7 @@
         "ranked_candidates_examined": 1,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.026219999995191756
+        "latency_ms": 0.033882999957768334
       },
       {
         "id": "m6",
@@ -1138,7 +1138,7 @@
         "ranked_candidates_examined": 0,
         "rejected_after_ranking": 0,
         "eligible_records": 0,
-        "latency_ms": 0.008712999999715976
+        "latency_ms": 0.010971999984121794
       },
       {
         "id": "m7",
@@ -1172,7 +1172,7 @@
         "ranked_candidates_examined": 1,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.028822999993849407
+        "latency_ms": 0.03628199999639037
       },
       {
         "id": "m8",
@@ -1206,7 +1206,7 @@
         "ranked_candidates_examined": 1,
         "rejected_after_ranking": 0,
         "eligible_records": 1,
-        "latency_ms": 0.029323999996222483
+        "latency_ms": 0.03768599998466016
       },
       {
         "id": "m9",
@@ -1241,7 +1241,7 @@
         "ranked_candidates_examined": 3,
         "rejected_after_ranking": 0,
         "eligible_records": 4,
-        "latency_ms": 0.059761000002822584
+        "latency_ms": 0.07599300005267651
       }
     ]
   },

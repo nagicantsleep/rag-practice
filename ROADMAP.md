@@ -402,7 +402,7 @@ Sub-labs:
 
 - **Web RAG — `DONE`**
 - **SQL / structured RAG — `DONE`**
-- metadata / filter-aware RAG — `TODO`
+- **metadata / filter-aware RAG — `DONE`**
 - Code RAG — `TODO`
 - multimodal RAG — `TODO`
 - visual-document / page-image RAG — `TODO`
@@ -431,23 +431,38 @@ SQL / Structured RAG reuses the shared `Source` contract for a flat-row BM25 con
 | flat row BM25@5 | 0.500 | 0.500 | n/a | n/a | n/a | n/a | n/a |
 | schema-aware validated SQL | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** | **1.000** |
 
-Important SQL / structured findings:
+Important SQL / structured findings: flat row retrieval is not relational execution; answer correctness and row provenance are separate contracts; empty results are first-class; unsafe/unsupported requests fail closed. Perfect scores are controlled frozen-schema evidence, not general text-to-SQL ability.
 
-- **Flat row retrieval is not relational execution.** Aggregate queries can retrieve lexically plausible order/customer rows while missing the contributing `order_items`.
-- **Answer correctness and row provenance are separate contracts.** Aggregate results persist contributing row IDs/citations rather than treating the scalar alone as sufficient evidence.
-- **Empty is a first-class answer state.** The empty benchmark returns `NO_ROWS` without fabricated evidence.
-- **Unsafe and unsupported requests fail closed.** Mutation is rejected before execution, and an absent loyalty-tier concept produces a planning error rather than invented schema.
-- **Perfect scores are controlled-mechanism evidence only.** The planner is rule-based for a frozen four-table benchmark and does not claim Spider/BIRD-style text-to-SQL generalization.
-- **SQLite safety/latency are teaching controls.** Production needs database permissions, query budgets, tenant filters, robust parsing/policy, and real workload measurements.
+Artifacts: `benchmarks/m08_sql/`, `src/rag_practice/structured_sql/`, `src/rag_practice/evaluation/sql_structured.py`, `labs/08_specialized_sources/sql/`, and `.github/workflows/m08-sql.yml`.
+
+### Metadata / Filter-aware RAG summary
+
+Metadata / Filter-aware RAG holds BM25 text/scoring fixed and changes only where tenant/role/product/region/time predicates are applied.
+
+| System | Recall@3 | Hit@1 | Constraint satisfied | Security leakage | Filter violation | Answer correct | Indexed records | Examined candidates |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| unfiltered BM25 | **1.000** | 0.250 | 0.333 | 0.444 | 0.667 | 0.222 | 19.0 | 3.0 |
+| post-filter k=2 | 0.375 | 0.375 | **1.000** | **0.000** | **0.000** | 0.444 | 19.0 | 2.0 |
+| post-filter oversample k=5 | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **1.000** | 19.0 | 5.0 |
+| pre-filter BM25 | **1.000** | **1.000** | **1.000** | **0.000** | **0.000** | **1.000** | **2.7** | **1.4** |
+
+Important metadata/filter findings:
+
+- **Recall is not a security metric.** Unfiltered Recall@3 is `1.0` while security leakage is `0.444` and explicit-filter violation is `0.667`.
+- **Safe post-filtering can lose recall.** Candidate `k=2` removes invalid returned records but drops Recall@3 to `0.375` because invalid candidates consumed the ranking window.
+- **Oversampling can recover quality at higher candidate cost.** `k=5` restores controlled quality but still ranks the global corpus and rejects many candidates after scoring.
+- **Hard authorization belongs before relevance ranking.** Pre-filtering reaches the same controlled quality while ranking only eligible records in this benchmark.
+- **Groundedness does not imply authorization.** Extractive answers remain grounded even when the source should never have been exposed.
+- **Production IAM is not claimed.** Real systems need authoritative storage/index enforcement, policy/versioning, cache isolation, auditability, and side-channel defenses.
 
 Evaluation evidence:
 
-- Initial PR gate `32449251416`: **89 tests passed** plus successful SQL / Structured RAG evaluation.
-- Final source-of-truth gate `32449677217` passed before this ROADMAP update on head `9cbd96ad4b6bfeb20655a22a8099a9f09a182dfa`.
-- SQL execution quality is evaluated independently from row-level provenance and final answer formatting.
-- Persisted JSON/Markdown includes SQL, planned tables, answers, row evidence, citations, failure status, and latency.
+- Initial PR gate `32450243891`: **95 tests passed** plus successful metadata/filter evaluation.
+- Final source-of-truth gate `32451228304` passed before this ROADMAP update on head `ea03484c4dc898453f78c92ef3ea118159430a2c`.
+- Retrieval relevance, constraint correctness, security leakage, answer quality, and candidate cost are evaluated separately.
+- Persisted JSON/Markdown includes rankings, filter context, metadata, eligibility, rejection counts, answers, and latency.
 
-Artifacts: `benchmarks/m08_sql/`, `src/rag_practice/structured_sql/`, `src/rag_practice/evaluation/sql_structured.py`, `labs/08_specialized_sources/sql/`, and `.github/workflows/m08-sql.yml`.
+Artifacts: `benchmarks/m08_metadata/`, `src/rag_practice/metadata_filter/`, `src/rag_practice/evaluation/metadata_filter.py`, `labs/08_specialized_sources/metadata/`, and `.github/workflows/m08-metadata.yml`.
 ### M09 — Agentic RAG — `TODO`
 
 Implement planner, search strategy, tool/source router, retrieval loop, evidence evaluator, retry/stop policy, memory/state, then multi-agent variants. Evaluate task success, tool precision, steps, unnecessary actions, recovery, grounding, latency, and cost.
@@ -458,4 +473,4 @@ Study/implement retriever fine-tuning, hard-negative mining, learned rerankers, 
 
 ## Immediate next step
 
-Continue **M08.3 — Metadata / Filter-aware RAG**. Keep filtering semantics separate from relevance ranking: define a corpus with tenant, product, region, time, and access-control metadata; compare post-filter vs pre-filter retrieval; measure constraint satisfaction, relevant recall under filters, empty-filter handling, unnecessary candidates, latency, and any security/permission leakage. Keep filter correctness separate from answer quality.
+Continue **M08.4 — Code RAG**. Treat code structure as first-class retrieval metadata instead of flattening a repository into anonymous text: benchmark file/function/class/symbol lookup, implementation-vs-call-site retrieval, cross-file dependency context, duplicate identifiers, and change-locality. Compare plain text retrieval with symbol-aware/chunk-aware retrieval, evaluate exact source locations and dependency evidence separately from answer quality, and measure indexing/query cost.

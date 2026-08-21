@@ -1,6 +1,6 @@
 # M08.3 — Metadata / Filter-aware RAG
 
-Status: **COMPLETION CANDIDATE** — final source-of-truth gate pending.
+Status: **DONE** — final full-suite + metadata/filter gate passed in GitHub Actions run `32451228304`.
 
 ## Hypothesis
 
@@ -59,6 +59,8 @@ System behavior:
 
 Initial PR gate `32450243891` passed the full repository suite (**95 tests**) and the metadata/filter evaluator.
 
+Final source-of-truth gate `32451228304` passed the same full-suite/evaluator sequence before this completion update.
+
 | System | Recall@3 | Hit@1 | Constraint satisfied | Security leakage | Filter violation | Empty correct | Answer correct | Indexed records | Examined candidates |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | unfiltered BM25 | **1.000** | 0.250 | 0.333 | 0.444 | 0.667 | 0.000 | 0.222 | 19.0 | 3.0 |
@@ -91,6 +93,6 @@ Machine-readable evidence: `results/results.json`. Human-readable aggregate tabl
 - [x] full repository CI + metadata/filter evaluator passes
 - [x] persisted JSON/Markdown results reviewed
 - [x] representative leakage/recall/cost failures written down
-- [ ] ROADMAP marks metadata/filter-aware sub-lab DONE only after the final gate passes
+- [x] ROADMAP marks metadata/filter-aware sub-lab DONE only after the final gate passes
 
-Metadata / Filter-aware RAG is not merged until the final unchecked gate passes.
+Metadata / Filter-aware RAG satisfies the sub-lab evaluation contract and is eligible to merge; M08 overall remains IN PROGRESS.

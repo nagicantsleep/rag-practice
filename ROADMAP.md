@@ -635,6 +635,14 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m10_training/`, `benchmarks/m10_production/`, `src/rag_practice/training/`, `src/rag_practice/production/`, `src/rag_practice/evaluation/training.py`, `src/rag_practice/evaluation/production.py`, `labs/10_training_production/`, and `.github/workflows/m10-training-production.yml`.
 
+### M11 — Order-to-Cash & Logistics Exception Resolution Copilot — `TODO`
+
+M11 is the real-world production RAG capstone. It integrates ERP/order data, finance state, logistics/TMS events, contracts/SLA, operational SOPs, authorization, retrieval/reranking, bounded agentic investigation, freshness, caching, observability, and exact provenance into one evidence-grounded exception-resolution system.
+
+The phase-0 charter freezes the product objective, source families, investigation shape, task classes, phase boundaries, evaluation axes, and Definition of Done before optimized M11 system implementation. The actual benchmark instances must be frozen separately after constructing the versioned dataset and before retrieval/prompt/router/agent optimization.
+
+Artifacts: `labs/11_otc_logistics/` and `benchmarks/m11_otc_logistics/`.
+
 ## Immediate next step
 
-M00–M10 are complete. Extend the roadmap only by freezing a new learning objective and evaluation contract before implementation.
+Continue **M11.0 — Dataset and Benchmark**. Construct the versioned ERP / finance / logistics / contract / SOP corpus, define held-out operational cases, permissions, source versions, benchmark clock, mutations, qrels, expected answers, and evaluator rules, then freeze those instances in a separate commit before implementing the optimized M11 retrieval or agent pipeline.

@@ -6,6 +6,8 @@ from time import perf_counter_ns
 
 from rag_practice.evaluation.visual_document import evaluate_visual_document_system
 from rag_practice.visual_document import (
+    BASE_MODEL_NAME,
+    BASE_MODEL_REVISION,
     ColSmolPageRetriever,
     MODEL_NAME,
     MODEL_REVISION,
@@ -100,8 +102,10 @@ def main() -> None:
             "heuristics are excluded from pretrained ranking"
         ),
         "model": {
-            "name": MODEL_NAME,
-            "revision": MODEL_REVISION,
+            "adapter_name": MODEL_NAME,
+            "adapter_revision": MODEL_REVISION,
+            "base_name": BASE_MODEL_NAME,
+            "base_revision": BASE_MODEL_REVISION,
             "device": "cpu",
             "dtype": "float32",
             "model_load_ms": retriever.model_load_ms,
@@ -120,7 +124,8 @@ def main() -> None:
     lines = [
         "# M08.6 pinned ColSmol page-image retrieval results",
         "",
-        f"Model: `{MODEL_NAME}` pinned to `{MODEL_REVISION}`.",
+        f"Adapter: `{MODEL_NAME}` pinned to `{MODEL_REVISION}`.",
+        f"Base: `{BASE_MODEL_NAME}` pinned to `{BASE_MODEL_REVISION}`.",
         "",
         "Ranking uses query text + rendered page pixels only. OCR text, page titles/document ids, qrels, expected answers, deterministic visual markers, and region heuristics are excluded from ranking.",
         "",
@@ -145,6 +150,7 @@ def main() -> None:
         "## Guardrails",
         "",
         "- This is a frozen tiny synthetic benchmark, not a general visual-document leaderboard claim.",
+        "- Both the adapter and its full-weight base are pinned because the adapter's upstream base default revision is mutable.",
         "- The retriever is exhaustive and has no abstention policy; no-evidence errors are retained.",
         "- Region locator accuracy is intentionally zero unless the pretrained retrieval control itself exposes region provenance; no deterministic region heuristic is added after ranking.",
         "- Text/table value questions are not answered from frozen OCR after pretrained retrieval; retrieval quality and answer capability stay separate.",

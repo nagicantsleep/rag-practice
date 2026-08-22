@@ -90,6 +90,7 @@ def test_m11_integrated_uses_current_contract_without_stale_exposure() -> None:
         "U-OPS",
         "g0",
     )
+    assert "C-EPS" in result.evidence_ids
     assert "CTR-EPS-v2" in result.evidence_ids
     assert "CTR-EPS-v1" not in result.evidence_ids
     assert "CTR-EPS-v1" in result.rejected_stale_ids
@@ -106,7 +107,58 @@ def test_m11_integrated_targets_trusted_address_sop_and_rejects_injection() -> N
     assert "SOP-ADDRESS" in result.evidence_ids
     assert "NOTE-GAMMA-INJECTION" not in result.evidence_ids
     assert "NOTE-GAMMA-INJECTION" in result.rejected_untrusted_ids
+    assert result.answer["exception"] == "ADDR_CHECK"
     assert result.answer["recommended_action"] == "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER"
+    assert result.answer["ignored_untrusted"] is True
+
+
+def test_m11_integrated_recognizes_natural_next_action_request() -> None:
+    copilot = IntegratedCopilot(DATA)
+    result = copilot.run(
+        "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
+        "U-OPS",
+        "g0",
+    )
+    assert "SOP-CUSTOMS" in result.evidence_ids
+    assert result.answer["recommended_action"] == "VERIFY_BROKER_CHECKLIST_AND_MONITOR"
+
+
+def test_m11_integrated_reports_finance_blocker_semantically() -> None:
+    copilot = IntegratedCopilot(DATA)
+    result = copilot.run(
+        "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
+        "U-FIN",
+        "g0",
+    )
+    assert result.answer["blocker"] == "CREDIT_HOLD"
+    assert result.answer["credit_hold"] is True
+    assert result.answer["hold_reason"] == "Credit limit exceeded after overdue balance review."
+
+
+def test_m11_integrated_keeps_inventory_blocker_independent_from_finance() -> None:
+    copilot = IntegratedCopilot(DATA)
+    result = copilot.run(
+        "Why has Kappa order SO-1011 not dispatched?",
+        "U-OPS",
+        "g0",
+    )
+    assert result.answer["blocker"] == "INVENTORY_SHORTAGE"
+    assert result.answer["backorder_qty"] == 24
+    assert result.answer["credit_hold"] == "NOT_READ"
+    assert not any(action["action"] == "finance_context" for action in result.actions)
+
+
+def test_m11_integrated_does_not_speculate_escalation_without_exception() -> None:
+    copilot = IntegratedCopilot(DATA)
+    result = copilot.run(
+        "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+        "U-OPS",
+        "g0",
+    )
+    assert result.answer["root_cause"] == "UNKNOWN"
+    assert result.answer["confirmed_exception"] is False
+    assert result.answer["recommended_action"] == "NONE_YET"
+    assert not any(action["action"] == "policy_search" for action in result.actions)
 
 
 def test_m11_integrated_respects_action_budget_and_evaluates_all_tasks() -> None:

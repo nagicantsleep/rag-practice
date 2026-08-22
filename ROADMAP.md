@@ -657,6 +657,27 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m11_otc_logistics/`, `src/rag_practice/otc/`, `src/rag_practice/evaluation/otc.py`, `src/rag_practice/evaluation/otc_integrated.py`, `src/rag_practice/evaluation/otc_production.py`, `labs/11_otc_logistics/`, and `.github/workflows/m11-otc.yml`.
 
+### M12 — Calibrated & Drift-Aware RAG — `DONE`
+
+M12 treats confidence and abstention as measurable RAG mechanisms. It freezes a leakage-safe train/calibration/test-ID/test-OOD benchmark, transparent runtime-visible confidence features, raw-score and hand-composed baselines, deterministic logistic calibration, calibration-only threshold selection, reliability metrics, risk–coverage curves, and unchanged OOD evaluation.
+
+Key findings:
+
+- raw top-1 retrieval similarity is badly overconfident on test-ID: Brier `0.547` and ECE `0.593` despite raw answer correctness `0.300`;
+- logistic calibration improves ID Brier to `0.158` and lowers the frozen-threshold false-answer rate from `0.700` for always-answer to `0.300`, but it is not a universal winner: margin has better ID ECE (`0.067`) and logistic has worse ID AURC (`0.430` versus `0.371`);
+- correct direct cases and wrong near-miss cases can share the same frozen observable feature vector, proving that selective prediction cannot recover information its signal representation does not encode;
+- the OOD slice is easier in raw accuracy (`0.500` versus `0.300`) yet logistic ECE still degrades by `+0.100`, so drift and task difficulty must be reported separately rather than collapsed into one story;
+- the frozen logistic threshold reduces false-answer risk at a coverage cost and retains a stale OOD overconfidence failure (`q39`) rather than being retuned on test outcomes.
+
+Evaluation evidence:
+
+- charter freeze: `9d9f4bcfd39d53cfdc4beba23fb7c4c25576f887`;
+- benchmark/control freeze: `4531122296982a65e8d9a70cee985f9fcb6dc2b6`, exact instance freeze `b2bd91f99dd52aa27b656b6ef306fb7fb51bd1eb`, evaluator control `ab304d6cf06e32b8400a21b6b203f282ff6a7644`;
+- first valid held-out gate `32559624970` / job `96999119450` passed with **172 repository tests** plus the frozen M12 evaluator;
+- the final source-of-truth push gate passes on the completed code/evidence/workflow head immediately before this automated `[skip ci]` completion update.
+
+Artifacts: `benchmarks/m12_calibration/`, `src/rag_practice/calibration/`, `src/rag_practice/evaluation/calibration.py`, `labs/12_calibrated_drift_rag/`, `tests/test_m12_calibration.py`, and `.github/workflows/m12-calibration.yml`.
+
 ## Immediate next step
 
-M00–M11 are complete. Any next milestone should begin with a new learning objective and a frozen evaluation contract rather than extending the completed M11 benchmark post-hoc.
+M00–M12 are complete. Any next milestone should freeze a genuinely new learning objective and evaluation contract before implementation; do not tune the completed M12 held-out benchmark post-hoc.

@@ -1,6 +1,6 @@
 # M12 — Calibrated & Drift-Aware RAG
 
-Status: **CHARTER FROZEN — BENCHMARK CONSTRUCTION NEXT**
+Status: **DONE**
 
 M12 studies a gap left intentionally open by M00–M11: a RAG system can expose retrieval scores, token probabilities, support checks, or heuristic confidence and still have no principled answer to **when it should answer and when it should abstain**. M12 treats confidence calibration and selective prediction as first-class RAG mechanisms rather than presentation metadata.
 
@@ -150,16 +150,16 @@ Exact signal definitions must be frozen before learned calibration. Evaluator-on
 - [x] new learning objective written after M11 completion;
 - [x] hypotheses frozen before benchmark construction;
 - [x] calibration, selective-risk, drift, and anti-leakage evaluation axes frozen;
-- [ ] construct and freeze M12 benchmark instances and split assignments;
-- [ ] freeze runtime-visible feature definitions and confidence baseline formulas;
-- [ ] implement uncalibrated baselines;
-- [ ] implement transparent learned calibration;
-- [ ] choose selective thresholds on calibration data only;
-- [ ] evaluate unchanged methods on test-ID and test-OOD;
-- [ ] persist reliability/risk–coverage artifacts and per-query traces;
-- [ ] inspect overconfidence, false-answer, and false-abstention failures;
-- [ ] pass final source-of-truth CI gate and document trade-offs.
+- [x] construct and freeze M12 benchmark instances and split assignments;
+- [x] freeze runtime-visible feature definitions and confidence baseline formulas;
+- [x] implement uncalibrated baselines;
+- [x] implement transparent learned calibration;
+- [x] choose selective thresholds on calibration data only;
+- [x] evaluate unchanged methods on test-ID and test-OOD;
+- [x] persist reliability/risk–coverage artifacts and per-query traces;
+- [x] inspect overconfidence, false-answer, and false-abstention failures;
+- [x] pass final source-of-truth CI gate and document trade-offs.
 
-## Immediate next step
+## Completion
 
-Construct **M12.0 benchmark + split/feature contract only**. Do not implement a calibrator or inspect held-out test outcomes until those instances and runtime-visible signal definitions are frozen in separate commits.
+M12 is complete. The frozen benchmark and controls, first held-out calibration/selective/drift evidence, retained overconfidence and feature-collision failures, full reliability/risk–coverage traces, and final source-of-truth gate are recorded in this lab and its artifacts.

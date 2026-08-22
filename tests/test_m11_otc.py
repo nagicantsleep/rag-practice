@@ -2,9 +2,11 @@ from pathlib import Path
 
 from rag_practice.evaluation.otc import evaluate_baselines
 from rag_practice.evaluation.otc_integrated import evaluate_integrated
+from rag_practice.evaluation.otc_production import evaluate_production
 from rag_practice.otc.baselines import BaselineSuite
 from rag_practice.otc.data import OtcData
 from rag_practice.otc.integrated import IntegratedCopilot
+from rag_practice.otc.serving import GuardedOtcServing
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -166,3 +168,52 @@ def test_m11_integrated_respects_action_budget_and_evaluates_all_tasks() -> None
     assert len(results["rows"]) == 18
     assert results["metrics"]["max_action_count"] <= 4
     assert all(row["action_count"] <= 4 for row in results["rows"])
+
+
+def test_m11_serving_cache_is_role_snapshot_and_generation_aware() -> None:
+    serving = GuardedOtcServing(DATA)
+    question = "What is the current Helios shipment state for SO-1008 before any later carrier update?"
+    cold = serving.query(question, "U-OPS", snapshot_id="g0")
+    warm = serving.query(question, "U-OPS", snapshot_id="g0")
+    assert not cold.trace.cache_hit
+    assert warm.trace.cache_hit
+    assert cold.trace.cache_key["roles"] == ["ops"]
+    assert cold.trace.cache_key["generation"] == 0
+    mutation = serving.apply_frozen_g1_mutation()
+    assert mutation["after_generation"] == 1
+    post = serving.query(
+        "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+        "U-OPS",
+        snapshot_id="g1",
+    )
+    assert not post.trace.cache_hit
+    assert post.trace.generation == 1
+    assert post.result.answer["root_cause"] == "VEHICLE_BREAKDOWN"
+
+
+def test_m11_serving_denied_finance_is_not_cached_or_exposed() -> None:
+    serving = GuardedOtcServing(DATA)
+    question = "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003."
+    first = serving.query(question, "U-OPS", snapshot_id="g0")
+    second = serving.query(question, "U-OPS", snapshot_id="g0")
+    authorized = serving.query(question, "U-FIN", snapshot_id="g0")
+    assert not first.trace.cache_hit
+    assert not second.trace.cache_hit
+    assert first.result.answer == {"decision": "DENIED"}
+    assert "FIN-1003" not in first.trace.evidence_ids
+    assert "FIN-1003" in authorized.trace.evidence_ids
+    assert not authorized.trace.cache_hit
+
+
+def test_m11_production_evaluator_meets_frozen_release_thresholds() -> None:
+    results = evaluate_production(DATA)
+    m = results["metrics"]
+    assert m["cache_expectation_accuracy"] == 1.0
+    assert m["role_isolation_correctness"] == 1.0
+    assert m["generation_invalidation_correctness"] == 1.0
+    assert m["mutation_correctness"] == 1.0
+    assert m["unauthorized_exposure_rate"] == 0.0
+    assert m["stale_exposure_rate"] == 0.0
+    assert m["untrusted_exposure_rate"] == 0.0
+    assert m["observability_completeness"] == 1.0
+    assert m["scale_target_answer_stability"] == 1.0

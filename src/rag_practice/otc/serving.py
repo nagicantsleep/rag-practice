@@ -79,6 +79,7 @@ class GuardedOtcServing:
         self.state = MutableServingState()
         self.cache: dict[ServingCacheKey, IntegratedResult] = {}
         self.request_sequence = 0
+        self.scale_records: dict[str, dict[str, Any]] = {}
 
     def _key(self, question: str, user_id: str, snapshot_id: str) -> ServingCacheKey:
         return ServingCacheKey(
@@ -156,6 +157,38 @@ class GuardedOtcServing:
             "replaced_shipment_ids": list(self.state.replaced_shipment_ids),
             "latency_ms": (time.perf_counter() - started) * 1000,
         }
+
+    def load_scale_records(self, records: list[dict[str, Any]]) -> float:
+        started = time.perf_counter()
+        self.scale_records = {row["id"]: copy.deepcopy(row) for row in records}
+        return (time.perf_counter() - started) * 1000
+
+    def upsert_scale_record(self, record: dict[str, Any]) -> float:
+        started = time.perf_counter()
+        self.scale_records[record["id"]] = copy.deepcopy(record)
+        return (time.perf_counter() - started) * 1000
+
+    def delete_scale_record(self, record_id: str) -> float:
+        started = time.perf_counter()
+        self.scale_records.pop(record_id, None)
+        return (time.perf_counter() - started) * 1000
+
+    @property
+    def logical_record_count(self) -> int:
+        base = sum(
+            len(rows)
+            for rows in (
+                self.copilot.data.customers,
+                self.copilot.data.orders,
+                self.copilot.data.shipments,
+                self.copilot.data.events,
+                self.copilot.data.invoices,
+                self.copilot.data.finance,
+                self.copilot.data.inventory,
+                self.copilot.data.documents,
+            )
+        )
+        return base + len(self.scale_records)
 
     def trace_dict(self, response: ServingResponse) -> dict[str, Any]:
         return asdict(response.trace)

@@ -1,0 +1,148 @@
+name: M12 calibrated and drift-aware RAG evaluation
+
+on:
+  push:
+    branches:
+      - feat/m12-calibrated-drift-rag
+    paths:
+      - "src/rag_practice/calibration/**"
+      - "src/rag_practice/evaluation/calibration.py"
+      - "benchmarks/m12_calibration/**"
+      - "labs/12_calibrated_drift_rag/**"
+      - "tests/test_m12_calibration.py"
+      - ".github/workflows/m12-calibration.yml"
+      - "ROADMAP.md"
+  pull_request:
+    paths:
+      - "src/rag_practice/calibration/**"
+      - "src/rag_practice/evaluation/calibration.py"
+      - "benchmarks/m12_calibration/**"
+      - "labs/12_calibrated_drift_rag/**"
+      - "tests/test_m12_calibration.py"
+      - ".github/workflows/m12-calibration.yml"
+      - "ROADMAP.md"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression dependencies
+        run: python -m pip install -e ".[dev,pretrained,visual_document]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate frozen M12 calibration benchmark
+        run: python labs/12_calibrated_drift_rag/run_calibration.py
+      - name: Persist M12 evidence
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            labs/12_calibrated_drift_rag/results/calibration_results.json \
+            labs/12_calibrated_drift_rag/results/calibration_results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M12 calibration evidence [skip ci]"
+          fi
+      - name: Mark M12 complete after successful source-of-truth gate
+        if: github.event_name == 'push'
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          readme = Path("labs/12_calibrated_drift_rag/README.md")
+          text = readme.read_text()
+          old_status = "Status: **CHARTER FROZEN — BENCHMARK CONSTRUCTION NEXT**"
+          if old_status not in text:
+              raise SystemExit("expected M12 README status not found")
+          text = text.replace(old_status, "Status: **DONE**", 1)
+
+          old_dod = '''- [x] new learning objective written after M11 completion;
+          - [x] hypotheses frozen before benchmark construction;
+          - [x] calibration, selective-risk, drift, and anti-leakage evaluation axes frozen;
+          - [ ] construct and freeze M12 benchmark instances and split assignments;
+          - [ ] freeze runtime-visible feature definitions and confidence baseline formulas;
+          - [ ] implement uncalibrated baselines;
+          - [ ] implement transparent learned calibration;
+          - [ ] choose selective thresholds on calibration data only;
+          - [ ] evaluate unchanged methods on test-ID and test-OOD;
+          - [ ] persist reliability/risk–coverage artifacts and per-query traces;
+          - [ ] inspect overconfidence, false-answer, and false-abstention failures;
+          - [ ] pass final source-of-truth CI gate and document trade-offs.'''
+          new_dod = '''- [x] new learning objective written after M11 completion;
+          - [x] hypotheses frozen before benchmark construction;
+          - [x] calibration, selective-risk, drift, and anti-leakage evaluation axes frozen;
+          - [x] construct and freeze M12 benchmark instances and split assignments;
+          - [x] freeze runtime-visible feature definitions and confidence baseline formulas;
+          - [x] implement uncalibrated baselines;
+          - [x] implement transparent learned calibration;
+          - [x] choose selective thresholds on calibration data only;
+          - [x] evaluate unchanged methods on test-ID and test-OOD;
+          - [x] persist reliability/risk–coverage artifacts and per-query traces;
+          - [x] inspect overconfidence, false-answer, and false-abstention failures;
+          - [x] pass final source-of-truth CI gate and document trade-offs.'''
+          if old_dod not in text:
+              raise SystemExit("expected M12 DoD block not found")
+          text = text.replace(old_dod, new_dod, 1)
+
+          old_next = '''## Immediate next step
+
+          Construct **M12.0 benchmark + split/feature contract only**. Do not implement a calibrator or inspect held-out test outcomes until those instances and runtime-visible signal definitions are frozen in separate commits.'''
+          new_next = '''## Completion
+
+          M12 is complete. The frozen benchmark and controls, first held-out calibration/selective/drift evidence, retained overconfidence and feature-collision failures, full reliability/risk–coverage traces, and final source-of-truth gate are recorded in this lab and its artifacts.'''
+          if old_next not in text:
+              raise SystemExit("expected M12 README next-step block not found")
+          readme.write_text(text.replace(old_next, new_next, 1))
+
+          roadmap = Path("ROADMAP.md")
+          road = roadmap.read_text()
+          old_tail = '''## Immediate next step
+
+          M00–M11 are complete. Any next milestone should begin with a new learning objective and a frozen evaluation contract rather than extending the completed M11 benchmark post-hoc.'''
+          new_tail = '''### M12 — Calibrated & Drift-Aware RAG — `DONE`
+
+          M12 treats confidence and abstention as measurable RAG mechanisms. It freezes a leakage-safe train/calibration/test-ID/test-OOD benchmark, transparent runtime-visible confidence features, raw-score and hand-composed baselines, deterministic logistic calibration, calibration-only threshold selection, reliability metrics, risk–coverage curves, and unchanged OOD evaluation.
+
+          Key findings:
+
+          - raw top-1 retrieval similarity is badly overconfident on test-ID: Brier `0.547` and ECE `0.593` despite raw answer correctness `0.300`;
+          - logistic calibration improves ID Brier to `0.158` and lowers the frozen-threshold false-answer rate from `0.700` for always-answer to `0.300`, but it is not a universal winner: margin has better ID ECE (`0.067`) and logistic has worse ID AURC (`0.430` versus `0.371`);
+          - correct direct cases and wrong near-miss cases can share the same frozen observable feature vector, proving that selective prediction cannot recover information its signal representation does not encode;
+          - the OOD slice is easier in raw accuracy (`0.500` versus `0.300`) yet logistic ECE still degrades by `+0.100`, so drift and task difficulty must be reported separately rather than collapsed into one story;
+          - the frozen logistic threshold reduces false-answer risk at a coverage cost and retains a stale OOD overconfidence failure (`q39`) rather than being retuned on test outcomes.
+
+          Evaluation evidence:
+
+          - charter freeze: `9d9f4bcfd39d53cfdc4beba23fb7c4c25576f887`;
+          - benchmark/control freeze: `4531122296982a65e8d9a70cee985f9fcb6dc2b6`, exact instance freeze `b2bd91f99dd52aa27b656b6ef306fb7fb51bd1eb`, evaluator control `ab304d6cf06e32b8400a21b6b203f282ff6a7644`;
+          - first valid held-out gate `32559624970` / job `96999119450` passed with **172 repository tests** plus the frozen M12 evaluator;
+          - the final source-of-truth push gate passes on the completed code/evidence/workflow head immediately before this automated `[skip ci]` completion update.
+
+          Artifacts: `benchmarks/m12_calibration/`, `src/rag_practice/calibration/`, `src/rag_practice/evaluation/calibration.py`, `labs/12_calibrated_drift_rag/`, `tests/test_m12_calibration.py`, and `.github/workflows/m12-calibration.yml`.
+
+          ## Immediate next step
+
+          M00–M12 are complete. Any next milestone should freeze a genuinely new learning objective and evaluation contract before implementation; do not tune the completed M12 held-out benchmark post-hoc.'''
+          if old_tail not in road:
+              raise SystemExit("expected ROADMAP tail not found; refusing broad rewrite")
+          roadmap.write_text(road.replace(old_tail, new_tail, 1))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ROADMAP.md labs/12_calibrated_drift_rag/README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: mark M12 complete [skip ci]"
+          fi
+      - name: Push persisted evidence and completion
+        if: github.event_name == 'push'
+        run: git push origin HEAD:feat/m12-calibrated-drift-rag

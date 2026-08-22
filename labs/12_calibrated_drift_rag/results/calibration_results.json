@@ -1,0 +1,3872 @@
+{
+  "benchmark_version": 1,
+  "drift": {
+    "constant": {
+      "aurc": -0.18857142857142858,
+      "brier": 0.0,
+      "coverage": 0.0,
+      "ece": -0.2,
+      "full_coverage_accuracy": 0.2,
+      "mean_confidence": 0.0,
+      "selective_risk": -0.19999999999999996
+    },
+    "hand_composed": {
+      "aurc": -0.1323214285714286,
+      "brier": -0.12136361111111113,
+      "coverage": -0.19999999999999996,
+      "ece": -0.1290833333333334,
+      "full_coverage_accuracy": 0.2,
+      "mean_confidence": -0.03325,
+      "selective_risk": -0.3214285714285714
+    },
+    "logistic": {
+      "aurc": -0.24690476190476188,
+      "brier": -0.046617308351336,
+      "coverage": 0.025000000000000022,
+      "ece": 0.1000209144922066,
+      "full_coverage_accuracy": 0.2,
+      "mean_confidence": -0.012128339023222912,
+      "selective_risk": -0.3
+    },
+    "margin": {
+      "aurc": -0.1323214285714286,
+      "brier": 0.06180555555555553,
+      "coverage": -0.07499999999999996,
+      "ece": 0.1625,
+      "full_coverage_accuracy": 0.2,
+      "mean_confidence": 0.037500000000000006,
+      "selective_risk": -0.17142857142857137
+    },
+    "top1": {
+      "aurc": -0.11148809523809522,
+      "brier": -0.1358611111111111,
+      "coverage": -0.050000000000000044,
+      "ece": -0.13083333333333325,
+      "full_coverage_accuracy": 0.2,
+      "mean_confidence": -0.05583333333333329,
+      "selective_risk": -0.125
+    }
+  },
+  "feature_names": [
+    "top1_score",
+    "top2_score",
+    "margin",
+    "top1_valid",
+    "top3_valid_fraction",
+    "top3_entity_agreement",
+    "answer_present",
+    "answer_support",
+    "conflict_signal",
+    "retrieved_count"
+  ],
+  "logistic": {
+    "intercept": -0.2622240387979831,
+    "weights": [
+      0.24348803605810476,
+      -0.17898627595146716,
+      0.42247431200957186,
+      0.9928990892480761,
+      0.18916850196320928,
+      -0.7923645869977188,
+      0.7694408556409031,
+      0.7694408556409031,
+      -1.4801197277079399,
+      -0.6380903750376729
+    ]
+  },
+  "methods": [
+    "constant",
+    "top1",
+    "margin",
+    "hand_composed",
+    "logistic"
+  ],
+  "metrics": {
+    "test_id": {
+      "constant": {
+        "abstention_accuracy": 0.0,
+        "aurc": 0.3713095238095238,
+        "brier": 0.25,
+        "coverage": 1.0,
+        "ece": 0.2,
+        "false_abstention_rate": 0.0,
+        "false_answer_rate": 0.7,
+        "full_coverage_accuracy": 0.3,
+        "log_loss": 0.6931471805599453,
+        "mean_confidence": 0.5,
+        "mean_confidence_correct": 0.5,
+        "mean_confidence_incorrect": 0.5,
+        "reliability": [
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.2,
+            "mean_confidence": 0.0,
+            "upper": 0.4
+          },
+          {
+            "count": 10,
+            "empirical_correctness": 0.3,
+            "lower": 0.4,
+            "mean_confidence": 0.5,
+            "upper": 0.6
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.6,
+            "mean_confidence": 0.0,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.4,
+        "risk_at_0.70_coverage": 0.5714285714285714,
+        "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.5,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q28",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q29",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q30",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q31",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q32",
+            "risk": 0.7
+          }
+        ],
+        "selective_risk": 0.7,
+        "threshold": 0.5
+      },
+      "hand_composed": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.3713095238095238,
+        "brier": 0.2872511111111111,
+        "coverage": 0.7,
+        "ece": 0.3653333333333334,
+        "false_abstention_rate": 0.2222222222222222,
+        "false_answer_rate": 0.4,
+        "full_coverage_accuracy": 0.3,
+        "log_loss": 0.7891312682265123,
+        "mean_confidence": 0.6653333333333333,
+        "mean_confidence_correct": 0.8333333333333334,
+        "mean_confidence_incorrect": 0.5933333333333334,
+        "reliability": [
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.2,
+            "mean_confidence": 0.2,
+            "upper": 0.4
+          },
+          {
+            "count": 2,
+            "empirical_correctness": 0,
+            "lower": 0.4,
+            "mean_confidence": 0.46,
+            "upper": 0.6
+          },
+          {
+            "count": 2,
+            "empirical_correctness": 0,
+            "lower": 0.6,
+            "mean_confidence": 0.6833333333333333,
+            "upper": 0.8
+          },
+          {
+            "count": 5,
+            "empirical_correctness": 0.6,
+            "lower": 0.8,
+            "mean_confidence": 0.8333333333333334,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.4,
+        "risk_at_0.70_coverage": 0.5714285714285714,
+        "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q30",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.42000000000000004,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q32",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.2,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
+        "selective_risk": 0.5714285714285714,
+        "threshold": 0.65
+      },
+      "logistic": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.4296428571428571,
+        "brier": 0.15842507804605446,
+        "coverage": 0.6,
+        "ece": 0.2187099405866725,
+        "false_abstention_rate": 0.3333333333333333,
+        "false_answer_rate": 0.3,
+        "full_coverage_accuracy": 0.3,
+        "log_loss": 0.49129799614625586,
+        "mean_confidence": 0.43267800511146715,
+        "mean_confidence_correct": 0.6119797085107302,
+        "mean_confidence_incorrect": 0.3558344179403544,
+        "reliability": [
+          {
+            "count": 2,
+            "empirical_correctness": 0,
+            "lower": 0.0,
+            "mean_confidence": 0.17576231616977367,
+            "upper": 0.2
+          },
+          {
+            "count": 3,
+            "empirical_correctness": 0,
+            "lower": 0.2,
+            "mean_confidence": 0.29107249677823877,
+            "upper": 0.4
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 1,
+            "lower": 0.4,
+            "mean_confidence": 0.5698403226239733,
+            "upper": 0.6
+          },
+          {
+            "count": 4,
+            "empirical_correctness": 0.5,
+            "lower": 0.6,
+            "mean_confidence": 0.6330494014541087,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.4,
+        "risk_at_0.70_coverage": 0.5714285714285714,
+        "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q26",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q27",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5698403226239733,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q25",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.3750449072175784,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.27020939029271157,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.2279631928244263,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q32",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.1979102463831888,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q30",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.15361438595635854,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
+        "selective_risk": 0.5,
+        "threshold": 0.35
+      },
+      "margin": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.3713095238095238,
+        "brier": 0.17777777777777778,
+        "coverage": 0.7,
+        "ece": 0.06666666666666662,
+        "false_abstention_rate": 0.2222222222222222,
+        "false_answer_rate": 0.4,
+        "full_coverage_accuracy": 0.3,
+        "log_loss": 0.49177002984384866,
+        "mean_confidence": 0.23333333333333336,
+        "mean_confidence_correct": 0.33333333333333337,
+        "mean_confidence_incorrect": 0.1904761904761905,
+        "reliability": [
+          {
+            "count": 3,
+            "empirical_correctness": 0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 7,
+            "empirical_correctness": 0.42857142857142855,
+            "lower": 0.2,
+            "mean_confidence": 0.33333333333333337,
+            "upper": 0.4
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.4,
+            "mean_confidence": 0.0,
+            "upper": 0.6
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.6,
+            "mean_confidence": 0.0,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.4,
+        "risk_at_0.70_coverage": 0.5714285714285714,
+        "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q28",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q30",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q32",
+            "risk": 0.7
+          }
+        ],
+        "selective_risk": 0.5714285714285714,
+        "threshold": 0.3
+      },
+      "top1": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.3713095238095238,
+        "brier": 0.5471111111111111,
+        "coverage": 0.8,
+        "ece": 0.5933333333333333,
+        "false_abstention_rate": 0.1111111111111111,
+        "false_answer_rate": 0.5,
+        "full_coverage_accuracy": 0.3,
+        "log_loss": 7.039931162980519,
+        "mean_confidence": 0.8933333333333333,
+        "mean_confidence_correct": 1.0,
+        "mean_confidence_incorrect": 0.8476190476190476,
+        "reliability": [
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.2,
+            "mean_confidence": 0.3333333333333333,
+            "upper": 0.4
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.4,
+            "mean_confidence": 0.0,
+            "upper": 0.6
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.6,
+            "mean_confidence": 0.6,
+            "upper": 0.8
+          },
+          {
+            "count": 8,
+            "empirical_correctness": 0.375,
+            "lower": 0.8,
+            "mean_confidence": 1.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.4,
+        "risk_at_0.70_coverage": 0.5714285714285714,
+        "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 1.0,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q30",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q31",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.6,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q32",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.3333333333333333,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
+        "selective_risk": 0.625,
+        "threshold": 1.0
+      }
+    },
+    "test_ood": {
+      "constant": {
+        "abstention_accuracy": 0.0,
+        "aurc": 0.18273809523809523,
+        "brier": 0.25,
+        "coverage": 1.0,
+        "ece": 0.0,
+        "false_abstention_rate": 0.0,
+        "false_answer_rate": 0.5,
+        "full_coverage_accuracy": 0.5,
+        "log_loss": 0.6931471805599453,
+        "mean_confidence": 0.5,
+        "mean_confidence_correct": 0.5,
+        "mean_confidence_incorrect": 0.5,
+        "reliability": [
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.2,
+            "mean_confidence": 0.0,
+            "upper": 0.4
+          },
+          {
+            "count": 8,
+            "empirical_correctness": 0.5,
+            "lower": 0.4,
+            "mean_confidence": 0.5,
+            "upper": 0.6
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.6,
+            "mean_confidence": 0.0,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.0,
+        "risk_at_0.70_coverage": 0.3333333333333333,
+        "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.5,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q34",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q37",
+            "risk": 0.2
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q38",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q39",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q40",
+            "risk": 0.5
+          }
+        ],
+        "selective_risk": 0.5,
+        "threshold": 0.5
+      },
+      "hand_composed": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.23898809523809522,
+        "brier": 0.1658875,
+        "coverage": 0.5,
+        "ece": 0.23625,
+        "false_abstention_rate": 0.42857142857142855,
+        "false_answer_rate": 0.125,
+        "full_coverage_accuracy": 0.5,
+        "log_loss": 0.4861228648609459,
+        "mean_confidence": 0.6320833333333333,
+        "mean_confidence_correct": 0.7875000000000001,
+        "mean_confidence_incorrect": 0.4766666666666667,
+        "reliability": [
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.0,
+            "mean_confidence": 0.13999999999999996,
+            "upper": 0.2
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.2,
+            "mean_confidence": 0.0,
+            "upper": 0.4
+          },
+          {
+            "count": 3,
+            "empirical_correctness": 0.3333333333333333,
+            "lower": 0.4,
+            "mean_confidence": 0.55,
+            "upper": 0.6
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.6,
+            "mean_confidence": 0.6833333333333333,
+            "upper": 0.8
+          },
+          {
+            "count": 3,
+            "empirical_correctness": 1,
+            "lower": 0.8,
+            "mean_confidence": 0.8611111111111112,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.25,
+        "risk_at_0.70_coverage": 0.3333333333333333,
+        "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.9166666666666667,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q39",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.5833333333333334,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q37",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.5666666666666667,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q34",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q40",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.13999999999999996,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
+        "selective_risk": 0.25,
+        "threshold": 0.65
+      },
+      "logistic": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.18273809523809523,
+        "brier": 0.11180776969471846,
+        "coverage": 0.625,
+        "ece": 0.3187308550788791,
+        "false_abstention_rate": 0.2857142857142857,
+        "false_answer_rate": 0.125,
+        "full_coverage_accuracy": 0.5,
+        "log_loss": 0.3944725522242389,
+        "mean_confidence": 0.42054966608824423,
+        "mean_confidence_correct": 0.6018188110093652,
+        "mean_confidence_incorrect": 0.2392805211671233,
+        "reliability": [
+          {
+            "count": 2,
+            "empirical_correctness": 0,
+            "lower": 0.0,
+            "mean_confidence": 0.17520489178772666,
+            "upper": 0.2
+          },
+          {
+            "count": 2,
+            "empirical_correctness": 0,
+            "lower": 0.2,
+            "mean_confidence": 0.30335615054651993,
+            "upper": 0.4
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 1,
+            "lower": 0.4,
+            "mean_confidence": 0.5541777211715987,
+            "upper": 0.6
+          },
+          {
+            "count": 3,
+            "empirical_correctness": 1,
+            "lower": 0.6,
+            "mean_confidence": 0.6176991742886206,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.0,
+        "risk_at_0.70_coverage": 0.3333333333333333,
+        "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6182825940485394,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6017655273632138,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q34",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5541777211715987,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.3750449072175784,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.2
+          },
+          {
+            "confidence": 0.2316673938754615,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q37",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.1979102463831888,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q40",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.15249953719226453,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
+        "selective_risk": 0.2,
+        "threshold": 0.35
+      },
+      "margin": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.23898809523809522,
+        "brier": 0.23958333333333331,
+        "coverage": 0.625,
+        "ece": 0.22916666666666663,
+        "false_abstention_rate": 0.2857142857142857,
+        "false_answer_rate": 0.25,
+        "full_coverage_accuracy": 0.5,
+        "log_loss": 0.6506726713612209,
+        "mean_confidence": 0.27083333333333337,
+        "mean_confidence_correct": 0.37500000000000006,
+        "mean_confidence_incorrect": 0.16666666666666669,
+        "reliability": [
+          {
+            "count": 3,
+            "empirical_correctness": 0.3333333333333333,
+            "lower": 0.0,
+            "mean_confidence": 0.05555555555555556,
+            "upper": 0.2
+          },
+          {
+            "count": 4,
+            "empirical_correctness": 0.5,
+            "lower": 0.2,
+            "mean_confidence": 0.33333333333333337,
+            "upper": 0.4
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.4,
+            "mean_confidence": 0.0,
+            "upper": 0.6
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 1,
+            "lower": 0.6,
+            "mean_confidence": 0.6666666666666667,
+            "upper": 0.8
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.8,
+            "mean_confidence": 0.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.25,
+        "risk_at_0.70_coverage": 0.3333333333333333,
+        "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6666666666666667,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q37",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.16666666666666669,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q34",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q38",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q40",
+            "risk": 0.5
+          }
+        ],
+        "selective_risk": 0.4,
+        "threshold": 0.3
+      },
+      "top1": {
+        "abstention_accuracy": 1.0,
+        "aurc": 0.2598214285714286,
+        "brier": 0.41125,
+        "coverage": 0.75,
+        "ece": 0.4625,
+        "false_abstention_rate": 0.14285714285714285,
+        "false_answer_rate": 0.375,
+        "full_coverage_accuracy": 0.5,
+        "log_loss": 5.2953531757210595,
+        "mean_confidence": 0.8375,
+        "mean_confidence_correct": 0.875,
+        "mean_confidence_incorrect": 0.8,
+        "reliability": [
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.0,
+            "mean_confidence": 0.0,
+            "upper": 0.2
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 0,
+            "lower": 0.2,
+            "mean_confidence": 0.2,
+            "upper": 0.4
+          },
+          {
+            "count": 1,
+            "empirical_correctness": 1,
+            "lower": 0.4,
+            "mean_confidence": 0.5,
+            "upper": 0.6
+          },
+          {
+            "count": 0,
+            "empirical_correctness": 0.0,
+            "lower": 0.6,
+            "mean_confidence": 0.0,
+            "upper": 0.8
+          },
+          {
+            "count": 6,
+            "empirical_correctness": 0.5,
+            "lower": 0.8,
+            "mean_confidence": 1.0,
+            "upper": 1.0
+          }
+        ],
+        "risk_at_0.50_coverage": 0.25,
+        "risk_at_0.70_coverage": 0.5,
+        "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 1.0,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q37",
+            "risk": 0.25
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.4
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q40",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q34",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.2,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
+        "selective_risk": 0.5,
+        "threshold": 1.0
+      }
+    }
+  },
+  "rows": [
+    {
+      "answer": "BLUE",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn01",
+      "evidence_ids": [
+        "trn01-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "BLUE",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q01",
+      "question": "trn01 status code",
+      "required_evidence_ids": [
+        "trn01-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn01",
+          "id": "trn01-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "CEDAR",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn02",
+      "evidence_ids": [
+        "trn02-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "CEDAR",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q02",
+      "question": "trn02 status code",
+      "required_evidence_ids": [
+        "trn02-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn02",
+          "id": "trn02-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "NORTH",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn03",
+      "evidence_ids": [
+        "trn03-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "NORTH",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q03",
+      "question": "trn03 status code",
+      "required_evidence_ids": [
+        "trn03-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn03",
+          "id": "trn03-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "RAPID",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn04",
+      "evidence_ids": [
+        "trn04-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "RAPID",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q04",
+      "question": "trn04 status code",
+      "required_evidence_ids": [
+        "trn04-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn04",
+          "id": "trn04-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "DELTA",
+      "answerable": true,
+      "class": "paraphrase",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn05",
+      "evidence_ids": [
+        "trn05-a",
+        "cal03-a",
+        "tid03-a"
+      ],
+      "expected_answer": "DELTA",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q05",
+      "question": "trn05 dispatch window",
+      "required_evidence_ids": [
+        "trn05-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn05",
+          "id": "trn05-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal03",
+          "id": "cal03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid03",
+          "id": "tid03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "EMBER",
+      "answerable": true,
+      "class": "paraphrase",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "trn06",
+      "evidence_ids": [
+        "trn06-a",
+        "cal03-a",
+        "tid03-a"
+      ],
+      "expected_answer": "EMBER",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q06",
+      "question": "trn06 dispatch window",
+      "required_evidence_ids": [
+        "trn06-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn06",
+          "id": "trn06-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal03",
+          "id": "cal03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid03",
+          "id": "tid03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "WRONG07",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "trn07",
+      "evidence_ids": [
+        "trn07-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "FROST",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "trn07-a"
+      ],
+      "id": "q07",
+      "question": "trn07 status code",
+      "required_evidence_ids": [
+        "trn07-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn07",
+          "id": "trn07-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "WRONG08",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "trn08",
+      "evidence_ids": [
+        "trn08-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "GOLD",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "trn08-a"
+      ],
+      "id": "q08",
+      "question": "trn08 status code",
+      "required_evidence_ids": [
+        "trn08-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn08",
+          "id": "trn08-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "WRONG09",
+      "answerable": false,
+      "class": "no_evidence",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.2,
+        "logistic": 0.15361438595635854,
+        "margin": 0.0,
+        "top1": 0.3333333333333333
+      },
+      "correct": 0,
+      "entity_id": "trn09",
+      "evidence_ids": [
+        "trn09-a",
+        "trn09-b",
+        "trn09-c"
+      ],
+      "expected_answer": null,
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.3333333333333333,
+        "top1_valid": 1.0,
+        "top2_score": 0.3333333333333333,
+        "top3_entity_agreement": 1.0,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "trn09-a",
+        "trn09-b",
+        "trn09-c"
+      ],
+      "id": "q09",
+      "question": "trn09 warranty planet",
+      "required_evidence_ids": [],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn09",
+          "id": "trn09-a",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "trn09",
+          "id": "trn09-b",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "trn09",
+          "id": "trn09-c",
+          "score": 0.3333333333333333,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "WRONG10",
+      "answerable": true,
+      "class": "stale",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.3750449072175784,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "trn10",
+      "evidence_ids": [
+        "trn10-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "IVORY",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 0.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 0.6666666666666666
+      },
+      "forbidden_evidence_ids": [
+        "trn10-a"
+      ],
+      "id": "q10",
+      "question": "trn10 status code",
+      "required_evidence_ids": [
+        "trn10-b"
+      ],
+      "retrieved": [
+        {
+          "active": false,
+          "entity_id": "trn10",
+          "id": "trn10-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "OPEN11",
+      "answerable": true,
+      "class": "conflict",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5,
+        "logistic": 0.1979102463831888,
+        "margin": 0.0,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "trn11",
+      "evidence_ids": [
+        "trn11-a",
+        "trn11-b",
+        "cal01-a"
+      ],
+      "expected_answer": "CONFLICT",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 1.0,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q11",
+      "question": "trn11 status code",
+      "required_evidence_ids": [
+        "trn11-a",
+        "trn11-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn11",
+          "id": "trn11-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "trn11",
+          "id": "trn11-b",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "UNKNOWN",
+      "answerable": true,
+      "class": "generator_format",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.27020939029271157,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "trn12",
+      "evidence_ids": [
+        "trn12-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "KILO",
+      "features": {
+        "answer_present": 0.0,
+        "answer_support": 0.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q12",
+      "question": "trn12 status code",
+      "required_evidence_ids": [
+        "trn12-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "trn12",
+          "id": "trn12-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "train"
+    },
+    {
+      "answer": "LIME",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.5698403226239733,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "cal01",
+      "evidence_ids": [
+        "cal01-a",
+        "cal01-b",
+        "cal02-a"
+      ],
+      "expected_answer": "LIME",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q13",
+      "question": "cal01 status code",
+      "required_evidence_ids": [
+        "cal01-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-b",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "MANGO",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.5698403226239733,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "cal02",
+      "evidence_ids": [
+        "cal02-a",
+        "cal01-a",
+        "cal02-b"
+      ],
+      "expected_answer": "MANGO",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q14",
+      "question": "cal02 status code",
+      "required_evidence_ids": [
+        "cal02-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-b",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "NOVA",
+      "answerable": true,
+      "class": "paraphrase",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.5698403226239733,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "cal03",
+      "evidence_ids": [
+        "cal03-a",
+        "cal03-b",
+        "tid03-a"
+      ],
+      "expected_answer": "NOVA",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q15",
+      "question": "cal03 dispatch window",
+      "required_evidence_ids": [
+        "cal03-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal03",
+          "id": "cal03-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal03",
+          "id": "cal03-b",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid03",
+          "id": "tid03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "WRONG16",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "cal04",
+      "evidence_ids": [
+        "cal04-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "ONYX",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "cal04-a"
+      ],
+      "id": "q16",
+      "question": "cal04 status code",
+      "required_evidence_ids": [
+        "cal04-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal04",
+          "id": "cal04-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "WRONG17",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "cal05",
+      "evidence_ids": [
+        "cal05-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "PEARL",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "cal05-a"
+      ],
+      "id": "q17",
+      "question": "cal05 status code",
+      "required_evidence_ids": [
+        "cal05-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal05",
+          "id": "cal05-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "WRONG18",
+      "answerable": false,
+      "class": "no_evidence",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.2,
+        "logistic": 0.15361438595635854,
+        "margin": 0.0,
+        "top1": 0.3333333333333333
+      },
+      "correct": 0,
+      "entity_id": "cal06",
+      "evidence_ids": [
+        "cal06-a",
+        "cal06-b",
+        "cal06-c"
+      ],
+      "expected_answer": null,
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.3333333333333333,
+        "top1_valid": 1.0,
+        "top2_score": 0.3333333333333333,
+        "top3_entity_agreement": 1.0,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "cal06-a",
+        "cal06-b",
+        "cal06-c"
+      ],
+      "id": "q18",
+      "question": "cal06 warranty planet",
+      "required_evidence_ids": [],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal06",
+          "id": "cal06-a",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal06",
+          "id": "cal06-b",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal06",
+          "id": "cal06-c",
+          "score": 0.3333333333333333,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "WRONG19",
+      "answerable": true,
+      "class": "stale",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.3750449072175784,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "cal07",
+      "evidence_ids": [
+        "cal07-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "RUBY",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 0.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 0.6666666666666666
+      },
+      "forbidden_evidence_ids": [
+        "cal07-a"
+      ],
+      "id": "q19",
+      "question": "cal07 status code",
+      "required_evidence_ids": [
+        "cal07-b"
+      ],
+      "retrieved": [
+        {
+          "active": false,
+          "entity_id": "cal07",
+          "id": "cal07-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "OPEN20",
+      "answerable": true,
+      "class": "conflict",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5,
+        "logistic": 0.1979102463831888,
+        "margin": 0.0,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "cal08",
+      "evidence_ids": [
+        "cal08-a",
+        "cal08-b",
+        "cal01-a"
+      ],
+      "expected_answer": "CONFLICT",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 1.0,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q20",
+      "question": "cal08 status code",
+      "required_evidence_ids": [
+        "cal08-a",
+        "cal08-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal08",
+          "id": "cal08-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal08",
+          "id": "cal08-b",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "UNKNOWN",
+      "answerable": true,
+      "class": "generator_format",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.27020939029271157,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "cal09",
+      "evidence_ids": [
+        "cal09-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "TEAL",
+      "features": {
+        "answer_present": 0.0,
+        "answer_support": 0.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q21",
+      "question": "cal09 status code",
+      "required_evidence_ids": [
+        "cal09-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal09",
+          "id": "cal09-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "UNKNOWN",
+      "answerable": true,
+      "class": "direct_weak",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.42000000000000004,
+        "logistic": 0.18482858705857907,
+        "margin": 0.0,
+        "top1": 0.6
+      },
+      "correct": 0,
+      "entity_id": "cal10",
+      "evidence_ids": [
+        "cal09-a",
+        "cal10-a",
+        "cal10-b"
+      ],
+      "expected_answer": "UMBRA",
+      "features": {
+        "answer_present": 0.0,
+        "answer_support": 0.0,
+        "conflict_signal": 0.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.6,
+        "top1_valid": 1.0,
+        "top2_score": 0.6,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q22",
+      "question": "cal10 status code latest confirmed",
+      "required_evidence_ids": [
+        "cal10-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal09",
+          "id": "cal09-a",
+          "score": 0.6,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal10",
+          "id": "cal10-a",
+          "score": 0.6,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal10",
+          "id": "cal10-b",
+          "score": 0.6,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "calibration"
+    },
+    {
+      "answer": "VIOLET",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "tid01",
+      "evidence_ids": [
+        "tid01-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "VIOLET",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q23",
+      "question": "tid01 status code",
+      "required_evidence_ids": [
+        "tid01-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid01",
+          "id": "tid01-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "WAVE",
+      "answerable": true,
+      "class": "direct",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "tid02",
+      "evidence_ids": [
+        "tid02-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "WAVE",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q24",
+      "question": "tid02 status code",
+      "required_evidence_ids": [
+        "tid02-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid02",
+          "id": "tid02-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "XENON",
+      "answerable": true,
+      "class": "paraphrase",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.5698403226239733,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "tid03",
+      "evidence_ids": [
+        "tid03-a",
+        "cal03-a",
+        "tid03-b"
+      ],
+      "expected_answer": "XENON",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q25",
+      "question": "tid03 dispatch window",
+      "required_evidence_ids": [
+        "tid03-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid03",
+          "id": "tid03-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal03",
+          "id": "cal03-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid03",
+          "id": "tid03-b",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "WRONG26",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "tid04",
+      "evidence_ids": [
+        "tid04-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "YARROW",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "tid04-a"
+      ],
+      "id": "q26",
+      "question": "tid04 status code",
+      "required_evidence_ids": [
+        "tid04-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid04",
+          "id": "tid04-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "WRONG27",
+      "answerable": true,
+      "class": "near_miss",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "tid05",
+      "evidence_ids": [
+        "tid05-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "ZINC",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "tid05-a"
+      ],
+      "id": "q27",
+      "question": "tid05 status code",
+      "required_evidence_ids": [
+        "tid05-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid05",
+          "id": "tid05-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "WRONG28",
+      "answerable": false,
+      "class": "no_evidence",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.2,
+        "logistic": 0.15361438595635854,
+        "margin": 0.0,
+        "top1": 0.3333333333333333
+      },
+      "correct": 0,
+      "entity_id": "tid06",
+      "evidence_ids": [
+        "tid06-a",
+        "tid06-b",
+        "tid06-c"
+      ],
+      "expected_answer": null,
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.3333333333333333,
+        "top1_valid": 1.0,
+        "top2_score": 0.3333333333333333,
+        "top3_entity_agreement": 1.0,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "tid06-a",
+        "tid06-b",
+        "tid06-c"
+      ],
+      "id": "q28",
+      "question": "tid06 warranty planet",
+      "required_evidence_ids": [],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid06",
+          "id": "tid06-a",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid06",
+          "id": "tid06-b",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid06",
+          "id": "tid06-c",
+          "score": 0.3333333333333333,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "WRONG29",
+      "answerable": true,
+      "class": "stale",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.3750449072175784,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "tid07",
+      "evidence_ids": [
+        "tid07-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "BRAVO",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 0.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 0.6666666666666666
+      },
+      "forbidden_evidence_ids": [
+        "tid07-a"
+      ],
+      "id": "q29",
+      "question": "tid07 status code",
+      "required_evidence_ids": [
+        "tid07-b"
+      ],
+      "retrieved": [
+        {
+          "active": false,
+          "entity_id": "tid07",
+          "id": "tid07-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "OPEN30",
+      "answerable": true,
+      "class": "conflict",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5,
+        "logistic": 0.1979102463831888,
+        "margin": 0.0,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "tid08",
+      "evidence_ids": [
+        "tid08-a",
+        "tid08-b",
+        "cal01-a"
+      ],
+      "expected_answer": "CONFLICT",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 1.0,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q30",
+      "question": "tid08 status code",
+      "required_evidence_ids": [
+        "tid08-a",
+        "tid08-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid08",
+          "id": "tid08-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid08",
+          "id": "tid08-b",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "UNKNOWN",
+      "answerable": true,
+      "class": "generator_format",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.27020939029271157,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "tid09",
+      "evidence_ids": [
+        "tid09-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "DUSK",
+      "features": {
+        "answer_present": 0.0,
+        "answer_support": 0.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q31",
+      "question": "tid09 status code",
+      "required_evidence_ids": [
+        "tid09-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "tid09",
+          "id": "tid09-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "UNKNOWN",
+      "answerable": true,
+      "class": "direct_weak",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.42000000000000004,
+        "logistic": 0.2279631928244263,
+        "margin": 0.0,
+        "top1": 0.6
+      },
+      "correct": 0,
+      "entity_id": "tid10",
+      "evidence_ids": [
+        "cal09-a",
+        "tid09-a",
+        "tid10-a"
+      ],
+      "expected_answer": "ECHO",
+      "features": {
+        "answer_present": 0.0,
+        "answer_support": 0.0,
+        "conflict_signal": 0.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.6,
+        "top1_valid": 1.0,
+        "top2_score": 0.6,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q32",
+      "question": "tid10 status code latest confirmed",
+      "required_evidence_ids": [
+        "tid10-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "cal09",
+          "id": "cal09-a",
+          "score": 0.6,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid09",
+          "id": "tid09-a",
+          "score": 0.6,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "tid10",
+          "id": "tid10-a",
+          "score": 0.6,
+          "trusted": true
+        }
+      ],
+      "shift_class": "id",
+      "split": "test_id"
+    },
+    {
+      "answer": "FLINT",
+      "answerable": true,
+      "class": "direct_alias",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6182825940485394,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "ood01",
+      "evidence_ids": [
+        "ood01-a",
+        "ood05-a",
+        "ood07-a"
+      ],
+      "expected_answer": "FLINT",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 0.6666666666666666
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q33",
+      "question": "ood01 state tag",
+      "required_evidence_ids": [
+        "ood01-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood01",
+          "id": "ood01-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood05",
+          "id": "ood05-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": false,
+          "entity_id": "ood07",
+          "id": "ood07-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "lexical_alias",
+      "split": "test_ood"
+    },
+    {
+      "answer": "GROVE",
+      "answerable": true,
+      "class": "direct_style",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5666666666666667,
+        "logistic": 0.6017655273632138,
+        "margin": 0.16666666666666669,
+        "top1": 0.5
+      },
+      "correct": 1,
+      "entity_id": "ood02",
+      "evidence_ids": [
+        "ood02-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "GROVE",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.16666666666666669,
+        "retrieved_count": 3.0,
+        "top1_score": 0.5,
+        "top1_valid": 1.0,
+        "top2_score": 0.3333333333333333,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q34",
+      "question": "kindly verify ood02 status code now",
+      "required_evidence_ids": [
+        "ood02-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood02",
+          "id": "ood02-a",
+          "score": 0.5,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.3333333333333333,
+          "trusted": true
+        }
+      ],
+      "shift_class": "query_style",
+      "split": "test_ood"
+    },
+    {
+      "answer": "HELIOS",
+      "answerable": true,
+      "class": "direct_entity",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.8333333333333334,
+        "logistic": 0.6330494014541087,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "ood03",
+      "evidence_ids": [
+        "ood03-a",
+        "cal01-a",
+        "cal02-a"
+      ],
+      "expected_answer": "HELIOS",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q35",
+      "question": "ood03 status code",
+      "required_evidence_ids": [
+        "ood03-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood03",
+          "id": "ood03-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal01",
+          "id": "cal01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "cal02",
+          "id": "cal02-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "entity_pattern",
+      "split": "test_ood"
+    },
+    {
+      "answer": "INDIGO",
+      "answerable": true,
+      "class": "paraphrase_alias",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.9166666666666667,
+        "logistic": 0.5541777211715987,
+        "margin": 0.6666666666666667,
+        "top1": 1.0
+      },
+      "correct": 1,
+      "entity_id": "ood04",
+      "evidence_ids": [
+        "ood04-a",
+        "ood04-b",
+        "ood04-c"
+      ],
+      "expected_answer": "INDIGO",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.6666666666666667,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.3333333333333333,
+        "top3_entity_agreement": 1.0,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q36",
+      "question": "ood04 release cadence",
+      "required_evidence_ids": [
+        "ood04-a"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood04",
+          "id": "ood04-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood04",
+          "id": "ood04-b",
+          "score": 0.3333333333333333,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood04",
+          "id": "ood04-c",
+          "score": 0.3333333333333333,
+          "trusted": true
+        }
+      ],
+      "shift_class": "lexical_alias",
+      "split": "test_ood"
+    },
+    {
+      "answer": "WRONG37",
+      "answerable": true,
+      "class": "near_miss_shift",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5833333333333334,
+        "logistic": 0.2316673938754615,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "ood05",
+      "evidence_ids": [
+        "ood05-a",
+        "ood01-a",
+        "ood05-b"
+      ],
+      "expected_answer": "JUNO",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "ood05-a"
+      ],
+      "id": "q37",
+      "question": "ood05 state tag",
+      "required_evidence_ids": [
+        "ood05-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood05",
+          "id": "ood05-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood01",
+          "id": "ood01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood05",
+          "id": "ood05-b",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "distractor_shift",
+      "split": "test_ood"
+    },
+    {
+      "answer": "WRONG38",
+      "answerable": false,
+      "class": "no_evidence_ood",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.13999999999999996,
+        "logistic": 0.15249953719226453,
+        "margin": 0.0,
+        "top1": 0.2
+      },
+      "correct": 0,
+      "entity_id": "ood06",
+      "evidence_ids": [
+        "ood06-a",
+        "ood06-b",
+        "ood06-c"
+      ],
+      "expected_answer": null,
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 0.2,
+        "top1_valid": 1.0,
+        "top2_score": 0.2,
+        "top3_entity_agreement": 1.0,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [
+        "ood06-a",
+        "ood06-b",
+        "ood06-c"
+      ],
+      "id": "q38",
+      "question": "kindly diagnose ood06 lunar warranty",
+      "required_evidence_ids": [],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood06",
+          "id": "ood06-a",
+          "score": 0.2,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood06",
+          "id": "ood06-b",
+          "score": 0.2,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood06",
+          "id": "ood06-c",
+          "score": 0.2,
+          "trusted": true
+        }
+      ],
+      "shift_class": "query_style",
+      "split": "test_ood"
+    },
+    {
+      "answer": "WRONG39",
+      "answerable": true,
+      "class": "stale_ood",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.6833333333333333,
+        "logistic": 0.3750449072175784,
+        "margin": 0.33333333333333337,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "ood07",
+      "evidence_ids": [
+        "ood07-a",
+        "ood01-a",
+        "ood05-a"
+      ],
+      "expected_answer": "LOTUS",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 0.0,
+        "margin": 0.33333333333333337,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 0.0,
+        "top2_score": 0.6666666666666666,
+        "top3_entity_agreement": 0.3333333333333333,
+        "top3_valid_fraction": 0.6666666666666666
+      },
+      "forbidden_evidence_ids": [
+        "ood07-a"
+      ],
+      "id": "q39",
+      "question": "ood07 state tag",
+      "required_evidence_ids": [
+        "ood07-b"
+      ],
+      "retrieved": [
+        {
+          "active": false,
+          "entity_id": "ood07",
+          "id": "ood07-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood01",
+          "id": "ood01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood05",
+          "id": "ood05-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "distractor_shift",
+      "split": "test_ood"
+    },
+    {
+      "answer": "OPEN40",
+      "answerable": true,
+      "class": "conflict_ood",
+      "confidences": {
+        "constant": 0.5,
+        "hand_composed": 0.5,
+        "logistic": 0.1979102463831888,
+        "margin": 0.0,
+        "top1": 1.0
+      },
+      "correct": 0,
+      "entity_id": "ood08",
+      "evidence_ids": [
+        "ood08-a",
+        "ood08-b",
+        "ood01-a"
+      ],
+      "expected_answer": "CONFLICT",
+      "features": {
+        "answer_present": 1.0,
+        "answer_support": 1.0,
+        "conflict_signal": 1.0,
+        "margin": 0.0,
+        "retrieved_count": 3.0,
+        "top1_score": 1.0,
+        "top1_valid": 1.0,
+        "top2_score": 1.0,
+        "top3_entity_agreement": 0.6666666666666666,
+        "top3_valid_fraction": 1.0
+      },
+      "forbidden_evidence_ids": [],
+      "id": "q40",
+      "question": "ood08 state tag",
+      "required_evidence_ids": [
+        "ood08-a",
+        "ood08-b"
+      ],
+      "retrieved": [
+        {
+          "active": true,
+          "entity_id": "ood08",
+          "id": "ood08-a",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood08",
+          "id": "ood08-b",
+          "score": 1.0,
+          "trusted": true
+        },
+        {
+          "active": true,
+          "entity_id": "ood01",
+          "id": "ood01-a",
+          "score": 0.6666666666666666,
+          "trusted": true
+        }
+      ],
+      "shift_class": "entity_pattern",
+      "split": "test_ood"
+    }
+  ],
+  "seed": 61,
+  "thresholds": {
+    "constant": 0.5,
+    "hand_composed": 0.65,
+    "logistic": 0.35,
+    "margin": 0.3,
+    "top1": 1.0
+  },
+  "timing": {
+    "logistic_fit_ms": 10.519838999996978,
+    "max_logistic_predict_ms": 0.008553000000688371,
+    "max_trace_feature_ms": 0.40212700000097357,
+    "mean_logistic_predict_ms": 0.0018961750004820033,
+    "mean_trace_feature_ms": 0.3104533249999264,
+    "model_calls": 0.0
+  }
+}

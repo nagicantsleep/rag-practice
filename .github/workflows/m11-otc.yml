@@ -6,7 +6,7 @@ on:
       - feat/m11-otc-logistics-capstone
     paths:
       - "src/rag_practice/otc/**"
-      - "src/rag_practice/evaluation/otc.py"
+      - "src/rag_practice/evaluation/otc*.py"
       - "benchmarks/m11_otc_logistics/**"
       - "labs/11_otc_logistics/**"
       - "tests/test_m11_otc.py"
@@ -16,7 +16,7 @@ on:
   pull_request:
     paths:
       - "src/rag_practice/otc/**"
-      - "src/rag_practice/evaluation/otc.py"
+      - "src/rag_practice/evaluation/otc*.py"
       - "benchmarks/m11_otc_logistics/**"
       - "labs/11_otc_logistics/**"
       - "tests/test_m11_otc.py"
@@ -44,15 +44,19 @@ jobs:
         run: pytest -q
       - name: Evaluate frozen M11.1 baselines
         run: python labs/11_otc_logistics/run_baselines.py
-      - name: Persist M11 baseline evidence
+      - name: Evaluate frozen M11.2 integrated copilot
+        run: python labs/11_otc_logistics/run_integrated.py
+      - name: Persist M11 evidence
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             labs/11_otc_logistics/results/baseline_results.json \
-            labs/11_otc_logistics/results/baseline_results.md
+            labs/11_otc_logistics/results/baseline_results.md \
+            labs/11_otc_logistics/results/integrated_results.json \
+            labs/11_otc_logistics/results/integrated_results.md
           if ! git diff --cached --quiet; then
-            git commit -m "test: record M11 baseline evidence [skip ci]"
+            git commit -m "test: record M11 evaluation evidence [skip ci]"
             git push origin HEAD:feat/m11-otc-logistics-capstone
           fi

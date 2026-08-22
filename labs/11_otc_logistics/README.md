@@ -1,6 +1,6 @@
 # M11 — Order-to-Cash & Logistics Exception Resolution Copilot
 
-Status: **CHARTER FROZEN — BENCHMARK CONSTRUCTION NEXT**
+Status: **DONE**
 
 M11 is the real-world capstone after M00–M10. It integrates structured ERP data, logistics events, operational documents, policy controls, retrieval/reranking, agentic multi-step investigation, freshness, permissions, caching, observability, and explicit abstention into one production-oriented system.
 
@@ -149,17 +149,17 @@ M11 is not complete because a demo looks convincing. A release candidate must pa
 - [x] Capstone use case and product objective frozen before implementation.
 - [x] Required source families and task classes frozen before implementation.
 - [x] Evaluation axes and phase boundaries frozen before implementation.
-- [ ] Construct versioned realistic ERP / finance / logistics / contract / SOP dataset.
-- [ ] Freeze benchmark instances, qrels, expected answers, permissions, source versions, mutations, and evaluation rules before model/prompt optimization.
-- [ ] Implement and evaluate explicit baselines.
-- [ ] Implement integrated mixed-source copilot with bounded planning / retrieval loop.
-- [ ] Enforce ACL, freshness, trust, and no-evidence behavior before answer generation.
-- [ ] Persist exact citations, records, tool actions, observations, and per-stage traces.
-- [ ] Add incremental ingestion, mutation-aware cache invalidation, and regression tests.
-- [ ] Measure quality, security, freshness, latency, cost, and scale separately.
-- [ ] Inspect and retain representative failures instead of tuning them away post-hoc.
-- [ ] Pass final source-of-truth CI gate and document findings / trade-offs.
+- [x] Construct versioned realistic ERP / finance / logistics / contract / SOP dataset.
+- [x] Freeze benchmark instances, qrels, expected answers, permissions, source versions, mutations, and evaluation rules before model/prompt optimization.
+- [x] Implement and evaluate explicit baselines.
+- [x] Implement integrated mixed-source copilot with bounded planning / retrieval loop.
+- [x] Enforce ACL, freshness, trust, and no-evidence behavior before answer generation.
+- [x] Persist exact citations, records, tool actions, observations, and per-stage traces.
+- [x] Add incremental ingestion, mutation-aware cache invalidation, and regression tests.
+- [x] Measure quality, security, freshness, latency, cost, and scale separately.
+- [x] Inspect and retain representative failures instead of tuning them away post-hoc.
+- [x] Pass final source-of-truth CI gate and document findings / trade-offs.
 
-## Immediate next step
+## Completion
 
-Build **M11.0 dataset + benchmark only**. Do not implement the optimized retrieval / agent pipeline until the benchmark instances and integrity rules have been frozen in a separate commit.
+M11 is complete. The frozen benchmark, baseline evidence, integrated-copilot evidence, production-serving evidence, retained failures, and final source-of-truth gate are recorded in this lab and its result artifacts.

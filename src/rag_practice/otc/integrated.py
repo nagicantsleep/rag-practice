@@ -33,6 +33,17 @@ _ACTION_BY_POLICY = {
     "SOP-ADDRESS": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER",
     "SOP-MECHANICAL": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
 }
+_ACTION_PHRASES = (
+    "action",
+    "procedure",
+    "escalat",
+    "investigate",
+    "what should operations do",
+    "should operations do",
+    "operations do next",
+    "what should we do",
+    "do next",
+)
 
 
 @dataclass
@@ -106,14 +117,20 @@ class IntegratedCopilot:
             "current_event": current_event,
         }
 
-    def _finance_context(self, order_id: str, user_id: str, snapshot: Snapshot) -> tuple[dict[str, Any] | None, bool]:
+    def _finance_context(
+        self, order_id: str, user_id: str, snapshot: Snapshot
+    ) -> tuple[dict[str, Any] | None, bool]:
         if not self.data.can_read("finance", user_id):
             return None, False
         order = snapshot.orders.get(order_id)
         if not order:
             return None, True
         row = next(
-            (item for item in snapshot.finance.values() if item["invoice_id"] == order["invoice_id"]),
+            (
+                item
+                for item in snapshot.finance.values()
+                if item["invoice_id"] == order["invoice_id"]
+            ),
             None,
         )
         return row, True
@@ -125,7 +142,9 @@ class IntegratedCopilot:
         end = date.fromisoformat(row["effective_to"]) if row.get("effective_to") else None
         return start <= day and (end is None or day <= end)
 
-    def _active_contract(self, customer_id: str, snapshot: Snapshot) -> tuple[dict[str, Any] | None, list[str], list[str]]:
+    def _active_contract(
+        self, customer_id: str, snapshot: Snapshot
+    ) -> tuple[dict[str, Any] | None, list[str], list[str]]:
         active: list[dict[str, Any]] = []
         stale: list[str] = []
         untrusted: list[str] = []
@@ -137,10 +156,14 @@ class IntegratedCopilot:
                 stale.append(row["id"])
                 continue
             active.append(row)
-        active.sort(key=lambda row: (row["effective_from"], row["version"]), reverse=True)
+        active.sort(
+            key=lambda row: (row["effective_from"], row["version"]), reverse=True
+        )
         return (active[0] if active else None), stale, untrusted
 
-    def _policy(self, exception_code: str, user_id: str) -> tuple[dict[str, Any] | None, list[str], list[str]]:
+    def _policy(
+        self, exception_code: str, user_id: str
+    ) -> tuple[dict[str, Any] | None, list[str], list[str]]:
         policy_id = _POLICY_BY_EXCEPTION.get(exception_code)
         if not policy_id:
             return None, [], []
@@ -161,9 +184,20 @@ class IntegratedCopilot:
         return int(match.group(1)) if match else None
 
     @staticmethod
-    def _sla_breached(contract: dict[str, Any] | None, events: list[dict[str, Any]], as_of: str) -> tuple[bool | None, int | None]:
+    def _sla_breached(
+        contract: dict[str, Any] | None,
+        events: list[dict[str, Any]],
+        as_of: str,
+    ) -> tuple[bool | None, int | None]:
         hours = IntegratedCopilot._hours(contract)
-        pickup = next((row for row in events if row["code"] == "PICKED_UP" and row.get("trusted", False)), None)
+        pickup = next(
+            (
+                row
+                for row in events
+                if row["code"] == "PICKED_UP" and row.get("trusted", False)
+            ),
+            None,
+        )
         if hours is None or pickup is None:
             return None, hours
         start = datetime.fromisoformat(pickup["ts"].replace("Z", "+00:00"))
@@ -171,7 +205,9 @@ class IntegratedCopilot:
         return (end - start).total_seconds() > hours * 3600, hours
 
     @staticmethod
-    def _add_evidence(result: IntegratedResult, row: dict[str, Any] | None, family: str) -> None:
+    def _add_evidence(
+        result: IntegratedResult, row: dict[str, Any] | None, family: str
+    ) -> None:
         if not row:
             return
         row_id = row["id"]
@@ -188,21 +224,40 @@ class IntegratedCopilot:
         order_id = self._order_id(question)
         customer = self._customer(question, snapshot)
 
-        asks_finance = any(term in lowered for term in ("payment", "credit", "finance", "hold reason"))
-        asks_contract = any(term in lowered for term in ("sla", "breach", "commitment", "contract"))
-        asks_status = any(term in lowered for term in ("status", "eta", "state", "delivered", "transit"))
-        asks_cause = any(term in lowered for term in ("why", "cause", "exception", "delay", "investigate"))
-        asks_action = any(term in lowered for term in ("action", "procedure", "escalat", "investigate"))
-        asks_inventory = any(term in lowered for term in ("inventory", "fulfillment", "not dispatched", "blocker"))
+        asks_finance = any(
+            term in lowered for term in ("payment", "credit", "finance", "hold reason")
+        )
+        asks_contract = any(
+            term in lowered for term in ("sla", "breach", "commitment", "contract")
+        )
+        asks_status = any(
+            term in lowered for term in ("status", "eta", "state", "delivered", "transit")
+        )
+        asks_cause = any(
+            term in lowered for term in ("why", "cause", "exception", "delay", "investigate")
+        )
+        asks_action = any(term in lowered for term in _ACTION_PHRASES)
+        asks_inventory = any(
+            term in lowered
+            for term in ("inventory", "fulfillment", "not dispatched", "blocker")
+        )
         asks_invoice = "invoice" in lowered
 
         context: dict[str, Any] | None = None
         if order_id:
             context = self._order_context(order_id, snapshot)
-            result.actions.append({"action": "order_context", "argument": order_id, "found": context is not None})
+            result.actions.append(
+                {
+                    "action": "order_context",
+                    "argument": order_id,
+                    "found": context is not None,
+                }
+            )
             if context:
                 self._add_evidence(result, context["order"], "erp_order")
-                if context["shipment"] and (asks_status or asks_cause or asks_contract or asks_action):
+                if context["shipment"] and (
+                    asks_status or asks_cause or asks_contract or asks_action
+                ):
                     self._add_evidence(result, context["shipment"], "logistics")
                 if asks_invoice or asks_finance:
                     self._add_evidence(result, context["invoice"], "erp_order")
@@ -212,15 +267,42 @@ class IntegratedCopilot:
                     current = context["current_event"]
                     self._add_evidence(result, current, "logistics")
                     if asks_contract:
-                        pickup = next((row for row in context["events"] if row["code"] == "PICKED_UP"), None)
+                        pickup = next(
+                            (
+                                row
+                                for row in context["events"]
+                                if row["code"] == "PICKED_UP"
+                            ),
+                            None,
+                        )
                         self._add_evidence(result, pickup, "logistics")
-                    delivered = next((row for row in context["events"] if row["code"] == "DELIVERED"), None)
-                    if delivered and context["shipment"].get("status") != "DELIVERED" and any(term in lowered for term in ("delivered", "transit", "status")):
+                    delivered = next(
+                        (
+                            row
+                            for row in context["events"]
+                            if row["code"] == "DELIVERED"
+                        ),
+                        None,
+                    )
+                    if (
+                        delivered
+                        and context["shipment"].get("status") != "DELIVERED"
+                        and any(
+                            term in lowered for term in ("delivered", "transit", "status")
+                        )
+                    ):
                         self._add_evidence(result, delivered, "logistics")
 
         if asks_finance and order_id:
             finance, authorized = self._finance_context(order_id, user_id, snapshot)
-            result.actions.append({"action": "finance_context", "argument": order_id, "authorized": authorized, "found": finance is not None})
+            result.actions.append(
+                {
+                    "action": "finance_context",
+                    "argument": order_id,
+                    "authorized": authorized,
+                    "found": finance is not None,
+                }
+            )
             if not authorized:
                 result.evidence_ids.append("AUTH-FIN")
                 result.source_families.append("authorization")
@@ -239,15 +321,31 @@ class IntegratedCopilot:
                     credit_hold=finance["credit_hold"],
                     hold_reason=finance["hold_reason"],
                 )
+                if finance["credit_hold"] and any(
+                    term in lowered for term in ("blocker", "on hold", "why")
+                ):
+                    result.answer["blocker"] = "CREDIT_HOLD"
                 if "investigate" in lowered or "blocker" in lowered:
                     result.answer["finance_blocker"] = bool(finance["credit_hold"])
 
         contract = None
         if asks_contract and customer and len(result.actions) < 4:
-            contract, stale_ids, untrusted_ids = self._active_contract(customer["id"], snapshot)
+            # Customer-name resolution is an explicit provenance dependency for
+            # contract lookup, even though it does not consume a source action.
+            if customer["name"].casefold() in lowered:
+                self._add_evidence(result, customer, "erp_order")
+            contract, stale_ids, untrusted_ids = self._active_contract(
+                customer["id"], snapshot
+            )
             result.rejected_stale_ids.extend(stale_ids)
             result.rejected_untrusted_ids.extend(untrusted_ids)
-            result.actions.append({"action": "active_contract", "argument": customer["id"], "selected": contract["id"] if contract else None})
+            result.actions.append(
+                {
+                    "action": "active_contract",
+                    "argument": customer["id"],
+                    "selected": contract["id"] if contract else None,
+                }
+            )
             self._add_evidence(result, contract, "contracts")
             if contract:
                 hours = self._hours(contract)
@@ -259,7 +357,9 @@ class IntegratedCopilot:
                 if "weather" in contract["text"].casefold() and "waiver" in lowered:
                     result.answer["weather_waiver"] = False
                 if context and ("sla" in lowered or "breach" in lowered):
-                    breached, hours = self._sla_breached(contract, context["events"], snapshot.as_of)
+                    breached, hours = self._sla_breached(
+                        contract, context["events"], snapshot.as_of
+                    )
                     result.answer["sla_breached"] = breached
                     result.answer["commitment_hours"] = hours
 
@@ -277,12 +377,19 @@ class IntegratedCopilot:
                     invoice_status=invoice["status"],
                 )
 
-            if shipment and ("current eta" in lowered or ("status" in lowered and "eta" in lowered)):
+            if shipment and (
+                "current eta" in lowered or ("status" in lowered and "eta" in lowered)
+            ):
                 result.answer["shipment_status"] = shipment["status"]
                 result.answer["eta"] = shipment["eta"]
                 result.answer["latest_event_code"] = current["code"] if current else None
 
-            if shipment and "current" in lowered and "shipment" in lowered and "state" in lowered:
+            if (
+                shipment
+                and "current" in lowered
+                and "shipment" in lowered
+                and "state" in lowered
+            ):
                 code = current["code"] if current else None
                 result.answer.update(
                     shipment_status=shipment["status"],
@@ -290,8 +397,20 @@ class IntegratedCopilot:
                     confirmed_exception=bool(code and code not in _PROGRESS_CODES),
                 )
 
-            delivered = next((row for row in events if row["code"] == "DELIVERED" and row.get("trusted", False)), None)
-            if shipment and delivered and shipment["status"] != "DELIVERED" and any(term in lowered for term in ("delivered", "transit")):
+            delivered = next(
+                (
+                    row
+                    for row in events
+                    if row["code"] == "DELIVERED" and row.get("trusted", False)
+                ),
+                None,
+            )
+            if (
+                shipment
+                and delivered
+                and shipment["status"] != "DELIVERED"
+                and any(term in lowered for term in ("delivered", "transit"))
+            ):
                 result.answer.update(
                     decision="CONFLICT",
                     erp_status=shipment["status"],
@@ -304,7 +423,9 @@ class IntegratedCopilot:
                     blocker="INVENTORY_SHORTAGE",
                     backorder_qty=inventory["backorder_qty"],
                 )
-                if "credit" in lowered and not asks_finance:
+                # The control intentionally does not read finance unless the
+                # question requests it; expose that state explicitly.
+                if not asks_finance:
                     result.answer["credit_hold"] = "NOT_READ"
 
             code = current["code"] if current else None
@@ -316,26 +437,44 @@ class IntegratedCopilot:
                     result.answer["root_cause"] = code
                 if "confirmed exception" in lowered:
                     result.answer["confirmed_exception"] = confirmed_exception
+                if "exception" in lowered and confirmed_exception:
+                    result.answer["exception"] = code
 
             if asks_action and len(result.actions) < 4:
                 policy_code = code if confirmed_exception else None
                 if code == "DELAY_NOTICE":
                     policy_code = "DELAY_NOTICE"
                 if policy_code:
-                    policy, denied_ids, untrusted_ids = self._policy(policy_code, user_id)
+                    policy, denied_ids, untrusted_ids = self._policy(
+                        policy_code, user_id
+                    )
                     result.rejected_unauthorized_ids.extend(denied_ids)
                     result.rejected_untrusted_ids.extend(untrusted_ids)
-                    result.actions.append({"action": "policy_search", "argument": policy_code, "selected": policy["id"] if policy else None})
+                    result.actions.append(
+                        {
+                            "action": "policy_search",
+                            "argument": policy_code,
+                            "selected": policy["id"] if policy else None,
+                        }
+                    )
                     self._add_evidence(result, policy, "sop")
                     if policy:
                         result.retrieved_documents.append((policy["id"], 1.0))
-                        result.answer["recommended_action"] = _ACTION_BY_POLICY[policy["id"]]
+                        result.answer["recommended_action"] = _ACTION_BY_POLICY[
+                            policy["id"]
+                        ]
+                else:
+                    # No trusted operational exception exists yet, so the
+                    # contract forbids speculative policy retrieval.
+                    result.answer.setdefault("recommended_action", "NONE_YET")
 
         # Explicitly account for the retained untrusted corpus without exposing it.
         if asks_action or asks_cause:
             for row in self.data.untrusted:
                 if row["id"] not in result.rejected_untrusted_ids:
                     result.rejected_untrusted_ids.append(row["id"])
+            if result.rejected_untrusted_ids:
+                result.answer["ignored_untrusted"] = True
 
         result.source_families.sort()
         if not result.stop_reason:

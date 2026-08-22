@@ -18,6 +18,6 @@ Frozen benchmark split: `test`. Benchmark clock: `2026-08-15T12:00:00Z`.
 | mutation task success | 1.000 |
 | mean action count | 1.778 |
 | max action count | 4 |
-| mean latency ms | 0.201 |
+| mean latency ms | 0.155 |
 
 Every row persists action sequence, stop reason, evidence IDs, and rejected unauthorized/stale/untrusted IDs. Timings are implementation sanity measurements, not production throughput claims.

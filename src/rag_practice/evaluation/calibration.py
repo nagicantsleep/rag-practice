@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+import time
 from pathlib import Path
 from statistics import mean
 from typing import Any
@@ -40,25 +41,34 @@ def raw_correctness(case: BenchmarkCase, trace: RuntimeTrace) -> int:
     return 1
 
 
-def _build_rows(data_root: Path) -> tuple[list[dict[str, Any]], LogisticCalibrator]:
+def _build_rows(
+    data_root: Path,
+) -> tuple[list[dict[str, Any]], LogisticCalibrator, dict[str, float]]:
     benchmark = load_benchmark(data_root / "benchmark.json")
     traces: dict[str, RuntimeTrace] = {}
-    cases = {case.id: case for case in benchmark.cases}
+    trace_latencies: list[float] = []
     for case in benchmark.cases:
+        started = time.perf_counter()
         traces[case.id] = build_runtime_trace(case.id, case.entity_id, case.question, benchmark.documents)
+        trace_latencies.append((time.perf_counter() - started) * 1000)
 
     train_rows = [
         (traces[case.id].features, raw_correctness(case, traces[case.id]))
         for case in benchmark.cases_for("train")
     ]
+    fit_started = time.perf_counter()
     calibrator = LogisticCalibrator.fit(train_rows)
+    fit_ms = (time.perf_counter() - fit_started) * 1000
 
+    prediction_latencies: list[float] = []
     rows: list[dict[str, Any]] = []
     for case in benchmark.cases:
         trace = traces[case.id]
         correctness = raw_correctness(case, trace)
         confidences = baseline_confidences(trace)
+        prediction_started = time.perf_counter()
         confidences["logistic"] = calibrator.predict(trace.features)
+        prediction_latencies.append((time.perf_counter() - prediction_started) * 1000)
         rows.append(
             {
                 "id": case.id,
@@ -88,7 +98,15 @@ def _build_rows(data_root: Path) -> tuple[list[dict[str, Any]], LogisticCalibrat
                 "confidences": confidences,
             }
         )
-    return rows, calibrator
+    timing = {
+        "mean_trace_feature_ms": mean(trace_latencies),
+        "max_trace_feature_ms": max(trace_latencies),
+        "logistic_fit_ms": fit_ms,
+        "mean_logistic_predict_ms": mean(prediction_latencies),
+        "max_logistic_predict_ms": max(prediction_latencies),
+        "model_calls": 0.0,
+    }
+    return rows, calibrator, timing
 
 
 def _choose_threshold(rows: list[dict[str, Any]], method: str) -> float:
@@ -125,19 +143,32 @@ def _reliability(rows: list[dict[str, Any]], method: str) -> list[dict[str, Any]
     return output
 
 
-def _aurc_and_targets(rows: list[dict[str, Any]], method: str) -> tuple[float, dict[str, float]]:
+def _aurc_targets_and_curve(
+    rows: list[dict[str, Any]], method: str
+) -> tuple[float, dict[str, float], list[dict[str, Any]]]:
     ordered = sorted(rows, key=lambda row: (-row["confidences"][method], row["id"]))
     prefix_risks: list[float] = []
+    curve: list[dict[str, Any]] = []
     errors = 0
+    n = len(ordered)
     for index, row in enumerate(ordered, start=1):
         errors += 1 - row["correct"]
-        prefix_risks.append(errors / index)
+        risk = errors / index
+        prefix_risks.append(risk)
+        curve.append(
+            {
+                "prefix": index,
+                "coverage": index / n,
+                "risk": risk,
+                "confidence": row["confidences"][method],
+                "query_id": row["id"],
+            }
+        )
     targets: dict[str, float] = {}
-    n = len(ordered)
     for target in (0.50, 0.70, 0.90):
         k = max(1, math.ceil(target * n))
         targets[f"risk_at_{target:.2f}_coverage"] = prefix_risks[k - 1]
-    return mean(prefix_risks), targets
+    return mean(prefix_risks), targets, curve
 
 
 def _method_metrics(rows: list[dict[str, Any]], method: str, threshold: float) -> dict[str, Any]:
@@ -164,7 +195,7 @@ def _method_metrics(rows: list[dict[str, Any]], method: str, threshold: float) -
     )
     correct_conf = [row["confidences"][method] for row in rows if row["correct"]]
     incorrect_conf = [row["confidences"][method] for row in rows if not row["correct"]]
-    aurc, targets = _aurc_and_targets(rows, method)
+    aurc, targets, curve = _aurc_targets_and_curve(rows, method)
     metrics = {
         "threshold": threshold,
         "full_coverage_accuracy": mean(correctness),
@@ -185,6 +216,7 @@ def _method_metrics(rows: list[dict[str, Any]], method: str, threshold: float) -
         ),
         "aurc": aurc,
         "reliability": reliability,
+        "risk_coverage_curve": curve,
     }
     metrics.update(targets)
     return metrics
@@ -193,7 +225,7 @@ def _method_metrics(rows: list[dict[str, Any]], method: str, threshold: float) -
 def evaluate_calibration(data_root: str | Path) -> dict[str, Any]:
     root = Path(data_root)
     raw = json.loads((root / "benchmark.json").read_text())
-    rows, calibrator = _build_rows(root)
+    rows, calibrator, timing = _build_rows(root)
     by_split = {
         split: [row for row in rows if row["split"] == split]
         for split in ("train", "calibration", "test_id", "test_ood")
@@ -236,6 +268,7 @@ def evaluate_calibration(data_root: str | Path) -> dict[str, Any]:
         },
         "metrics": metrics,
         "drift": drift,
+        "timing": timing,
         "rows": rows,
     }
 
@@ -280,10 +313,23 @@ def render_calibration_markdown(results: dict[str, Any]) -> str:
             f"{delta['ece']:+.3f} | {delta['aurc']:+.3f} | {delta['coverage']:+.3f} | "
             f"{delta['selective_risk']:+.3f} | {delta['mean_confidence']:+.3f} |"
         )
+    timing = results["timing"]
     lines.extend(
         [
             "",
-            "Calibration quality and selective risk are reported separately. Timing/scale claims are not part of M12.1.",
+            "## Implementation sanity",
+            "",
+            "| Metric | Value |",
+            "| --- | ---: |",
+            f"| mean trace + feature ms/query | {timing['mean_trace_feature_ms']:.4f} |",
+            f"| max trace + feature ms/query | {timing['max_trace_feature_ms']:.4f} |",
+            f"| logistic fit ms | {timing['logistic_fit_ms']:.4f} |",
+            f"| mean logistic predict ms/query | {timing['mean_logistic_predict_ms']:.6f} |",
+            f"| model calls | {int(timing['model_calls'])} |",
+            "",
+            "Full reliability bins, discrete risk–coverage curve points, and per-query runtime/evaluator traces are persisted in the JSON artifact.",
+            "",
+            "Calibration quality and selective risk are reported separately. Timings are educational Python/GitHub-Actions implementation sanity measurements, not production throughput claims.",
             "",
         ]
     )

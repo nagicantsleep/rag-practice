@@ -635,6 +635,28 @@ Evaluation evidence:
 
 Artifacts: `benchmarks/m10_training/`, `benchmarks/m10_production/`, `src/rag_practice/training/`, `src/rag_practice/production/`, `src/rag_practice/evaluation/training.py`, `src/rag_practice/evaluation/production.py`, `labs/10_training_production/`, and `.github/workflows/m10-training-production.yml`.
 
+### M11 — Order-to-Cash & Logistics Exception Resolution Copilot — `DONE`
+
+M11 is the real-world production RAG capstone integrating ERP/order state, finance, logistics events, contracts/SLA, SOPs, authorization, bounded investigation, freshness, caching, mutation handling, observability, and exact provenance.
+
+Key findings:
+
+- the fixed one-shot mixed-source baseline reaches strict task success `0.500`, field accuracy `0.856`, and high source recall, but exposes stale and untrusted evidence on the frozen benchmark;
+- the repaired bounded integrated copilot reaches strict task success `0.889`, field accuracy `0.972`, evidence recall `0.986`, and zero unauthorized/stale/untrusted exposure while keeping two evaluator/policy mismatches as retained failures rather than tuning them away;
+- generation-aware role/snapshot/policy cache keys preserve serving correctness across authorized/denied users and the frozen g0→g1 Helios mutation;
+- the M11.3 production sequence reaches perfect cache expectation, role isolation, generation invalidation, mutation correctness, and observability completeness with zero policy exposure;
+- deterministic 100/1000-record expansions preserve the target answer, but latency/scale numbers remain educational Python/GitHub-Actions sanity measurements rather than database, ANN, concurrency, or production-throughput claims.
+
+Evaluation evidence:
+
+- M11.0 benchmark freeze: `96031c933f6b53b22fb50f0ca02e723a0d928aa1`;
+- M11.1 baseline gate: `32518642131` / job `96885807414`;
+- repaired M11.2 gate: `32558363822` / job `96996006860`, with **161 repository tests** passing;
+- M11.3 production gate: `32558661583` / job `96996711770`, with **164 repository tests** plus all M11 evaluators passing;
+- the final source-of-truth push gate passes on the completed code/evidence/workflow head immediately before this automated `[skip ci]` completion update.
+
+Artifacts: `benchmarks/m11_otc_logistics/`, `src/rag_practice/otc/`, `src/rag_practice/evaluation/otc.py`, `src/rag_practice/evaluation/otc_integrated.py`, `src/rag_practice/evaluation/otc_production.py`, `labs/11_otc_logistics/`, and `.github/workflows/m11-otc.yml`.
+
 ## Immediate next step
 
-M00–M10 are complete. Extend the roadmap only by freezing a new learning objective and evaluation contract before implementation.
+M00–M11 are complete. Any next milestone should begin with a new learning objective and a frozen evaluation contract rather than extending the completed M11 benchmark post-hoc.

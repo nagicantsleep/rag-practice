@@ -46,6 +46,8 @@ jobs:
         run: python labs/11_otc_logistics/run_baselines.py
       - name: Evaluate frozen M11.2 integrated copilot
         run: python labs/11_otc_logistics/run_integrated.py
+      - name: Evaluate frozen M11.3 production serving
+        run: python labs/11_otc_logistics/run_production.py
       - name: Persist M11 evidence
         if: github.event_name == 'push'
         run: |
@@ -55,7 +57,9 @@ jobs:
             labs/11_otc_logistics/results/baseline_results.json \
             labs/11_otc_logistics/results/baseline_results.md \
             labs/11_otc_logistics/results/integrated_results.json \
-            labs/11_otc_logistics/results/integrated_results.md
+            labs/11_otc_logistics/results/integrated_results.md \
+            labs/11_otc_logistics/results/production_results.json \
+            labs/11_otc_logistics/results/production_results.md
           if ! git diff --cached --quiet; then
             git commit -m "test: record M11 evaluation evidence [skip ci]"
             git push origin HEAD:feat/m11-otc-logistics-capstone

@@ -1,0 +1,56 @@
+name: M12 calibrated and drift-aware RAG evaluation
+
+on:
+  push:
+    branches:
+      - feat/m12-calibrated-drift-rag
+    paths:
+      - "src/rag_practice/calibration/**"
+      - "src/rag_practice/evaluation/calibration.py"
+      - "benchmarks/m12_calibration/**"
+      - "labs/12_calibrated_drift_rag/**"
+      - "tests/test_m12_calibration.py"
+      - ".github/workflows/m12-calibration.yml"
+      - "ROADMAP.md"
+  pull_request:
+    paths:
+      - "src/rag_practice/calibration/**"
+      - "src/rag_practice/evaluation/calibration.py"
+      - "benchmarks/m12_calibration/**"
+      - "labs/12_calibrated_drift_rag/**"
+      - "tests/test_m12_calibration.py"
+      - ".github/workflows/m12-calibration.yml"
+      - "ROADMAP.md"
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install project with full regression dependencies
+        run: python -m pip install -e ".[dev,pretrained,visual_document]"
+      - name: Run full test suite
+        run: pytest -q
+      - name: Evaluate frozen M12 calibration benchmark
+        run: python labs/12_calibrated_drift_rag/run_calibration.py
+      - name: Persist M12 evidence
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            labs/12_calibrated_drift_rag/results/calibration_results.json \
+            labs/12_calibrated_drift_rag/results/calibration_results.md
+          if ! git diff --cached --quiet; then
+            git commit -m "test: record M12 calibration evidence [skip ci]"
+            git push origin HEAD:feat/m12-calibrated-drift-rag
+          fi

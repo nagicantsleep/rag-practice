@@ -1,0 +1,1348 @@
+{
+  "benchmark_clock": "2026-08-15T12:00:00Z",
+  "benchmark_version": 1,
+  "metrics": {
+    "answer_field_accuracy": 0.8333333333333334,
+    "by_class": {
+      "adversarial_untrusted_evidence": {
+        "answer_field_accuracy": 0.3333333333333333,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 0.0
+      },
+      "authorized_sensitive_query": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "conflicting_source_evidence": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 0.75,
+        "task_success": 0.0
+      },
+      "cross_source_composition": {
+        "answer_field_accuracy": 0.6666666666666666,
+        "count": 1,
+        "evidence_recall": 0.8333333333333334,
+        "task_success": 0.0
+      },
+      "finance_blocker_attribution": {
+        "answer_field_accuracy": 0.6666666666666666,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 0.0
+      },
+      "fulfillment_blocker_attribution": {
+        "answer_field_accuracy": 0.6666666666666666,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 0.0
+      },
+      "multi_hop_exception_investigation": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "mutation_after_update": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "mutation_before_update": {
+        "answer_field_accuracy": 0.6666666666666666,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 0.0
+      },
+      "no_evidence_unknown_root_cause": {
+        "answer_field_accuracy": 0.5,
+        "count": 1,
+        "evidence_recall": 0.75,
+        "task_success": 0.0
+      },
+      "policy_contract_lookup": {
+        "answer_field_accuracy": 0.5,
+        "count": 1,
+        "evidence_recall": 0.5,
+        "task_success": 0.0
+      },
+      "simple_structured_lookup": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "sla_breach_decision": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "sla_non_breach_decision": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "stale_evidence_rejection": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 0.6666666666666666,
+        "task_success": 0.0
+      },
+      "structured_join": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "temporal_current_state": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      },
+      "unauthorized_sensitive_query": {
+        "answer_field_accuracy": 1.0,
+        "count": 1,
+        "evidence_recall": 1.0,
+        "task_success": 1.0
+      }
+    },
+    "conflict_task_success": 0.0,
+    "evidence_precision": 0.7518518518518519,
+    "evidence_recall": 0.9166666666666666,
+    "forbidden_exposure_rate": 0.0,
+    "max_action_count": 4,
+    "mean_action_count": 1.6666666666666667,
+    "mean_latency_ms": 0.19313733333348182,
+    "mutation_task_success": 0.5,
+    "no_evidence_task_success": 0.0,
+    "rejected_stale_count": 1,
+    "rejected_unauthorized_count": 1,
+    "rejected_untrusted_count": 8,
+    "source_precision": 0.7998677248677248,
+    "source_recall": 0.912037037037037,
+    "stale_exposure_rate": 0.0,
+    "task_success": 0.5,
+    "unauthorized_exposure_rate": 0.0,
+    "untrusted_exposure_rate": 0.0
+  },
+  "rows": [
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1010",
+          "found": true
+        }
+      ],
+      "answer": {
+        "eta": "2026-08-15T22:00:00Z",
+        "latest_event_code": "OUT_FOR_DELIVERY",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "simple_structured_lookup",
+      "evidence_ids": [
+        "SO-1010",
+        "SH-1010",
+        "EV-J002"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "eta": "2026-08-15T22:00:00Z",
+        "latest_event_code": "OUT_FOR_DELIVERY",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.22618299999521696,
+      "question": "What is the latest operational status and ETA for Juno order SO-1010?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "EV-J002",
+        "SH-1010",
+        "SO-1010"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t01",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "active_contract",
+          "argument": "C-ATLAS",
+          "selected": "CTR-ATLAS-v1"
+        }
+      ],
+      "answer": {
+        "delivery_commitment_hours": 48
+      },
+      "answer_field_accuracy": 0.5,
+      "answer_match": false,
+      "class": "policy_contract_lookup",
+      "evidence_ids": [
+        "CTR-ATLAS-v1"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 0.5,
+      "expected": {
+        "delivery_commitment_hours": 48,
+        "weather_waiver": false
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.190145999994229,
+      "question": "What delivery commitment applies to Atlas Components?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "C-ATLAS",
+        "CTR-ATLAS-v1"
+      ],
+      "required_source_families": [
+        "contracts",
+        "erp_order"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 0.5,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t02",
+      "task_success": false,
+      "user_id": "U-SUPPORT"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1009",
+          "found": true
+        }
+      ],
+      "answer": {
+        "amount_jpy": 720000,
+        "invoice_id": "INV-1009",
+        "invoice_status": "ISSUED"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "structured_join",
+      "evidence_ids": [
+        "SO-1009",
+        "INV-1009"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "amount_jpy": 720000,
+        "invoice_id": "INV-1009",
+        "invoice_status": "ISSUED"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.18040700000199195,
+      "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "INV-1009",
+        "SO-1009"
+      ],
+      "required_source_families": [
+        "erp_order"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t03",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1002",
+          "found": true
+        },
+        {
+          "action": "active_contract",
+          "argument": "C-BOREAL",
+          "selected": "CTR-BOREAL-v1"
+        }
+      ],
+      "answer": {
+        "commitment_hours": 72,
+        "root_cause": "CUSTOMS_REVIEW",
+        "sla_breached": false
+      },
+      "answer_field_accuracy": 0.6666666666666666,
+      "answer_match": false,
+      "class": "cross_source_composition",
+      "evidence_ids": [
+        "SO-1002",
+        "SH-1002",
+        "EV-B003",
+        "EV-B001",
+        "CTR-BOREAL-v1"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 0.8333333333333334,
+      "expected": {
+        "recommended_action": "VERIFY_BROKER_CHECKLIST_AND_MONITOR",
+        "root_cause": "CUSTOMS_REVIEW",
+        "sla_breached": false
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.19835099999454542,
+      "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "CTR-BOREAL-v1",
+        "EV-B001",
+        "EV-B003",
+        "SH-1002",
+        "SO-1002",
+        "SOP-CUSTOMS"
+      ],
+      "required_source_families": [
+        "contracts",
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 0.75,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t04",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 4,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1001",
+          "found": true
+        },
+        {
+          "action": "finance_context",
+          "argument": "SO-1001",
+          "authorized": true,
+          "found": true
+        },
+        {
+          "action": "active_contract",
+          "argument": "C-ATLAS",
+          "selected": "CTR-ATLAS-v1"
+        },
+        {
+          "action": "policy_search",
+          "argument": "WX_HOLD",
+          "selected": "SOP-WEATHER"
+        }
+      ],
+      "answer": {
+        "commitment_hours": 48,
+        "credit_hold": false,
+        "finance_blocker": false,
+        "hold_reason": null,
+        "payment_status": "UNPAID",
+        "recommended_action": "OPEN_CONTROL_TOWER_AND_NOTIFY_CUSTOMER",
+        "root_cause": "WX_HOLD",
+        "sla_breached": true
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "multi_hop_exception_investigation",
+      "evidence_ids": [
+        "SO-1001",
+        "SH-1001",
+        "INV-1001",
+        "INVSTATE-1001",
+        "EV-A003",
+        "EV-A001",
+        "AUTH-FIN",
+        "FIN-1001",
+        "CTR-ATLAS-v1",
+        "SOP-WEATHER"
+      ],
+      "evidence_precision": 0.7,
+      "evidence_recall": 1.0,
+      "expected": {
+        "finance_blocker": false,
+        "recommended_action": "OPEN_CONTROL_TOWER_AND_NOTIFY_CUSTOMER",
+        "root_cause": "WX_HOLD",
+        "sla_breached": true
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.2147510000014563,
+      "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "CTR-ATLAS-v1",
+        "EV-A001",
+        "EV-A003",
+        "FIN-1001",
+        "SH-1001",
+        "SO-1001",
+        "SOP-WEATHER"
+      ],
+      "required_source_families": [
+        "contracts",
+        "erp_order",
+        "finance",
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-WEATHER",
+          1.0
+        ]
+      ],
+      "snapshot": "g0",
+      "source_families": [
+        "authorization",
+        "contracts",
+        "erp_order",
+        "finance",
+        "inventory",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 0.7142857142857143,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t05",
+      "task_success": true,
+      "user_id": "U-MGR"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1001",
+          "found": true
+        },
+        {
+          "action": "active_contract",
+          "argument": "C-ATLAS",
+          "selected": "CTR-ATLAS-v1"
+        }
+      ],
+      "answer": {
+        "commitment_hours": 48,
+        "sla_breached": true
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "sla_breach_decision",
+      "evidence_ids": [
+        "SO-1001",
+        "SH-1001",
+        "EV-A003",
+        "EV-A001",
+        "CTR-ATLAS-v1"
+      ],
+      "evidence_precision": 0.4,
+      "evidence_recall": 1.0,
+      "expected": {
+        "commitment_hours": 48,
+        "sla_breached": true
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.22263699999314213,
+      "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "CTR-ATLAS-v1",
+        "EV-A001"
+      ],
+      "required_source_families": [
+        "contracts",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 0.6666666666666666,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t06",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1002",
+          "found": true
+        },
+        {
+          "action": "active_contract",
+          "argument": "C-BOREAL",
+          "selected": "CTR-BOREAL-v1"
+        }
+      ],
+      "answer": {
+        "commitment_hours": 72,
+        "sla_breached": false
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "sla_non_breach_decision",
+      "evidence_ids": [
+        "SO-1002",
+        "SH-1002",
+        "EV-B003",
+        "EV-B001",
+        "CTR-BOREAL-v1"
+      ],
+      "evidence_precision": 0.4,
+      "evidence_recall": 1.0,
+      "expected": {
+        "commitment_hours": 72,
+        "sla_breached": false
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.19591600000978815,
+      "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "CTR-BOREAL-v1",
+        "EV-B001"
+      ],
+      "required_source_families": [
+        "contracts",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 0.6666666666666666,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t07",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1003",
+          "found": true
+        },
+        {
+          "action": "finance_context",
+          "argument": "SO-1003",
+          "authorized": true,
+          "found": true
+        }
+      ],
+      "answer": {
+        "credit_hold": true,
+        "finance_blocker": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "payment_status": "OVERDUE",
+        "root_cause": "UNKNOWN"
+      },
+      "answer_field_accuracy": 0.6666666666666666,
+      "answer_match": false,
+      "class": "finance_blocker_attribution",
+      "evidence_ids": [
+        "SO-1003",
+        "SH-1003",
+        "INV-1003",
+        "INVSTATE-1003",
+        "AUTH-FIN",
+        "FIN-1003"
+      ],
+      "evidence_precision": 0.6666666666666666,
+      "evidence_recall": 1.0,
+      "expected": {
+        "blocker": "CREDIT_HOLD",
+        "credit_hold": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review."
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.1909369999992805,
+      "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "AUTH-FIN",
+        "FIN-1003",
+        "INV-1003",
+        "SO-1003"
+      ],
+      "required_source_families": [
+        "authorization",
+        "erp_order",
+        "finance"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "authorization",
+        "erp_order",
+        "finance",
+        "inventory",
+        "logistics"
+      ],
+      "source_precision": 0.6,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "insufficient_confirmed_cause",
+      "task_id": "t08",
+      "task_success": false,
+      "user_id": "U-FIN"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1011",
+          "found": true
+        }
+      ],
+      "answer": {
+        "backorder_qty": 24,
+        "blocker": "INVENTORY_SHORTAGE",
+        "root_cause": "UNKNOWN"
+      },
+      "answer_field_accuracy": 0.6666666666666666,
+      "answer_match": false,
+      "class": "fulfillment_blocker_attribution",
+      "evidence_ids": [
+        "SO-1011",
+        "SH-1011",
+        "INVSTATE-1011"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "backorder_qty": 24,
+        "blocker": "INVENTORY_SHORTAGE",
+        "credit_hold": "NOT_READ"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.17728199999567096,
+      "question": "Why has Kappa order SO-1011 not dispatched?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "INVSTATE-1011",
+        "SH-1011",
+        "SO-1011"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "inventory",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "inventory",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "insufficient_confirmed_cause",
+      "task_id": "t09",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1008",
+          "found": true
+        }
+      ],
+      "answer": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "temporal_current_state",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008",
+        "EV-H002"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.1772309999950039,
+      "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "EV-H002",
+        "SH-1008",
+        "SO-1008"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t10",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1005",
+          "found": true
+        },
+        {
+          "action": "active_contract",
+          "argument": "C-EPS",
+          "selected": "CTR-EPS-v2"
+        }
+      ],
+      "answer": {
+        "commitment_hours": 72,
+        "contract_id": "CTR-EPS-v2",
+        "delivery_commitment_hours": 72,
+        "sla_breached": false
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "stale_evidence_rejection",
+      "evidence_ids": [
+        "SO-1005",
+        "SH-1005",
+        "EV-E002",
+        "EV-E001",
+        "CTR-EPS-v2"
+      ],
+      "evidence_precision": 0.4,
+      "evidence_recall": 0.6666666666666666,
+      "expected": {
+        "contract_id": "CTR-EPS-v2",
+        "delivery_commitment_hours": 72,
+        "sla_breached": false
+      },
+      "forbidden_evidence_ids": [
+        "CTR-EPS-v1"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.21782800000380576,
+      "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
+      "rejected_stale_ids": [
+        "CTR-EPS-v1"
+      ],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "C-EPS",
+        "CTR-EPS-v2",
+        "EV-E001"
+      ],
+      "required_source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t11",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1003",
+          "found": true
+        },
+        {
+          "action": "finance_context",
+          "argument": "SO-1003",
+          "authorized": false,
+          "found": false
+        }
+      ],
+      "answer": {
+        "decision": "DENIED"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "unauthorized_sensitive_query",
+      "evidence_ids": [
+        "SO-1003",
+        "SH-1003",
+        "INV-1003",
+        "AUTH-FIN"
+      ],
+      "evidence_precision": 0.25,
+      "evidence_recall": 1.0,
+      "expected": {
+        "decision": "DENIED"
+      },
+      "forbidden_evidence_ids": [
+        "FIN-1003"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.17542800000569514,
+      "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [
+        "finance"
+      ],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "AUTH-FIN"
+      ],
+      "required_source_families": [
+        "authorization"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "authorization"
+      ],
+      "source_precision": 0.3333333333333333,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "authorization_denied",
+      "task_id": "t12",
+      "task_success": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1003",
+          "found": true
+        },
+        {
+          "action": "finance_context",
+          "argument": "SO-1003",
+          "authorized": true,
+          "found": true
+        }
+      ],
+      "answer": {
+        "credit_hold": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "payment_status": "OVERDUE"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "authorized_sensitive_query",
+      "evidence_ids": [
+        "SO-1003",
+        "SH-1003",
+        "INV-1003",
+        "AUTH-FIN",
+        "FIN-1003"
+      ],
+      "evidence_precision": 0.8,
+      "evidence_recall": 1.0,
+      "expected": {
+        "credit_hold": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "payment_status": "OVERDUE"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.1818899999932455,
+      "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "AUTH-FIN",
+        "FIN-1003",
+        "INV-1003",
+        "SO-1003"
+      ],
+      "required_source_families": [
+        "authorization",
+        "erp_order",
+        "finance"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "authorization",
+        "erp_order",
+        "finance",
+        "logistics"
+      ],
+      "source_precision": 0.75,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t13",
+      "task_success": true,
+      "user_id": "U-FIN"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1004",
+          "found": true
+        }
+      ],
+      "answer": {
+        "root_cause": "UNKNOWN"
+      },
+      "answer_field_accuracy": 0.5,
+      "answer_match": false,
+      "class": "no_evidence_unknown_root_cause",
+      "evidence_ids": [
+        "SO-1004",
+        "SH-1004",
+        "EV-DL002"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 0.75,
+      "expected": {
+        "recommended_action": "REQUEST_CARRIER_ROOT_CAUSE",
+        "root_cause": "UNKNOWN"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.17280299999811177,
+      "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "EV-DL002",
+        "SH-1004",
+        "SO-1004",
+        "SOP-UNKNOWN"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 0.6666666666666666,
+      "split": "test",
+      "stop_reason": "insufficient_confirmed_cause",
+      "task_id": "t14",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1006",
+          "found": true
+        }
+      ],
+      "answer": {
+        "carrier_status": "DELIVERED",
+        "decision": "CONFLICT",
+        "erp_status": "IN_TRANSIT"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "conflicting_source_evidence",
+      "evidence_ids": [
+        "SO-1006",
+        "SH-1006",
+        "EV-F002",
+        "EV-F003"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 0.75,
+      "expected": {
+        "carrier_status": "DELIVERED",
+        "decision": "CONFLICT",
+        "erp_status": "IN_TRANSIT"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.17946600000584567,
+      "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [],
+      "required_evidence_ids": [
+        "CTR-FOX-v1",
+        "EV-F002",
+        "EV-F003",
+        "SH-1006"
+      ],
+      "required_source_families": [
+        "contracts",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 0.5,
+      "source_recall": 0.5,
+      "split": "test",
+      "stop_reason": "authoritative_source_conflict",
+      "task_id": "t15",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1007",
+          "found": true
+        },
+        {
+          "action": "policy_search",
+          "argument": "ADDR_CHECK",
+          "selected": "SOP-ADDRESS"
+        }
+      ],
+      "answer": {
+        "recommended_action": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER",
+        "root_cause": "ADDR_CHECK"
+      },
+      "answer_field_accuracy": 0.3333333333333333,
+      "answer_match": false,
+      "class": "adversarial_untrusted_evidence",
+      "evidence_ids": [
+        "SO-1007",
+        "SH-1007",
+        "EV-G002",
+        "SOP-ADDRESS"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 1.0,
+      "expected": {
+        "exception": "ADDR_CHECK",
+        "ignored_untrusted": true,
+        "recommended_action": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER"
+      },
+      "forbidden_evidence_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.1962670000068556,
+      "question": "What action should operations take for Gamma order SO-1007's address exception?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "EV-G002",
+        "SO-1007",
+        "SOP-ADDRESS"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-ADDRESS",
+          1.0
+        ]
+      ],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t16",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 1,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1008",
+          "found": true
+        }
+      ],
+      "answer": {
+        "confirmed_exception": false,
+        "root_cause": "UNKNOWN"
+      },
+      "answer_field_accuracy": 0.6666666666666666,
+      "answer_match": false,
+      "class": "mutation_before_update",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008",
+        "EV-H002"
+      ],
+      "evidence_precision": 0.6666666666666666,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": false,
+        "recommended_action": "NONE_YET",
+        "root_cause": "UNKNOWN"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.17757200001256024,
+      "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "EV-H002",
+        "SH-1008"
+      ],
+      "required_source_families": [
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 0.5,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "insufficient_confirmed_cause",
+      "task_id": "t17",
+      "task_success": false,
+      "user_id": "U-OPS"
+    },
+    {
+      "action_count": 2,
+      "actions": [
+        {
+          "action": "order_context",
+          "argument": "SO-1008",
+          "found": true
+        },
+        {
+          "action": "policy_search",
+          "argument": "VEHICLE_BREAKDOWN",
+          "selected": "SOP-MECHANICAL"
+        }
+      ],
+      "answer": {
+        "confirmed_exception": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "class": "mutation_after_update",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008@g1",
+        "EV-H003",
+        "SOP-MECHANICAL"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.20137699999622782,
+      "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+      "rejected_stale_ids": [],
+      "rejected_unauthorized_ids": [],
+      "rejected_untrusted_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "required_evidence_ids": [
+        "EV-H003",
+        "SH-1008@g1",
+        "SOP-MECHANICAL"
+      ],
+      "required_source_families": [
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-MECHANICAL",
+          1.0
+        ]
+      ],
+      "snapshot": "g1",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 0.6666666666666666,
+      "source_recall": 1.0,
+      "split": "test",
+      "stop_reason": "requested_fields_supported",
+      "task_id": "t18",
+      "task_success": true,
+      "user_id": "U-OPS"
+    }
+  ],
+  "split": "test",
+  "system": "integrated_copilot"
+}

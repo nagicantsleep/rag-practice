@@ -136,6 +136,78 @@
         "risk_at_0.50_coverage": 0.4,
         "risk_at_0.70_coverage": 0.5714285714285714,
         "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.5,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q28",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q29",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q30",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q31",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q32",
+            "risk": 0.7
+          }
+        ],
         "selective_risk": 0.7,
         "threshold": 0.5
       },
@@ -192,6 +264,78 @@
         "risk_at_0.50_coverage": 0.4,
         "risk_at_0.70_coverage": 0.5714285714285714,
         "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q30",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.42000000000000004,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q32",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.2,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
         "selective_risk": 0.5714285714285714,
         "threshold": 0.65
       },
@@ -248,6 +392,78 @@
         "risk_at_0.50_coverage": 0.4,
         "risk_at_0.70_coverage": 0.5714285714285714,
         "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q26",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q27",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5698403226239733,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q25",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.3750449072175784,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.27020939029271157,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.2279631928244263,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q32",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.1979102463831888,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q30",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.15361438595635854,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
         "selective_risk": 0.5,
         "threshold": 0.35
       },
@@ -304,6 +520,78 @@
         "risk_at_0.50_coverage": 0.4,
         "risk_at_0.70_coverage": 0.5714285714285714,
         "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q31",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q28",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q30",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q32",
+            "risk": 0.7
+          }
+        ],
         "selective_risk": 0.5714285714285714,
         "threshold": 0.3
       },
@@ -360,6 +648,78 @@
         "risk_at_0.50_coverage": 0.4,
         "risk_at_0.70_coverage": 0.5714285714285714,
         "risk_at_0.90_coverage": 0.6666666666666666,
+        "risk_coverage_curve": [
+          {
+            "confidence": 1.0,
+            "coverage": 0.1,
+            "prefix": 1,
+            "query_id": "q23",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.2,
+            "prefix": 2,
+            "query_id": "q24",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.3,
+            "prefix": 3,
+            "query_id": "q25",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.4,
+            "prefix": 4,
+            "query_id": "q26",
+            "risk": 0.25
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.5,
+            "prefix": 5,
+            "query_id": "q27",
+            "risk": 0.4
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.6,
+            "prefix": 6,
+            "query_id": "q29",
+            "risk": 0.5
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.7,
+            "prefix": 7,
+            "query_id": "q30",
+            "risk": 0.5714285714285714
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.8,
+            "prefix": 8,
+            "query_id": "q31",
+            "risk": 0.625
+          },
+          {
+            "confidence": 0.6,
+            "coverage": 0.9,
+            "prefix": 9,
+            "query_id": "q32",
+            "risk": 0.6666666666666666
+          },
+          {
+            "confidence": 0.3333333333333333,
+            "coverage": 1.0,
+            "prefix": 10,
+            "query_id": "q28",
+            "risk": 0.7
+          }
+        ],
         "selective_risk": 0.625,
         "threshold": 1.0
       }
@@ -418,6 +778,64 @@
         "risk_at_0.50_coverage": 0.0,
         "risk_at_0.70_coverage": 0.3333333333333333,
         "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.5,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q34",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q37",
+            "risk": 0.2
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q38",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q39",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q40",
+            "risk": 0.5
+          }
+        ],
         "selective_risk": 0.5,
         "threshold": 0.5
       },
@@ -474,6 +892,64 @@
         "risk_at_0.50_coverage": 0.25,
         "risk_at_0.70_coverage": 0.3333333333333333,
         "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.9166666666666667,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.8333333333333334,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6833333333333333,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q39",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.5833333333333334,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q37",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.5666666666666667,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q34",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q40",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.13999999999999996,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
         "selective_risk": 0.25,
         "threshold": 0.65
       },
@@ -530,6 +1006,64 @@
         "risk_at_0.50_coverage": 0.0,
         "risk_at_0.70_coverage": 0.3333333333333333,
         "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6330494014541087,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6182825940485394,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.6017655273632138,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q34",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.5541777211715987,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.3750449072175784,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.2
+          },
+          {
+            "confidence": 0.2316673938754615,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q37",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.1979102463831888,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q40",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.15249953719226453,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
         "selective_risk": 0.2,
         "threshold": 0.35
       },
@@ -586,6 +1120,64 @@
         "risk_at_0.50_coverage": 0.25,
         "risk_at_0.70_coverage": 0.3333333333333333,
         "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 0.6666666666666667,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q37",
+            "risk": 0.25
+          },
+          {
+            "confidence": 0.33333333333333337,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.4
+          },
+          {
+            "confidence": 0.16666666666666669,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q34",
+            "risk": 0.3333333333333333
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q38",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.0,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q40",
+            "risk": 0.5
+          }
+        ],
         "selective_risk": 0.4,
         "threshold": 0.3
       },
@@ -642,6 +1234,64 @@
         "risk_at_0.50_coverage": 0.25,
         "risk_at_0.70_coverage": 0.5,
         "risk_at_0.90_coverage": 0.5,
+        "risk_coverage_curve": [
+          {
+            "confidence": 1.0,
+            "coverage": 0.125,
+            "prefix": 1,
+            "query_id": "q33",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.25,
+            "prefix": 2,
+            "query_id": "q35",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.375,
+            "prefix": 3,
+            "query_id": "q36",
+            "risk": 0.0
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.5,
+            "prefix": 4,
+            "query_id": "q37",
+            "risk": 0.25
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.625,
+            "prefix": 5,
+            "query_id": "q39",
+            "risk": 0.4
+          },
+          {
+            "confidence": 1.0,
+            "coverage": 0.75,
+            "prefix": 6,
+            "query_id": "q40",
+            "risk": 0.5
+          },
+          {
+            "confidence": 0.5,
+            "coverage": 0.875,
+            "prefix": 7,
+            "query_id": "q34",
+            "risk": 0.42857142857142855
+          },
+          {
+            "confidence": 0.2,
+            "coverage": 1.0,
+            "prefix": 8,
+            "query_id": "q38",
+            "risk": 0.5
+          }
+        ],
         "selective_risk": 0.5,
         "threshold": 1.0
       }
@@ -3210,5 +3860,13 @@
     "logistic": 0.35,
     "margin": 0.3,
     "top1": 1.0
+  },
+  "timing": {
+    "logistic_fit_ms": 10.519838999996978,
+    "max_logistic_predict_ms": 0.008553000000688371,
+    "max_trace_feature_ms": 0.40212700000097357,
+    "mean_logistic_predict_ms": 0.0018961750004820033,
+    "mean_trace_feature_ms": 0.3104533249999264,
+    "model_calls": 0.0
   }
 }

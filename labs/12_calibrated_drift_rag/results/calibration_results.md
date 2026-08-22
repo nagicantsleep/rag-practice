@@ -32,4 +32,16 @@ Thresholds are selected on the frozen calibration split only and then applied un
 | hand_composed | +0.200 | -0.121 | -0.129 | -0.132 | -0.200 | -0.321 | -0.033 |
 | logistic | +0.200 | -0.047 | +0.100 | -0.247 | +0.025 | -0.300 | -0.012 |
 
-Calibration quality and selective risk are reported separately. Timing/scale claims are not part of M12.1.
+## Implementation sanity
+
+| Metric | Value |
+| --- | ---: |
+| mean trace + feature ms/query | 0.3105 |
+| max trace + feature ms/query | 0.4021 |
+| logistic fit ms | 10.5198 |
+| mean logistic predict ms/query | 0.001896 |
+| model calls | 0 |
+
+Full reliability bins, discrete risk–coverage curve points, and per-query runtime/evaluator traces are persisted in the JSON artifact.
+
+Calibration quality and selective risk are reported separately. Timings are educational Python/GitHub-Actions implementation sanity measurements, not production throughput claims.

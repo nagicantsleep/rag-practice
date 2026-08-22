@@ -2,13 +2,13 @@
   "benchmark_clock": "2026-08-15T12:00:00Z",
   "benchmark_version": 1,
   "metrics": {
-    "answer_field_accuracy": 0.8333333333333334,
+    "answer_field_accuracy": 0.9722222222222222,
     "by_class": {
       "adversarial_untrusted_evidence": {
-        "answer_field_accuracy": 0.3333333333333333,
+        "answer_field_accuracy": 1.0,
         "count": 1,
         "evidence_recall": 1.0,
-        "task_success": 0.0
+        "task_success": 1.0
       },
       "authorized_sensitive_query": {
         "answer_field_accuracy": 1.0,
@@ -23,22 +23,22 @@
         "task_success": 0.0
       },
       "cross_source_composition": {
-        "answer_field_accuracy": 0.6666666666666666,
+        "answer_field_accuracy": 1.0,
         "count": 1,
-        "evidence_recall": 0.8333333333333334,
-        "task_success": 0.0
+        "evidence_recall": 1.0,
+        "task_success": 1.0
       },
       "finance_blocker_attribution": {
-        "answer_field_accuracy": 0.6666666666666666,
+        "answer_field_accuracy": 1.0,
         "count": 1,
         "evidence_recall": 1.0,
-        "task_success": 0.0
+        "task_success": 1.0
       },
       "fulfillment_blocker_attribution": {
-        "answer_field_accuracy": 0.6666666666666666,
+        "answer_field_accuracy": 1.0,
         "count": 1,
         "evidence_recall": 1.0,
-        "task_success": 0.0
+        "task_success": 1.0
       },
       "multi_hop_exception_investigation": {
         "answer_field_accuracy": 1.0,
@@ -53,21 +53,21 @@
         "task_success": 1.0
       },
       "mutation_before_update": {
-        "answer_field_accuracy": 0.6666666666666666,
+        "answer_field_accuracy": 1.0,
         "count": 1,
         "evidence_recall": 1.0,
-        "task_success": 0.0
+        "task_success": 1.0
       },
       "no_evidence_unknown_root_cause": {
-        "answer_field_accuracy": 0.5,
+        "answer_field_accuracy": 1.0,
         "count": 1,
-        "evidence_recall": 0.75,
-        "task_success": 0.0
+        "evidence_recall": 1.0,
+        "task_success": 1.0
       },
       "policy_contract_lookup": {
         "answer_field_accuracy": 0.5,
         "count": 1,
-        "evidence_recall": 0.5,
+        "evidence_recall": 1.0,
         "task_success": 0.0
       },
       "simple_structured_lookup": {
@@ -91,8 +91,8 @@
       "stale_evidence_rejection": {
         "answer_field_accuracy": 1.0,
         "count": 1,
-        "evidence_recall": 0.6666666666666666,
-        "task_success": 0.0
+        "evidence_recall": 1.0,
+        "task_success": 1.0
       },
       "structured_join": {
         "answer_field_accuracy": 1.0,
@@ -114,21 +114,21 @@
       }
     },
     "conflict_task_success": 0.0,
-    "evidence_precision": 0.7518518518518519,
-    "evidence_recall": 0.9166666666666666,
+    "evidence_precision": 0.7574074074074074,
+    "evidence_recall": 0.9861111111111112,
     "forbidden_exposure_rate": 0.0,
     "max_action_count": 4,
-    "mean_action_count": 1.6666666666666667,
-    "mean_latency_ms": 0.19313733333348182,
-    "mutation_task_success": 0.5,
-    "no_evidence_task_success": 0.0,
+    "mean_action_count": 1.7777777777777777,
+    "mean_latency_ms": 0.19807155555816458,
+    "mutation_task_success": 1.0,
+    "no_evidence_task_success": 1.0,
     "rejected_stale_count": 1,
     "rejected_unauthorized_count": 1,
     "rejected_untrusted_count": 8,
     "source_precision": 0.7998677248677248,
-    "source_recall": 0.912037037037037,
+    "source_recall": 0.9722222222222222,
     "stale_exposure_rate": 0.0,
-    "task_success": 0.5,
+    "task_success": 0.8888888888888888,
     "unauthorized_exposure_rate": 0.0,
     "untrusted_exposure_rate": 0.0
   },
@@ -164,7 +164,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.22618299999521696,
+      "latency_ms": 0.2753380000086736,
       "question": "What is the latest operational status and ETA for Juno order SO-1010?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -208,17 +208,18 @@
       "answer_match": false,
       "class": "policy_contract_lookup",
       "evidence_ids": [
+        "C-ATLAS",
         "CTR-ATLAS-v1"
       ],
       "evidence_precision": 1.0,
-      "evidence_recall": 0.5,
+      "evidence_recall": 1.0,
       "expected": {
         "delivery_commitment_hours": 48,
         "weather_waiver": false
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.190145999994229,
+      "latency_ms": 0.18451700000809979,
       "question": "What delivery commitment applies to Atlas Components?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -234,10 +235,11 @@
       "retrieved_documents": [],
       "snapshot": "g0",
       "source_families": [
-        "contracts"
+        "contracts",
+        "erp_order"
       ],
       "source_precision": 1.0,
-      "source_recall": 0.5,
+      "source_recall": 1.0,
       "split": "test",
       "stop_reason": "requested_fields_supported",
       "task_id": "t02",
@@ -274,7 +276,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.18040700000199195,
+      "latency_ms": 0.17771500000662854,
       "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -300,7 +302,7 @@
       "user_id": "U-OPS"
     },
     {
-      "action_count": 2,
+      "action_count": 3,
       "actions": [
         {
           "action": "order_context",
@@ -311,25 +313,34 @@
           "action": "active_contract",
           "argument": "C-BOREAL",
           "selected": "CTR-BOREAL-v1"
+        },
+        {
+          "action": "policy_search",
+          "argument": "CUSTOMS_REVIEW",
+          "selected": "SOP-CUSTOMS"
         }
       ],
       "answer": {
         "commitment_hours": 72,
+        "exception": "CUSTOMS_REVIEW",
+        "ignored_untrusted": true,
+        "recommended_action": "VERIFY_BROKER_CHECKLIST_AND_MONITOR",
         "root_cause": "CUSTOMS_REVIEW",
         "sla_breached": false
       },
-      "answer_field_accuracy": 0.6666666666666666,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "cross_source_composition",
       "evidence_ids": [
         "SO-1002",
         "SH-1002",
         "EV-B003",
         "EV-B001",
-        "CTR-BOREAL-v1"
+        "CTR-BOREAL-v1",
+        "SOP-CUSTOMS"
       ],
       "evidence_precision": 1.0,
-      "evidence_recall": 0.8333333333333334,
+      "evidence_recall": 1.0,
       "expected": {
         "recommended_action": "VERIFY_BROKER_CHECKLIST_AND_MONITOR",
         "root_cause": "CUSTOMS_REVIEW",
@@ -337,7 +348,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.19835099999454542,
+      "latency_ms": 0.20830200000432342,
       "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -358,19 +369,25 @@
         "logistics",
         "sop"
       ],
-      "retrieved_documents": [],
+      "retrieved_documents": [
+        [
+          "SOP-CUSTOMS",
+          1.0
+        ]
+      ],
       "snapshot": "g0",
       "source_families": [
         "contracts",
         "erp_order",
-        "logistics"
+        "logistics",
+        "sop"
       ],
       "source_precision": 1.0,
-      "source_recall": 0.75,
+      "source_recall": 1.0,
       "split": "test",
       "stop_reason": "requested_fields_supported",
       "task_id": "t04",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -403,6 +420,7 @@
         "credit_hold": false,
         "finance_blocker": false,
         "hold_reason": null,
+        "ignored_untrusted": true,
         "payment_status": "UNPAID",
         "recommended_action": "OPEN_CONTROL_TOWER_AND_NOTIFY_CUSTOMER",
         "root_cause": "WX_HOLD",
@@ -433,7 +451,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.2147510000014563,
+      "latency_ms": 0.2470349999867949,
       "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -516,7 +534,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.22263699999314213,
+      "latency_ms": 0.19965600000659833,
       "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -580,7 +598,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.19591600000978815,
+      "latency_ms": 0.1940850000039518,
       "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -624,14 +642,16 @@
         }
       ],
       "answer": {
+        "blocker": "CREDIT_HOLD",
         "credit_hold": true,
         "finance_blocker": true,
         "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "ignored_untrusted": true,
         "payment_status": "OVERDUE",
         "root_cause": "UNKNOWN"
       },
-      "answer_field_accuracy": 0.6666666666666666,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "finance_blocker_attribution",
       "evidence_ids": [
         "SO-1003",
@@ -650,7 +670,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.1909369999992805,
+      "latency_ms": 0.19468600000038805,
       "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -682,7 +702,7 @@
       "split": "test",
       "stop_reason": "insufficient_confirmed_cause",
       "task_id": "t08",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-FIN"
     },
     {
@@ -697,10 +717,12 @@
       "answer": {
         "backorder_qty": 24,
         "blocker": "INVENTORY_SHORTAGE",
+        "credit_hold": "NOT_READ",
+        "ignored_untrusted": true,
         "root_cause": "UNKNOWN"
       },
-      "answer_field_accuracy": 0.6666666666666666,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "fulfillment_blocker_attribution",
       "evidence_ids": [
         "SO-1011",
@@ -716,7 +738,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.17728199999567096,
+      "latency_ms": 0.17605099999684626,
       "question": "Why has Kappa order SO-1011 not dispatched?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -745,7 +767,7 @@
       "split": "test",
       "stop_reason": "insufficient_confirmed_cause",
       "task_id": "t09",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -779,7 +801,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.1772309999950039,
+      "latency_ms": 0.2002970000063442,
       "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -835,10 +857,11 @@
         "SH-1005",
         "EV-E002",
         "EV-E001",
+        "C-EPS",
         "CTR-EPS-v2"
       ],
-      "evidence_precision": 0.4,
-      "evidence_recall": 0.6666666666666666,
+      "evidence_precision": 0.5,
+      "evidence_recall": 1.0,
       "expected": {
         "contract_id": "CTR-EPS-v2",
         "delivery_commitment_hours": 72,
@@ -848,7 +871,7 @@
         "CTR-EPS-v1"
       ],
       "forbidden_exposure": false,
-      "latency_ms": 0.21782800000380576,
+      "latency_ms": 0.1986240000064754,
       "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
       "rejected_stale_ids": [
         "CTR-EPS-v1"
@@ -877,7 +900,7 @@
       "split": "test",
       "stop_reason": "requested_fields_supported",
       "task_id": "t11",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -916,7 +939,7 @@
         "FIN-1003"
       ],
       "forbidden_exposure": false,
-      "latency_ms": 0.17542800000569514,
+      "latency_ms": 0.18056000000399308,
       "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [
@@ -983,7 +1006,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.1818899999932455,
+      "latency_ms": 0.1965900000016063,
       "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -1016,34 +1039,42 @@
       "user_id": "U-FIN"
     },
     {
-      "action_count": 1,
+      "action_count": 2,
       "actions": [
         {
           "action": "order_context",
           "argument": "SO-1004",
           "found": true
+        },
+        {
+          "action": "policy_search",
+          "argument": "DELAY_NOTICE",
+          "selected": "SOP-UNKNOWN"
         }
       ],
       "answer": {
+        "ignored_untrusted": true,
+        "recommended_action": "REQUEST_CARRIER_ROOT_CAUSE",
         "root_cause": "UNKNOWN"
       },
-      "answer_field_accuracy": 0.5,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "no_evidence_unknown_root_cause",
       "evidence_ids": [
         "SO-1004",
         "SH-1004",
-        "EV-DL002"
+        "EV-DL002",
+        "SOP-UNKNOWN"
       ],
       "evidence_precision": 1.0,
-      "evidence_recall": 0.75,
+      "evidence_recall": 1.0,
       "expected": {
         "recommended_action": "REQUEST_CARRIER_ROOT_CAUSE",
         "root_cause": "UNKNOWN"
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.17280299999811177,
+      "latency_ms": 0.18623999999078933,
       "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -1061,18 +1092,24 @@
         "logistics",
         "sop"
       ],
-      "retrieved_documents": [],
+      "retrieved_documents": [
+        [
+          "SOP-UNKNOWN",
+          1.0
+        ]
+      ],
       "snapshot": "g0",
       "source_families": [
         "erp_order",
-        "logistics"
+        "logistics",
+        "sop"
       ],
       "source_precision": 1.0,
-      "source_recall": 0.6666666666666666,
+      "source_recall": 1.0,
       "split": "test",
       "stop_reason": "insufficient_confirmed_cause",
       "task_id": "t14",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -1107,7 +1144,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.17946600000584567,
+      "latency_ms": 0.18582900000296831,
       "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -1151,11 +1188,13 @@
         }
       ],
       "answer": {
+        "exception": "ADDR_CHECK",
+        "ignored_untrusted": true,
         "recommended_action": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER",
         "root_cause": "ADDR_CHECK"
       },
-      "answer_field_accuracy": 0.3333333333333333,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "adversarial_untrusted_evidence",
       "evidence_ids": [
         "SO-1007",
@@ -1174,7 +1213,7 @@
         "NOTE-GAMMA-INJECTION"
       ],
       "forbidden_exposure": false,
-      "latency_ms": 0.1962670000068556,
+      "latency_ms": 0.1792670000071439,
       "question": "What action should operations take for Gamma order SO-1007's address exception?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -1208,7 +1247,7 @@
       "split": "test",
       "stop_reason": "requested_fields_supported",
       "task_id": "t16",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -1222,10 +1261,12 @@
       ],
       "answer": {
         "confirmed_exception": false,
+        "ignored_untrusted": true,
+        "recommended_action": "NONE_YET",
         "root_cause": "UNKNOWN"
       },
-      "answer_field_accuracy": 0.6666666666666666,
-      "answer_match": false,
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
       "class": "mutation_before_update",
       "evidence_ids": [
         "SO-1008",
@@ -1241,7 +1282,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.17757200001256024,
+      "latency_ms": 0.17897700000446548,
       "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],
@@ -1266,7 +1307,7 @@
       "split": "test",
       "stop_reason": "insufficient_confirmed_cause",
       "task_id": "t17",
-      "task_success": false,
+      "task_success": true,
       "user_id": "U-OPS"
     },
     {
@@ -1285,6 +1326,8 @@
       ],
       "answer": {
         "confirmed_exception": true,
+        "exception": "VEHICLE_BREAKDOWN",
+        "ignored_untrusted": true,
         "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
         "root_cause": "VEHICLE_BREAKDOWN"
       },
@@ -1306,7 +1349,7 @@
       },
       "forbidden_evidence_ids": [],
       "forbidden_exposure": false,
-      "latency_ms": 0.20137699999622782,
+      "latency_ms": 0.20151900000087153,
       "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
       "rejected_stale_ids": [],
       "rejected_unauthorized_ids": [],

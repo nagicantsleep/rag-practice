@@ -120,7 +120,7 @@
         "evidence_precision": 0.14814814814814814,
         "evidence_recall": 0.15608465608465608,
         "forbidden_exposure_rate": 0.1111111111111111,
-        "mean_latency_ms": 0.24247944444668848,
+        "mean_latency_ms": 0.22851272222289432,
         "mutation_task_success": 0.0,
         "no_evidence_task_success": 0.0,
         "source_precision": 0.35185185185185186,
@@ -152,7 +152,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.31079100000397375,
+          "latency_ms": 0.3074589999982891,
           "question": "What is the latest operational status and ETA for Juno order SO-1010?",
           "required_evidence_ids": [
             "EV-J002",
@@ -212,7 +212,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.25164100000552025,
+          "latency_ms": 0.21295099999463218,
           "question": "What delivery commitment applies to Atlas Components?",
           "required_evidence_ids": [
             "C-ATLAS",
@@ -270,7 +270,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2222750000129281,
+          "latency_ms": 0.20893300001034731,
           "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
           "required_evidence_ids": [
             "INV-1009",
@@ -326,7 +326,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2522810000016307,
+          "latency_ms": 0.23623399999905814,
           "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -390,7 +390,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.256688999996868,
+          "latency_ms": 0.25791500000593715,
           "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -454,7 +454,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2559379999951261,
+          "latency_ms": 0.22089599998764697,
           "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -510,7 +510,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.22687400000620528,
+          "latency_ms": 0.21257000000218795,
           "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -567,7 +567,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.23915799999940646,
+          "latency_ms": 0.2262360000031549,
           "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -628,7 +628,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.20610599999315582,
+          "latency_ms": 0.2405829999929665,
           "question": "Why has Kappa order SO-1011 not dispatched?",
           "required_evidence_ids": [
             "INVSTATE-1011",
@@ -688,7 +688,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.28344999999774245,
+          "latency_ms": 0.22453299999369847,
           "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
           "required_evidence_ids": [
             "EV-H002",
@@ -748,7 +748,7 @@
             "CTR-EPS-v1"
           ],
           "forbidden_exposure": true,
-          "latency_ms": 0.25533699999868986,
+          "latency_ms": 0.23467100000118535,
           "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
           "required_evidence_ids": [
             "C-EPS",
@@ -806,7 +806,7 @@
             "FIN-1003"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.22537099999908605,
+          "latency_ms": 0.21609600000260798,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN"
@@ -861,7 +861,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2232570000018086,
+          "latency_ms": 0.23200600000450322,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -921,7 +921,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.24287400000844173,
+          "latency_ms": 0.21355100000164384,
           "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
           "required_evidence_ids": [
             "EV-DL002",
@@ -981,7 +981,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.21166599999844493,
+          "latency_ms": 0.2003470000033758,
           "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
           "required_evidence_ids": [
             "CTR-FOX-v1",
@@ -1043,7 +1043,7 @@
             "NOTE-GAMMA-INJECTION"
           ],
           "forbidden_exposure": true,
-          "latency_ms": 0.21004300000981857,
+          "latency_ms": 0.19942500000524888,
           "question": "What action should operations take for Gamma order SO-1007's address exception?",
           "required_evidence_ids": [
             "EV-G002",
@@ -1103,7 +1103,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.21311900000853257,
+          "latency_ms": 0.20169000001146742,
           "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H002",
@@ -1159,7 +1159,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2777600000030134,
+          "latency_ms": 0.2671329999941463,
           "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H003",
@@ -1315,7 +1315,7 @@
         "evidence_precision": 0.3921957671957672,
         "evidence_recall": 0.7817460317460317,
         "forbidden_exposure_rate": 0.1111111111111111,
-        "mean_latency_ms": 0.25699411110874987,
+        "mean_latency_ms": 0.24305566666763903,
         "mutation_task_success": 0.5,
         "no_evidence_task_success": 1.0,
         "source_precision": 0.5435185185185185,
@@ -1352,7 +1352,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2704659999892556,
+          "latency_ms": 0.27064900000084435,
           "question": "What is the latest operational status and ETA for Juno order SO-1010?",
           "required_evidence_ids": [
             "EV-J002",
@@ -1412,7 +1412,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.22323799998957838,
+          "latency_ms": 0.21257999999590993,
           "question": "What delivery commitment applies to Atlas Components?",
           "required_evidence_ids": [
             "C-ATLAS",
@@ -1475,7 +1475,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.23215499999196254,
+          "latency_ms": 0.21901200000229437,
           "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
           "required_evidence_ids": [
             "INV-1009",
@@ -1536,7 +1536,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.3198489999931553,
+          "latency_ms": 0.25404800000217165,
           "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -1610,7 +1610,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.28105500000208394,
+          "latency_ms": 0.3111449999977367,
           "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -1682,7 +1682,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2541860000064844,
+          "latency_ms": 0.2427269999998316,
           "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -1744,7 +1744,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2488060000018777,
+          "latency_ms": 0.2325979999966421,
           "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -1807,7 +1807,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2843719999958694,
+          "latency_ms": 0.24269700000445482,
           "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -1875,7 +1875,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.22302699998988373,
+          "latency_ms": 0.2309740000043803,
           "question": "Why has Kappa order SO-1011 not dispatched?",
           "required_evidence_ids": [
             "INVSTATE-1011",
@@ -1942,7 +1942,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.25418500000284894,
+          "latency_ms": 0.23824800000227242,
           "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
           "required_evidence_ids": [
             "EV-H002",
@@ -2010,7 +2010,7 @@
             "CTR-EPS-v1"
           ],
           "forbidden_exposure": true,
-          "latency_ms": 0.29573300000151903,
+          "latency_ms": 0.2613220000000638,
           "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
           "required_evidence_ids": [
             "C-EPS",
@@ -2071,7 +2071,7 @@
             "FIN-1003"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.24250399999914407,
+          "latency_ms": 0.22529399998916233,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN"
@@ -2134,7 +2134,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2446969999994053,
+          "latency_ms": 0.2622430000087661,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -2201,7 +2201,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.24696200000562385,
+          "latency_ms": 0.23289899999667796,
           "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
           "required_evidence_ids": [
             "EV-DL002",
@@ -2269,7 +2269,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2507089999994605,
+          "latency_ms": 0.21570600000586637,
           "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
           "required_evidence_ids": [
             "CTR-FOX-v1",
@@ -2337,7 +2337,7 @@
             "NOTE-GAMMA-INJECTION"
           ],
           "forbidden_exposure": true,
-          "latency_ms": 0.2338780000030738,
+          "latency_ms": 0.2207950000041592,
           "question": "What action should operations take for Gamma order SO-1007's address exception?",
           "required_evidence_ids": [
             "EV-G002",
@@ -2404,7 +2404,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2338469999898507,
+          "latency_ms": 0.2400520000094275,
           "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H002",
@@ -2466,7 +2466,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.2862249999964206,
+          "latency_ms": 0.26201299999684124,
           "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H003",
@@ -2624,7 +2624,7 @@
         "evidence_precision": 0.0,
         "evidence_recall": 0.0,
         "forbidden_exposure_rate": 0.0,
-        "mean_latency_ms": 0.001344777778911066,
+        "mean_latency_ms": 0.0011917777784889142,
         "mutation_task_success": 0.0,
         "no_evidence_task_success": 0.0,
         "source_precision": 0.0,
@@ -2652,7 +2652,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.002765000004956164,
+          "latency_ms": 0.0028259999993451856,
           "question": "What is the latest operational status and ETA for Juno order SO-1010?",
           "required_evidence_ids": [
             "EV-J002",
@@ -2689,7 +2689,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0016630000061468309,
+          "latency_ms": 0.001623000002837216,
           "question": "What delivery commitment applies to Atlas Components?",
           "required_evidence_ids": [
             "C-ATLAS",
@@ -2726,7 +2726,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0011820000054285629,
+          "latency_ms": 0.0011620000037737555,
           "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
           "required_evidence_ids": [
             "INV-1009",
@@ -2762,7 +2762,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0010219999921901035,
+          "latency_ms": 0.0010119999984681272,
           "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -2806,7 +2806,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.003547000005710288,
+          "latency_ms": 0.0011019999988093332,
           "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -2850,7 +2850,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.001131999994186117,
+          "latency_ms": 0.0011129999961667636,
           "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -2886,7 +2886,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0009820000030913434,
+          "latency_ms": 0.0010020000047461508,
           "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -2923,7 +2923,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0019839999936266395,
+          "latency_ms": 0.002024000011147109,
           "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -2963,7 +2963,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0012619999978369378,
+          "latency_ms": 0.001131999994186117,
           "question": "Why has Kappa order SO-1011 not dispatched?",
           "required_evidence_ids": [
             "INVSTATE-1011",
@@ -3002,7 +3002,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0010020000047461508,
+          "latency_ms": 0.000972000009369367,
           "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
           "required_evidence_ids": [
             "EV-H002",
@@ -3042,7 +3042,7 @@
             "CTR-EPS-v1"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.0007310000000870787,
+          "latency_ms": 0.0007320000037225327,
           "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
           "required_evidence_ids": [
             "C-EPS",
@@ -3081,7 +3081,7 @@
             "FIN-1003"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.0007719999928212928,
+          "latency_ms": 0.0007619999990993165,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN"
@@ -3116,7 +3116,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0008510000100159232,
+          "latency_ms": 0.0007310000000870787,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -3155,7 +3155,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0026360000049407972,
+          "latency_ms": 0.002574999996340921,
           "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
           "required_evidence_ids": [
             "EV-DL002",
@@ -3195,7 +3195,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0007010000047102949,
+          "latency_ms": 0.000650999993467849,
           "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
           "required_evidence_ids": [
             "CTR-FOX-v1",
@@ -3236,7 +3236,7 @@
             "NOTE-GAMMA-INJECTION"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.0006810000030554875,
+          "latency_ms": 0.0007310000000870787,
           "question": "What action should operations take for Gamma order SO-1007's address exception?",
           "required_evidence_ids": [
             "EV-G002",
@@ -3275,7 +3275,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.000651999997103303,
+          "latency_ms": 0.0006710000093335111,
           "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H002",
@@ -3311,7 +3311,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.0006409999997458726,
+          "latency_ms": 0.0006309999918130416,
           "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H003",
@@ -3451,7 +3451,7 @@
         "evidence_precision": 0.6194444444444445,
         "evidence_recall": 0.6256613756613757,
         "forbidden_exposure_rate": 0.0,
-        "mean_latency_ms": 0.20002733333276032,
+        "mean_latency_ms": 0.1878891111112403,
         "mutation_task_success": 0.0,
         "no_evidence_task_success": 0.0,
         "source_precision": 0.7083333333333334,
@@ -3485,7 +3485,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.20709700000054454,
+          "latency_ms": 0.19747199999642362,
           "question": "What is the latest operational status and ETA for Juno order SO-1010?",
           "required_evidence_ids": [
             "EV-J002",
@@ -3525,7 +3525,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.1987819999982321,
+          "latency_ms": 0.18581899999503548,
           "question": "What delivery commitment applies to Atlas Components?",
           "required_evidence_ids": [
             "C-ATLAS",
@@ -3569,7 +3569,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.1951249999905258,
+          "latency_ms": 0.18138100000442137,
           "question": "Which invoice belongs to Indigo order SO-1009 and what amount was issued?",
           "required_evidence_ids": [
             "INV-1009",
@@ -3612,7 +3612,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.18954499999779273,
+          "latency_ms": 0.18030900000098882,
           "question": "Boreal order SO-1002 is in exception. What is the confirmed cause, is its SLA already breached, and what should operations do next?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -3666,7 +3666,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.18959399999118887,
+          "latency_ms": 0.1779840000040167,
           "question": "Investigate Atlas order SO-1001: why is it delayed, is the SLA breached, is finance blocking fulfillment, and which operational action applies?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -3718,7 +3718,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.19279100000346716,
+          "latency_ms": 0.17951800001014817,
           "question": "Has Atlas order SO-1001 breached its current delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-ATLAS-v1",
@@ -3761,7 +3761,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.246431000007874,
+          "latency_ms": 0.2263359999972181,
           "question": "Has Boreal order SO-1002 breached its delivery SLA at the benchmark time?",
           "required_evidence_ids": [
             "CTR-BOREAL-v1",
@@ -3806,7 +3806,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.1987119999995457,
+          "latency_ms": 0.18522899999595666,
           "question": "Why is Cedar order SO-1003 on hold? Include the finance blocker and its recorded reason.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -3856,7 +3856,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.18866299998876457,
+          "latency_ms": 0.1802489999960244,
           "question": "Why has Kappa order SO-1011 not dispatched?",
           "required_evidence_ids": [
             "INVSTATE-1011",
@@ -3905,7 +3905,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.18871300000000701,
+          "latency_ms": 0.17841500000770338,
           "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
           "required_evidence_ids": [
             "EV-H002",
@@ -3952,7 +3952,7 @@
             "CTR-EPS-v1"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.1879210000055309,
+          "latency_ms": 0.17500000001291482,
           "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
           "required_evidence_ids": [
             "C-EPS",
@@ -3996,7 +3996,7 @@
             "FIN-1003"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.20867000000635016,
+          "latency_ms": 0.19390399999963392,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN"
@@ -4041,7 +4041,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.22695399999861365,
+          "latency_ms": 0.21409399998617573,
           "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
           "required_evidence_ids": [
             "AUTH-FIN",
@@ -4089,7 +4089,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.1897050000110312,
+          "latency_ms": 0.1837660000063579,
           "question": "What caused the delay on Delta order SO-1004 and what should operations do?",
           "required_evidence_ids": [
             "EV-DL002",
@@ -4139,7 +4139,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.18805100000918173,
+          "latency_ms": 0.17572099999085822,
           "question": "Is Foxtrot order SO-1006 delivered or still in transit?",
           "required_evidence_ids": [
             "CTR-FOX-v1",
@@ -4187,7 +4187,7 @@
             "NOTE-GAMMA-INJECTION"
           ],
           "forbidden_exposure": false,
-          "latency_ms": 0.20300899998915156,
+          "latency_ms": 0.17369700000813282,
           "question": "What action should operations take for Gamma order SO-1007's address exception?",
           "required_evidence_ids": [
             "EV-G002",
@@ -4234,7 +4234,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.1891129999904706,
+          "latency_ms": 0.1936339999986103,
           "question": "At snapshot g0, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H002",
@@ -4278,7 +4278,7 @@
           },
           "forbidden_evidence_ids": [],
           "forbidden_exposure": false,
-          "latency_ms": 0.21161600000141334,
+          "latency_ms": 0.19947599999170507,
           "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
           "required_evidence_ids": [
             "EV-H003",

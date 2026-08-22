@@ -95,9 +95,18 @@ def test_m12_evaluator_emits_frozen_methods_and_test_splits() -> None:
     results = evaluate_calibration(DATA)
     assert set(results["methods"]) == {"constant", "top1", "margin", "hand_composed", "logistic"}
     assert set(results["metrics"]) == {"test_id", "test_ood"}
-    for split in results["metrics"].values():
+    expected_sizes = {"test_id": 10, "test_ood": 8}
+    for split_name, split in results["metrics"].items():
         for metrics in split.values():
             assert 0.0 <= metrics["brier"] <= 1.0
             assert 0.0 <= metrics["ece"] <= 1.0
             assert 0.0 <= metrics["coverage"] <= 1.0
             assert 0.0 <= metrics["selective_risk"] <= 1.0
+            curve = metrics["risk_coverage_curve"]
+            assert len(curve) == expected_sizes[split_name]
+            assert curve[0]["coverage"] == 1 / expected_sizes[split_name]
+            assert curve[-1]["coverage"] == 1.0
+    assert results["timing"]["mean_trace_feature_ms"] >= 0.0
+    assert results["timing"]["logistic_fit_ms"] >= 0.0
+    assert results["timing"]["mean_logistic_predict_ms"] >= 0.0
+    assert results["timing"]["model_calls"] == 0.0

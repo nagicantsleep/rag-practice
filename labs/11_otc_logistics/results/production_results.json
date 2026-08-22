@@ -1,0 +1,921 @@
+{
+  "benchmark_clock": "2026-08-15T12:00:00Z",
+  "benchmark_version": 1,
+  "metrics": {
+    "answer_field_accuracy": 1.0,
+    "cache_expectation_accuracy": 1.0,
+    "cache_hit_rate": 0.25,
+    "evidence_recall": 1.0,
+    "forbidden_exposure_rate": 0.0,
+    "generation_invalidation_correctness": 1.0,
+    "mean_action_count": 1.75,
+    "mean_serving_latency_ms": 0.20054649999856622,
+    "mean_synthetic_tool_cost": 1.3875,
+    "mutation_correctness": 1.0,
+    "observability_completeness": 1.0,
+    "p50_serving_latency_ms": 0.2475280000027169,
+    "p95_serving_latency_ms": 0.2872337499965738,
+    "role_isolation_correctness": 1.0,
+    "scale_target_answer_stability": 1.0,
+    "stale_exposure_rate": 0.0,
+    "unauthorized_exposure_rate": 0.0,
+    "untrusted_exposure_rate": 0.0
+  },
+  "mutation": {
+    "active_snapshot": "g1",
+    "after_generation": 1,
+    "appended_event_ids": [
+      "EV-H003"
+    ],
+    "before_generation": 0,
+    "latency_ms": 0.0020239999969362543,
+    "replaced_shipment_ids": [
+      "SH-1008@g1"
+    ]
+  },
+  "rows": [
+    {
+      "answer": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "temporal_current_state",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008",
+        "EV-H002"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.22312800000179323,
+      "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
+      "request_id": "p1",
+      "required_evidence_ids": [
+        "EV-H002",
+        "SH-1008",
+        "SO-1008"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t10",
+      "task_success": true,
+      "trace": {
+        "action_count": 1,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1008",
+            "found": true
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1008",
+          "SH-1008",
+          "EV-H002"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.22312800000179323,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [],
+        "request_sequence": 1,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.2750949999921204,
+        "snapshot_id": "g0",
+        "source_families": [
+          "erp_order",
+          "logistics"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 1.0,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "temporal_current_state",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008",
+        "EV-H002"
+      ],
+      "evidence_precision": 1.0,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": false,
+        "latest_event_code": "LINEHAUL",
+        "shipment_status": "IN_TRANSIT"
+      },
+      "expected_cache_hit": true,
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.22312800000179323,
+      "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
+      "request_id": "p2",
+      "required_evidence_ids": [
+        "EV-H002",
+        "SH-1008",
+        "SO-1008"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t10",
+      "task_success": true,
+      "trace": {
+        "action_count": 1,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1008",
+            "found": true
+          }
+        ],
+        "cache_hit": true,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "What is the current Helios shipment state for SO-1008 before any later carrier update?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1008",
+          "SH-1008",
+          "EV-H002"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.22312800000179323,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [],
+        "request_sequence": 2,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.03721000000211916,
+        "snapshot_id": "g0",
+        "source_families": [
+          "erp_order",
+          "logistics"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 0.05,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "decision": "DENIED"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "unauthorized_sensitive_query",
+      "evidence_ids": [
+        "SO-1003",
+        "SH-1003",
+        "INV-1003",
+        "AUTH-FIN"
+      ],
+      "evidence_precision": 0.25,
+      "evidence_recall": 1.0,
+      "expected": {
+        "decision": "DENIED"
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [
+        "FIN-1003"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.18565700000294783,
+      "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+      "request_id": "p3",
+      "required_evidence_ids": [
+        "AUTH-FIN"
+      ],
+      "required_source_families": [
+        "authorization"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "authorization"
+      ],
+      "source_precision": 0.3333333333333333,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t12",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1003",
+            "found": true
+          },
+          {
+            "action": "finance_context",
+            "argument": "SO-1003",
+            "authorized": false,
+            "found": false
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1003",
+          "SH-1003",
+          "INV-1003",
+          "AUTH-FIN"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.18565700000294783,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [
+          "finance"
+        ],
+        "rejected_untrusted_ids": [],
+        "request_sequence": 3,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.19431399999803034,
+        "snapshot_id": "g0",
+        "source_families": [
+          "erp_order",
+          "logistics",
+          "authorization"
+        ],
+        "stop_reason": "authorization_denied",
+        "synthetic_tool_cost": 2.0,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "credit_hold": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "payment_status": "OVERDUE"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "authorized_sensitive_query",
+      "evidence_ids": [
+        "SO-1003",
+        "SH-1003",
+        "INV-1003",
+        "AUTH-FIN",
+        "FIN-1003"
+      ],
+      "evidence_precision": 0.8,
+      "evidence_recall": 1.0,
+      "expected": {
+        "credit_hold": true,
+        "hold_reason": "Credit limit exceeded after overdue balance review.",
+        "payment_status": "OVERDUE"
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.22217599999407867,
+      "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+      "request_id": "p4",
+      "required_evidence_ids": [
+        "AUTH-FIN",
+        "FIN-1003",
+        "INV-1003",
+        "SO-1003"
+      ],
+      "required_source_families": [
+        "authorization",
+        "erp_order",
+        "finance"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "authorization",
+        "erp_order",
+        "finance",
+        "logistics"
+      ],
+      "source_precision": 0.75,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t13",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1003",
+            "found": true
+          },
+          {
+            "action": "finance_context",
+            "argument": "SO-1003",
+            "authorized": true,
+            "found": true
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "Show the payment status, credit-hold state, and hold reason for Cedar order SO-1003.",
+          "roles": [
+            "finance"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-FIN"
+        },
+        "evidence_ids": [
+          "SO-1003",
+          "SH-1003",
+          "INV-1003",
+          "AUTH-FIN",
+          "FIN-1003"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.22217599999407867,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [],
+        "request_sequence": 4,
+        "roles": [
+          "finance"
+        ],
+        "serving_latency_ms": 0.2674299999938512,
+        "snapshot_id": "g0",
+        "source_families": [
+          "authorization",
+          "erp_order",
+          "finance",
+          "logistics"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 2.0,
+        "user_id": "U-FIN"
+      },
+      "trace_complete": true,
+      "user_id": "U-FIN"
+    },
+    {
+      "answer": {
+        "commitment_hours": 72,
+        "contract_id": "CTR-EPS-v2",
+        "delivery_commitment_hours": 72,
+        "sla_breached": false
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "stale_evidence_rejection",
+      "evidence_ids": [
+        "SO-1005",
+        "SH-1005",
+        "EV-E002",
+        "EV-E001",
+        "C-EPS",
+        "CTR-EPS-v2"
+      ],
+      "evidence_precision": 0.5,
+      "evidence_recall": 1.0,
+      "expected": {
+        "contract_id": "CTR-EPS-v2",
+        "delivery_commitment_hours": 72,
+        "sla_breached": false
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [
+        "CTR-EPS-v1"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.21591300000523006,
+      "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
+      "request_id": "p5",
+      "required_evidence_ids": [
+        "C-EPS",
+        "CTR-EPS-v2",
+        "EV-E001"
+      ],
+      "required_source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "retrieved_documents": [],
+      "snapshot": "g0",
+      "source_families": [
+        "contracts",
+        "erp_order",
+        "logistics"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t11",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1005",
+            "found": true
+          },
+          {
+            "action": "active_contract",
+            "argument": "C-EPS",
+            "selected": "CTR-EPS-v2"
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "Using the contract effective at the benchmark time, what is Epsilon Retail's delivery commitment and is SO-1005 already in breach?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1005",
+          "SH-1005",
+          "EV-E002",
+          "EV-E001",
+          "C-EPS",
+          "CTR-EPS-v2"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.21591300000523006,
+        "rejected_stale_ids": [
+          "CTR-EPS-v1"
+        ],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [],
+        "request_sequence": 5,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.25669000000050346,
+        "snapshot_id": "g0",
+        "source_families": [
+          "contracts",
+          "erp_order",
+          "logistics"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 2.0,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "exception": "ADDR_CHECK",
+        "ignored_untrusted": true,
+        "recommended_action": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER",
+        "root_cause": "ADDR_CHECK"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "adversarial_untrusted_evidence",
+      "evidence_ids": [
+        "SO-1007",
+        "SH-1007",
+        "EV-G002",
+        "SOP-ADDRESS"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 1.0,
+      "expected": {
+        "exception": "ADDR_CHECK",
+        "ignored_untrusted": true,
+        "recommended_action": "CONFIRM_ADDRESS_WITH_MASTER_AND_CARRIER"
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [
+        "NOTE-GAMMA-INJECTION"
+      ],
+      "forbidden_exposure": false,
+      "latency_ms": 0.19420399999603433,
+      "question": "What action should operations take for Gamma order SO-1007's address exception?",
+      "request_id": "p6",
+      "required_evidence_ids": [
+        "EV-G002",
+        "SO-1007",
+        "SOP-ADDRESS"
+      ],
+      "required_source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-ADDRESS",
+          1.0
+        ]
+      ],
+      "snapshot": "g0",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 1.0,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t16",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1007",
+            "found": true
+          },
+          {
+            "action": "policy_search",
+            "argument": "ADDR_CHECK",
+            "selected": "SOP-ADDRESS"
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 0,
+          "policy_version": "m11.2-v1",
+          "question": "What action should operations take for Gamma order SO-1007's address exception?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g0",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1007",
+          "SH-1007",
+          "EV-G002",
+          "SOP-ADDRESS"
+        ],
+        "generation": 0,
+        "integrated_latency_ms": 0.19420399999603433,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [
+          "NOTE-GAMMA-INJECTION"
+        ],
+        "request_sequence": 6,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.23836600000493036,
+        "snapshot_id": "g0",
+        "source_families": [
+          "erp_order",
+          "logistics",
+          "sop"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 2.0,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "confirmed_exception": true,
+        "exception": "VEHICLE_BREAKDOWN",
+        "ignored_untrusted": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "mutation_after_update",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008@g1",
+        "EV-H003",
+        "SOP-MECHANICAL"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "expected_cache_hit": false,
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.24582999999722688,
+      "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+      "request_id": "p8",
+      "required_evidence_ids": [
+        "EV-H003",
+        "SH-1008@g1",
+        "SOP-MECHANICAL"
+      ],
+      "required_source_families": [
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-MECHANICAL",
+          1.0
+        ]
+      ],
+      "snapshot": "g1",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 0.6666666666666666,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t18",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1008",
+            "found": true
+          },
+          {
+            "action": "policy_search",
+            "argument": "VEHICLE_BREAKDOWN",
+            "selected": "SOP-MECHANICAL"
+          }
+        ],
+        "cache_hit": false,
+        "cache_key": {
+          "generation": 1,
+          "policy_version": "m11.2-v1",
+          "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g1",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1008",
+          "SH-1008@g1",
+          "EV-H003",
+          "SOP-MECHANICAL"
+        ],
+        "generation": 1,
+        "integrated_latency_ms": 0.24582999999722688,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [
+          "NOTE-GAMMA-INJECTION"
+        ],
+        "request_sequence": 7,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.2937699999989718,
+        "snapshot_id": "g1",
+        "source_families": [
+          "erp_order",
+          "logistics",
+          "sop"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 2.0,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    },
+    {
+      "answer": {
+        "confirmed_exception": true,
+        "exception": "VEHICLE_BREAKDOWN",
+        "ignored_untrusted": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "answer_field_accuracy": 1.0,
+      "answer_match": true,
+      "cache_expectation_correct": true,
+      "class": "mutation_after_update",
+      "evidence_ids": [
+        "SO-1008",
+        "SH-1008@g1",
+        "EV-H003",
+        "SOP-MECHANICAL"
+      ],
+      "evidence_precision": 0.75,
+      "evidence_recall": 1.0,
+      "expected": {
+        "confirmed_exception": true,
+        "recommended_action": "CARRIER_RECOVERY_AND_RECALCULATE_ETA",
+        "root_cause": "VEHICLE_BREAKDOWN"
+      },
+      "expected_cache_hit": true,
+      "forbidden_evidence_ids": [],
+      "forbidden_exposure": false,
+      "latency_ms": 0.24582999999722688,
+      "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+      "request_id": "p9",
+      "required_evidence_ids": [
+        "EV-H003",
+        "SH-1008@g1",
+        "SOP-MECHANICAL"
+      ],
+      "required_source_families": [
+        "logistics",
+        "sop"
+      ],
+      "retrieved_documents": [
+        [
+          "SOP-MECHANICAL",
+          1.0
+        ]
+      ],
+      "snapshot": "g1",
+      "source_families": [
+        "erp_order",
+        "logistics",
+        "sop"
+      ],
+      "source_precision": 0.6666666666666666,
+      "source_recall": 1.0,
+      "split": "test",
+      "task_id": "t18",
+      "task_success": true,
+      "trace": {
+        "action_count": 2,
+        "actions": [
+          {
+            "action": "order_context",
+            "argument": "SO-1008",
+            "found": true
+          },
+          {
+            "action": "policy_search",
+            "argument": "VEHICLE_BREAKDOWN",
+            "selected": "SOP-MECHANICAL"
+          }
+        ],
+        "cache_hit": true,
+        "cache_key": {
+          "generation": 1,
+          "policy_version": "m11.2-v1",
+          "question": "At snapshot g1 after the carrier update, what confirmed exception explains Helios order SO-1008 and what escalation applies?",
+          "roles": [
+            "ops"
+          ],
+          "snapshot_id": "g1",
+          "user_id": "U-OPS"
+        },
+        "evidence_ids": [
+          "SO-1008",
+          "SH-1008@g1",
+          "EV-H003",
+          "SOP-MECHANICAL"
+        ],
+        "generation": 1,
+        "integrated_latency_ms": 0.24582999999722688,
+        "rejected_stale_ids": [],
+        "rejected_unauthorized_ids": [],
+        "rejected_untrusted_ids": [
+          "NOTE-GAMMA-INJECTION"
+        ],
+        "request_sequence": 8,
+        "roles": [
+          "ops"
+        ],
+        "serving_latency_ms": 0.04149699999800305,
+        "snapshot_id": "g1",
+        "source_families": [
+          "erp_order",
+          "logistics",
+          "sop"
+        ],
+        "stop_reason": "requested_fields_supported",
+        "synthetic_tool_cost": 0.05,
+        "user_id": "U-OPS"
+      },
+      "trace_complete": true,
+      "user_id": "U-OPS"
+    }
+  ],
+  "scale": [
+    {
+      "build_ms": 0.25552900000036516,
+      "cache_entries": 1,
+      "cold_query_ms": 0.24466900001129943,
+      "delete_ms": 0.0006510000076787037,
+      "logical_record_count": 215,
+      "size": 100,
+      "target_answer_stable": true,
+      "upsert_ms": 0.003666999987217423,
+      "warm_query_ms": 0.03218000000515531
+    },
+    {
+      "build_ms": 2.516921000008665,
+      "cache_entries": 1,
+      "cold_query_ms": 0.2351299999929779,
+      "delete_ms": 0.0006009999964362578,
+      "logical_record_count": 1115,
+      "size": 1000,
+      "target_answer_stable": true,
+      "upsert_ms": 0.0038769999974874736,
+      "warm_query_ms": 0.03101800000138155
+    }
+  ],
+  "system": "guarded_otc_serving"
+}
